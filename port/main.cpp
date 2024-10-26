@@ -1,3 +1,4 @@
+#include "models.h"
 #include <GL/gl.h>
 #include <SDL2/SDL.h>
 #include <stdio.h>
@@ -5,6 +6,12 @@
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 const Uint32 TARGET_TICKS_PER_FRAME = 16; // About 60fps
+
+void drawFrame() {
+  glLoadIdentity();
+  glColor4f(0.5, 0.0, 0.0, 0.5);
+  JetPack();
+}
 
 void runEventLoop(SDL_Window *window) {
   SDL_Event e;
@@ -18,6 +25,7 @@ void runEventLoop(SDL_Window *window) {
     }
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    drawFrame();
     glFlush();
     SDL_GL_SwapWindow(window);
 

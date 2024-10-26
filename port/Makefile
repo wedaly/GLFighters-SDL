@@ -1,15 +1,21 @@
 CC = g++
 CFLAGS=-w -Wall -lSDL2 -lGL
+SRCS := $(wildcard *.cpp)
+OBJS := $(SRCS:.cpp=.o)
+TARGET := glfighters
 
-.PHONY: fmt
+.PHONY: fmt clean
 
-all: $(patsubst %.cpp, %.out, $(wildcard *.cpp))
+all: $(TARGET)
 
-%.out: %.cpp Makefile
-	$(CC) $(CFLAGS) $< -o $@ -lm
+$(TARGET): $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(TARGET)
+
+%.o: %.cpp
+	$(CC) $(CFLAGS) -c $< -o $@
 
 fmt:
 	find . -regex '.*\.\(cpp\|h\)' -exec clang-format -i {} \;
 
 clean:
-	rm *.out
+	rm -f $(OBJS) $(TARGET)
