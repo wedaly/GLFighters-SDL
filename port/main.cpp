@@ -51,7 +51,7 @@ void runEventLoop(SDL_Window *window) {
 
 int main(int argc, char *args[]) {
   if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-    printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
+    printf("SDL could not initialize. SDL_Error: %s\n", SDL_GetError());
     return 1;
   }
 
@@ -59,13 +59,13 @@ int main(int argc, char *args[]) {
                                         SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH,
                                         SCREEN_HEIGHT, SDL_WINDOW_OPENGL);
   if (window == NULL) {
-    printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
+    printf("Window could not be created. SDL_Error: %s\n", SDL_GetError());
     return 1;
   }
 
   SDL_GLContext glctx = SDL_GL_CreateContext(window);
   if (glctx == NULL) {
-    printf("Could not ceate OpenGL context. SDL_Error: %s\n", SDL_GetError());
+    printf("Could not create OpenGL context. SDL_Error: %s\n", SDL_GetError());
     return 1;
   }
 
