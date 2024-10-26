@@ -7,26 +7,34 @@ static Uint32 wavLength;
 static Uint8 *wavBuffer;
 
 int loadSounds() {
-  SDL_LoadWAV("data/sounds/140.Lightsabre.wav", &wavSpec, &wavBuffer,
-              &wavLength);
-
   deviceId = SDL_OpenAudioDevice(NULL, 0, &wavSpec, NULL, 0);
+	if (deviceId < 0) {
+		printf("SDL could not open audio device. SDL_Error: %s\n", SDL_GetError());
+		return 1;
+	}
 
-  // TODO: error handling...
+  if (SDL_LoadWAV("data/sounds/140.Lightsabre.wav", &wavSpec, &wavBuffer, &wavLength) == NULL) {
+		printf("SDL could not load audio file. SDL_Error: %s\n", SDL_GetError());
+		return 1;
+	}
+
   return 0;
 }
 
 void freeSounds() {
-  SDL_CloseAudioDevice(deviceId);
-  SDL_FreeWAV(wavBuffer);
+	if (deviceId > 0) {
+	  SDL_CloseAudioDevice(deviceId);
+	}
+
+	if (wavBuffer != NULL) {
+	  SDL_FreeWAV(wavBuffer);
+	}
 }
 
-// TODO: volume...
 int playSound(int id) {
 	SDL_ClearQueuedAudio(deviceId);
   SDL_QueueAudio(deviceId, wavBuffer, wavLength);
   SDL_PauseAudioDevice(deviceId, 0);
 
-  // TODO: error handling
   return 0;
 }
