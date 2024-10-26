@@ -23,6 +23,7 @@ void freeSounds() {
 
 // TODO: volume...
 int playSound(int id) {
+	SDL_ClearQueuedAudio(deviceId);
   SDL_QueueAudio(deviceId, wavBuffer, wavLength);
   SDL_PauseAudioDevice(deviceId, 0);
 
