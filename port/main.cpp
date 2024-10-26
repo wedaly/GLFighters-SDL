@@ -49,7 +49,12 @@ int main(int argc, char *args[]) {
     return 1;
   }
 
-  SDL_GL_MakeCurrent(window, glctx);
+  if (SDL_GL_MakeCurrent(window, glctx) < 0) {
+    printf("Could not make OpenGL context current. SDL_Error: %s\n",
+           SDL_GetError());
+    return 1;
+  }
+
   runEventLoop(window);
   SDL_DestroyWindow(window);
   SDL_Quit();
