@@ -13,14 +13,26 @@ void drawFrame() {
   JetPack();
 }
 
+void handleKeyEvent(SDL_KeyboardEvent &e) {
+  // e.keysym.sym is like SDLK_UP, SDLK_DOWN, ...
+  // e.state is SDL_PRESSED or SDL_RELEASED
+  printf("key event: key=%d, state=%d\n", e.keysym.sym, e.state);
+}
+
 void runEventLoop(SDL_Window *window) {
   SDL_Event e;
   while (true) {
     Uint32 startTicks = SDL_GetTicks(); // milliseconds
 
     while (SDL_PollEvent(&e)) {
-      if (e.type == SDL_QUIT) {
+      switch (e.type) {
+      case SDL_QUIT:
         return;
+
+      case SDL_KEYDOWN:
+      case SDL_KEYUP:
+        handleKeyEvent(e.key);
+        break;
       }
     }
 
