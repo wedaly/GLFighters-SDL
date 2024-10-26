@@ -1,4 +1,5 @@
 #include "models.h"
+#include "sound.h"
 #include <GL/gl.h>
 #include <SDL2/SDL.h>
 #include <stdio.h>
@@ -50,7 +51,7 @@ void runEventLoop(SDL_Window *window) {
 }
 
 int main(int argc, char *args[]) {
-  if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+  if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0) {
     printf("SDL could not initialize. SDL_Error: %s\n", SDL_GetError());
     return 1;
   }
@@ -75,7 +76,14 @@ int main(int argc, char *args[]) {
     return 1;
   }
 
+  if (loadSounds() < 0) {
+    printf("Failed loading sounds\n");
+    return 1;
+  }
+
   runEventLoop(window);
+
+  freeSounds();
   SDL_DestroyWindow(window);
   SDL_Quit();
 
