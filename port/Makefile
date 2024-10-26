@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS=-w -Wall -lSDL2 -lGL
+CFLAGS=-w -Wall -lSDL2 -lSDL2_image -lGL
 SRCS := $(wildcard *.cpp)
 OBJS := $(SRCS:.cpp=.o)
 TARGET := glfighters
