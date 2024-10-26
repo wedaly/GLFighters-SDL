@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS=-w -lSDL2
+CFLAGS=-w -lSDL2 -lGL
 
 .PHONY: fmt
 

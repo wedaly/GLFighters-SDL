@@ -1,3 +1,4 @@
+#include <GL/gl.h>
 #include <SDL2/SDL.h>
 #include <stdio.h>
 
@@ -15,16 +16,22 @@ int main(int argc, char *args[]) {
 
   window = SDL_CreateWindow("GLFighters", SDL_WINDOWPOS_UNDEFINED,
                             SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH,
-                            SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+                            SCREEN_HEIGHT, SDL_WINDOW_OPENGL);
   if (window == NULL) {
     printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
     return 1;
   }
 
-  screenSurface = SDL_GetWindowSurface(window);
-  SDL_FillRect(screenSurface, NULL,
-               SDL_MapRGB(screenSurface->format, 0xFF, 0xFF, 0xFF));
-  SDL_UpdateWindowSurface(window);
+  SDL_GLContext glctx = SDL_GL_CreateContext(window);
+  if (glctx == NULL) {
+    printf("Could not ceate OpenGL context. SDL_Error: %s\n", SDL_GetError());
+    return 1;
+  }
+
+  SDL_GL_MakeCurrent(window, glctx);
+  SDL_GL_SwapWindow(window);
+
+  glClear(0);
 
   SDL_Event e;
   bool quit = false;
