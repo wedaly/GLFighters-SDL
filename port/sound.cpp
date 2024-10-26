@@ -31,10 +31,12 @@ void freeSounds() {
 	}
 }
 
-int playSound(int id) {
+void playSound(int id) {
 	SDL_ClearQueuedAudio(deviceId);
-  SDL_QueueAudio(deviceId, wavBuffer, wavLength);
-  SDL_PauseAudioDevice(deviceId, 0);
 
-  return 0;
+  if (SDL_QueueAudio(deviceId, wavBuffer, wavLength) < 0) {
+		printf("SDL could not queue audio. SDL_Error: %s\n", SDL_GetError());
+	}
+
+  SDL_PauseAudioDevice(deviceId, 0); // 0 means unpause = start playing
 }

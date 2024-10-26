@@ -20,7 +20,7 @@ void handleKeyEvent(SDL_KeyboardEvent &e) {
   printf("key event: key=%d, state=%d\n", e.keysym.sym, e.state);
 
 	if (e.keysym.sym == 's' && e.state == SDL_PRESSED) {
-		playSound(0);
+		playSound(SND_LIGHTSABRE_ID);
 	}
 }
 
