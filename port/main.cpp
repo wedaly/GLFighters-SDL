@@ -8,13 +8,12 @@ const Uint32 TARGET_TICKS_PER_FRAME = 16; // About 60fps
 
 void runEventLoop(SDL_Window *window) {
   SDL_Event e;
-  bool quit = false;
-  while (!quit) {
+  while (true) {
     Uint32 startTicks = SDL_GetTicks(); // milliseconds
 
     while (SDL_PollEvent(&e)) {
       if (e.type == SDL_QUIT) {
-        quit = true;
+        return;
       }
     }
 
