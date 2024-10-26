@@ -1,16 +1,23 @@
 #include "models.h"
 #include "sound.h"
+#include "textures.h"
 #include <GL/gl.h>
 #include <SDL2/SDL.h>
 #include <stdio.h>
 
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
+const int SCREEN_WIDTH = 1600;
+const int SCREEN_HEIGHT = 1200;
 const Uint32 TARGET_TICKS_PER_FRAME = 16; // About 60fps
+
+// DEBUG
+GLfloat rotx = 0;
+GLfloat roty = 0;
 
 void drawFrame() {
   glLoadIdentity();
-  glColor4f(0.5, 0.0, 0.0, 0.5);
+  glRotatef(rotx, 0.0f, 1.0f, 0.0f);
+  glRotatef(roty, 1.0f, 0.0f, 0.0f);
+  bindTexture(TEX_JETPACK_ID);
   JetPack();
 }
 
@@ -21,6 +28,14 @@ void handleKeyEvent(SDL_KeyboardEvent &e) {
 
   if (e.keysym.sym == 's' && e.state == SDL_PRESSED) {
     playSound(SND_LIGHTSABRE_ID);
+  } else if (e.keysym.sym == SDLK_LEFT && e.state == SDL_PRESSED) {
+    rotx += 5.0f;
+  } else if (e.keysym.sym == SDLK_RIGHT && e.state == SDL_PRESSED) {
+    rotx -= 5.0f;
+  } else if (e.keysym.sym == SDLK_UP && e.state == SDL_PRESSED) {
+    roty += 5.0f;
+  } else if (e.keysym.sym == SDLK_DOWN && e.state == SDL_PRESSED) {
+    roty -= 5.0f;
   }
 }
 
@@ -80,7 +95,13 @@ int main(int argc, char *args[]) {
     return 1;
   }
 
-  if (loadSounds() < 0) {
+  glEnable(GL_TEXTURE_2D);
+  if (loadTextures() != 0) {
+    printf("Failed loading textures\n");
+    return 1;
+  }
+
+  if (loadSounds() != 0) {
     printf("Failed loading sounds\n");
     return 1;
   }
@@ -88,6 +109,7 @@ int main(int argc, char *args[]) {
   runEventLoop(window);
 
   freeSounds();
+  freeTextures();
   SDL_DestroyWindow(window);
   SDL_Quit();
 

@@ -5,7 +5,7 @@ Port of GLFighters to SDL
 ## Dependencies
 
 * C++ compiler. On Fedora, `dnf install gcc-c++`
-* [SDL2](https://www.libsdl.org/). On Fedora, `dnf install SDL2-devel`
+* [SDL2](https://www.libsdl.org/) and [SDL_Image](https://github.com/libsdl-org/SDL_image). On Fedora, `dnf install SDL2-devel SDL2_image-devel`
 * OpenGL. On Fedora, `dnf install mesa-libGL`
 
 ## Building and running
