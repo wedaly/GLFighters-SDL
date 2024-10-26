@@ -18,6 +18,10 @@ void handleKeyEvent(SDL_KeyboardEvent &e) {
   // e.keysym.sym is like SDLK_UP, SDLK_DOWN, ...
   // e.state is SDL_PRESSED or SDL_RELEASED
   printf("key event: key=%d, state=%d\n", e.keysym.sym, e.state);
+
+	if (e.keysym.sym == 's' && e.state == SDL_PRESSED) {
+		playSound(0);
+	}
 }
 
 void runEventLoop(SDL_Window *window) {
