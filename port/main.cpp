@@ -11,7 +11,8 @@ const Uint32 TARGET_TICKS_PER_FRAME = 16; // About 60fps
 
 void drawFrame() {
   glLoadIdentity();
-  glColor4f(0.5, 0.0, 0.0, 0.5);
+  //glColor4f(0.5, 0.0, 0.0, 0.5);
+	bindTexture(TEX_JETPACK_ID);
   JetPack();
 }
 
@@ -81,6 +82,7 @@ int main(int argc, char *args[]) {
     return 1;
   }
 
+	glEnable(GL_TEXTURE_2D);
   if (loadTextures() != 0) {
     printf("Failed loading textures\n");
     return 1;
