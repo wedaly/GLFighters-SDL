@@ -1,5 +1,6 @@
 #include "models.h"
 #include "sound.h"
+#include "textures.h"
 #include <GL/gl.h>
 #include <SDL2/SDL.h>
 #include <stdio.h>
@@ -80,7 +81,12 @@ int main(int argc, char *args[]) {
     return 1;
   }
 
-  if (loadSounds() < 0) {
+  if (loadTextures() != 0) {
+    printf("Failed loading textures\n");
+    return 1;
+  }
+
+  if (loadSounds() != 0) {
     printf("Failed loading sounds\n");
     return 1;
   }
@@ -88,6 +94,7 @@ int main(int argc, char *args[]) {
   runEventLoop(window);
 
   freeSounds();
+  freeTextures();
   SDL_DestroyWindow(window);
   SDL_Quit();
 
