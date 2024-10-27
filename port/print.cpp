@@ -33,7 +33,7 @@ bool createFont(int textureID) {
     glTexCoord2f(cx, 1 - cy);
     glVertex2i(0, 16);
     glEnd();
-    glTranslated(10, 0, 0);
+    glTranslated(16, 0, 0);
     glEndList();
   }
 
@@ -49,7 +49,7 @@ void freeFont() {
 
 void printToScreen(int x, int y, char *s, bool italicize, float size, int screenwidth, int screenheight) {
   int offset = italicize ? 128 : 0;
-  glBindTexture(GL_TEXTURE_2D, fontTextureID);
+  bindTexture(fontTextureID);
   glDisable(GL_DEPTH_TEST);
   glMatrixMode(GL_PROJECTION);
   glPushMatrix();

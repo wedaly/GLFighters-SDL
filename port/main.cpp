@@ -6,8 +6,8 @@
 #include <SDL2/SDL.h>
 #include <cstdio>
 
-const int SCREEN_WIDTH = 1600;
-const int SCREEN_HEIGHT = 1200;
+const int SCREEN_WIDTH = 640;
+const int SCREEN_HEIGHT = 480;
 const Uint32 TARGET_TICKS_PER_FRAME = 16; // About 60fps
 
 // DEBUG
@@ -21,7 +21,7 @@ void drawFrame() {
   bindTexture(TEX_JETPACK_ID);
   JetPack();
 
-  printToScreen(10, 10, "Hello world!", false, 5.0, SCREEN_WIDTH, SCREEN_HEIGHT);
+  printToScreen(10, 10, "012345", false, 1.0, SCREEN_WIDTH, SCREEN_HEIGHT);
 }
 
 void handleKeyEvent(SDL_KeyboardEvent &e) {

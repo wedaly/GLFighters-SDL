@@ -81,6 +81,22 @@ static char *texturePaths[]{
 
 static GLuint textureIDs[numTextures];
 
+static void flipSurfaceVertically(SDL_Surface *surface) {
+  SDL_LockSurface(surface);
+  int pitch = surface->pitch;
+  char *pixels = (char *)(surface->pixels);
+  char tmp[pitch];
+
+  for (int i = 0; i < surface->h / 2; i++) {
+    char *row1 = pixels + i * pitch;
+    char *row2 = pixels + (surface->h - i - 1) * pitch;
+    memcpy(tmp, row1, pitch);
+    memcpy(row1, row2, pitch);
+    memcpy(row2, tmp, pitch);
+  }
+  SDL_UnlockSurface(surface);
+}
+
 static bool loadTextureFromImage(char *path, GLuint textureID) {
   SDL_Surface *surface = IMG_Load(path);
   if (surface == NULL) {
@@ -89,12 +105,14 @@ static bool loadTextureFromImage(char *path, GLuint textureID) {
     return false;
   }
 
+  flipSurfaceVertically(surface);
+
   glBindTexture(GL_TEXTURE_2D, textureID);
   int mode = surface->format->BytesPerPixel == 4 ? GL_RGBA : GL_RGB;
-  glTexImage2D(GL_TEXTURE_2D, 0, mode, surface->w, surface->h, 0, mode,
-               GL_UNSIGNED_BYTE, surface->pixels);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+  glTexImage2D(GL_TEXTURE_2D, 0, mode, surface->w, surface->h, 0, mode,
+               GL_UNSIGNED_BYTE, surface->pixels);
   SDL_FreeSurface(surface);
   return true;
 }
