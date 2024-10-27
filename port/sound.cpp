@@ -52,8 +52,7 @@ bool loadSounds() {
     sc->wavBuffer = NULL;
     sc->wavLength = 0;
 
-    if (SDL_LoadWAV(path, &sc->wavSpec, &sc->wavBuffer, &sc->wavLength) ==
-        NULL) {
+    if (SDL_LoadWAV(path, &sc->wavSpec, &sc->wavBuffer, &sc->wavLength) == NULL) {
       printf("SDL could not load audio file from '%s'. SDL_Error: %s\n", path,
              SDL_GetError());
       return false;

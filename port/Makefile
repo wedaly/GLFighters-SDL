@@ -15,7 +15,7 @@ $(TARGET): $(OBJS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 fmt:
-	find . -regex '.*\.\(cpp\|h\)' -exec clang-format -i {} \;
+	find . -regex '.*\.\(cpp\|h\)' -exec clang-format -style="{ColumnLimit: 0}" -i {} \;
 
 clean:
 	rm -f $(OBJS) $(TARGET)
