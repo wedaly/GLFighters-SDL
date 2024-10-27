@@ -97,6 +97,21 @@ static void flipSurfaceVertically(SDL_Surface *surface) {
   SDL_UnlockSurface(surface);
 }
 
+static void swapRedAndBlue(SDL_Surface *surface) {
+  SDL_LockSurface(surface);
+  char *pixels = (char *)(surface->pixels);
+  int bpp = surface->format->BytesPerPixel;
+  int n = surface->w * surface->h * bpp;
+
+  for (int i = 0; i < n; i += bpp) {
+    char tmp = pixels[i];
+    pixels[i] = pixels[i + 2];
+    pixels[i + 2] = tmp;
+  }
+
+  SDL_UnlockSurface(surface);
+}
+
 static bool loadTextureFromImage(char *path, GLuint textureID) {
   SDL_Surface *surface = IMG_Load(path);
   if (surface == NULL) {
@@ -106,6 +121,7 @@ static bool loadTextureFromImage(char *path, GLuint textureID) {
   }
 
   flipSurfaceVertically(surface);
+  swapRedAndBlue(surface);
 
   glBindTexture(GL_TEXTURE_2D, textureID);
   int mode = surface->format->BytesPerPixel == 4 ? GL_RGBA : GL_RGB;

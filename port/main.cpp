@@ -18,8 +18,8 @@ void drawFrame() {
   glLoadIdentity();
   glRotatef(rotx, 0.0f, 1.0f, 0.0f);
   glRotatef(roty, 1.0f, 0.0f, 0.0f);
-  bindTexture(TEX_JETPACK_ID);
-  JetPack();
+  bindTexture(TEX_RED_HELMET_ID);
+  Head();
 
   printToScreen(10, 10, "012345", false, 1.0, SCREEN_WIDTH, SCREEN_HEIGHT);
 }
