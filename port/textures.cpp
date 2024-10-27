@@ -79,8 +79,36 @@ static char *texturePaths[]{
     "./data/Font.bmp",
 };
 
-int loadTextures() {}
+static GLuint textureIDs[numTextures];
 
-void freeTextures() {}
+static int loadTextureFromImage(char *path, GLuint textureID) {
+  SDL_Surface *surface = IMG_Load(path);
+  if (surface == NULL) {
+    printf("Error loading SDL surface from '%s'. SDL_Error: %s\n", path,
+           SDL_GetError());
+    return 1;
+  }
 
-void bindTexture(int id) {}
+  glBindTexture(GL_TEXTURE_2D, textureID);
+  int mode = surface->format->BytesPerPixel == 4 ? GL_RGBA : GL_RGB;
+  glTexImage2D(GL_TEXTURE_2D, 0, mode, surface->w, surface->h, 0, mode,
+               GL_UNSIGNED_BYTE, surface->pixels);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+  SDL_FreeSurface(surface);
+  return 0;
+}
+
+int loadTextures() {
+  glGenTextures(numTextures, textureIDs);
+  for (int i = 0; i < numTextures; i++) {
+    if (loadTextureFromImage(texturePaths[i], textureIDs[i]) != 0) {
+      return 1;
+    }
+  }
+  return 0;
+}
+
+void freeTextures() { glDeleteTextures(numTextures, textureIDs); }
+
+void bindTexture(int id) { glBindTexture(GL_TEXTURE_2D, textureIDs[id]); }
