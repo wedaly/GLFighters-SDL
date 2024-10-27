@@ -1,3 +1,4 @@
+#include "input.h"
 #include "models.h"
 #include "print.h"
 #include "sound.h"
@@ -10,35 +11,15 @@ const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 const Uint32 TARGET_TICKS_PER_FRAME = 16; // About 60fps
 
-// DEBUG
-GLfloat rotx = 0;
-GLfloat roty = 0;
-
 void drawFrame() {
   glLoadIdentity();
-  glRotatef(rotx, 0.0f, 1.0f, 0.0f);
-  glRotatef(roty, 1.0f, 0.0f, 0.0f);
   bindTexture(TEX_RED_HELMET_ID);
   Head();
 
   printToScreen(10, 10, "012345", false, 1.0, SCREEN_WIDTH, SCREEN_HEIGHT);
-}
 
-void handleKeyEvent(SDL_KeyboardEvent &e) {
-  // e.keysym.sym is like SDLK_UP, SDLK_DOWN, ...
-  // e.state is SDL_PRESSED or SDL_RELEASED
-  printf("key event: key=%d, state=%d\n", e.keysym.sym, e.state);
-
-  if (e.keysym.sym == 's' && e.state == SDL_PRESSED) {
-    playSound(SND_LIGHTSABRE_ID);
-  } else if (e.keysym.sym == SDLK_LEFT && e.state == SDL_PRESSED) {
-    rotx += 5.0f;
-  } else if (e.keysym.sym == SDLK_RIGHT && e.state == SDL_PRESSED) {
-    rotx -= 5.0f;
-  } else if (e.keysym.sym == SDLK_UP && e.state == SDL_PRESSED) {
-    roty += 5.0f;
-  } else if (e.keysym.sym == SDLK_DOWN && e.state == SDL_PRESSED) {
-    roty -= 5.0f;
+  if (isKeyDown(KEY_P1_LEFT_ID)) {
+    printToScreen(10, 30, "p1 left", false, 1.0, SCREEN_WIDTH, SCREEN_HEIGHT);
   }
 }
 
@@ -54,7 +35,10 @@ void runEventLoop(SDL_Window *window) {
 
       case SDL_KEYDOWN:
       case SDL_KEYUP:
-        handleKeyEvent(e.key);
+        int keyID = translateSDLEventToKeyID(e.key);
+        if (keyID >= 0) {
+          setKeyState(keyID, bool(e.key.state == SDL_PRESSED));
+        }
         break;
       }
     }
