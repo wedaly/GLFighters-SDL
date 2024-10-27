@@ -96,12 +96,12 @@ int main(int argc, char *args[]) {
   }
 
   glEnable(GL_TEXTURE_2D);
-  if (loadTextures() != 0) {
+  if (!loadTextures()) {
     printf("Failed loading textures\n");
     return 1;
   }
 
-  if (loadSounds() != 0) {
+  if (!loadSounds()) {
     printf("Failed loading sounds\n");
     return 1;
   }

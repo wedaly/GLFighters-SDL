@@ -1,6 +1,6 @@
 #pragma once
 
-int loadSounds();
+bool loadSounds();
 void freeSounds();
 void playSound(int id);
 

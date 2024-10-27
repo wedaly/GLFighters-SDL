@@ -45,7 +45,7 @@ typedef struct {
 static SDL_AudioDeviceID deviceId;
 static soundClip soundClips[numSoundClips];
 
-int loadSounds() {
+bool loadSounds() {
   for (int i = 0; i < numSoundClips; i++) {
     char *path = soundClipPaths[i];
     soundClip *sc = &(soundClips[i]);
@@ -56,17 +56,17 @@ int loadSounds() {
         NULL) {
       printf("SDL could not load audio file from '%s'. SDL_Error: %s\n", path,
              SDL_GetError());
-      return 1;
+      return false;
     }
   }
 
   deviceId = SDL_OpenAudioDevice(NULL, 0, &soundClips[0].wavSpec, NULL, 0);
   if (deviceId < 0) {
     printf("SDL could not open audio device. SDL_Error: %s\n", SDL_GetError());
-    return 1;
+    return false;
   }
 
-  return 0;
+  return true;
 }
 
 void freeSounds() {

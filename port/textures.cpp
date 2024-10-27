@@ -81,12 +81,12 @@ static char *texturePaths[]{
 
 static GLuint textureIDs[numTextures];
 
-static int loadTextureFromImage(char *path, GLuint textureID) {
+static bool loadTextureFromImage(char *path, GLuint textureID) {
   SDL_Surface *surface = IMG_Load(path);
   if (surface == NULL) {
     printf("Error loading SDL surface from '%s'. SDL_Error: %s\n", path,
            SDL_GetError());
-    return 1;
+    return false;
   }
 
   glBindTexture(GL_TEXTURE_2D, textureID);
@@ -96,17 +96,17 @@ static int loadTextureFromImage(char *path, GLuint textureID) {
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
   SDL_FreeSurface(surface);
-  return 0;
+  return true;
 }
 
-int loadTextures() {
+bool loadTextures() {
   glGenTextures(numTextures, textureIDs);
   for (int i = 0; i < numTextures; i++) {
-    if (loadTextureFromImage(texturePaths[i], textureIDs[i]) != 0) {
-      return 1;
+    if (!loadTextureFromImage(texturePaths[i], textureIDs[i])) {
+      return false;
     }
   }
-  return 0;
+  return true;
 }
 
 void freeTextures() { glDeleteTextures(numTextures, textureIDs); }

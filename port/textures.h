@@ -1,6 +1,6 @@
 #pragma once
 
-int loadTextures();
+bool loadTextures();
 void freeTextures();
 void bindTexture(int id);
 
