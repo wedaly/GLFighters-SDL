@@ -3,7 +3,7 @@
 #include "textures.h"
 #include <GL/gl.h>
 #include <SDL2/SDL.h>
-#include <stdio.h>
+#include <cstdio>
 
 const int SCREEN_WIDTH = 1600;
 const int SCREEN_HEIGHT = 1200;
