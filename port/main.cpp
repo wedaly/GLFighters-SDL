@@ -1,9 +1,10 @@
 #include "models.h"
+#include "print.h"
 #include "sound.h"
 #include "textures.h"
 #include <GL/gl.h>
 #include <SDL2/SDL.h>
-#include <stdio.h>
+#include <cstdio>
 
 const int SCREEN_WIDTH = 1600;
 const int SCREEN_HEIGHT = 1200;
@@ -19,6 +20,8 @@ void drawFrame() {
   glRotatef(roty, 1.0f, 0.0f, 0.0f);
   bindTexture(TEX_JETPACK_ID);
   JetPack();
+
+  printToScreen(10, 10, "Hello world!", false, 5.0, SCREEN_WIDTH, SCREEN_HEIGHT);
 }
 
 void handleKeyEvent(SDL_KeyboardEvent &e) {
@@ -101,6 +104,11 @@ int main(int argc, char *args[]) {
     return 1;
   }
 
+  if (!createFont(TEX_FONT_ID)) {
+    printf("Failed creating font\n");
+    return 1;
+  }
+
   if (!loadSounds()) {
     printf("Failed loading sounds\n");
     return 1;
@@ -109,6 +117,7 @@ int main(int argc, char *args[]) {
   runEventLoop(window);
 
   freeSounds();
+  freeFont();
   freeTextures();
   SDL_DestroyWindow(window);
   SDL_Quit();
