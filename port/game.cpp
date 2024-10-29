@@ -231,7 +231,7 @@ GLfloat LightDiffuse2[] = {1.0f, 0.5f, 0.0f, 0.9f};
 GLfloat LightPosition2[] = {0.0f, 1.0f, 0.0f, 1.0f};
 
 GLuint base;
-GLuint filter;       // Which Filter To Use
+GLuint filter; // Which Filter To Use
 // TK_RGBImageRec	*tempTexture;
 GLuint object = 1; // Which Object To Draw
 GLfloat boomstage;
@@ -13639,12 +13639,8 @@ void DoKeys(int whichguy) {
   }
 }
 
-/********************** WIDALY PORT **********************/
-// Everything below this line has been ported and should work.
-// Everything above this line has not yet been ported.
-const Uint32 TARGET_TICKS_PER_FRAME = 16; // About 60fps
-
 void runGameLoop(SDL_Window *window) {
+  const Uint32 TARGET_TICKS_PER_FRAME = 16; // About 60fps
   SDL_Event e;
   int x, y, a, b, c, d;
   int guywillbe;
