@@ -1,8 +1,5 @@
+#include "game.h"
 #include "input.h"
-#include "models.h"
-#include "print.h"
-#include "sound.h"
-#include "textures.h"
 #include <GL/gl.h>
 #include <SDL2/SDL.h>
 #include <cstdio>
@@ -10,18 +7,6 @@
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 const Uint32 TARGET_TICKS_PER_FRAME = 16; // About 60fps
-
-void drawFrame() {
-  glLoadIdentity();
-  bindTexture(TEX_RED_HELMET_ID);
-  Head();
-
-  printToScreen(10, 10, "012345", false, 1.0, SCREEN_WIDTH, SCREEN_HEIGHT);
-
-  if (isKeyDown(KEY_P1_LEFT_ID)) {
-    printToScreen(10, 30, "p1 left", false, 1.0, SCREEN_WIDTH, SCREEN_HEIGHT);
-  }
-}
 
 void runEventLoop(SDL_Window *window) {
   SDL_Event e;
@@ -38,14 +23,16 @@ void runEventLoop(SDL_Window *window) {
         int keyID = translateSDLEventToKeyID(e.key);
         if (keyID >= 0) {
           setKeyState(keyID, bool(e.key.state == SDL_PRESSED));
+          if (e.key.state == SDL_PRESSED) {
+            handleKeypress(keyID);
+          }
         }
         break;
       }
     }
 
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    drawFrame();
-    glFlush();
+    updateGameState();
+    drawGameFrame();
     SDL_GL_SwapWindow(window);
 
     Uint32 endTicks = SDL_GetTicks(); // milliseconds
@@ -82,27 +69,14 @@ int main(int argc, char *args[]) {
     return 1;
   }
 
-  glEnable(GL_TEXTURE_2D);
-  if (!loadTextures()) {
-    printf("Failed loading textures\n");
-    return 1;
-  }
-
-  if (!createFont(TEX_FONT_ID)) {
-    printf("Failed creating font\n");
-    return 1;
-  }
-
-  if (!loadSounds()) {
-    printf("Failed loading sounds\n");
+  if (!initGame(SCREEN_WIDTH, SCREEN_HEIGHT)) {
+    printf("Failed to initialize game\n");
     return 1;
   }
 
   runEventLoop(window);
 
-  freeSounds();
-  freeFont();
-  freeTextures();
+  disposeGame();
   SDL_DestroyWindow(window);
   SDL_Quit();
 
