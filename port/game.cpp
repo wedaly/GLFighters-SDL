@@ -4793,12 +4793,12 @@ void SwitchFrame(int whichguy) {
     frame[whichguy] = 6;
     time[whichguy] = 100;
   }
-  if (activity[whichguy] == leftroll && targetframe[whichguy] == 0 && anim[whichguy] == 8 && IsKeyDown(theKeyMap, kLeftKey[whichguy]) == 0 && guyvely[whichguy] == 0 && guyvelx[whichguy] == 0) {
+  if (activity[whichguy] == leftroll && targetframe[whichguy] == 0 && anim[whichguy] == 8 && isKeyDown(kLeftKey[whichguy]) == 0 && guyvely[whichguy] == 0 && guyvelx[whichguy] == 0) {
     activity[whichguy] = ducking;
     targetframe[whichguy] = 2;
     time[whichguy] = 0;
   }
-  if (activity[whichguy] == leftroll && targetframe[whichguy] == 0 && anim[whichguy] == 8 && IsKeyDown(theKeyMap, kLeftKey[whichguy]) == 1 && IsKeyDown(theKeyMap, kDownKey[whichguy]) == 0 && guyvely[whichguy] == 0 && guyvelx[whichguy] == 0) {
+  if (activity[whichguy] == leftroll && targetframe[whichguy] == 0 && anim[whichguy] == 8 && isKeyDown(kLeftKey[whichguy]) == 1 && isKeyDown(kDownKey[whichguy]) == 0 && guyvely[whichguy] == 0 && guyvelx[whichguy] == 0) {
     activity[whichguy] = runleft;
     targetframe[whichguy] = 1;
     time[whichguy] = 0;
@@ -4813,12 +4813,12 @@ void SwitchFrame(int whichguy) {
     frame[whichguy] = 6;
     time[whichguy] = 100;
   }
-  if (activity[whichguy] == rightroll && targetframe[whichguy] == 0 && anim[whichguy] == 8 && IsKeyDown(theKeyMap, kRightKey[whichguy]) == 0 && guyvely[whichguy] == 0 && guyvelx[whichguy] == 0) {
+  if (activity[whichguy] == rightroll && targetframe[whichguy] == 0 && anim[whichguy] == 8 && isKeyDown(kRightKey[whichguy]) == 0 && guyvely[whichguy] == 0 && guyvelx[whichguy] == 0) {
     activity[whichguy] = ducking;
     targetframe[whichguy] = 2;
     time[whichguy] = 0;
   }
-  if (activity[whichguy] == rightroll && targetframe[whichguy] == 0 && anim[whichguy] == 8 && IsKeyDown(theKeyMap, kRightKey[whichguy]) == 1 && IsKeyDown(theKeyMap, kDownKey[whichguy]) == 0 && guyvely[whichguy] == 0 && guyvelx[whichguy] == 0) {
+  if (activity[whichguy] == rightroll && targetframe[whichguy] == 0 && anim[whichguy] == 8 && isKeyDown(kRightKey[whichguy]) == 1 && isKeyDown(kDownKey[whichguy]) == 0 && guyvely[whichguy] == 0 && guyvelx[whichguy] == 0) {
     activity[whichguy] = runright;
     targetframe[whichguy] = 1;
     time[whichguy] = 0;
@@ -9809,15 +9809,15 @@ void DoPlayerStuff(int whichguy) {
     if (activity[whichguy] == idle2) {
       targetanim[whichguy] = 1;
     }
-    if (activity[whichguy] == runleft && IsKeyDown(theKeyMap, kLeftKey[whichguy]) == 0) {
+    if (activity[whichguy] == runleft && isKeyDown(kLeftKey[whichguy]) == 0) {
       activity[whichguy] = RangedRandom(1, 2);
       time[whichguy] = 0;
     }
-    if (activity[whichguy] == runright && IsKeyDown(theKeyMap, kRightKey[whichguy]) == 0) {
+    if (activity[whichguy] == runright && isKeyDown(kRightKey[whichguy]) == 0) {
       activity[whichguy] = RangedRandom(1, 2);
       time[whichguy] = 0;
     }
-    if (activity[whichguy] == ducking && IsKeyDown(theKeyMap, kDownKey[whichguy]) == 0) {
+    if (activity[whichguy] == ducking && isKeyDown(kDownKey[whichguy]) == 0) {
       activity[whichguy] = RangedRandom(1, 2);
       time[whichguy] = 0;
     }
@@ -9879,7 +9879,7 @@ void DoPlayerStuff(int whichguy) {
   b = (guyx[whichguy] + 595) / 10 - 1.2;
 
   if (activity[whichguy] == jetidle) {
-    if (IsKeyDown(theKeyMap, kDownKey[whichguy]) == 0) {
+    if (isKeyDown(kDownKey[whichguy]) == 0) {
       if (absolute(guyvely[whichguy]) < multiplier / slowspeed) {
         guyvely[whichguy] = 0;
       }
@@ -9911,7 +9911,7 @@ void DoPlayerStuff(int whichguy) {
   }
   if (activity[whichguy] == jetright) {
     guyvelx[whichguy] = (.4 + guyvelx[whichguy] / multiplier * 100) / (1 / multiplier * 100 + 1);
-    if (IsKeyDown(theKeyMap, kUpKey[whichguy]) == 0 && IsKeyDown(theKeyMap, kDownKey[whichguy]) == 0) {
+    if (isKeyDown(kUpKey[whichguy]) == 0 && isKeyDown(kDownKey[whichguy]) == 0) {
       if (absolute(guyvely[whichguy]) < multiplier / slowspeed) {
         guyvely[whichguy] = 0;
       }
@@ -9925,7 +9925,7 @@ void DoPlayerStuff(int whichguy) {
   }
   if (activity[whichguy] == jetleft) {
     guyvelx[whichguy] = (-.4 + guyvelx[whichguy] / multiplier * 100) / (1 / multiplier * 100 + 1);
-    if (IsKeyDown(theKeyMap, kUpKey[whichguy]) == 0 && IsKeyDown(theKeyMap, kDownKey[whichguy]) == 0) {
+    if (isKeyDown(kUpKey[whichguy]) == 0 && isKeyDown(kDownKey[whichguy]) == 0) {
       if (absolute(guyvely[whichguy]) < multiplier / slowspeed) {
         guyvely[whichguy] = 0;
       }
@@ -9938,7 +9938,7 @@ void DoPlayerStuff(int whichguy) {
     }
   }
   if (activity[whichguy] == jetup || activity[whichguy] == jetright || activity[whichguy] == jetleft || activity[whichguy] == jetidle) {
-    if (IsKeyDown(theKeyMap, kUpKey[whichguy]) == 1) {
+    if (isKeyDown(kUpKey[whichguy]) == 1) {
       guyvely[whichguy] = (.4 + guyvely[whichguy] / multiplier * 100) / (1 / multiplier * 100 + 1);
     }
   }
@@ -9954,19 +9954,19 @@ void DoPlayerStuff(int whichguy) {
     }
   }
   if (activity[whichguy] == jetright || activity[whichguy] == jetleft || activity[whichguy] == jetidle) {
-    if (IsKeyDown(theKeyMap, kDownKey[whichguy]) == 1 && IsKeyDown(theKeyMap, kUpKey[whichguy]) == 0) {
+    if (isKeyDown(kDownKey[whichguy]) == 1 && isKeyDown(kUpKey[whichguy]) == 0) {
       guyvely[whichguy] = (-.4 + guyvely[whichguy] / multiplier * 100) / (1 / multiplier * 100 + 1);
     }
   }
-  if (activity[whichguy] == jetup && IsKeyDown(theKeyMap, kUpKey[whichguy]) == 0) {
+  if (activity[whichguy] == jetup && isKeyDown(kUpKey[whichguy]) == 0) {
     activity[whichguy] = jetidle;
     targetanim[whichguy] = 35;
   }
-  if (activity[whichguy] == jetright && IsKeyDown(theKeyMap, kRightKey[whichguy]) == 0) {
+  if (activity[whichguy] == jetright && isKeyDown(kRightKey[whichguy]) == 0) {
     activity[whichguy] = jetidle;
     targetanim[whichguy] = 35;
   }
-  if (activity[whichguy] == jetleft && IsKeyDown(theKeyMap, kLeftKey[whichguy]) == 0) {
+  if (activity[whichguy] == jetleft && isKeyDown(kLeftKey[whichguy]) == 0) {
     activity[whichguy] = jetidle;
     targetanim[whichguy] = 35;
   }
@@ -9992,55 +9992,55 @@ void DoPlayerStuff(int whichguy) {
     anim[whichguy] = 25;
     time[whichguy] = 100;
   }
-  if (activity[whichguy] == shootleft && IsKeyDown(theKeyMap, kRightShootKey[whichguy]) == 0 && targetframe[whichguy] == 0 && anim[whichguy] == 10) {
+  if (activity[whichguy] == shootleft && isKeyDown(kRightShootKey[whichguy]) == 0 && targetframe[whichguy] == 0 && anim[whichguy] == 10) {
     activity[whichguy] = idle1;
   }
-  if (activity[whichguy] == shootright && IsKeyDown(theKeyMap, kLeftShootKey[whichguy]) == 0 && targetframe[whichguy] == 0 && anim[whichguy] == 12) {
+  if (activity[whichguy] == shootright && isKeyDown(kLeftShootKey[whichguy]) == 0 && targetframe[whichguy] == 0 && anim[whichguy] == 12) {
     activity[whichguy] = idle1;
   }
-  if (activity[whichguy] == shootleft && IsKeyDown(theKeyMap, kRightShootKey[whichguy]) == 1 && targetframe[whichguy] == 0 && anim[whichguy] == 10 && itemnum[whichguy] == 4 && ammo[whichguy] > 0) {
+  if (activity[whichguy] == shootleft && isKeyDown(kRightShootKey[whichguy]) == 1 && targetframe[whichguy] == 0 && anim[whichguy] == 10 && itemnum[whichguy] == 4 && ammo[whichguy] > 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
     time[whichguy] = 100;
     activity[whichguy] = shootleft;
   }
-  if (activity[whichguy] == shootright && IsKeyDown(theKeyMap, kLeftShootKey[whichguy]) == 1 && targetframe[whichguy] == 0 && anim[whichguy] == 12 && itemnum[whichguy] == 4 && ammo[whichguy] > 0) {
+  if (activity[whichguy] == shootright && isKeyDown(kLeftShootKey[whichguy]) == 1 && targetframe[whichguy] == 0 && anim[whichguy] == 12 && itemnum[whichguy] == 4 && ammo[whichguy] > 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
     time[whichguy] = 100;
     activity[whichguy] = shootright;
   }
-  if (activity[whichguy] == shootleft && IsKeyDown(theKeyMap, kRightShootKey[whichguy]) == 1 && anim[whichguy] == 10 && itemnum[whichguy] == 7 && ammo[whichguy] > 0 && lightningdelay[whichguy] <= 0) {
+  if (activity[whichguy] == shootleft && isKeyDown(kRightShootKey[whichguy]) == 1 && anim[whichguy] == 10 && itemnum[whichguy] == 7 && ammo[whichguy] > 0 && lightningdelay[whichguy] <= 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
     time[whichguy] = 100;
     activity[whichguy] = shootleft;
   }
-  if (activity[whichguy] == shootright && IsKeyDown(theKeyMap, kLeftShootKey[whichguy]) == 1 && anim[whichguy] == 12 && itemnum[whichguy] == 7 && ammo[whichguy] > 0 && lightningdelay[whichguy] <= 0) {
+  if (activity[whichguy] == shootright && isKeyDown(kLeftShootKey[whichguy]) == 1 && anim[whichguy] == 12 && itemnum[whichguy] == 7 && ammo[whichguy] > 0 && lightningdelay[whichguy] <= 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
     time[whichguy] = 100;
     activity[whichguy] = shootright;
   }
-  if (activity[whichguy] == shootleft && IsKeyDown(theKeyMap, kRightShootKey[whichguy]) == 1 && targetframe[whichguy] > 3 && anim[whichguy] == 10 && itemnum[whichguy] == 5 && ammo[whichguy] > 0) {
+  if (activity[whichguy] == shootleft && isKeyDown(kRightShootKey[whichguy]) == 1 && targetframe[whichguy] > 3 && anim[whichguy] == 10 && itemnum[whichguy] == 5 && ammo[whichguy] > 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
     time[whichguy] = 100;
     activity[whichguy] = shootleft;
   }
-  if (activity[whichguy] == shootright && IsKeyDown(theKeyMap, kLeftShootKey[whichguy]) == 1 && targetframe[whichguy] > 3 && anim[whichguy] == 12 && itemnum[whichguy] == 5 && ammo[whichguy] > 0) {
+  if (activity[whichguy] == shootright && isKeyDown(kLeftShootKey[whichguy]) == 1 && targetframe[whichguy] > 3 && anim[whichguy] == 12 && itemnum[whichguy] == 5 && ammo[whichguy] > 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
     time[whichguy] = 100;
     activity[whichguy] = shootright;
   }
-  if (activity[whichguy] == shootleft && IsKeyDown(theKeyMap, kRightShootKey[whichguy]) == 1 && targetframe[whichguy] == 0 && anim[whichguy] == 10 && itemnum[whichguy] == 5 && ammo[whichguy] > 0) {
+  if (activity[whichguy] == shootleft && isKeyDown(kRightShootKey[whichguy]) == 1 && targetframe[whichguy] == 0 && anim[whichguy] == 10 && itemnum[whichguy] == 5 && ammo[whichguy] > 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
     time[whichguy] = 100;
     activity[whichguy] = shootleft;
   }
-  if (activity[whichguy] == shootright && IsKeyDown(theKeyMap, kLeftShootKey[whichguy]) == 1 && targetframe[whichguy] == 0 && anim[whichguy] == 12 && itemnum[whichguy] == 5 && ammo[whichguy] > 0) {
+  if (activity[whichguy] == shootright && isKeyDown(kLeftShootKey[whichguy]) == 1 && targetframe[whichguy] == 0 && anim[whichguy] == 12 && itemnum[whichguy] == 5 && ammo[whichguy] > 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
     time[whichguy] = 100;
@@ -10052,43 +10052,43 @@ void DoPlayerStuff(int whichguy) {
   if (activity[whichguy] == shootright && ammo[whichguy] <= 0 && targetframe[whichguy] == 0 && anim[whichguy] == 12) {
     activity[whichguy] = idle1;
   }
-  if (activity[whichguy] == shootleft && IsKeyDown(theKeyMap, kRightShootKey[whichguy]) == 0 && targetframe[whichguy] == 0 && anim[whichguy] == 31) {
+  if (activity[whichguy] == shootleft && isKeyDown(kRightShootKey[whichguy]) == 0 && targetframe[whichguy] == 0 && anim[whichguy] == 31) {
     activity[whichguy] = idle1;
   }
-  if (activity[whichguy] == shootright && IsKeyDown(theKeyMap, kLeftShootKey[whichguy]) == 0 && targetframe[whichguy] == 0 && anim[whichguy] == 32) {
+  if (activity[whichguy] == shootright && isKeyDown(kLeftShootKey[whichguy]) == 0 && targetframe[whichguy] == 0 && anim[whichguy] == 32) {
     activity[whichguy] = idle1;
   }
-  if (activity[whichguy] == shootleft && IsKeyDown(theKeyMap, kRightShootKey[whichguy]) == 1 && targetframe[whichguy] == 0 && anim[whichguy] == 31 && itemnum[whichguy] == 4 && ammo[whichguy] > 0) {
+  if (activity[whichguy] == shootleft && isKeyDown(kRightShootKey[whichguy]) == 1 && targetframe[whichguy] == 0 && anim[whichguy] == 31 && itemnum[whichguy] == 4 && ammo[whichguy] > 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
     time[whichguy] = 100;
     activity[whichguy] = shootleft;
   }
-  if (activity[whichguy] == shootright && IsKeyDown(theKeyMap, kLeftShootKey[whichguy]) == 1 && targetframe[whichguy] == 0 && anim[whichguy] == 32 && itemnum[whichguy] == 4 && ammo[whichguy] > 0) {
+  if (activity[whichguy] == shootright && isKeyDown(kLeftShootKey[whichguy]) == 1 && targetframe[whichguy] == 0 && anim[whichguy] == 32 && itemnum[whichguy] == 4 && ammo[whichguy] > 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
     time[whichguy] = 100;
     activity[whichguy] = shootright;
   }
-  if (activity[whichguy] == shootleft && IsKeyDown(theKeyMap, kRightShootKey[whichguy]) == 1 && targetframe[whichguy] > 3 && anim[whichguy] == 31 && itemnum[whichguy] == 5 && ammo[whichguy] > 0) {
+  if (activity[whichguy] == shootleft && isKeyDown(kRightShootKey[whichguy]) == 1 && targetframe[whichguy] > 3 && anim[whichguy] == 31 && itemnum[whichguy] == 5 && ammo[whichguy] > 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
     time[whichguy] = 100;
     activity[whichguy] = shootleft;
   }
-  if (activity[whichguy] == shootright && IsKeyDown(theKeyMap, kLeftShootKey[whichguy]) == 1 && targetframe[whichguy] > 3 && anim[whichguy] == 32 && itemnum[whichguy] == 5 && ammo[whichguy] > 0) {
+  if (activity[whichguy] == shootright && isKeyDown(kLeftShootKey[whichguy]) == 1 && targetframe[whichguy] > 3 && anim[whichguy] == 32 && itemnum[whichguy] == 5 && ammo[whichguy] > 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
     time[whichguy] = 100;
     activity[whichguy] = shootright;
   }
-  if (activity[whichguy] == shootleft && IsKeyDown(theKeyMap, kRightShootKey[whichguy]) == 1 && targetframe[whichguy] == 0 && anim[whichguy] == 31 && itemnum[whichguy] == 5 && ammo[whichguy] > 0) {
+  if (activity[whichguy] == shootleft && isKeyDown(kRightShootKey[whichguy]) == 1 && targetframe[whichguy] == 0 && anim[whichguy] == 31 && itemnum[whichguy] == 5 && ammo[whichguy] > 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
     time[whichguy] = 100;
     activity[whichguy] = shootleft;
   }
-  if (activity[whichguy] == shootright && IsKeyDown(theKeyMap, kLeftShootKey[whichguy]) == 1 && targetframe[whichguy] == 0 && anim[whichguy] == 32 && itemnum[whichguy] == 5 && ammo[whichguy] > 0) {
+  if (activity[whichguy] == shootright && isKeyDown(kLeftShootKey[whichguy]) == 1 && targetframe[whichguy] == 0 && anim[whichguy] == 32 && itemnum[whichguy] == 5 && ammo[whichguy] > 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
     time[whichguy] = 100;
@@ -10100,63 +10100,63 @@ void DoPlayerStuff(int whichguy) {
   if (activity[whichguy] == shootright && ammo[whichguy] <= 0 && targetframe[whichguy] == 0 && anim[whichguy] == 32) {
     activity[whichguy] = idle1;
   }
-  if (activity[whichguy] == shootleft && IsKeyDown(theKeyMap, kRightShootKey[whichguy]) == 0 && targetframe[whichguy] == 0 && anim[whichguy] == 30 && usingjetpack[whichguy] == 0) {
+  if (activity[whichguy] == shootleft && isKeyDown(kRightShootKey[whichguy]) == 0 && targetframe[whichguy] == 0 && anim[whichguy] == 30 && usingjetpack[whichguy] == 0) {
     activity[whichguy] = falling;
   }
-  if (activity[whichguy] == shootright && IsKeyDown(theKeyMap, kLeftShootKey[whichguy]) == 0 && targetframe[whichguy] == 0 && anim[whichguy] == 30 && usingjetpack[whichguy] == 0) {
+  if (activity[whichguy] == shootright && isKeyDown(kLeftShootKey[whichguy]) == 0 && targetframe[whichguy] == 0 && anim[whichguy] == 30 && usingjetpack[whichguy] == 0) {
     activity[whichguy] = falling;
   }
-  if (activity[whichguy] == shootleft && IsKeyDown(theKeyMap, kRightShootKey[whichguy]) == 0 && targetframe[whichguy] == 0 && anim[whichguy] == 30 && usingjetpack[whichguy] != 0) {
+  if (activity[whichguy] == shootleft && isKeyDown(kRightShootKey[whichguy]) == 0 && targetframe[whichguy] == 0 && anim[whichguy] == 30 && usingjetpack[whichguy] != 0) {
     activity[whichguy] = jetidle;
     targetanim[whichguy] = 35;
   }
-  if (activity[whichguy] == shootright && IsKeyDown(theKeyMap, kLeftShootKey[whichguy]) == 0 && targetframe[whichguy] == 0 && anim[whichguy] == 30 && usingjetpack[whichguy] != 0) {
+  if (activity[whichguy] == shootright && isKeyDown(kLeftShootKey[whichguy]) == 0 && targetframe[whichguy] == 0 && anim[whichguy] == 30 && usingjetpack[whichguy] != 0) {
     activity[whichguy] = jetidle;
     targetanim[whichguy] = 35;
   }
-  if (activity[whichguy] == shootleft && IsKeyDown(theKeyMap, kRightShootKey[whichguy]) == 1 && targetframe[whichguy] == 0 && anim[whichguy] == 30 && itemnum[whichguy] == 4 && ammo[whichguy] > 0) {
+  if (activity[whichguy] == shootleft && isKeyDown(kRightShootKey[whichguy]) == 1 && targetframe[whichguy] == 0 && anim[whichguy] == 30 && itemnum[whichguy] == 4 && ammo[whichguy] > 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
     time[whichguy] = 100;
     activity[whichguy] = shootleft;
   }
-  if (activity[whichguy] == shootright && IsKeyDown(theKeyMap, kLeftShootKey[whichguy]) == 1 && targetframe[whichguy] == 0 && anim[whichguy] == 30 && itemnum[whichguy] == 4 && ammo[whichguy] > 0) {
+  if (activity[whichguy] == shootright && isKeyDown(kLeftShootKey[whichguy]) == 1 && targetframe[whichguy] == 0 && anim[whichguy] == 30 && itemnum[whichguy] == 4 && ammo[whichguy] > 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
     time[whichguy] = 100;
     activity[whichguy] = shootright;
   }
-  if (activity[whichguy] == shootleft && IsKeyDown(theKeyMap, kRightShootKey[whichguy]) == 1 && targetframe[whichguy] > 3 && anim[whichguy] == 30 && itemnum[whichguy] == 5 && ammo[whichguy] > 0) {
+  if (activity[whichguy] == shootleft && isKeyDown(kRightShootKey[whichguy]) == 1 && targetframe[whichguy] > 3 && anim[whichguy] == 30 && itemnum[whichguy] == 5 && ammo[whichguy] > 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
     time[whichguy] = 100;
     activity[whichguy] = shootleft;
   }
-  if (activity[whichguy] == shootright && IsKeyDown(theKeyMap, kLeftShootKey[whichguy]) == 1 && targetframe[whichguy] > 3 && anim[whichguy] == 30 && itemnum[whichguy] == 5 && ammo[whichguy] > 0) {
+  if (activity[whichguy] == shootright && isKeyDown(kLeftShootKey[whichguy]) == 1 && targetframe[whichguy] > 3 && anim[whichguy] == 30 && itemnum[whichguy] == 5 && ammo[whichguy] > 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
     time[whichguy] = 100;
     activity[whichguy] = shootright;
   }
-  if (activity[whichguy] == shootleft && IsKeyDown(theKeyMap, kRightShootKey[whichguy]) == 1 && anim[whichguy] == 30 && itemnum[whichguy] == 7 && ammo[whichguy] > 0 && lightningdelay[whichguy] <= 0) {
+  if (activity[whichguy] == shootleft && isKeyDown(kRightShootKey[whichguy]) == 1 && anim[whichguy] == 30 && itemnum[whichguy] == 7 && ammo[whichguy] > 0 && lightningdelay[whichguy] <= 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
     time[whichguy] = 100;
     activity[whichguy] = shootleft;
   }
-  if (activity[whichguy] == shootright && IsKeyDown(theKeyMap, kLeftShootKey[whichguy]) == 1 && anim[whichguy] == 30 && itemnum[whichguy] == 7 && ammo[whichguy] > 0 && lightningdelay[whichguy] <= 0) {
+  if (activity[whichguy] == shootright && isKeyDown(kLeftShootKey[whichguy]) == 1 && anim[whichguy] == 30 && itemnum[whichguy] == 7 && ammo[whichguy] > 0 && lightningdelay[whichguy] <= 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
     time[whichguy] = 100;
     activity[whichguy] = shootright;
   }
-  if (activity[whichguy] == shootleft && IsKeyDown(theKeyMap, kRightShootKey[whichguy]) == 1 && targetframe[whichguy] == 3 && anim[whichguy] == 30 && itemnum[whichguy] == 5 && ammo[whichguy] > 0 && time[whichguy] >= 70) {
+  if (activity[whichguy] == shootleft && isKeyDown(kRightShootKey[whichguy]) == 1 && targetframe[whichguy] == 3 && anim[whichguy] == 30 && itemnum[whichguy] == 5 && ammo[whichguy] > 0 && time[whichguy] >= 70) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
     time[whichguy] = 100;
     activity[whichguy] = shootleft;
   }
-  if (activity[whichguy] == shootright && IsKeyDown(theKeyMap, kLeftShootKey[whichguy]) == 1 && targetframe[whichguy] == 3 && anim[whichguy] == 30 && itemnum[whichguy] == 5 && ammo[whichguy] > 0 && time[whichguy] >= 70) {
+  if (activity[whichguy] == shootright && isKeyDown(kLeftShootKey[whichguy]) == 1 && targetframe[whichguy] == 3 && anim[whichguy] == 30 && itemnum[whichguy] == 5 && ammo[whichguy] > 0 && time[whichguy] >= 70) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
     time[whichguy] = 100;
@@ -10176,10 +10176,10 @@ void DoPlayerStuff(int whichguy) {
       targetanim[whichguy] = 35;
     }
   }
-  if (activity[whichguy] == climbrope && IsKeyDown(theKeyMap, kUpKey[whichguy]) == 0) {
+  if (activity[whichguy] == climbrope && isKeyDown(kUpKey[whichguy]) == 0) {
     activity[whichguy] = onrope;
   }
-  if (activity[whichguy] == downrope && IsKeyDown(theKeyMap, kDownKey[whichguy]) == 0) {
+  if (activity[whichguy] == downrope && isKeyDown(kDownKey[whichguy]) == 0) {
     activity[whichguy] = onrope;
   }
   if (activity[whichguy] == climbrope) {
@@ -10504,11 +10504,11 @@ void DoPlayerStuff(int whichguy) {
             if (activity[whichguy] != deadfaceup && activity[whichguy] != deadfacedown && activity[whichguy] != landonback && activity[whichguy] != splat && activity[whichguy] != fallbackwardsright && activity[whichguy] != fallbackwardsleft && activity[whichguy] != fallforwardsright && activity[whichguy] != fallforwardsleft && activity[whichguy] != hitwallleft && activity[whichguy] != hitwallright && activity[whichguy] != jetimpaledleft && activity[whichguy] != jetimpaledright) {
               activity[whichguy] = ducking;
             }
-            if (IsKeyDown(theKeyMap, kLeftKey[whichguy]) && dead[whichguy] == 0) {
+            if (isKeyDown(kLeftKey[whichguy]) && dead[whichguy] == 0) {
               activity[whichguy] = leftroll;
               targetframe[whichguy] = 2;
             }
-            if (IsKeyDown(theKeyMap, kRightKey[whichguy]) && dead[whichguy] == 0) {
+            if (isKeyDown(kRightKey[whichguy]) && dead[whichguy] == 0) {
               activity[whichguy] = rightroll;
               targetframe[whichguy] = 2;
             }
@@ -12832,7 +12832,7 @@ void DoKeys(int whichguy) {
 
   GetKeys((unsigned long *)theKeyMap);
   //*************BLOCK KEY**************//
-  if (IsKeyDown(theKeyMap, kBlockKey[whichguy]) && delaytime[whichguy] <= 0) {
+  if (isKeyDown(kBlockKey[whichguy]) && delaytime[whichguy] <= 0) {
     if (activity[whichguy] == idle1 || activity[whichguy] == idle2 || activity[whichguy] == swordidleright || activity[whichguy] == swordidleleft || activity[whichguy] == grenidleright || activity[whichguy] == grenidleleft || activity[whichguy] == painoneleft || activity[whichguy] == paintwoleft || activity[whichguy] == painoneright || activity[whichguy] == paintworight) {
       if (itemnum[whichguy] == 2 || itemnum[whichguy] == 3) {
         if (facing[whichguy] == 1) {
@@ -12862,7 +12862,7 @@ void DoKeys(int whichguy) {
     }
   }
   //*************ATTACK KEY**************//
-  if (IsKeyDown(theKeyMap, kAttackKey[whichguy])) {
+  if (isKeyDown(kAttackKey[whichguy])) {
     if (holding[whichguy] == 0) {
       holding[whichguy] = 1;
     }
@@ -13029,7 +13029,7 @@ void DoKeys(int whichguy) {
     }
     attackpressed[whichguy] = 1;
   }
-  if (IsKeyDown(theKeyMap, kAttackKey[whichguy]) == 0 && IsKeyDown(theKeyMap, kRightShootKey[whichguy]) == 0 && IsKeyDown(theKeyMap, kLeftShootKey[whichguy]) == 0) {
+  if (isKeyDown(kAttackKey[whichguy]) == 0 && isKeyDown(kRightShootKey[whichguy]) == 0 && isKeyDown(kLeftShootKey[whichguy]) == 0) {
     if (holding[whichguy] != 0) {
       if (holdingtype[whichguy] == -1) {
         facing[whichguy] = 0;
@@ -13041,20 +13041,20 @@ void DoKeys(int whichguy) {
     }
     holding[whichguy] = 0;
   }
-  if (IsKeyDown(theKeyMap, kAttackKey[whichguy]) == 0) {
+  if (isKeyDown(kAttackKey[whichguy]) == 0) {
     attackpressed[whichguy] = 0;
   }
-  if (IsKeyDown(theKeyMap, kRightShootKey[whichguy]) == 1 && IsKeyDown(theKeyMap, kLeftShootKey[whichguy]) == 0) {
+  if (isKeyDown(kRightShootKey[whichguy]) == 1 && isKeyDown(kLeftShootKey[whichguy]) == 0) {
     holdingtype[whichguy] = 1;
   }
-  if (IsKeyDown(theKeyMap, kAttackKey[whichguy]) == 1 && IsKeyDown(theKeyMap, kRightShootKey[whichguy]) == 0 && IsKeyDown(theKeyMap, kLeftShootKey[whichguy]) == 0) {
+  if (isKeyDown(kAttackKey[whichguy]) == 1 && isKeyDown(kRightShootKey[whichguy]) == 0 && isKeyDown(kLeftShootKey[whichguy]) == 0) {
     holdingtype[whichguy] = 0;
   }
-  if (IsKeyDown(theKeyMap, kRightShootKey[whichguy]) == 0 && IsKeyDown(theKeyMap, kLeftShootKey[whichguy]) == 1) {
+  if (isKeyDown(kRightShootKey[whichguy]) == 0 && isKeyDown(kLeftShootKey[whichguy]) == 1) {
     holdingtype[whichguy] = -1;
   }
   //**********RIGHT SHOOT KEY************//
-  if (IsKeyDown(theKeyMap, kRightShootKey[whichguy])) {
+  if (isKeyDown(kRightShootKey[whichguy])) {
     if (usingjetpack[whichguy] == 0) {
       facing[whichguy] = 1;
     }
@@ -13500,11 +13500,11 @@ void DoKeys(int whichguy) {
     rightshootpressed[whichguy] = 1;
   }
 
-  if (IsKeyDown(theKeyMap, kRightShootKey[whichguy]) == 0) {
+  if (isKeyDown(kRightShootKey[whichguy]) == 0) {
     rightshootpressed[whichguy] = 0;
   }
   //**********LEFT SHOOT KEY************//
-  if (IsKeyDown(theKeyMap, kLeftShootKey[whichguy])) {
+  if (isKeyDown(kLeftShootKey[whichguy])) {
     if (usingjetpack[whichguy] == 0) {
       facing[whichguy] = 0;
     }
@@ -13937,11 +13937,11 @@ void DoKeys(int whichguy) {
     }
     leftshootpressed[whichguy] = 1;
   }
-  if (IsKeyDown(theKeyMap, kLeftShootKey[whichguy]) == 0) {
+  if (isKeyDown(kLeftShootKey[whichguy]) == 0) {
     leftshootpressed[whichguy] = 0;
   }
   //**********LEFT KEY************//
-  if (IsKeyDown(theKeyMap, kLeftKey[whichguy])) {
+  if (isKeyDown(kLeftKey[whichguy])) {
     facing[whichguy] = 0;
     if (activity[whichguy] == idle1 || activity[whichguy] == idle2 || activity[whichguy] == swordidleright || activity[whichguy] == swordidleleft || activity[whichguy] == grenidleright || activity[whichguy] == grenidleleft) {
       if (anim[whichguy] != 3) {
@@ -13974,7 +13974,7 @@ void DoKeys(int whichguy) {
     }
   }
   //**********RIGHT KEY************//
-  if (IsKeyDown(theKeyMap, kRightKey[whichguy])) {
+  if (isKeyDown(kRightKey[whichguy])) {
     facing[whichguy] = 1;
     if (activity[whichguy] == idle1 || activity[whichguy] == idle2 || activity[whichguy] == swordidleright || activity[whichguy] == swordidleleft || activity[whichguy] == grenidleright || activity[whichguy] == grenidleleft) {
       if (anim[whichguy] != 3) {
@@ -14007,7 +14007,7 @@ void DoKeys(int whichguy) {
     }
   }
   //**********DOWN KEY************//
-  if (IsKeyDown(theKeyMap, kDownKey[whichguy])) {
+  if (isKeyDown(kDownKey[whichguy])) {
     if (activity[whichguy] == idle1 || activity[whichguy] == idle2 || activity[whichguy] == swordidleright || activity[whichguy] == swordidleleft || activity[whichguy] == grenidleright || activity[whichguy] == grenidleleft || activity[whichguy] == getupfromback || activity[whichguy] == getupfromfront) {
       if (Map[guymapx[whichguy]][guymapy[whichguy] + 1] != 2 && Map[guymapx[whichguy]][guymapy[whichguy] + 1] != 3) {
         activity[whichguy] = ducking;
@@ -14089,7 +14089,7 @@ void DoKeys(int whichguy) {
     }
   }
   //**********UP KEY************//
-  if (IsKeyDown(theKeyMap, kUpKey[whichguy])) {
+  if (isKeyDown(kUpKey[whichguy])) {
     guywillbe = (guyy[whichguy] - 7) / -20 - .5 + 40;
     if (activity[whichguy] == idle1 || activity[whichguy] == idle2 || activity[whichguy] == swordidleright || activity[whichguy] == swordidleleft || activity[whichguy] == grenidleright || activity[whichguy] == grenidleleft || activity[whichguy] == onrope || activity[whichguy] == falling || activity[whichguy] == leftflip || activity[whichguy] == rightflip) {
       if (Map[guymapx[whichguy]][guymapy[whichguy]] == 2 || Map[guymapx[whichguy]][guymapy[whichguy]] == 3 || Map[guymapx[whichguy]][guywillbe] == 2 || Map[guymapx[whichguy]][guywillbe] == 3) {
@@ -14158,7 +14158,7 @@ void DoKeys(int whichguy) {
       frame[whichguy] = 0;
     }
   }
-  if (IsKeyDown(theKeyMap, kUpKey[whichguy]) == 0) {
+  if (isKeyDown(kUpKey[whichguy]) == 0) {
     uppressed[whichguy] = 0;
   }
 }
