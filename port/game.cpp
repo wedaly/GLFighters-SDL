@@ -3878,17 +3878,6 @@ int DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
 }
 
 /********************> HandleKeyDown() <*****/
-void initBoom();
-void initBoom() {
-  boomstage = 1;
-  boomsize = 0;
-  playsound(0, 200);
-}
-
-void startBoom();
-void startBoom() {
-}
-
 void restartRound() {
   int x;
   int y;
@@ -10552,14 +10541,14 @@ void DoPlayerStuff(int whichguy) {
               frame[whichguy] = 0;
               time[whichguy] = 100;
               targetanim[whichguy] = 14;
-              playsound(3, -guyvely[whichguy] * 50 + 50);
-              playsound(4, -guyvely[whichguy] * 50 + 50);
+              playSound(SND_BREAK_ID, -guyvely[whichguy] * 50 + 50);
+              playSound(SND_BREAK2_ID, -guyvely[whichguy] * 50 + 50);
             }
             if (activity[whichguy] == ducking && nosound == 0 && invisible[whichguy] == 0) {
-              playsound(2, -guyvely[whichguy] * 100 + 100);
+              playSound(SND_LAND_ID, -guyvely[whichguy] * 100 + 100);
             }
             if (activity[whichguy] == ducking && nosound == 0 && invisible[whichguy] == 1) {
-              playsound(2, -guyvely[whichguy] * 10 + 10);
+              playSound(SND_LAND_ID, -guyvely[whichguy] * 10 + 10);
             }
             guyvelx[whichguy] = 0;
             guyvely[whichguy] = 0;
@@ -10597,7 +10586,7 @@ void DoPlayerStuff(int whichguy) {
       if (a > c && Walls[c + e + 1][b] == 1 && f == 0) {
         usingjetpack[whichguy] = 0;
         guyx[whichguy] -= .3 + .6 * multiplier / 5;
-        playsound(2, 30);
+        playSound(SND_LAND_ID, 30);
         if (guyvelx[whichguy] == 0) {
           targetanim[whichguy] = 11;
           activity[whichguy] = wallhit;
@@ -10618,7 +10607,7 @@ void DoPlayerStuff(int whichguy) {
       if (a > c && Walls[c + e + 1][d] == 1 && f == 0) {
         usingjetpack[whichguy] = 0;
         guyx[whichguy] -= .3 + .6 * multiplier / 5;
-        playsound(2, 30);
+        playSound(SND_LAND_ID, 30);
         if (guyvelx[whichguy] == 0) {
           targetanim[whichguy] = 11;
           activity[whichguy] = wallhit;
@@ -10650,7 +10639,7 @@ void DoPlayerStuff(int whichguy) {
       if (a < c && Walls[c - e - 1][b] == 1 && f == 0) {
         usingjetpack[whichguy] = 0;
         guyx[whichguy] += .3 + .6 * multiplier / 5;
-        playsound(2, 30);
+        playSound(SND_LAND_ID, 30);
         if (guyvelx[whichguy] == 0) {
           targetanim[whichguy] = 11;
           activity[whichguy] = wallhit;
@@ -10671,7 +10660,7 @@ void DoPlayerStuff(int whichguy) {
       if (a < c && Walls[c - e - 1][d] == 1 && f == 0) {
         usingjetpack[whichguy] = 0;
         guyx[whichguy] += .3 + .6 * multiplier / 5;
-        playsound(2, 30);
+        playSound(SND_LAND_ID, 30);
         if (guyvelx[whichguy] == 0) {
           targetanim[whichguy] = 11;
           activity[whichguy] = wallhit;
@@ -10705,7 +10694,7 @@ void DoPlayerStuff(int whichguy) {
       if (a > c && Walls[c + e + 1][b] == 1 && f == 0) {
         usingjetpack[whichguy] = 0;
         guyx[whichguy] -= .3 + .6 * multiplier / 5;
-        playsound(2, 30);
+        playSound(SND_LAND_ID, 30);
         if (guyvelx[whichguy] != 0) {
           activity[whichguy] = fallbackwardsright;
           guyx[whichguy] = guymapx[whichguy] * 10 - 590;
@@ -10719,7 +10708,7 @@ void DoPlayerStuff(int whichguy) {
       if (a > c && Walls[c + e + 1][d] == 1 && f == 0) {
         usingjetpack[whichguy] = 0;
         guyx[whichguy] -= .3 + .6 * multiplier / 5;
-        playsound(2, 30);
+        playSound(SND_LAND_ID, 30);
         if (guyvelx[whichguy] != 0) {
           activity[whichguy] = fallbackwardsright;
           guyx[whichguy] = guymapx[whichguy] * 10 - 590;
@@ -10744,7 +10733,7 @@ void DoPlayerStuff(int whichguy) {
       if (a < c && Walls[a][b] == 1 && f == 0) {
         usingjetpack[whichguy] = 0;
         guyx[whichguy] += .3 + .6 * multiplier / 5;
-        playsound(2, 30);
+        playSound(SND_LAND_ID, 30);
         if (guyvelx[whichguy] != 0) {
           activity[whichguy] = fallbackwardsleft;
           guyx[whichguy] = guymapx[whichguy] * 10 - 590;
@@ -10758,7 +10747,7 @@ void DoPlayerStuff(int whichguy) {
       if (a < c && Walls[a][d] == 1 && f == 0) {
         usingjetpack[whichguy] = 0;
         guyx[whichguy] += .3 + .6 * multiplier / 5;
-        playsound(2, 30);
+        playSound(SND_LAND_ID, 30);
         if (guyvelx[whichguy] != 0) {
           activity[whichguy] = fallbackwardsleft;
           guyx[whichguy] = guymapx[whichguy] * 10 - 590;
@@ -10944,7 +10933,7 @@ void ShootGrenade(int whichguy) {
       fake[whichguy] = 1;
     }
     if (itemnum[whichguy] == 6 && ammo[whichguy] > 0 && usingjetpack[whichguy] == 0 && e == 1 && b == -1) {
-      playsound(17, soundvolume);
+      playSound(SND_GRENLAUNCH2_ID, soundvolume);
       anim[whichguy] = 44;
       targetanim[whichguy] = 44;
       frame[whichguy] = 0;
@@ -10997,7 +10986,7 @@ void ShootGrenade(int whichguy) {
     }
   }
   if (itemnum[whichguy] == 6 && anim[whichguy] != 30 && ammo[whichguy] > 0 && usingjetpack[whichguy] == 1 && (activity[whichguy] == jetidle || activity[whichguy] == jetleft || activity[whichguy] == jetright || activity[whichguy] == jetup || activity[whichguy] == jetdown)) {
-    playsound(17, soundvolume);
+    playSound(SND_GRENLAUNCH2_ID, soundvolume);
     anim[whichguy] = 44;
     targetanim[whichguy] = 44;
     frame[whichguy] = 0;
