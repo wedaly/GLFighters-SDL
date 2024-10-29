@@ -14261,7 +14261,7 @@ void runGameLoop(SDL_Window *window) {
 
       for (a = 0; a < numplayers; a++) {
         while (jetsmokedelay[a] <= 0 && usingjetpack[a] == 1) {
-          playsound(11, absolute(guyvelx[a]) * 20 + absolute(guyvely[a]) * 20 + 14);
+          playSound(SND_JETPACK_ID, absolute(guyvelx[a]) * 20 + absolute(guyvely[a]) * 20 + 14);
           point = FindJetPackPos(a);
           MakeSprite(point.x, point.y, point.z, RangedRandom(50, 100) + 50, smokesprite, RangedRandom(0, 360), RangedRandom(0, 4) + 6, 0, RangedRandom(0, 30) / 10 + (guyvelx[a] * 80), (RangedRandom(10, 20) - 20) / 4 + (guyvely[a] * 100), 0);
           jetsmokedelay[a] += 10;
