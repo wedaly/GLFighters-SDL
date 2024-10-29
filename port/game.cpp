@@ -1235,14 +1235,14 @@ int InitGL(GLvoid) // All Setup For OpenGL Goes Here
 
   LoadNamedMap((unsigned char *)":Maps:NormalMap");
   // set keys
-  kBlockKey[0] = 17;
-  kAttackKey[0] = 15;
-  kRightShootKey[0] = 14;
-  kLeftShootKey[0] = 12;
-  kLeftKey[0] = 0;
-  kRightKey[0] = 2;
-  kUpKey[0] = 13;
-  kDownKey[0] = 1;
+  kBlockKey[0] = KEY_P1_BLOCK_ID;
+  kAttackKey[0] = KEY_P1_ATTACK_ID;
+  kRightShootKey[0] = KEY_P1_SHOOT_RIGHT_ID;
+  kLeftShootKey[0] = KEY_P1_SHOOT_LEFT_ID;
+  kLeftKey[0] = KEY_P1_LEFT_ID;
+  kRightKey[0] = KEY_P1_RIGHT_ID;
+  kUpKey[0] = KEY_P1_UP_ID;
+  kDownKey[0] = KEY_P1_DOWN_ID;
   ammo[0] = 30;
   itemnum[0] = 1;
   kRightShootKey[2] = 60;
@@ -1253,14 +1253,14 @@ int InitGL(GLvoid) // All Setup For OpenGL Goes Here
   kDownKey[2] = 60;
   ammo[2] = 30;
   itemnum[0] = 1;
-  kBlockKey[1] = 76;
-  kAttackKey[1] = 82;
-  kRightShootKey[1] = 92;
-  kLeftShootKey[1] = 89;
-  kLeftKey[1] = 86;
-  kRightKey[1] = 88;
-  kUpKey[1] = 91;
-  kDownKey[1] = 87;
+  kBlockKey[1] = KEY_P2_BLOCK_ID;
+  kAttackKey[1] = KEY_P2_ATTACK_ID;
+  kRightShootKey[1] = KEY_P2_SHOOT_RIGHT_ID;
+  kLeftShootKey[1] = KEY_P2_SHOOT_LEFT_ID;
+  kLeftKey[1] = KEY_P2_LEFT_ID;
+  kRightKey[1] = KEY_P2_RIGHT_ID;
+  kUpKey[1] = KEY_P2_UP_ID;
+  kDownKey[1] = KEY_P2_DOWN_ID;
   ammo[1] = 30;
   itemnum[1] = 1;
   restartRound();
