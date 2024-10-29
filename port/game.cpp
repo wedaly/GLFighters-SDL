@@ -5457,7 +5457,7 @@ void SwitchFrame(int whichguy) {
   if (activity[whichguy] == shootleft && targetframe[whichguy] == 3 && Walls[guymapx[whichguy]][guymapy[whichguy]] == 0 && Walls[c][guymapy[whichguy]] == 0) {
     point = FindRightGunPoint(whichguy);
     if (freezetime == 0 && itemnum[whichguy] == 1) {
-      playsound(5, 200);
+      playSound(SND_ZAP_ID, 200);
       MakeSprite(point.x + 2, point.y, point.z, 255, lasersprite, 0, 10, 0, 110, 0, 0);
       for (x = 0; x < 13; x++) {
         a = (point.x + x + 585) / 10;
@@ -5625,7 +5625,7 @@ void SwitchFrame(int whichguy) {
   if (activity[whichguy] == shootright && targetframe[whichguy] == 3 && Walls[guymapx[whichguy] - 1][guymapy[whichguy]] == 0 && Walls[d - 2][guymapy[whichguy]] == 0) {
     point = FindRightGunPoint(whichguy);
     if (freezetime == 0 && itemnum[whichguy] == 1) {
-      playsound(5, 200);
+      playSound(SND_ZAP_ID, 200);
       MakeSprite(point.x - 2, point.y, point.z, 255, lasersprite, 0, 10, 0, -110, 0, 0);
       for (x = 0; x < 13; x++) {
         a = (point.x - x + 595) / 10;
