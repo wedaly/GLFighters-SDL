@@ -1174,10 +1174,6 @@ int InitGL(GLvoid) // All Setup For OpenGL Goes Here
   glLightfv(GL_LIGHT3, GL_POSITION, LightPosition2); // Position The Light
   glDisable(GL_LIGHT3);
   // glEnable(GL_AUTO_NORMAL);
-  quadratic = gluNewQuadric();              // Create A Pointer To The Quadric Object (Return 0 If No Memory)
-  gluQuadricNormals(quadratic, GLU_SMOOTH); // Create Smooth Normals
-  gluQuadricTexture(quadratic, GL_TRUE);    // Create Texture Coords
-
   glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP); // Set The Texture Generation Mode For S To Sphere Mapping (NEW)
   glTexGeni(GL_T, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP); // Set The Texture Generation Mode For T To Sphere Mapping (NEW)
   glTexGeni(GL_Q, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP); // Set The Texture Generation Mode For T To Sphere Mapping (NEW)
