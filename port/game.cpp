@@ -9569,7 +9569,7 @@ void DoAIPlayerStuff(int whichguy) {
       if (a < c && Walls[a][d] == 1 && f == 0) {
         usingjetpack[whichguy] = 0;
         guyx[whichguy] += .3 + .6 * multiplier / 5;
-        playsound(2, 30);
+        playSound(SND_LAND_ID, 30);
         if (guyvelx[whichguy] != 0) {
           activity[whichguy] = fallbackwardsleft;
           guyx[whichguy] = guymapx[whichguy] * 10 - 590;
@@ -9690,8 +9690,8 @@ void DoPlayerStuff(int whichguy) {
     frame[whichguy] = 0;
     time[whichguy] = 100;
     targetanim[whichguy] = 9;
-    playsound(3, -guyvely[whichguy] * 50 + 50);
-    playsound(4, -guyvely[whichguy] * 50 + 50);
+    playSound(SND_BREAK_ID, -guyvely[whichguy] * 50 + 50);
+    playSound(SND_BREAK2_ID, -guyvely[whichguy] * 50 + 50);
   }
   if (activity[whichguy] == impaleright || activity[whichguy] == impaleleft ||
       activity[whichguy] == swordrightthrust || activity[whichguy] == swordleftthrust ||
@@ -10407,8 +10407,8 @@ void DoPlayerStuff(int whichguy) {
         frame[b] = 0;
         time[b] = 100;
         targetanim[b] = 9;
-        playsound(3, -guyvely[b] * 50 + 50);
-        playsound(4, -guyvely[b] * 50 + 50);
+        playSound(SND_BREAK_ID, -guyvely[b] * 50 + 50);
+        playSound(SND_BREAK2_ID, -guyvely[b] * 50 + 50);
         guyvelx[b] = 0;
         guyvely[b] = 0;
       }
