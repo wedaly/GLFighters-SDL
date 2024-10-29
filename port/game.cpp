@@ -5146,7 +5146,7 @@ void SwitchFrame(int whichguy) {
       delaytime[b] = 0;
       delaytime[whichguy] = 0;
       if (itemtype[b] == 0) {
-        playsound(9, 80);
+        playSound(SND_METALSLIDE2_ID, 80);
       }
       if (itemtype[b] == 1) {
         playSound(SND_LIGHTSABRE_ID, 80);
@@ -5243,7 +5243,7 @@ void SwitchFrame(int whichguy) {
       delaytime[b] = 0;
       delaytime[whichguy] = 0;
       if (itemtype[b] == 0) {
-        playsound(9, 80);
+        playSound(SND_METALSLIDE2_ID, 80);
       }
       if (itemtype[b] == 1) {
         playSound(SND_LIGHTSABRE_ID, 80);
@@ -5341,7 +5341,7 @@ void SwitchFrame(int whichguy) {
       delaytime[b] = 0;
       delaytime[whichguy] = 0;
       if (itemtype[b] == 0) {
-        playsound(9, 80);
+        playSound(SND_METALSLIDE2_ID, 80);
       }
       if (itemtype[b] == 1) {
         playSound(SND_LIGHTSABRE_ID, 80);
@@ -5438,7 +5438,7 @@ void SwitchFrame(int whichguy) {
       delaytime[b] = 0;
       delaytime[whichguy] = 0;
       if (itemtype[b] == 0) {
-        playsound(9, 80);
+        playSound(SND_METALSLIDE2_ID, 80);
       }
       if (itemtype[b] == 1) {
         playSound(SND_LIGHTSABRE_ID, 80);
@@ -5788,7 +5788,7 @@ void SwitchFrame(int whichguy) {
       if (smokingbody[whichguy][kRightGun] < 40) {
         smokingbody[whichguy][kRightGun] += 20;
       }
-      playsound(10, 200);
+      playSound(SND_MACHINEGUN_ID, 200);
       MakeSprite(point.x, point.y, point.z + 1, 255, tracersprite, 0, 10, 0, -100, randomjohn / 4, 0);
       for (x = 0; x < 8; x++) {
         a = (point.x - x + 595) / 10;
@@ -5900,7 +5900,7 @@ void SwitchFrame(int whichguy) {
     }
     if (frame[whichguy] == 4) {
       if (itemtype[whichguy] == 0) {
-        playsound(9, 80);
+        playSound(SND_METALSLIDE2_ID, 80);
       }
       if (itemtype[whichguy] == 1) {
         playSound(SND_LIGHTSABRE_ID, 80);
