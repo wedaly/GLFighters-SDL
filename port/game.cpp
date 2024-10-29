@@ -6033,7 +6033,7 @@ void CheckWallHit(int a, int b, int c, int x) {
         sprite[x].velx = 0;
         sprite[x].vely = 0;
         sprite[x].x = f * 10 - 590 + 2;
-        playsound(6, 200);
+        playSound(SND_BOOM_ID, 200);
         for (d = 0; d < 6; d++) {
           MakeSprite(sprite[x].x, sprite[x].y, sprite[x].z, 255, wallsparks, 0, 2, 0, RangedRandom(10, 0) - 10, RangedRandom(10, -10) - 10, RangedRandom(10, -10) - 10);
         }
@@ -6043,7 +6043,7 @@ void CheckWallHit(int a, int b, int c, int x) {
         sprite[x].velx = 0;
         sprite[x].vely = 0;
         sprite[x].x = f * 10 - 590 + 2;
-        playsound(6, 200);
+        playSound(SND_BOOM_ID, 200);
         for (d = 0; d < 3; d++) {
           MakeSprite(sprite[x].x, sprite[x].y, sprite[x].z, 255, wallsparks, 0, 2, 0, RangedRandom(10, 0) - 10, RangedRandom(10, -10) - 10, RangedRandom(10, -10) - 10);
         }
@@ -6057,7 +6057,7 @@ void CheckWallHit(int a, int b, int c, int x) {
         sprite[x].velx = 0;
         sprite[x].vely = 0;
         sprite[x].x = f * 10 - 590 + 6;
-        playsound(6, 200);
+        playSound(SND_BOOM_ID, 200);
         for (d = 0; d < 6; d++) {
           MakeSprite(sprite[x].x, sprite[x].y, sprite[x].z, 255, wallsparks, 0, 2, 0, RangedRandom(10, 0) - 10, RangedRandom(10, -10) - 10, RangedRandom(10, -10) - 10);
         }
@@ -6067,7 +6067,7 @@ void CheckWallHit(int a, int b, int c, int x) {
         sprite[x].velx = 0;
         sprite[x].vely = 0;
         sprite[x].x = f * 10 - 590 + 6;
-        playsound(6, 200);
+        playSound(SND_BOOM_ID, 200);
         for (d = 0; d < 3; d++) {
           MakeSprite(sprite[x].x, sprite[x].y, sprite[x].z, 255, wallsparks, 0, 2, 0, RangedRandom(10, 0) - 10, RangedRandom(10, -10) - 10, RangedRandom(10, -10) - 10);
         }
@@ -6131,7 +6131,7 @@ void CheckBounceWallHit(int a, int b, int c, int x) {
         }
       }
       if (Walls[f][b] == 1 && sprite[x].type == chunk) {
-        playsound(6, 10 + sprite[x].velx * 5);
+        playSound(SND_BOOM_ID, 10 + sprite[x].velx * 5);
         sprite[x].velx *= -1;
         sprite[x].x = f * 10 - 590 + 1;
         if (sprite[x].stage == 1) {
@@ -6174,7 +6174,7 @@ void CheckBounceWallHit(int a, int b, int c, int x) {
         }
       }
       if (Walls[f][b] == 1 && sprite[x].type == chunk) {
-        playsound(6, 10 + absolute(sprite[x].velx) * 5);
+        playSound(SND_BOOM_ID, 10 + absolute(sprite[x].velx) * 5);
         sprite[x].velx *= -1;
         sprite[x].x *= -1;
         sprite[x].x = f * 10 - 590 + 6;
@@ -6457,7 +6457,7 @@ void HandleSprites() {
             }
           }
           if (sprite[x].type == chunk) {
-            playsound(6, 10 + sprite[x].vely * 5);
+            playSound(SND_BOOM_ID, 10 + sprite[x].vely * 5);
             if (sprite[x].stage == 1) {
               sprite[x].stage = 3;
             }
@@ -6640,7 +6640,7 @@ void HandleSprites() {
                       sprite[x].x = guyx[y];
                       sprite[x].vely = 0;
                     }
-                    playsound(6, 200);
+                    playSound(SND_BOOM_ID, 200);
                   }
                   if (activity[y] == swordleftparry && frame[y] <= 3 && itemtype[y] == 1) {
                     for (d = 0; d < 3; d++) {
@@ -6756,7 +6756,7 @@ void HandleSprites() {
                       sprite[x].x = guyx[y];
                       sprite[x].vely = 0;
                     }
-                    playsound(6, 200);
+                    playSound(SND_BOOM_ID, 200);
                   }
                   if (activity[y] == swordrightparry && frame[y] <= 3 && itemtype[y] == 1) {
                     for (d = 0; d < 3; d++) {
@@ -6873,7 +6873,7 @@ void HandleSprites() {
                     sprite[x].x = guyx[y];
                     sprite[x].vely = 0;
                   }
-                  playsound(6, 200);
+                  playSound(SND_BOOM_ID, 200);
                 }
                 if (a < c && sprite[x].x - absolute(guyvelx[y]) + (sprite[x].velx * multiplier / 100) < guyx[y] && sprite[x].x > guyx[y] && absolute(sprite[x].y - guyy[y] - 3) < 3 * size[y] && activity[y] != fallbackwardsleft && activity[y] != fallbackwardsright && activity[y] != landonback) {
                   if (sprite[x].type == lasersprite) {
@@ -6975,7 +6975,7 @@ void HandleSprites() {
                     sprite[x].x = guyx[y];
                     sprite[x].vely = 0;
                   }
-                  playsound(6, 200);
+                  playSound(SND_BOOM_ID, 200);
                 }
               }
             }
@@ -7122,7 +7122,7 @@ void HandleSprites() {
                         sprite[x].x = guyx[y];
                         sprite[x].vely = 0;
                       }
-                      playsound(6, 200);
+                      playSound(SND_BOOM_ID, 200);
                     }
                     if (activity[y] == swordleftparry && frame[y] <= 3 && itemtype[y] == 1) {
                       for (d = 0; d < 3; d++) {
@@ -7239,7 +7239,7 @@ void HandleSprites() {
                         sprite[x].x = guyx[y];
                         sprite[x].vely = 0;
                       }
-                      playsound(6, 200);
+                      playSound(SND_BOOM_ID, 200);
                     }
                     if (activity[y] == swordrightparry && frame[y] <= 3 && itemtype[y] == 1) {
                       for (d = 0; d < 3; d++) {
@@ -7365,7 +7365,7 @@ void HandleSprites() {
                       sprite[x].x = guyx[y];
                       sprite[x].vely = 0;
                     }
-                    playsound(6, 200);
+                    playSound(SND_BOOM_ID, 200);
                   }
                   if (a < c && sprite[x].x - guyvelx[y] + (sprite[x].velx * multiplier / 100) < guyx[y] && sprite[x].x > guyx[y] && absolute(sprite[x].y - guyy[y] - 3) < 3 * size[y] && activity[y] != fallbackwardsleft && activity[y] != fallbackwardsright && activity[y] != landonback) {
                     hit = 1;
@@ -7468,7 +7468,7 @@ void HandleSprites() {
                       sprite[x].x = guyx[y];
                       sprite[x].vely = 0;
                     }
-                    playsound(6, 200);
+                    playSound(SND_BOOM_ID, 200);
                   }
                 }
               }
