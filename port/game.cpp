@@ -14492,287 +14492,6 @@ void DoKeys(int whichguy) {
 }
 
 void EventLoop(void) {
-
-  EventRecord event;
-  unsigned char theKeyMap[16];
-  int x, y, a, b, c, d;
-  int guywillbe;
-  float oldmult;
-  gQuit = false;
-  // Keep doing the event loop while not gQuit
-  while (gQuit == false) {
-    Point3D point2;
-    // Get the next event in the event que (could use WaitNextEvent(), but you have to wait, so
-    // we'll use GetNextEvent() which is faster)
-    if (GetNextEvent(everyEvent, &event))
-      DoEvent(&event);
-    // Swap buffers (double buffering)
-    if (!nodraw) {
-      start = TimerGetTime();
-
-      glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-      if (DrawGLScene())
-        aglSwapBuffers(gOpenGLContext);
-      else
-        gQuit = true;
-      oldmult = multiplier;
-
-      gamespeed = 1;
-      if (slowdown) {
-        gamespeed = .05;
-      } // slowmotion toggle
-      if (freezetime) {
-        gamespeed = 0;
-      } // freeze time toggle
-
-      multiplier = oldmult * gamespeed;
-
-      for (x = 0; x < kMaxLightning; x++) {
-        Lightning[x].brightness -= multiplier / 100;
-        if (Lightning[x].brightness <= 0) {
-          Lightning[x].brightness = 0;
-        }
-      }
-
-      for (x = 0; x < numplayers; x++) {
-        multiplier = oldmult * gamespeed;
-        multiplier *= speedmult[x];
-        multiplier /= 10;
-        for (a = 0; a < 10; a++) {
-          if (freezetime == 0 && computercontrolled[x] == 0) {
-            DoPlayerStuff(x);
-          }
-          if (freezetime == 0 && computercontrolled[x] != 0) {
-            DoAIPlayerStuff(x);
-          }
-        }
-        if (x != 1 || mapeditor == 0) {
-          if (dead[x] == 0 || activity[x] != deadfacedown || activity[x] != deadfaceup || health[x] >= 0) {
-            if (computercontrolled[x] == 0) {
-              DoKeys(x);
-            }
-            if (computercontrolled[x]) {
-              DoAI(x);
-              DoAIKeys(x);
-            }
-          }
-        }
-      }
-
-      multiplier = oldmult * gamespeed;
-      multiplier /= 5;
-
-      for (a = 0; a < 5; a++) {
-        if (freezetime == 0) {
-          HandleSprites();
-        }
-      }
-
-      for (a = 0; a < numplayers; a++) {
-        while (jetsmokedelay[a] <= 0 && usingjetpack[a] == 1) {
-          playsound(11, absolute(guyvelx[a]) * 20 + absolute(guyvely[a]) * 20 + 14);
-          point = FindJetPackPos(a);
-          MakeSprite(point.x, point.y, point.z, RangedRandom(50, 100) + 50, smokesprite, RangedRandom(0, 360), RangedRandom(0, 4) + 6, 0, RangedRandom(0, 30) / 10 + (guyvelx[a] * 80), (RangedRandom(10, 20) - 20) / 4 + (guyvely[a] * 100), 0);
-          jetsmokedelay[a] += 10;
-        }
-      }
-
-      multiplier = oldmult * gamespeed;
-
-      // HandleSmokeSprites();
-
-      for (x = 0; x < numplayers; x++) {
-        if (activity[x] == jetimpaledright || activity[x] == jetimpaledleft && attach[x] != -1) {
-          guyx[x] = guyx[attach[x]];
-          guyy[x] = guyy[attach[x]];
-          guyvelx[x] = guyvelx[attach[x]];
-          guyvely[x] = guyvely[attach[x]];
-        }
-      }
-
-      multiplier = oldmult;
-
-      end = TimerGetTime();
-      timetaken = end - start;
-      framespersecond = 600000000 / timetaken;
-      multiplier5 = multiplier4;
-      multiplier4 = multiplier3;
-      multiplier3 = multiplier2;
-      multiplier2 = 300 / framespersecond;
-      multiplier = (multiplier2 + multiplier3 + multiplier4 + multiplier5) / 4;
-
-      // Get the keyMap
-      // Handle some keyboard input here
-      // These keys are special keys (arrow keys and such) and control variables which need to
-      // be more responsive as opposed to accurate as to how many times they are presed
-      GetKeys((unsigned long *)theKeyMap);
-
-      /*//Numeric keypad
-      if ( IsKeyDown( theKeyMap, 91 ) )
-              hippos[2][frame][anim]+=1;
-      if ( IsKeyDown (theKeyMap, 87 ) )
-              hippos[2][frame][anim]-=1;
-      if ( IsKeyDown( theKeyMap, 88 ) )
-              hippos[1][frame][anim]+=1;
-      if ( IsKeyDown( theKeyMap, 86 ) )
-              hippos[1][frame][anim]-=1;
-      if ( IsKeyDown( theKeyMap, 89 ) )
-              hippos[0][frame][anim]+=1;
-      if ( IsKeyDown( theKeyMap, 92 ) )
-              hippos[0][frame][anim]-=1;
-      if ( IsKeyDown( theKeyMap, 49 ) ){
-              NextFrame();
-              }
-      */
-
-      //**********CAMERA KEYS************//
-      if (IsKeyDown(theKeyMap, MAC_PAGE_DOWN_KEY)) {
-        z -= 0.3 * multiplier;
-        if (freezetime == 1) {
-          z -= 1;
-        }
-      }
-      if (IsKeyDown(theKeyMap, MAC_PAGE_UP_KEY)) {
-        z += 0.3 * multiplier;
-        if (freezetime == 1) {
-          z += 1;
-        }
-      }
-      if (IsKeyDown(theKeyMap, MAC_ARROW_UP_KEY)) {
-        xrot -= 1.0 * multiplier / 4;
-        if (freezetime == 1) {
-          xrot -= 5;
-        }
-      }
-      if (IsKeyDown(theKeyMap, MAC_ARROW_DOWN_KEY)) {
-        xrot += 1.0 * multiplier / 4;
-        if (freezetime == 1) {
-          xrot += 5;
-        }
-      }
-      if (IsKeyDown(theKeyMap, MAC_ARROW_RIGHT_KEY)) {
-        yrot += 1.0 * multiplier / 4;
-        if (freezetime == 1) {
-          yrot += 5;
-        }
-      }
-      if (IsKeyDown(theKeyMap, MAC_ARROW_LEFT_KEY)) {
-        yrot -= 1.0 * multiplier / 4;
-        if (freezetime == 1) {
-          yrot -= 5;
-        }
-      }
-      if (IsKeyDown(theKeyMap, MAC_ESCAPE_KEY)) {
-        gQuit = true;
-      }
-      if (IsKeyDown(theKeyMap, 34)) {
-        cameray -= 0.3 * multiplier;
-        if (freezetime == 1) {
-          cameray -= multiplier / 3;
-        }
-      }
-      if (IsKeyDown(theKeyMap, 40)) {
-        cameray += 0.3 * multiplier;
-        if (freezetime == 1) {
-          cameray += multiplier / 3;
-        }
-      }
-      if (IsKeyDown(theKeyMap, 38)) {
-        camerax += 0.3 * multiplier;
-        if (freezetime == 1) {
-          camerax += multiplier / 3;
-        }
-      }
-      if (IsKeyDown(theKeyMap, 37)) {
-        camerax -= 0.3 * multiplier;
-        if (freezetime == 1) {
-          camerax -= multiplier / 3;
-        }
-      }
-      for (a = 0; a <= 20; a++) {
-        if (xrot >= 360) {
-          xrot -= 360;
-        }
-        if (xrot < 0) {
-          xrot += 360;
-        }
-      }
-
-      for (a = 0; a <= 20; a++) {
-        if (yrot >= 360) {
-          yrot -= 360;
-        }
-        if (yrot < 0) {
-          yrot += 360;
-        }
-      }
-    }
-  }
-}
-/********************> main() <*****/
-void main(void) {
-
-  CGrafPtr theScreen;
-  int width, height;
-  int resolution = 0;
-  int num;
-
-  // Do a bunch of MacOS Inits
-
-  screenwidth = 1600;
-  screenheight = 1200;
-
-  ToolboxInit();
-
-  // Register the application with the appearance manager
-  if (HasAppearance())
-    RegisterAppearanceClient();
-
-  // Prompt the user for a screen resolution
-  // resolution = SelectResolution();
-  width = screenwidth;
-  height = screenheight;
-
-  // Prepare the screen
-  HideCursor();
-  theScreen = SetupScreen(width, height);
-
-  // Setup the OpenGL context
-  gOpenGLContext = SetupAGL((AGLDrawable)theScreen);
-  if (!gOpenGLContext)
-    return;
-  ReSizeGLScene(width, height, 45);
-
-  // Do custom Init stuff
-  InitGL();
-
-  // Do event loop here
-  EventLoop();
-  // Get rid of the textures
-
-  glDeleteLists(base, 256); // Delete All 256 Display Lists
-
-  glDeleteTextures(100, &texture[0]);
-  // Clean up the stuff we set up
-  CleanupAGL(gOpenGLContext);
-  ShutdownScreen(theScreen);
-  ShowCursor();
-
-  // Unregister the application with the appearance manager
-  if (HasAppearance())
-    UnregisterAppearanceClient();
-
-  for (num = 0; num < 20; num++) {
-    SndDisposeChannel(psndChannel[num], (unsigned char)1);
-  }
-
-  for (num = 0; num < 20; num++) {
-    DisposeHandle(hSound[num]);
-  }
-  DeleteFontGL(gFontList);
-  glDeleteLists(base, 96);
-  FlushEvents(everyEvent, 0);
-  ExitToShell();
 }
 
 /********************** WIDALY PORT **********************/
@@ -14782,7 +14501,13 @@ const Uint32 TARGET_TICKS_PER_FRAME = 16; // About 60fps
 
 void runGameLoop() {
   SDL_Event e;
-  while (true) {
+  int x, y, a, b, c, d;
+  int guywillbe;
+  float oldmult;
+  gQuit = false;
+
+  // Keep doing the event loop while not gQuit
+  while (!gQuit) {
     Uint32 startTicks = SDL_GetTicks(); // milliseconds
 
     while (SDL_PollEvent(&e)) {
@@ -14803,6 +14528,218 @@ void runGameLoop() {
       }
     }
 
+    // --- PORT ---
+
+    while (gQuit == false) {
+      Point3D point2;
+      // Get the next event in the event que (could use WaitNextEvent(), but you have to wait, so
+      // we'll use GetNextEvent() which is faster)
+      if (GetNextEvent(everyEvent, &event))
+        DoEvent(&event);
+      // Swap buffers (double buffering)
+      if (!nodraw) {
+        start = TimerGetTime();
+
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        if (DrawGLScene())
+          aglSwapBuffers(gOpenGLContext);
+        else
+          gQuit = true;
+        oldmult = multiplier;
+
+        gamespeed = 1;
+        if (slowdown) {
+          gamespeed = .05;
+        } // slowmotion toggle
+        if (freezetime) {
+          gamespeed = 0;
+        } // freeze time toggle
+
+        multiplier = oldmult * gamespeed;
+
+        for (x = 0; x < kMaxLightning; x++) {
+          Lightning[x].brightness -= multiplier / 100;
+          if (Lightning[x].brightness <= 0) {
+            Lightning[x].brightness = 0;
+          }
+        }
+
+        for (x = 0; x < numplayers; x++) {
+          multiplier = oldmult * gamespeed;
+          multiplier *= speedmult[x];
+          multiplier /= 10;
+          for (a = 0; a < 10; a++) {
+            if (freezetime == 0 && computercontrolled[x] == 0) {
+              DoPlayerStuff(x);
+            }
+            if (freezetime == 0 && computercontrolled[x] != 0) {
+              DoAIPlayerStuff(x);
+            }
+          }
+          if (x != 1 || mapeditor == 0) {
+            if (dead[x] == 0 || activity[x] != deadfacedown || activity[x] != deadfaceup || health[x] >= 0) {
+              if (computercontrolled[x] == 0) {
+                DoKeys(x);
+              }
+              if (computercontrolled[x]) {
+                DoAI(x);
+                DoAIKeys(x);
+              }
+            }
+          }
+        }
+
+        multiplier = oldmult * gamespeed;
+        multiplier /= 5;
+
+        for (a = 0; a < 5; a++) {
+          if (freezetime == 0) {
+            HandleSprites();
+          }
+        }
+
+        for (a = 0; a < numplayers; a++) {
+          while (jetsmokedelay[a] <= 0 && usingjetpack[a] == 1) {
+            playsound(11, absolute(guyvelx[a]) * 20 + absolute(guyvely[a]) * 20 + 14);
+            point = FindJetPackPos(a);
+            MakeSprite(point.x, point.y, point.z, RangedRandom(50, 100) + 50, smokesprite, RangedRandom(0, 360), RangedRandom(0, 4) + 6, 0, RangedRandom(0, 30) / 10 + (guyvelx[a] * 80), (RangedRandom(10, 20) - 20) / 4 + (guyvely[a] * 100), 0);
+            jetsmokedelay[a] += 10;
+          }
+        }
+
+        multiplier = oldmult * gamespeed;
+
+        // HandleSmokeSprites();
+
+        for (x = 0; x < numplayers; x++) {
+          if (activity[x] == jetimpaledright || activity[x] == jetimpaledleft && attach[x] != -1) {
+            guyx[x] = guyx[attach[x]];
+            guyy[x] = guyy[attach[x]];
+            guyvelx[x] = guyvelx[attach[x]];
+            guyvely[x] = guyvely[attach[x]];
+          }
+        }
+
+        multiplier = oldmult;
+
+        end = TimerGetTime();
+        timetaken = end - start;
+        framespersecond = 600000000 / timetaken;
+        multiplier5 = multiplier4;
+        multiplier4 = multiplier3;
+        multiplier3 = multiplier2;
+        multiplier2 = 300 / framespersecond;
+        multiplier = (multiplier2 + multiplier3 + multiplier4 + multiplier5) / 4;
+
+        // Get the keyMap
+        // Handle some keyboard input here
+        // These keys are special keys (arrow keys and such) and control variables which need to
+        // be more responsive as opposed to accurate as to how many times they are presed
+        GetKeys((unsigned long *)theKeyMap);
+
+        /*//Numeric keypad
+        if ( IsKeyDown( theKeyMap, 91 ) )
+                hippos[2][frame][anim]+=1;
+        if ( IsKeyDown (theKeyMap, 87 ) )
+                hippos[2][frame][anim]-=1;
+        if ( IsKeyDown( theKeyMap, 88 ) )
+                hippos[1][frame][anim]+=1;
+        if ( IsKeyDown( theKeyMap, 86 ) )
+                hippos[1][frame][anim]-=1;
+        if ( IsKeyDown( theKeyMap, 89 ) )
+                hippos[0][frame][anim]+=1;
+        if ( IsKeyDown( theKeyMap, 92 ) )
+                hippos[0][frame][anim]-=1;
+        if ( IsKeyDown( theKeyMap, 49 ) ){
+                NextFrame();
+                }
+        */
+
+        //**********CAMERA KEYS************//
+        if (IsKeyDown(theKeyMap, MAC_PAGE_DOWN_KEY)) {
+          z -= 0.3 * multiplier;
+          if (freezetime == 1) {
+            z -= 1;
+          }
+        }
+        if (IsKeyDown(theKeyMap, MAC_PAGE_UP_KEY)) {
+          z += 0.3 * multiplier;
+          if (freezetime == 1) {
+            z += 1;
+          }
+        }
+        if (IsKeyDown(theKeyMap, MAC_ARROW_UP_KEY)) {
+          xrot -= 1.0 * multiplier / 4;
+          if (freezetime == 1) {
+            xrot -= 5;
+          }
+        }
+        if (IsKeyDown(theKeyMap, MAC_ARROW_DOWN_KEY)) {
+          xrot += 1.0 * multiplier / 4;
+          if (freezetime == 1) {
+            xrot += 5;
+          }
+        }
+        if (IsKeyDown(theKeyMap, MAC_ARROW_RIGHT_KEY)) {
+          yrot += 1.0 * multiplier / 4;
+          if (freezetime == 1) {
+            yrot += 5;
+          }
+        }
+        if (IsKeyDown(theKeyMap, MAC_ARROW_LEFT_KEY)) {
+          yrot -= 1.0 * multiplier / 4;
+          if (freezetime == 1) {
+            yrot -= 5;
+          }
+        }
+        if (IsKeyDown(theKeyMap, MAC_ESCAPE_KEY)) {
+          gQuit = true;
+        }
+        if (IsKeyDown(theKeyMap, 34)) {
+          cameray -= 0.3 * multiplier;
+          if (freezetime == 1) {
+            cameray -= multiplier / 3;
+          }
+        }
+        if (IsKeyDown(theKeyMap, 40)) {
+          cameray += 0.3 * multiplier;
+          if (freezetime == 1) {
+            cameray += multiplier / 3;
+          }
+        }
+        if (IsKeyDown(theKeyMap, 38)) {
+          camerax += 0.3 * multiplier;
+          if (freezetime == 1) {
+            camerax += multiplier / 3;
+          }
+        }
+        if (IsKeyDown(theKeyMap, 37)) {
+          camerax -= 0.3 * multiplier;
+          if (freezetime == 1) {
+            camerax -= multiplier / 3;
+          }
+        }
+        for (a = 0; a <= 20; a++) {
+          if (xrot >= 360) {
+            xrot -= 360;
+          }
+          if (xrot < 0) {
+            xrot += 360;
+          }
+        }
+
+        for (a = 0; a <= 20; a++) {
+          if (yrot >= 360) {
+            yrot -= 360;
+          }
+          if (yrot < 0) {
+            yrot += 360;
+          }
+        }
+      }
+    }
+
+    // --------
     updateGameState();
     drawGameFrame();
     SDL_GL_SwapWindow(window);
