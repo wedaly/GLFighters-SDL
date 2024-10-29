@@ -664,26 +664,6 @@ void Save() {
   }
 }
 
-/********************> ReSizeGLScene() <*****/
-GLvoid ReSizeGLScene(GLsizei width, GLsizei height, float fov) // Resize And Initialize The GL Window
-{
-  if (height == 0) // Prevent A Divide By Zero By
-  {
-    height = 1; // Making Height Equal One
-  }
-
-  glViewport(0, 0, width, height); // Reset The Current Viewport
-
-  glMatrixMode(GL_PROJECTION); // Select The Projection Matrix
-  glLoadIdentity();            // Reset The Projection Matrix
-
-  // Calculate The Aspect Ratio Of The Window
-  gluPerspective(fov, (GLfloat)width / (GLfloat)height, 0.1f, 1000000.0f);
-
-  glMatrixMode(GL_MODELVIEW); // Select The Modelview Matrix
-  glLoadIdentity();           // Reset The Modelview Matrix
-}
-
 /********************> InitGL() <*****/
 void MovePlayerData(int first, int second) {
   int x;
@@ -3647,20 +3627,6 @@ void HandleKeyDown(char theChar) {
     break;
   case 'A':
     constantswordtrail = 1 - constantswordtrail;
-    break;
-  case 9:
-    if (firstperson == 1) {
-      firstperson = 2;
-    }
-    if (firstperson == 0) {
-      firstperson = 1;
-      ReSizeGLScene(screenwidth, screenheight, 90);
-    }
-    if (firstperson == 2) {
-      firstperson = 0;
-      ReSizeGLScene(screenwidth, screenheight, 45);
-      yrot = 0;
-    }
     break;
   case '-':
     if (changablejump == 1) {
