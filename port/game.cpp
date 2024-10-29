@@ -5951,20 +5951,20 @@ void SwitchFrame(int whichguy) {
       activity[whichguy] == jetimpaleright || activity[whichguy] == jetimpaleleft ||
       activity[whichguy] == duckimpaleright || activity[whichguy] == duckimpaleleft) {
     if (frame[whichguy] == 2 && itemtype[whichguy] == 0) {
-      g = RangedRandom(25, 27) + 1;
-      playsound(g, 200);
+      g = RangedRandom(SND_WHOOSH1SYS7_ID, SND_WHOOSH3SYS7_ID) + 1;
+      playSound(g, 200);
     }
     if (frame[whichguy] == 2 && itemtype[whichguy] == 1) {
-      g = RangedRandom(28, 30) + 1;
-      playsound(g, 200);
+      g = RangedRandom(SND_SABER3SYS7_ID, SND_SABER2SYS7_ID) + 1;
+      playSound(g, 200);
     }
     if (frame[whichguy] == 7 && itemtype[whichguy] == 0 && (activity[whichguy] == swordthrowright || activity[whichguy] == swordthrowleft)) {
-      g = RangedRandom(25, 27) + 1;
-      playsound(g, 200);
+      g = RangedRandom(SND_WHOOSH1SYS7_ID, SND_WHOOSH3SYS7_ID) + 1;
+      playSound(g, 200);
     }
     if (frame[whichguy] == 7 && itemtype[whichguy] == 1 && (activity[whichguy] == swordthrowright || activity[whichguy] == swordthrowleft)) {
-      g = RangedRandom(28, 30) + 1;
-      playsound(g, 200);
+      g = RangedRandom(SND_SABER3SYS7_ID, SND_SABER2SYS7_ID) + 1;
+      playSound(g, 200);
     }
   }
 }
