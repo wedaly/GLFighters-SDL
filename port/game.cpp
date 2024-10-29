@@ -5825,7 +5825,7 @@ void SwitchFrame(int whichguy) {
       }
     }
     if (frame[whichguy] == 4) {
-      playsound(7, 60);
+      playSound(SND_SNAP_ID, 60);
       health[whichguy] -= 120;
     }
   }
