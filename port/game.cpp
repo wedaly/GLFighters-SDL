@@ -10527,8 +10527,8 @@ void DoPlayerStuff(int whichguy) {
                 time[whichguy] = 100;
                 targetanim[whichguy] = 9;
               }
-              playsound(3, -guyvely[whichguy] * 50 + 50);
-              playsound(4, -guyvely[whichguy] * 50 + 50);
+              playSound(SND_BREAK_ID, -guyvely[whichguy] * 50 + 50);
+              playSound(SND_BREAK2_ID, -guyvely[whichguy] * 50 + 50);
             }
             if (activity[whichguy] == deadfaceup || activity[whichguy] == fallbackwardsright || activity[whichguy] == fallbackwardsleft || activity[whichguy] == landonback) {
               activity[whichguy] = landonback;
