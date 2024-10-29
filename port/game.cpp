@@ -448,8 +448,7 @@ Point3D FindEyeRot(int whichguy);
 Point3D FindEyePoint(int whichguy);
 void WallBounds(int toggle);
 Point3D FindBodyPart(int whichguy, int whichpart);
-/********************> LoadGLTextures() <*****/
-//-----------------------------------------------------------------------------------------------------------------------
+
 float absolute(float num) {
   if (num < 0)
     num *= -1;
@@ -602,7 +601,6 @@ void LoadMap() {
   }
 }
 
-/********************> InitGL() <*****/
 void MovePlayerData(int first, int second) {
   int x;
   for (x = 0; x < maxsprites; x++) {
@@ -1858,15 +1856,12 @@ void HandleSpriteTypes(int x) {
   }
 }
 
-/*********************> BoundCamera() <*****/
 void BoundCamera();
 void BoundCamera() {
   if (cameray + (sin((-xrot) / 360 * 6.28) * -(z - 6)) < -560) {
     cameray = -560 - (sin((-xrot) / 360 * 6.28) * -(z - 6));
   }
 }
-
-/*********************> DrawGLScene() <*****/
 
 void glDrawBigCube(float xWidth, float yWidth, float zWidth, int tesselation, float movement);
 void glDrawBigCube(float xWidth, float yWidth, float zWidth, int tesselation, float movement) {
@@ -3325,7 +3320,6 @@ int DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
   glEnable(GL_LIGHTING);
 }
 
-/********************> HandleKeyDown() <*****/
 void restartRound() {
   int x;
   int y;
@@ -3952,8 +3946,6 @@ void HandleKeyDown(char theChar) {
     break;
   }
 }
-
-/********************> DoEvent() <*****/
 
 void MakeSprite(float x, float y, float z, float brightness, float type, float spin, float size, float spin2, float velx, float vely, float velz) {
   int a;
@@ -7921,7 +7913,7 @@ Point3D FindLeftGunPoint(int whichguy) {
   GunPoint.z = M[14];
   return GunPoint;
 }
-/********************> EventLoop() <*****/
+
 void DoPlayerStuff(int whichguy);
 void DoAIPlayerStuff(int whichguy) {
   unsigned char theKeyMap[16];
