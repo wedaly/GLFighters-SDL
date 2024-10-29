@@ -5079,10 +5079,10 @@ void SwitchFrame(int whichguy) {
       health[b] -= 53;
       DoStabFX(whichguy, b);
       if (itemtype[whichguy] == 0) {
-        playsound(8, 80);
+        playSound(SND_METALSLIDE_ID, 80);
       }
       if (itemtype[whichguy] == 1) {
-        playsound(12, 80);
+        playSound(SND_LIGHTSABRE_ID, 80);
       }
       if (health[b] > 0) {
         whichhurt = 0;
@@ -5149,7 +5149,7 @@ void SwitchFrame(int whichguy) {
         playsound(9, 80);
       }
       if (itemtype[b] == 1) {
-        playsound(12, 80);
+        playSound(SND_LIGHTSABRE_ID, 80);
       }
       for (d = 0; d < 4; d++) {
         MakeSprite((guyx[b] + guyx[whichguy]) / 2, guyy[b] + 8, 0, 255, lasersparks, 0, 2, 0, RangedRandom(5, -5) - 5, RangedRandom(5, -5) - 5, RangedRandom(5, -5) - 5);
@@ -5176,10 +5176,10 @@ void SwitchFrame(int whichguy) {
       health[b] -= 53;
       DoStabFX(whichguy, b);
       if (itemtype[whichguy] == 0) {
-        playsound(8, 80);
+        playSound(SND_METALSLIDE_ID, 80);
       }
       if (itemtype[whichguy] == 1) {
-        playsound(12, 80);
+        playSound(SND_LIGHTSABRE_ID, 80);
       }
       if (health[b] > 0) {
         whichhurt = 0;
@@ -5246,7 +5246,7 @@ void SwitchFrame(int whichguy) {
         playsound(9, 80);
       }
       if (itemtype[b] == 1) {
-        playsound(12, 80);
+        playSound(SND_LIGHTSABRE_ID, 80);
       }
       for (d = 0; d < 4; d++) {
         MakeSprite((guyx[b] + guyx[whichguy]) / 2, guyy[b] + 8, 0, 255, lasersparks, 0, 2, 0, RangedRandom(5, -5) - 5, RangedRandom(5, -5) - 5, RangedRandom(5, -5) - 5);
@@ -5274,10 +5274,10 @@ void SwitchFrame(int whichguy) {
       health[b] -= 53;
       DoStabFX(whichguy, b);
       if (itemtype[whichguy] == 0) {
-        playsound(8, 80);
+        playSound(SND_METALSLIDE_ID, 80);
       }
       if (itemtype[whichguy] == 1) {
-        playsound(12, 80);
+        playSound(SND_LIGHTSABRE_ID, 80);
       }
       if (health[b] > 0) {
         whichhurt = 0;
@@ -5344,7 +5344,7 @@ void SwitchFrame(int whichguy) {
         playsound(9, 80);
       }
       if (itemtype[b] == 1) {
-        playsound(12, 80);
+        playSound(SND_LIGHTSABRE_ID, 80);
       }
       for (d = 0; d < 4; d++) {
         MakeSprite((guyx[b] + guyx[whichguy]) / 2, guyy[b] + 8, 0, 255, lasersparks, 0, 2, 0, RangedRandom(5, -5) - 5, RangedRandom(5, -5) - 5, RangedRandom(5, -5) - 5);
@@ -5371,10 +5371,10 @@ void SwitchFrame(int whichguy) {
       health[b] -= 53;
       DoStabFX(whichguy, b);
       if (itemtype[whichguy] == 0) {
-        playsound(8, 80);
+        playSound(SND_METALSLIDE_ID, 80);
       }
       if (itemtype[whichguy] == 1) {
-        playsound(12, 80);
+        playSound(SND_LIGHTSABRE_ID, 80);
       }
       if (health[b] > 0) {
         whichhurt = 0;
@@ -5441,7 +5441,7 @@ void SwitchFrame(int whichguy) {
         playsound(9, 80);
       }
       if (itemtype[b] == 1) {
-        playsound(12, 80);
+        playSound(SND_LIGHTSABRE_ID, 80);
       }
       for (d = 0; d < 4; d++) {
         MakeSprite((guyx[b] + guyx[whichguy]) / 2, guyy[b] + 8, 0, 255, lasersparks, 0, 2, 0, RangedRandom(5, -5) - 5, RangedRandom(5, -5) - 5, RangedRandom(5, -5) - 5);
@@ -5844,10 +5844,10 @@ void SwitchFrame(int whichguy) {
   if (activity[whichguy] == impaleleft || activity[whichguy] == impaleright) {
     if (frame[whichguy] == 2 && fake[whichguy] != 1) {
       if (itemtype[whichguy] == 0) {
-        playsound(8, 80);
+        playSound(SND_METALSLIDE_ID, 80);
       }
       if (itemtype[whichguy] == 1) {
-        playsound(12, 80);
+        playSound(SND_LIGHTSABRE_ID, 80);
       }
     }
   }
@@ -5866,20 +5866,20 @@ void SwitchFrame(int whichguy) {
   if (activity[whichguy] == duckimpaleleft || activity[whichguy] == duckimpaleright) {
     if (frame[whichguy] == 2 && fake[whichguy] != 1) {
       if (itemtype[whichguy] == 0) {
-        playsound(8, 80);
+        playSound(SND_METALSLIDE_ID, 80);
       }
       if (itemtype[whichguy] == 1) {
-        playsound(12, 80);
+        playSound(SND_LIGHTSABRE_ID, 80);
       }
     }
   }
   if (activity[whichguy] == jetimpaleleft || activity[whichguy] == jetimpaleright) {
     if (frame[whichguy] == 4 && fake[whichguy] != 1) {
       if (itemtype[whichguy] == 0) {
-        playsound(8, 80);
+        playSound(SND_METALSLIDE_ID, 80);
       }
       if (itemtype[whichguy] == 1) {
-        playsound(12, 80);
+        playSound(SND_LIGHTSABRE_ID, 80);
       }
     }
   }
@@ -5892,10 +5892,10 @@ void SwitchFrame(int whichguy) {
   if (activity[whichguy] == swordthrowleft || activity[whichguy] == swordthrowright) {
     if (frame[whichguy] == 3) {
       if (itemtype[whichguy] == 0) {
-        playsound(8, 80);
+        playSound(SND_METALSLIDE_ID, 80);
       }
       if (itemtype[whichguy] == 1) {
-        playsound(12, 80);
+        playSound(SND_LIGHTSABRE_ID, 80);
       }
     }
     if (frame[whichguy] == 4) {
@@ -5903,7 +5903,7 @@ void SwitchFrame(int whichguy) {
         playsound(9, 80);
       }
       if (itemtype[whichguy] == 1) {
-        playsound(12, 80);
+        playSound(SND_LIGHTSABRE_ID, 80);
       }
     }
   }
@@ -6647,10 +6647,10 @@ void HandleSprites() {
                       MakeSprite(guyx[y] - 5, sprite[x].y, sprite[x].z, 255, wallsparks, 0, 2, 0, RangedRandom(20, 0) - 20, RangedRandom(10, -10) - 10, RangedRandom(10, -10) - 10);
                     }
                     if (itemtype[y] == 0) {
-                      playsound(8, 80);
+                      playSound(SND_METALSLIDE_ID, 80);
                     }
                     if (itemtype[y] == 1) {
-                      playsound(12, 80);
+                      playSound(SND_LIGHTSABRE_ID, 80);
                     }
                     sprite[x].velx *= -1;
                   }
@@ -6763,10 +6763,10 @@ void HandleSprites() {
                       MakeSprite(guyx[y] + 5, sprite[x].y, sprite[x].z, 255, wallsparks, 0, 2, 0, RangedRandom(20, 0) - 20, RangedRandom(10, -10) - 10, RangedRandom(10, -10) - 10);
                     }
                     if (itemtype[y] == 0) {
-                      playsound(8, 80);
+                      playSound(SND_METALSLIDE_ID, 80);
                     }
                     if (itemtype[y] == 1) {
-                      playsound(12, 80);
+                      playSound(SND_LIGHTSABRE_ID, 80);
                     }
                     sprite[x].velx *= -1;
                   }
@@ -7129,10 +7129,10 @@ void HandleSprites() {
                         MakeSprite(guyx[y] - 5, sprite[x].y, sprite[x].z, 255, wallsparks, 0, 2, 0, RangedRandom(20, 0) - 20, RangedRandom(10, -10) - 10, RangedRandom(10, -10) - 10);
                       }
                       if (itemtype[y] == 0) {
-                        playsound(8, 80);
+                        playSound(SND_METALSLIDE_ID, 80);
                       }
                       if (itemtype[y] == 1) {
-                        playsound(12, 80);
+                        playSound(SND_LIGHTSABRE_ID, 80);
                       }
                       sprite[x].velx *= -1;
                     }
@@ -7246,10 +7246,10 @@ void HandleSprites() {
                         MakeSprite(guyx[y] + 5, sprite[x].y, sprite[x].z, 255, wallsparks, 0, 2, 0, RangedRandom(20, 0) - 20, RangedRandom(10, -10) - 10, RangedRandom(10, -10) - 10);
                       }
                       if (itemtype[y] == 0) {
-                        playsound(8, 80);
+                        playSound(SND_METALSLIDE_ID, 80);
                       }
                       if (itemtype[y] == 1) {
-                        playsound(12, 80);
+                        playSound(SND_LIGHTSABRE_ID, 80);
                       }
                       sprite[x].velx *= -1;
                     }
