@@ -2054,7 +2054,7 @@ void glEnvironmentCube(int front, int left, int back, int right, int up, int dow
   // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
   // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
   if ((yrot >= 90 && yrot <= 270) || (firstperson == 1)) {
-    glBindTexture(GL_TEXTURE_2D, front);
+    bindTexture(front);
   }
   glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
   glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
@@ -2072,7 +2072,7 @@ void glEnvironmentCube(int front, int left, int back, int right, int up, int dow
   glVertex3f(-xWidth, yWidth, zWidth);
   glEnd();
   if (yrot >= 270 || yrot <= 90 || firstperson == 3 || firstperson == 0) {
-    glBindTexture(GL_TEXTURE_2D, back);
+    bindTexture(back);
   }
   glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
   glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
@@ -2089,7 +2089,7 @@ void glEnvironmentCube(int front, int left, int back, int right, int up, int dow
   glVertex3f(xWidth, -yWidth, -zWidth);
   glEnd();
   if ((xrot >= 180 && xrot <= 360) || (firstperson == 1 || firstperson == 2)) {
-    glBindTexture(GL_TEXTURE_2D, up);
+    bindTexture(up);
   }
   glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
   glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
@@ -2106,7 +2106,7 @@ void glEnvironmentCube(int front, int left, int back, int right, int up, int dow
   glVertex3f(xWidth, yWidth, -zWidth);
   glEnd();
   if ((xrot <= 180 && xrot >= 0) || (firstperson == 1 || firstperson == 2)) {
-    glBindTexture(GL_TEXTURE_2D, down);
+    bindTexture(down);
   }
   glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
   glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
@@ -2123,7 +2123,7 @@ void glEnvironmentCube(int front, int left, int back, int right, int up, int dow
   glVertex3f(-xWidth, -yWidth, zWidth);
   glEnd();
   if ((yrot >= 0 && yrot <= 180) || (firstperson == 1 || firstperson == 2)) {
-    glBindTexture(GL_TEXTURE_2D, right);
+    bindTexture(right);
   }
   glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
   glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
@@ -2141,7 +2141,7 @@ void glEnvironmentCube(int front, int left, int back, int right, int up, int dow
   // Left Face
   glEnd();
   if ((yrot >= 180 && yrot <= 360) || (firstperson == 1 || firstperson == 2)) {
-    glBindTexture(GL_TEXTURE_2D, left);
+    bindTexture(left);
   }
   glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
   glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
@@ -2283,7 +2283,7 @@ int DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
   glDisable(GL_CULL_FACE);
   glPushMatrix();
   glTranslatef(0.0f, 152.0f, 0.0f);
-  glBindTexture(GL_TEXTURE_2D, themebacknum);
+  bindTexture(themebacknum);
   if (theme == marbletheme) {
     glDrawBigCube(470, 465, 465, 3, 10);
   }
@@ -2309,7 +2309,7 @@ int DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
     glRotatef(yrot + .1, 0.0f, 1.0f, 0.0f);
     glDisable(GL_LIGHTING);
     glColor4f(255.0, 255.0, 255.0, 1.0);
-    glBindTexture(GL_TEXTURE_2D, 44);
+    bindTexture(44);
     // glScalef(10,10,10);
     glDisable(GL_FOG);
     glEnvironmentCube(environment[0].front, environment[0].left, environment[0].back, environment[0].right, environment[0].up, environment[0].down, 5);
@@ -2326,7 +2326,7 @@ int DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
     glRotatef(yrot + .1, 0.0f, 1.0f, 0.0f);
     glDisable(GL_LIGHTING);
     glColor4f(255.0, 255.0, 255.0, 1.0);
-    glBindTexture(GL_TEXTURE_2D, 44);
+    bindTexture(44);
     // glScalef(10,10,10);
     glDisable(GL_FOG);
     glEnvironmentCube(environment[1].front, environment[1].left, environment[1].back, environment[1].right, environment[1].up, environment[1].down, 5);
@@ -2343,7 +2343,7 @@ int DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
     glRotatef(yrot + .1, 0.0f, 1.0f, 0.0f);
     glDisable(GL_LIGHTING);
     glColor4f(255.0, 255.0, 255.0, 1.0);
-    glBindTexture(GL_TEXTURE_2D, 44);
+    bindTexture(44);
     // glScalef(10,10,10);
     glDisable(GL_FOG);
     glEnvironmentCube(environment[2].front, environment[2].left, environment[2].back, environment[2].right, environment[2].up, environment[2].down, 5);
@@ -2358,7 +2358,7 @@ int DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
   glPushMatrix();
 
   glColor4f(1.0, 1.0, 1.0, 1.0);
-  glBindTexture(GL_TEXTURE_2D, themebasenum);
+  bindTexture(themebasenum);
   glTranslatef(300.0f, 1000.0f, 0.0f);
   if (theme == shinytheme) {
     glEnable(GL_TEXTURE_GEN_S); // Enable Texture Coord Generation For S (NEW)
@@ -2393,23 +2393,23 @@ int DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
           }
           glPushMatrix();
           glScalef(1.2, 1.355, 1.2);
-          glBindTexture(GL_TEXTURE_2D, themeropenum);
+          bindTexture(themeropenum);
           Rope();
-          glBindTexture(GL_TEXTURE_2D, themebasenum);
+          bindTexture(themebasenum);
           glPopMatrix();
         }
         if (Map[y][x] == 3) {
           glPushMatrix();
           glScalef(1.2, 1.355, 1.2);
-          glBindTexture(GL_TEXTURE_2D, themeropenum);
+          bindTexture(themeropenum);
           Rope();
-          glBindTexture(GL_TEXTURE_2D, themebasenum);
+          bindTexture(themebasenum);
           glPopMatrix();
         }
         if (Walls[y][x] != 0) {
           glPushMatrix();
           glTranslatef(4.5f, 9.0f, 0.0f);
-          glBindTexture(GL_TEXTURE_2D, themebasenum);
+          bindTexture(themebasenum);
           if (theme == matrixtheme) {
             glDisable(GL_LIGHTING);
             glColor4f(255.0, 255.0, 255.0, 1.0);
@@ -2419,7 +2419,7 @@ int DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
           if (theme != matrixtheme) {
             Wall();
           }
-          glBindTexture(GL_TEXTURE_2D, themebasenum);
+          bindTexture(themebasenum);
           glPopMatrix();
         }
       }
@@ -2445,7 +2445,7 @@ int DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
 
   glDisable(GL_CULL_FACE);
   glPushMatrix();
-  glBindTexture(GL_TEXTURE_2D, themebacknum);
+  bindTexture(themebacknum);
   glTranslatef(0.0f, 152.0f, 0.0f);
   if (theme == marbletheme) {
     glDrawBigCube(455, 451.5, 450, 3, 0);
@@ -2472,7 +2472,7 @@ int DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
     glRotatef(yrot, 0.0f, 1.0f, 0.0f);
     glDisable(GL_LIGHTING);
     glColor4f(255.0, 255.0, 255.0, 1.0);
-    glBindTexture(GL_TEXTURE_2D, 44);
+    bindTexture(44);
     // glScalef(10,10,10);
     glDisable(GL_FOG);
     glEnvironmentCube(environment[0].front, environment[0].left, environment[0].back, environment[0].right, environment[0].up, environment[0].down, 5);
@@ -2489,7 +2489,7 @@ int DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
     glRotatef(yrot, 0.0f, 1.0f, 0.0f);
     glDisable(GL_LIGHTING);
     glColor4f(255.0, 255.0, 255.0, 1.0);
-    glBindTexture(GL_TEXTURE_2D, 44);
+    bindTexture(44);
     // glScalef(10,10,10);
     glDisable(GL_FOG);
     glEnvironmentCube(environment[1].front, environment[1].left, environment[1].back, environment[1].right, environment[1].up, environment[1].down, 5);
@@ -2506,7 +2506,7 @@ int DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
     glRotatef(yrot, 0.0f, 1.0f, 0.0f);
     glDisable(GL_LIGHTING);
     glColor4f(255.0, 255.0, 255.0, 1.0);
-    glBindTexture(GL_TEXTURE_2D, 44);
+    bindTexture(44);
     // glScalef(10,10,10);
     glDisable(GL_FOG);
     glEnvironmentCube(environment[2].front, environment[2].left, environment[2].back, environment[2].right, environment[2].up, environment[2].down, 5);
@@ -2548,7 +2548,7 @@ int DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
         glDisable(GL_BLEND);
         glEnable(GL_LIGHTING);
         glTranslatef(0.0f, -11.0f, 0.0f);
-        glBindTexture(GL_TEXTURE_2D, themebasenum);
+        bindTexture(themebasenum);
         glDepthMask(1);
       }
       for (a = 2; a < 13; a++) {
@@ -2576,7 +2576,7 @@ int DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
           glDisable(GL_BLEND);
           glEnable(GL_LIGHTING);
           glTranslatef(0.0f, -11.0f, 0.0f);
-          glBindTexture(GL_TEXTURE_2D, themebasenum);
+          bindTexture(themebasenum);
           glDepthMask(1);
         }
       }
@@ -2835,7 +2835,7 @@ int DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
           }
           glDepthMask(1);
 
-          glBindTexture(GL_TEXTURE_2D, themebasenum);
+          bindTexture(themebasenum);
           Chunk();
 
           glDisable(GL_LIGHTING);
@@ -3055,7 +3055,7 @@ int DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
         }
         glDepthMask(1);
 
-        glBindTexture(GL_TEXTURE_2D, themebasenum);
+        bindTexture(themebasenum);
         Chunk();
 
         glDisable(GL_LIGHTING);
