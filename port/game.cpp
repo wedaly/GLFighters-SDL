@@ -5765,8 +5765,8 @@ void SwitchFrame(int whichguy) {
       if (smokingbody[whichguy][kRightGun] < 40) {
         smokingbody[whichguy][kRightGun] += 20;
       }
-      g = RangedRandom(18, 20) + 1;
-      playsound(g, 200);
+      g = RangedRandom(SND_MGUNSHOT1SYS7_ID, SND_MGUNSHOT3SYS7_ID) + 1;
+      playSound(g, 200);
       MakeSprite(point.x - 2, point.y, point.z, 255, tracersprite, 0, 10, 0, -100, randomjohn / 4, 0);
       sprite[unusedsprite].stage = 1;
       for (x = 0; x < 9; x++) {
