@@ -3244,21 +3244,21 @@ int DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
     glColor3f(1, 1, 1);
 
     if (changablejump) {
-      glPrint(2, 320, "Gravity and jump strength are CHANGABLE.", 0, .8);
+      printToScreen(2, 320, "Gravity and jump strength are CHANGABLE.", 0, .8, screenwidth, screenheight);
     }
     if (!changablejump) {
-      glPrint(2, 320, "Gravity and jump strength are NOT CHANGABLE.", 0, .8);
+      printToScreen(2, 320, "Gravity and jump strength are NOT CHANGABLE.", 0, .8, screenwidth, screenheight);
     }
     sprintf(aChar, "Jump strength is at %dx.", (int)jumpstrength);
-    glPrint(2, 300, aChar, 0, .8);
+    printToScreen(2, 300, aChar, 0, .8, screenwidth, screenheight);
     sprintf(aChar, "Gravity is at %d%.", (int)(gravity * 1000));
-    glPrint(2, 280, aChar, 0, .8);
+    printToScreen(2, 280, aChar, 0, .8, screenwidth, screenheight);
 
     if (unlimitedammo) {
-      glPrint(2, 240, "Unlimited ammo is ENABLED.", 0, .8);
+      printToScreen(2, 240, "Unlimited ammo is ENABLED.", 0, .8, screenwidth, screenheight);
     }
     if (!unlimitedammo) {
-      glPrint(2, 240, "Unlimited ammo is NOT ENABLED.", 0, .8);
+      printToScreen(2, 240, "Unlimited ammo is NOT ENABLED.", 0, .8, screenwidth, screenheight);
     }
 
     glColor3f(1, 1, 1);
@@ -3296,7 +3296,7 @@ int DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
     if (itemnum[1] == 7) {
       sprintf(aChar, "Player two has a lightning gun with %f ammo left.", ammo[1]);
     }
-    glPrint(2, 200, aChar, 0, .8);
+    printToScreen(2, 200, aChar, 0, .8, screenwidth, screenheight);
 
     if (computercontrolled[1] == 1 && AIOffensive == 1) {
       glColor3f(1, .7, .7);
@@ -3310,27 +3310,27 @@ int DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
       glColor3f(1, 1, 1);
       sprintf(aChar, "Player two is NOT controlled by the computer.");
     }
-    glPrint(2, 180, aChar, 0, .8);
+    printToScreen(2, 180, aChar, 0, .8, screenwidth, screenheight);
 
     if (health[1] > 0) {
       glColor3f(1, (float)health[1] / 100, (float)health[1] / 100);
       sprintf(aChar, "Player two has %d health.", health[1]);
-      glPrint(2, 160, aChar, 0, .8);
+      printToScreen(2, 160, aChar, 0, .8, screenwidth, screenheight);
     }
     if (health[1] <= 0 && health[1] > -400) {
       glColor3f(1, 0, 0);
       sprintf(aChar, "Player two is DEAD.");
-      glPrint(2, 160, aChar, 0, .8);
+      printToScreen(2, 160, aChar, 0, .8, screenwidth, screenheight);
     }
     if (health[1] <= -400 || exists[1] == 0) {
       glColor3f(1, 0, 1);
       sprintf(aChar, "Player two is VAPORIZED.");
-      glPrint(2, 160, aChar, 0, .8);
+      printToScreen(2, 160, aChar, 0, .8, screenwidth, screenheight);
     }
 
     glColor3f(.8, .8, 1);
     sprintf(aChar, "Player two is at the position %d,%d.", guymapx[1], guymapy[1]);
-    glPrint(2, 140, aChar, 0, .8);
+    printToScreen(2, 140, aChar, 0, .8, screenwidth, screenheight);
 
     glColor3f(1, 1, 1);
     if (itemnum[0] == 0) {
@@ -3366,7 +3366,7 @@ int DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
     if (itemnum[0] == 7) {
       sprintf(aChar, "Player one has a lightning gun with %f ammo left.", ammo[0]);
     }
-    glPrint(2, 100, aChar, 0, .8);
+    printToScreen(2, 100, aChar, 0, .8, screenwidth, screenheight);
 
     if (computercontrolled[0] == 1 && AIOffensive == 1) {
       glColor3f(1, .7, .7);
@@ -3380,31 +3380,31 @@ int DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
       glColor3f(1, 1, 1);
       sprintf(aChar, "Player one is NOT controlled by the computer.");
     }
-    glPrint(2, 80, aChar, 0, .8);
+    printToScreen(2, 80, aChar, 0, .8, screenwidth, screenheight);
 
     if (health[0] > 0) {
       glColor3f(1, (float)health[0] / 100, (float)health[0] / 100);
       sprintf(aChar, "Player one has %d health.", health[0]);
-      glPrint(2, 60, aChar, 0, .8);
+      printToScreen(2, 60, aChar, 0, .8, screenwidth, screenheight);
     }
     if (health[0] <= 0 && health[0] > -400) {
       glColor3f(1, 0, 0);
       sprintf(aChar, "Player one is DEAD.");
-      glPrint(2, 60, aChar, 0, .8);
+      printToScreen(2, 60, aChar, 0, .8, screenwidth, screenheight);
     }
     if (health[0] <= -400 || exists[0] == 0) {
       glColor3f(1, 0, 1);
       sprintf(aChar, "Player one is VAPORIZED.");
-      glPrint(2, 60, aChar, 0, .8);
+      printToScreen(2, 60, aChar, 0, .8, screenwidth, screenheight);
     }
 
     glColor3f(.8, .8, 1);
     sprintf(aChar, "Player one is at the position %d,%d.", guymapx[0], guymapy[0]);
-    glPrint(2, 40, aChar, 0, .8);
+    printToScreen(2, 40, aChar, 0, .8, screenwidth, screenheight);
 
     glColor3f(1, 1, 1);
     sprintf(aChar, "Frames per second is about %d.", (int)framespersecond);
-    glPrint(2, 2, aChar, 0, 1);
+    printToScreen(2, 2, aChar, 0, 1, screenwidth, screenheight);
   }
   glDisable(GL_BLEND);
   glEnable(GL_LIGHTING);
