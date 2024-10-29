@@ -283,9 +283,6 @@ int kBlockKeydown[17];
 
 float gamespeed;
 
-#define Pstr unsigned char *
-#define Cstr char *
-
 #define FILE_ERROR_ALERT 138
 #define OLD_SAVE_VERSION 139
 #define UNREADABLE_SCORES_ALERT 140
