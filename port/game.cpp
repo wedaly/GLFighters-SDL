@@ -10469,8 +10469,8 @@ void DoPlayerStuff(int whichguy) {
                     frame[b] = 1;
                     time[b] = 100;
                     targetanim[b] = 14;
-                    playsound(3, -guyvely[b] * 50 + 50);
-                    playsound(4, -guyvely[b] * 50 + 50);
+                    playSound(SND_BREAK_ID, -guyvely[b] * 50 + 50);
+                    playSound(SND_BREAK2_ID, -guyvely[b] * 50 + 50);
                   }
                   guyvelx[b] = 0;
                   guyvely[b] = 0;
@@ -10514,8 +10514,8 @@ void DoPlayerStuff(int whichguy) {
               frame[whichguy] = 0;
               time[whichguy] = 100;
               targetanim[whichguy] = 9;
-              playsound(3, -guyvely[whichguy] * 50 + 50);
-              playsound(4, -guyvely[whichguy] * 50 + 50);
+              playSound(SND_BREAK_ID, -guyvely[whichguy] * 50 + 50);
+              playSound(SND_BREAK2_ID, -guyvely[whichguy] * 50 + 50);
             }
             if (activity[whichguy] == deadfacedown || activity[whichguy] == fallforwardsright || activity[whichguy] == fallforwardsleft || activity[whichguy] == hitwallright || activity[whichguy] == hitwallleft) {
               health[whichguy] -= 10;
