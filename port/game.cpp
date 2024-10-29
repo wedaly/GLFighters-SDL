@@ -9367,10 +9367,10 @@ void DoAIPlayerStuff(int whichguy) {
               playsound(4, -guyvely[whichguy] * 50 + 50);
             }
             if (activity[whichguy] == ducking && nosound == 0 && invisible[whichguy] == 0) {
-              playsound(2, -guyvely[whichguy] * 100 + 100);
+              playSound(SND_LAND_ID, -guyvely[whichguy] * 100 + 100);
             }
             if (activity[whichguy] == ducking && nosound == 0 && invisible[whichguy] == 1) {
-              playsound(2, -guyvely[whichguy] * 10 + 10);
+              playSound(SND_LAND_ID, -guyvely[whichguy] * 10 + 10);
             }
             guyvelx[whichguy] = 0;
             guyvely[whichguy] = 0;
