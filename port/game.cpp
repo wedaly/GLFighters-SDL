@@ -10458,8 +10458,8 @@ void DoPlayerStuff(int whichguy) {
                     frame[b] = 3;
                     time[b] = 100;
                     targetanim[b] = 9;
-                    playsound(3, -guyvely[b] * 50 + 50);
-                    playsound(4, -guyvely[b] * 50 + 50);
+                    playSound(SND_BREAK_ID, -guyvely[b] * 50 + 50);
+                    playSound(SND_BREAK2_ID, -guyvely[b] * 50 + 50);
                   }
                   if (activity[b] == deadfaceup) {
                     health[b] += guyvely[b] * 70;
