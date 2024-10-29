@@ -5746,9 +5746,9 @@ void SwitchFrame(int whichguy) {
           lighton[1] = 1;
           lightbrightness[1] = 255;
         }
-        g = RangedRandom(22, 24) + 1;
+        g = RangedRandom(SND_LIGHTNINGSYS7_ID, SND_LIGHTNINGHIGHS7_ID) + 1;
         if (b != -1) {
-          playsound(g, 100);
+          playSound(g, 100);
         }
         if (b == -1) {
           if (lightningfxdelay[whichguy] < 5) {
