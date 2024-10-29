@@ -6124,7 +6124,7 @@ void CheckBounceWallHit(int a, int b, int c, int x) {
           sprite[x].stage = 2;
         }
         if (sprite[x].type2 != 0) {
-          playsound(13, 20 + absolute(sprite[x].velx) * 10);
+          playSound(SND_BINK_ID, 20 + absolute(sprite[x].velx) * 10);
         }
         if (sprite[x].type2 == 0) {
           Explode(x);
@@ -6167,7 +6167,7 @@ void CheckBounceWallHit(int a, int b, int c, int x) {
           sprite[x].stage = 2;
         }
         if (sprite[x].type2 != 0) {
-          playsound(13, 20 + absolute(sprite[x].velx) * 10);
+          playSound(SND_BINK_ID, 20 + absolute(sprite[x].velx) * 10);
         }
         if (sprite[x].type2 == 0) {
           Explode(x);
@@ -6194,7 +6194,7 @@ void CheckBounceWallHit(int a, int b, int c, int x) {
 
 void Explode(int which) {
   int a, b, e, f, y;
-  playsound(21, 200);
+  playSound(SND_BIGBOOM_ID, 200);
   a = (sprite[which].x + 595) / 10;
   b = (sprite[which].oldy) / -20 + 40;
   // if(Map[a][b]==1||Map[a][b]==2||Walls[a][b]==1||Walls[a-1][b]==1){
@@ -6450,7 +6450,7 @@ void HandleSprites() {
               sprite[x].stage = 2;
             }
             if (sprite[x].type2 == 1) {
-              playsound(13, 20 + sprite[x].vely * 10);
+              playSound(SND_BINK_ID, 20 + sprite[x].vely * 10);
             }
             if (sprite[x].type2 == 0) {
               Explode(x);
