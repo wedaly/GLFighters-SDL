@@ -4739,22 +4739,22 @@ void SwitchFrame(int whichguy) {
 
   if (invisible[whichguy] == 0) {
     if (frame[whichguy] == 2 && activity[whichguy] == leftroll) {
-      playsound(0, 100);
+      playSound(SND_ROLL_ID, 100);
     }
     if (frame[whichguy] == 2 && activity[whichguy] == rightroll) {
-      playsound(0, 100);
+      playSound(SND_ROLL_ID, 100);
     }
     if (frame[whichguy] == 2 && activity[whichguy] == runleft) {
-      playsound(1, 100);
+      playSound(SND_STEP_ID, 100);
     }
     if (frame[whichguy] == 2 && activity[whichguy] == runright) {
-      playsound(1, 100);
+      playSound(SND_STEP_ID, 100);
     }
     if (frame[whichguy] == 0 && activity[whichguy] == runleft) {
-      playsound(1, 100);
+      playSound(SND_STEP_ID, 100);
     }
     if (frame[whichguy] == 0 && activity[whichguy] == runright) {
-      playsound(1, 100);
+      playSound(SND_STEP_ID, 100);
     }
   }
   targetframe[whichguy] = frame[whichguy] + 1;
