@@ -5475,12 +5475,12 @@ void SwitchFrame(int whichguy) {
       }
     }
     if (freezetime == 0 && itemnum[whichguy] == 4) {
-      g = RangedRandom(14, 16) + 1;
+      g = RangedRandom(SND_GUNSHOT1_ID, SND_GUNSHOT3_ID) + 1;
       // display=g;
       if (smokingbody[whichguy][kRightGun] < 40) {
         smokingbody[whichguy][kRightGun] += 20;
       }
-      playsound(g, 200);
+      playSound(g, 200);
       MakeSprite(point.x + 2, point.y, point.z, 255, tracersprite, 0, 10, 0, 100, randomjohn, 0);
       for (x = 0; x < 9; x++) {
         a = (point.x + x + 585) / 10;
