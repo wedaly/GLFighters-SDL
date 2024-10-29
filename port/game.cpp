@@ -1296,7 +1296,7 @@ void DrawSabreGlow(int whichguy) {
   glRotatef(spin, 0.0f, 0.0f, 1.0f);
   glPushMatrix();
   glRotatef(sabrespin[whichguy], 1.0f, 0.0f, 0.0f);
-  glBindTexture(GL_TEXTURE_2D, texture[51]);
+  bindTexture(51);
   glBegin(GL_QUADS);
   glTexCoord2f(0.0f, 0.0f);
   glVertex3f(-.3f * size, -.05f * size, 0.0f);
@@ -1309,7 +1309,7 @@ void DrawSabreGlow(int whichguy) {
   glEnd();
   glPushMatrix();
   glRotatef(90, 1.0, 0.0, 0.0);
-  glBindTexture(GL_TEXTURE_2D, texture[51]);
+  bindTexture(51);
   glBegin(GL_QUADS);
   glTexCoord2f(0.0f, 0.0f);
   glVertex3f(-.3f * size, -.05f * size, 0.0f);
@@ -1334,7 +1334,7 @@ void DrawSabreGlow(int whichguy) {
   glEnd();
   glPushMatrix();
   glRotatef(90, 1.0, 0.0, 0.0);
-  glBindTexture(GL_TEXTURE_2D, texture[51]);
+  bindTexture(51);
   glBegin(GL_QUADS);
   glTexCoord2f(0.0f, 0.0f);
   glVertex3f(-.3f * size, -.05f * size, 0.0f);
@@ -1348,7 +1348,7 @@ void DrawSabreGlow(int whichguy) {
   glPopMatrix();
   glPopMatrix();
   glPushMatrix();
-  glBindTexture(GL_TEXTURE_2D, texture[52]);
+  bindTexture(52);
   glTranslatef(3.0f, 0.0f, 0.0f);
   glPushMatrix();
   glGetFloatv(GL_MODELVIEW_MATRIX, M);
@@ -1425,7 +1425,7 @@ void DrawBody(int whichguy) {
   Torso();
   if (jetpack[whichguy] == 1) {
     glPushMatrix();
-    glBindTexture(GL_TEXTURE_2D, texture[49]);
+    bindTexture(49);
     glTranslatef(0, 0, -1.5);
     glRotatef(-90, 0, 1, 0);
     glScalef(3, 3, 3);
@@ -1469,17 +1469,17 @@ void DrawBody(int whichguy) {
   glRotatef(((lefthand[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (lefthand[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   glBindTexture(GL_TEXTURE_2D, texture[UpperArmNum[whichguy]]);
   Hand();
-  glBindTexture(GL_TEXTURE_2D, texture[32]);
+  bindTexture(32);
   if (itemnum[whichguy] == 3) {
     glRotatef(90, 1.0, 0.0, 0.0);
     glTranslatef(-0.3f, -1.0f, 0.8f);
     glRotatef(90, 0.0, 1.0, 0.0);
-    glBindTexture(GL_TEXTURE_2D, texture[50]);
+    bindTexture(50);
     if (itemtype[whichguy] == 1) {
       glScalef(100, 100, 100);
       LightSabre();
     }
-    glBindTexture(GL_TEXTURE_2D, texture[41]);
+    bindTexture(41);
     if (itemtype[whichguy] == 0) {
       Sword();
     }
@@ -1509,7 +1509,7 @@ void DrawBody(int whichguy) {
   glRotatef(((righthand[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (righthand[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   glBindTexture(GL_TEXTURE_2D, texture[UpperArmNum[whichguy]]);
   Hand();
-  glBindTexture(GL_TEXTURE_2D, texture[32]);
+  bindTexture(32);
   if (itemnum[whichguy] == 1) {
     glRotatef(90, 1.0, 0.0, 0.0);
     glTranslatef(-0.3f, 0.7f, 3.8f);
@@ -1519,7 +1519,7 @@ void DrawBody(int whichguy) {
   if (itemnum[whichguy] == 5) {
     glRotatef(90, 1.0, 0.0, 0.0);
     glTranslatef(0.0f, -0.2f, 0.1f);
-    glBindTexture(GL_TEXTURE_2D, texture[42]);
+    bindTexture(42);
     Rifle();
   }
   if (itemnum[whichguy] == 2 || itemnum[whichguy] == 3) {
@@ -1527,12 +1527,12 @@ void DrawBody(int whichguy) {
     glTranslatef(-0.3f, -1.0f, 0.8f);
     glRotatef(90, 0.0, 1.0, 0.0);
     // DrawSabreGlow(whichguy);
-    glBindTexture(GL_TEXTURE_2D, texture[50]);
+    bindTexture(50);
     if (itemtype[whichguy] == 1) {
       glScalef(100, 100, 100);
       LightSabre();
     }
-    glBindTexture(GL_TEXTURE_2D, texture[41]);
+    bindTexture(41);
     if (itemtype[whichguy] == 0) {
       Sword();
     }
@@ -1542,12 +1542,12 @@ void DrawBody(int whichguy) {
     glRotatef(180, 0.0, 1.0, 0.0);
     glTranslatef(0.3f, 0.3f, -1.2f);
     glScalef(2, 2, 2);
-    glBindTexture(GL_TEXTURE_2D, texture[40]);
+    bindTexture(40);
     Machinegun();
   }
   if (itemnum[whichguy] == 6) {
     glTranslatef(-0.2f, -2.2f, 0.0f);
-    glBindTexture(GL_TEXTURE_2D, texture[66]);
+    bindTexture(66);
     glRotatef(180, 0.0, 1.0, 0.0);
     glRotatef(-90, 1.0, 0.0, 0.0);
     glScalef(2, 2, 2);
@@ -1555,7 +1555,7 @@ void DrawBody(int whichguy) {
   }
   if (itemnum[whichguy] == 7) {
     glTranslatef(-0.2f, -2.2f, 0.0f);
-    glBindTexture(GL_TEXTURE_2D, texture[68]);
+    bindTexture(68);
     glRotatef(180, 0.0, 1.0, 0.0);
     glRotatef(-90, 1.0, 0.0, 0.0);
     glScalef(2, 2, 2);
@@ -1634,7 +1634,7 @@ void DrawSabreBody(int whichguy) {
   glRotatef(((hiprot[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (hiprot[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
   glRotatef(((hiprot[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (hiprot[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   glTranslatef(((hipfloat[1][0] * (100 - time[whichguy])) + (hipfloat[1][1] * (time[whichguy]))) / 100, ((hipfloat[2][0] * (100 - time[whichguy])) + (hipfloat[2][1] * (time[whichguy]))) / 100, ((hipfloat[0][0] * (100 - time[whichguy])) + (hipfloat[0][1] * (time[whichguy]))) / 100);
-  glBindTexture(GL_TEXTURE_2D, texture[6]);
+  bindTexture(6);
   glPushMatrix();
   glTranslatef(0.0f, 0.5f, 0.0f);
   glRotatef(((torsorot[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (torsorot[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
@@ -1660,7 +1660,7 @@ void DrawSabreBody(int whichguy) {
     glTranslatef(-0.3f, -1.0f, 0.8f);
     glRotatef(90, 0.0, 1.0, 0.0);
     DrawSabreGlow(whichguy);
-    glBindTexture(GL_TEXTURE_2D, texture[41]);
+    bindTexture(41);
                         /*Sword();*/}
                         glPopMatrix();
                         glPushMatrix();
@@ -1682,7 +1682,7 @@ void DrawSabreBody(int whichguy) {
                           glTranslatef(-0.3f, -1.0f, 0.8f);
                           glRotatef(90, 0.0, 1.0, 0.0);
                           DrawSabreGlow(whichguy);
-                          glBindTexture(GL_TEXTURE_2D, texture[41]);
+                          bindTexture(41);
                         /*Sword();*/}
                         glPopMatrix();
                         glRotatef(-torsorot[0][frame[whichguy]][anim[whichguy]], 1.0f, 0.0f, 0.0f);
@@ -1697,7 +1697,7 @@ void DrawSabreBody(int whichguy) {
 void DrawGuys(int whichguy);
 void DrawGuys(int whichguy, int sabre) {
   glPushMatrix();
-  glBindTexture(GL_TEXTURE_2D, texture[3]);
+  bindTexture(3);
   glTranslatef(100.0f, 200.0f, 0.0f);
   glTranslatef(guyx[whichguy], guyy[whichguy], 0.0f);
   glPushMatrix();
@@ -1741,7 +1741,7 @@ void DrawGuys(int whichguy, int sabre) {
   if (activity==falling&&guyvelx>0){glRotatef(90,0.0f,1.0f,0.0f);}
   if (activity==falling&&guyvelx<0){glRotatef(-90,0.0f,1.0f,0.0f);}
   if (activity==climbrope||activity==onrope||activity==downrope){glTranslatef(0.0f,0.0f,-1.0f);}
-  glBindTexture(GL_TEXTURE_2D, texture[5]);
+  bindTexture(5);
   DrawShadow();*/
   glPopMatrix();
 }
@@ -2551,7 +2551,7 @@ int DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
       glTranslatef(10.0f, 0.0f, 0.0f);
       if (selectedx == y && selectedy == x && mapeditor == 1) {
         glDepthMask(0);
-        glBindTexture(GL_TEXTURE_2D, texture[1]);
+        bindTexture(1);
         glTranslatef(0.0f, 11.0f, 0.0f);
         glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
         glDisable(GL_LIGHTING);
@@ -2579,7 +2579,7 @@ int DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
         if (compxstep[1][a] == y && compystep[1][a] == x && showinfo == 2 && compxstep[1][a] != -1000) {
           g = a;
           glDepthMask(0);
-          glBindTexture(GL_TEXTURE_2D, texture[1]);
+          bindTexture(1);
           glTranslatef(0.0f, 11.0f, 0.0f);
           glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
           glDisable(GL_LIGHTING);
@@ -2679,7 +2679,7 @@ int DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
   glLightf(GL_LIGHT3, GL_QUADRATIC_ATTENUATION, .01);
   glPopMatrix();
 
-  glBindTexture(GL_TEXTURE_2D, texture[69]);
+  bindTexture(69);
   glDisable(GL_LIGHTING);
   glEnable(GL_BLEND);
   if (fogtoggle) {
@@ -2739,7 +2739,7 @@ int DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
 
   glDisable(GL_CULL_FACE);
   glDepthMask(1);
-  glBindTexture(GL_TEXTURE_2D, texture[70]);
+  bindTexture(70);
   for (y = 0; y < numplayers; y++) {
     glPushMatrix();
     glTranslatef(100, 200, 0);
@@ -2814,9 +2814,9 @@ int DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
         }
         // glRotatef(sprite[x].spin,0.0f,0.0f,1.0f);
         if (sprite[x].type != lasersprite && sprite[x].type != tracersprite && sprite[x].type != grenade && sprite[x].type != chunk) {
-          glBindTexture(GL_TEXTURE_2D, texture[12]);
+          bindTexture(12);
           if (sprite[x].type == smokesprite || sprite[x].type == exploflame) {
-            glBindTexture(GL_TEXTURE_2D, texture[53]);
+            bindTexture(53);
             glBlendFunc(GL_ZERO, GL_DST_ALPHA);
           }
           glBegin(GL_QUADS);
@@ -2841,7 +2841,7 @@ int DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
           }
           glDepthMask(1);
 
-          glBindTexture(GL_TEXTURE_2D, texture[67]);
+          bindTexture(67);
           Grenade();
 
           glDisable(GL_LIGHTING);
@@ -2875,7 +2875,7 @@ int DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
           if (sprite[x].velx > 0) {
             glRotatef(180, 0.0, 1.0, 0.0);
           }
-          glBindTexture(GL_TEXTURE_2D, texture[38]);
+          bindTexture(38);
           glBegin(GL_QUADS);
           glTexCoord2f(0.0f, 0.0f);
           glVertex3f(-.6f * sprite[x].size, -.2f * sprite[x].size, 0.0f);
@@ -2888,7 +2888,7 @@ int DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
           glEnd();
           glPushMatrix();
           glRotatef(90, 1.0, 0.0, 0.0);
-          glBindTexture(GL_TEXTURE_2D, texture[38]);
+          bindTexture(38);
           glBegin(GL_QUADS);
           glTexCoord2f(0.0f, 0.0f);
           glVertex3f(-.6f * sprite[x].size, -.2f * sprite[x].size, 0.0f);
@@ -2901,7 +2901,7 @@ int DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
           glEnd();
           glPopMatrix();
           glPushMatrix();
-          glBindTexture(GL_TEXTURE_2D, texture[39]);
+          bindTexture(39);
           // glRotatef(90,0.0,1.0,0.0);
           glTranslatef(2.0f, 0.0f, 0.0f);
           glPushMatrix();
@@ -2942,7 +2942,7 @@ int DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
           if (sprite[x].velx > 0) {
             glRotatef(180, 0.0, 1.0, 0.0);
           }
-          glBindTexture(GL_TEXTURE_2D, texture[38]);
+          bindTexture(38);
           glBegin(GL_QUADS);
           glTexCoord2f(0.0f, 0.0f);
           glVertex3f(-.6f * sprite[x].size, -.05f * sprite[x].size, 0.0f);
@@ -2955,7 +2955,7 @@ int DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
           glEnd();
           glPushMatrix();
           glRotatef(90, 1.0, 0.0, 0.0);
-          glBindTexture(GL_TEXTURE_2D, texture[38]);
+          bindTexture(38);
           glBegin(GL_QUADS);
           glTexCoord2f(0.0f, 0.0f);
           glVertex3f(-.6f * sprite[x].size, -.05f * sprite[x].size, 0.0f);
@@ -2968,7 +2968,7 @@ int DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
           glEnd();
           glPopMatrix();
           glPushMatrix();
-          glBindTexture(GL_TEXTURE_2D, texture[39]);
+          bindTexture(39);
           // glRotatef(90,0.0,1.0,0.0);
           glTranslatef(2.0f, 0.0f, 0.0f);
           glPushMatrix();
@@ -3036,9 +3036,9 @@ int DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
       }
       // glRotatef(sprite[x].spin,0.0f,0.0f,1.0f);
       if (sprite[x].type != lasersprite && sprite[x].type != tracersprite && sprite[x].type != grenade && sprite[x].type != chunk) {
-        glBindTexture(GL_TEXTURE_2D, texture[12]);
+        bindTexture(12);
         if (sprite[x].type == smokesprite || sprite[x].type == exploflame) {
-          glBindTexture(GL_TEXTURE_2D, texture[53]);
+          bindTexture(53);
           // glBlendFunc(GL_ONE_MIUNUS, GL_SRC_COLOR);
         }
         glBegin(GL_QUADS);
@@ -3061,7 +3061,7 @@ int DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
         }
         glDepthMask(1);
 
-        glBindTexture(GL_TEXTURE_2D, texture[67]);
+        bindTexture(67);
         Grenade();
 
         glDisable(GL_LIGHTING);
@@ -3096,7 +3096,7 @@ int DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
         if (sprite[x].velx > 0) {
           glRotatef(180, 0.0, 1.0, 0.0);
         }
-        glBindTexture(GL_TEXTURE_2D, texture[38]);
+        bindTexture(38);
         glBegin(GL_QUADS);
         glTexCoord2f(0.0f, 0.0f);
         glVertex3f(-.6f * sprite[x].size, -.2f * sprite[x].size, 0.0f);
@@ -3109,7 +3109,7 @@ int DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
         glEnd();
         glPushMatrix();
         glRotatef(90, 1.0, 0.0, 0.0);
-        glBindTexture(GL_TEXTURE_2D, texture[38]);
+        bindTexture(38);
         glBegin(GL_QUADS);
         glTexCoord2f(0.0f, 0.0f);
         glVertex3f(-.6f * sprite[x].size, -.2f * sprite[x].size, 0.0f);
@@ -3122,7 +3122,7 @@ int DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
         glEnd();
         glPopMatrix();
         glPushMatrix();
-        glBindTexture(GL_TEXTURE_2D, texture[39]);
+        bindTexture(39);
         // glRotatef(90,0.0,1.0,0.0);
         glTranslatef(2.0f, 0.0f, 0.0f);
         glPushMatrix();
@@ -3164,7 +3164,7 @@ int DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
         if (sprite[x].velx > 0) {
           glRotatef(180, 0.0, 1.0, 0.0);
         }
-        glBindTexture(GL_TEXTURE_2D, texture[38]);
+        bindTexture(38);
         glBegin(GL_QUADS);
         glTexCoord2f(0.0f, 0.0f);
         glVertex3f(-.6f * sprite[x].size, -.05f * sprite[x].size, 0.0f);
@@ -3177,7 +3177,7 @@ int DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
         glEnd();
         glPushMatrix();
         glRotatef(90, 1.0, 0.0, 0.0);
-        glBindTexture(GL_TEXTURE_2D, texture[38]);
+        bindTexture(38);
         glBegin(GL_QUADS);
         glTexCoord2f(0.0f, 0.0f);
         glVertex3f(-.6f * sprite[x].size, -.05f * sprite[x].size, 0.0f);
@@ -3190,7 +3190,7 @@ int DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
         glEnd();
         glPopMatrix();
         glPushMatrix();
-        glBindTexture(GL_TEXTURE_2D, texture[39]);
+        bindTexture(39);
         // glRotatef(90,0.0,1.0,0.0);
         glTranslatef(2.0f, 0.0f, 0.0f);
         glPushMatrix();
@@ -3234,7 +3234,7 @@ int DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
     glEnable(GL_FOG);
   }
   glDisable(GL_BLEND);
-  glBindTexture(GL_TEXTURE_2D, texture[71]);
+  bindTexture(71);
   glEnable(GL_BLEND);
   glColor4f(255.0f, 255.0f, 255.0f, .5f);
   if (showinfo == 3) {
@@ -7217,7 +7217,7 @@ Point3D FindRightGunPoint(int whichguy) {
   glRotatef(((hiprot[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (hiprot[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
   glRotatef(((hiprot[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (hiprot[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   glTranslatef(((hipfloat[1][0] * (100 - time[whichguy])) + (hipfloat[1][1] * (time[whichguy]))) / 100, ((hipfloat[2][0] * (100 - time[whichguy])) + (hipfloat[2][1] * (time[whichguy]))) / 100, ((hipfloat[0][0] * (100 - time[whichguy])) + (hipfloat[0][1] * (time[whichguy]))) / 100);
-  glBindTexture(GL_TEXTURE_2D, texture[6]);
+  bindTexture(6);
   glPushMatrix();
   glTranslatef(0.0f, 0.5f, 0.0f);
   glRotatef(((torsorot[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (torsorot[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
@@ -7235,7 +7235,7 @@ Point3D FindRightGunPoint(int whichguy) {
           glRotatef(90,1.0,0.0,0.0);
           glTranslatef(-0.3f,-1.0f,0.8f);
           glRotatef(90,0.0,1.0,0.0);
-          glBindTexture(GL_TEXTURE_2D, texture[41]);
+          bindTexture(41);
           }
   glPopMatrix();*/
   glPushMatrix();
@@ -7354,7 +7354,7 @@ Point3D FindEyePoint(int whichguy) {
   glRotatef(((hiprot[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (hiprot[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
   glRotatef(((hiprot[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (hiprot[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   glTranslatef(((hipfloat[1][0] * (100 - time[whichguy])) + (hipfloat[1][1] * (time[whichguy]))) / 100, ((hipfloat[2][0] * (100 - time[whichguy])) + (hipfloat[2][1] * (time[whichguy]))) / 100, ((hipfloat[0][0] * (100 - time[whichguy])) + (hipfloat[0][1] * (time[whichguy]))) / 100);
-  glBindTexture(GL_TEXTURE_2D, texture[6]);
+  bindTexture(6);
   glPushMatrix();
   glTranslatef(0.0f, 0.5f, 0.0f);
   glRotatef(((torsorot[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (torsorot[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
@@ -7427,7 +7427,7 @@ Point3D FindEyeRot(int whichguy) {
   glRotatef(((hiprot[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (hiprot[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
   glRotatef(((hiprot[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (hiprot[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   glTranslatef(((hipfloat[1][0] * (100 - time[whichguy])) + (hipfloat[1][1] * (time[whichguy]))) / 100, ((hipfloat[2][0] * (100 - time[whichguy])) + (hipfloat[2][1] * (time[whichguy]))) / 100, ((hipfloat[0][0] * (100 - time[whichguy])) + (hipfloat[0][1] * (time[whichguy]))) / 100);
-  glBindTexture(GL_TEXTURE_2D, texture[6]);
+  bindTexture(6);
   glPushMatrix();
   glTranslatef(0.0f, 0.5f, 0.0f);
   glRotatef(((torsorot[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (torsorot[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
@@ -7614,7 +7614,7 @@ Point3D FindJetPackPos(int whichguy) {
   glRotatef(((hiprot[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (hiprot[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
   glRotatef(((hiprot[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (hiprot[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   glTranslatef(((hipfloat[1][0] * (100 - time[whichguy])) + (hipfloat[1][1] * (time[whichguy]))) / 100, ((hipfloat[2][0] * (100 - time[whichguy])) + (hipfloat[2][1] * (time[whichguy]))) / 100, ((hipfloat[0][0] * (100 - time[whichguy])) + (hipfloat[0][1] * (time[whichguy]))) / 100);
-  glBindTexture(GL_TEXTURE_2D, texture[6]);
+  bindTexture(6);
   glPushMatrix();
   glTranslatef(0.0f, 0.5f, 0.0f);
   glRotatef(((torsorot[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (torsorot[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
@@ -7938,7 +7938,7 @@ Point3D FindLeftGunPoint(int whichguy) {
   glRotatef(((hiprot[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (hiprot[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
   glRotatef(((hiprot[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (hiprot[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   glTranslatef(((hipfloat[1][0] * (100 - time[whichguy])) + (hipfloat[1][1] * (time[whichguy]))) / 100, ((hipfloat[2][0] * (100 - time[whichguy])) + (hipfloat[2][1] * (time[whichguy]))) / 100, ((hipfloat[0][0] * (100 - time[whichguy])) + (hipfloat[0][1] * (time[whichguy]))) / 100);
-  glBindTexture(GL_TEXTURE_2D, texture[6]);
+  bindTexture(6);
   glPushMatrix();
   glTranslatef(0.0f, 0.5f, 0.0f);
   glRotatef(((torsorot[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (torsorot[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
@@ -7956,7 +7956,7 @@ Point3D FindLeftGunPoint(int whichguy) {
           glRotatef(90,1.0,0.0,0.0);
           glTranslatef(-0.3f,-1.0f,0.8f);
           glRotatef(90,0.0,1.0,0.0);
-          glBindTexture(GL_TEXTURE_2D, texture[41]);
+          bindTexture(41);
           }
   glPopMatrix();*/
   glPushMatrix();
