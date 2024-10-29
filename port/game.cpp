@@ -434,11 +434,6 @@ float gamespeed;
 #define kLeftFoot 14
 #define kRightGun 15
 
-char szSavedGameName[FILE_NAME_SIZE + 1];
-short sSavedGameVolume;
-SFReply sfReply;
-Boolean bGameSaved;
-
 int CheckAIKey(int whichguy, int which);
 void MakeSprite(float x, float y, float z, float brightness, float type, float spin, float size, float spin2, float velx, float vely, float velz);
 GLfloat RangedRandom(GLfloat low, GLfloat high);
@@ -604,59 +599,6 @@ void LoadMap() {
       FSRead(sFile, &lLongSize, &startplacey[x]);
     }
     FSClose(sFile);
-  }
-}
-
-void Save();
-void Save() {
-  int x, y;
-  SFReply sfReply;
-  short sFile = 0;
-  long lSize;
-  long lLongSize = sizeof(long);
-
-  CtoPstr(szSavedGameName);
-
-  sFile = PromptForSaveAS(SAVE_GAME_STRING, 0, (Pstr)szSavedGameName, 'DAVD', 'DMAP', &sfReply);
-
-  PtoCstr((Pstr)szSavedGameName);
-
-  if (sFile) {
-    sSavedGameVolume = sfReply.vRefNum;
-    PtoCstr(sfReply.fName);
-    strcpy(szSavedGameName, (Cstr)sfReply.fName);
-  }
-
-  else {
-    sfReply.vRefNum = sSavedGameVolume;
-    strcpy((Cstr)sfReply.fName, szSavedGameName);
-    CtoPstr((Cstr)sfReply.fName);
-
-    sFile = OpenNewFile(&sfReply, 'DAVD', 'DMAP');
-  }
-
-  if (sFile)
-    for (x = 0; x < 100; x++) {
-      for (y = 0; y < 100; y++) {
-        lSize = sizeof(Map[x][y]);
-        FSWrite(sFile, &lLongSize, &Map[x][y]);
-        FSWrite(sFile, &lLongSize, &Walls[x][y]);
-      }
-    }
-  for (x = 0; x < 16; x++) {
-    FSWrite(sFile, &lLongSize, &startplacex[x]);
-    FSWrite(sFile, &lLongSize, &startplacey[x]);
-  }
-  {
-
-    FSClose(sFile);
-
-    /*if ( !bGameSaved )
-    {
-      CtoPstr( szSavedGameName );
-      FSDelete( (Pstr) szSavedGameName, sSavedGameVolume );
-      PtoCstr((Pstr) szSavedGameName );
-    }*/
   }
 }
 
@@ -3991,9 +3933,6 @@ void HandleKeyDown(char theChar) {
         LowerLegNum[x] = 37;
       }
     }
-    break;
-  case ',':
-    Save();
     break;
   case '.':
     nodraw = 1;
