@@ -222,9 +222,6 @@ public:
 Point3D point;
 Point3D righthandpoint;
 Point3D lefthandpoint;
-GLUquadricObj *quadratic; // Storage For Our Quadratic Objects
-
-GLuint gFontList;
 
 GLfloat LightAmbient[] = {0.8f, 0.8f, 0.8f, 1.0f};
 GLfloat LightDiffuse[] = {1.0f, 1.0f, 1.0f, 1.0f};
