@@ -5009,8 +5009,8 @@ void SwitchFrame(int whichguy) {
     frame[whichguy] = 0;
     time[whichguy] = 100;
     if (Map[guymapx[whichguy]][guymapy[whichguy]] != 0 && Map[guymapx[whichguy]][guymapy[whichguy]] != 3 && activity[whichguy] != climbrope && activity[whichguy] != onrope && activity[whichguy] != downrope) {
-      playsound(3, -guyvely[whichguy] * 50 + 50);
-      playsound(4, -guyvely[whichguy] * 50 + 50);
+      playSound(SND_BREAK_ID, -guyvely[whichguy] * 50 + 50);
+      playSound(SND_BREAK2_ID, -guyvely[whichguy] * 50 + 50);
     }
   }
   if (activity[whichguy] == fallbackwardsleft && anim[whichguy] == 13 && targetframe[whichguy] == 0) {
@@ -5027,20 +5027,20 @@ void SwitchFrame(int whichguy) {
     frame[whichguy] = 0;
     time[whichguy] = 100;
     if (Map[guymapx[whichguy]][guymapy[whichguy]] != 0 && Map[guymapx[whichguy]][guymapy[whichguy]] != 3 && activity[whichguy] != climbrope && activity[whichguy] != onrope && activity[whichguy] != downrope) {
-      playsound(3, -guyvely[whichguy] * 50 + 50);
-      playsound(4, -guyvely[whichguy] * 50 + 50);
+      playSound(SND_BREAK_ID, -guyvely[whichguy] * 50 + 50);
+      playSound(SND_BREAK2_ID, -guyvely[whichguy] * 50 + 50);
     }
   }
   if (activity[whichguy] == fallforwardsright && anim[whichguy] == 41 && targetframe[whichguy] == 4) {
     if (Map[guymapx[whichguy]][guymapy[whichguy]] != 0 && Map[guymapx[whichguy]][guymapy[whichguy]] != 3 && activity[whichguy] != climbrope && activity[whichguy] != onrope && activity[whichguy] != downrope) {
-      playsound(3, -guyvely[whichguy] * 50 + 50);
-      playsound(4, -guyvely[whichguy] * 50 + 50);
+      playSound(SND_BREAK_ID, -guyvely[whichguy] * 50 + 50);
+      playSound(SND_BREAK2_ID, -guyvely[whichguy] * 50 + 50);
     }
   }
   if (activity[whichguy] == fallforwardsleft && anim[whichguy] == 41 && targetframe[whichguy] == 4) {
     if (Map[guymapx[whichguy]][guymapy[whichguy]] != 0 && Map[guymapx[whichguy]][guymapy[whichguy]] != 3 && activity[whichguy] != climbrope && activity[whichguy] != onrope && activity[whichguy] != downrope) {
-      playsound(3, -guyvely[whichguy] * 50 + 50);
-      playsound(4, -guyvely[whichguy] * 50 + 50);
+      playSound(SND_BREAK_ID, -guyvely[whichguy] * 50 + 50);
+      playSound(SND_BREAK2_ID, -guyvely[whichguy] * 50 + 50);
     }
   }
 
@@ -5808,8 +5808,8 @@ void SwitchFrame(int whichguy) {
   }
   if (activity[whichguy] == hitwallright || activity[whichguy] == hitwallleft) {
     if (frame[whichguy] == 9 && Map[guymapx[whichguy]][guymapy[whichguy]] != 0 && Map[guymapx[whichguy]][guymapy[whichguy]] != 3) {
-      playsound(3, -guyvely[whichguy] * 50 + 50);
-      playsound(4, -guyvely[whichguy] * 50 + 50);
+      playSound(SND_BREAK_ID, -guyvely[whichguy] * 50 + 50);
+      playSound(SND_BREAK2_ID, -guyvely[whichguy] * 50 + 50);
     }
   }
   if (activity[whichguy] == hitwallright || activity[whichguy] == hitwallleft) {
@@ -5820,8 +5820,8 @@ void SwitchFrame(int whichguy) {
   if (activity[whichguy] == brokeneckleft || activity[whichguy] == brokeneckright) {
     if (frame[whichguy] == 8) {
       if (Map[guymapx[whichguy]][guymapy[whichguy]] != 0 && Map[guymapx[whichguy]][guymapy[whichguy]] != 0) {
-        playsound(3, -guyvely[whichguy] * 50 + 50);
-        playsound(4, -guyvely[whichguy] * 50 + 50);
+        playSound(SND_BREAK_ID, -guyvely[whichguy] * 50 + 50);
+        playSound(SND_BREAK2_ID, -guyvely[whichguy] * 50 + 50);
       }
     }
     if (frame[whichguy] == 4) {
@@ -5833,8 +5833,8 @@ void SwitchFrame(int whichguy) {
     if (frame[whichguy] == 8) {
       health[whichguy] -= 120;
       if (Map[guymapx[whichguy]][guymapy[whichguy]] != 0 && Map[guymapx[whichguy]][guymapy[whichguy]] != 0) {
-        playsound(3, -guyvely[whichguy] * 50 + 50);
-        playsound(4, -guyvely[whichguy] * 50 + 50);
+        playSound(SND_BREAK_ID, -guyvely[whichguy] * 50 + 50);
+        playSound(SND_BREAK2_ID, -guyvely[whichguy] * 50 + 50);
       }
     }
     if (frame[whichguy] == 2) {
@@ -5854,8 +5854,8 @@ void SwitchFrame(int whichguy) {
   if (activity[whichguy] == duckimpaledleft || activity[whichguy] == duckimpaledright) {
     if (frame[whichguy] == 6) {
       if (Map[guymapx[whichguy]][guymapy[whichguy]] != 0 && Map[guymapx[whichguy]][guymapy[whichguy]] != 0) {
-        playsound(3, -guyvely[whichguy] * 50 + 50);
-        playsound(4, -guyvely[whichguy] * 50 + 50);
+        playSound(SND_BREAK_ID, -guyvely[whichguy] * 50 + 50);
+        playSound(SND_BREAK2_ID, -guyvely[whichguy] * 50 + 50);
       }
       health[whichguy] -= 120;
     }
@@ -5909,11 +5909,11 @@ void SwitchFrame(int whichguy) {
   }
   if (activity[whichguy] == swordthrownleft || activity[whichguy] == swordthrownright) {
     if (frame[whichguy] == 11) {
-      playsound(3, -guyvely[whichguy] * 50 + 50);
-      playsound(4, -guyvely[whichguy] * 50 + 50);
+      playSound(SND_BREAK_ID, -guyvely[whichguy] * 50 + 50);
+      playSound(SND_BREAK2_ID, -guyvely[whichguy] * 50 + 50);
       health[whichguy] -= 120;
-      /*if(activity[whichguy]==swordthrownleft){if(Map[guymapx[whichguy]-2][guymapy[whichguy]]!=0&&Map[guymapx[whichguy]-1][guymapy[whichguy]]!=0&&activity[whichguy]==swordthrownright&&Map[guymapx[whichguy]+1][guymapy[whichguy]]!=0){playsound(3,-guyvely[whichguy]*50+50); playsound(4,-guyvely[whichguy]*50+50);}}
-      if(activity[whichguy]==swordthrownright){if(Map[guymapx[whichguy]+2][guymapy[whichguy]]!=0&&Map[guymapx[whichguy]+1][guymapy[whichguy]]!=0&&activity[whichguy]==swordthrownleft&&Map[guymapx[whichguy]-1][guymapy[whichguy]]!=0){playsound(3,-guyvely[whichguy]*50+50); playsound(4,-guyvely[whichguy]*50+50);}}*/
+      /*if(activity[whichguy]==swordthrownleft){if(Map[guymapx[whichguy]-2][guymapy[whichguy]]!=0&&Map[guymapx[whichguy]-1][guymapy[whichguy]]!=0&&activity[whichguy]==swordthrownright&&Map[guymapx[whichguy]+1][guymapy[whichguy]]!=0){playSound(SND_BREAK_ID,-guyvely[whichguy]*50+50); playSound(SND_BREAK2_ID,-guyvely[whichguy]*50+50);}}
+      if(activity[whichguy]==swordthrownright){if(Map[guymapx[whichguy]+2][guymapy[whichguy]]!=0&&Map[guymapx[whichguy]+1][guymapy[whichguy]]!=0&&activity[whichguy]==swordthrownleft&&Map[guymapx[whichguy]-1][guymapy[whichguy]]!=0){playSound(SND_BREAK_ID,-guyvely[whichguy]*50+50); playSound(SND_BREAK2_ID,-guyvely[whichguy]*50+50);}}*/
     }
     if (frame[whichguy] == 3 || frame[whichguy] == 4) {
       DoStabFX(0, whichguy);
@@ -8999,7 +8999,7 @@ void DoAIPlayerStuff(int whichguy) {
   if (activity[whichguy] == climbrope) {
     guyy[whichguy] += multiplier / 20 * size[whichguy];
   }
-  // if (activity[whichguy]==painoneleft&&anim[whichguy]==13&&targetframe[whichguy]==0){activity[whichguy]=landonback; guyx[whichguy]-=7*size[whichguy]; targetanim[whichguy]=14; anim[whichguy]=14; targetframe[whichguy]=0; frame[whichguy]=0; time[whichguy]=100; if(Map[guymapx[whichguy]][guymapy[whichguy]]!=0&&Map[guymapx[whichguy]][guymapy[whichguy]]!=3&&activity[whichguy]!=climbrope&&activity[whichguy]!=onrope&&activity[whichguy]!=downrope){playsound(3,-guyvely[whichguy]*50+50); playsound(4,-guyvely[whichguy]*50+50);}}
+  // if (activity[whichguy]==painoneleft&&anim[whichguy]==13&&targetframe[whichguy]==0){activity[whichguy]=landonback; guyx[whichguy]-=7*size[whichguy]; targetanim[whichguy]=14; anim[whichguy]=14; targetframe[whichguy]=0; frame[whichguy]=0; time[whichguy]=100; if(Map[guymapx[whichguy]][guymapy[whichguy]]!=0&&Map[guymapx[whichguy]][guymapy[whichguy]]!=3&&activity[whichguy]!=climbrope&&activity[whichguy]!=onrope&&activity[whichguy]!=downrope){playSound(SND_BREAK_ID,-guyvely[whichguy]*50+50); playSound(SND_BREAK2_ID,-guyvely[whichguy]*50+50);}}
   /*if (activity[whichguy]==swordthrownleft&&anim[whichguy]==21&&frame[whichguy]>=10&&Map[guymapx[whichguy]+2][guymapy[whichguy]]==0){activity[whichguy]=landonback; dead[whichguy]=1; time[whichguy]=0; guyx[whichguy]+=12; anim[whichguy]=14; targetanim[whichguy]=14; frame[whichguy]=1; targetframe[whichguy]=1;time[whichguy]=100; rotation[whichguy]*=-1; targetrotation[whichguy]*=-1; guyvelx[whichguy]=.06; guyvely[whichguy]=-.3;}
   if (activity[whichguy]==swordthrownleft&&anim[whichguy]==21&&frame[whichguy]>=10&&Map[guymapx[whichguy]+2][guymapy[whichguy]]!=0&&Map[guymapx[whichguy]+1][guymapy[whichguy]]==0){activity[whichguy]=landonback; dead[whichguy]=1; time[whichguy]=0; guyx[whichguy]+=12; anim[whichguy]=14; targetanim[whichguy]=14; frame[whichguy]=1; targetframe[whichguy]=1;time[whichguy]=100; rotation[whichguy]*=-1; targetrotation[whichguy]*=-1; guyvelx[whichguy]=.06; guyvely[whichguy]=-.3;}
   if (activity[whichguy]==swordthrownright&&anim[whichguy]==21&&frame[whichguy]>=10&&Map[guymapx[whichguy]-2][guymapy[whichguy]]==0){activity[whichguy]=landonback; dead[whichguy]=1; time[whichguy]=0; guyx[whichguy]-=12; anim[whichguy]=14; targetanim[whichguy]=14; frame[whichguy]=1; targetframe[whichguy]=1;time[whichguy]=100; rotation[whichguy]*=-1; targetrotation[whichguy]*=-1; guyvelx[whichguy]=-.06; guyvely[whichguy]=-.3;}
@@ -9199,8 +9199,8 @@ void DoAIPlayerStuff(int whichguy) {
                     guyy[b]=(guymapy[b]-39)*-20+.5;
                     nosound=0;
                     fallin[b]=0;
-                    if(activity[b]==deadfacedown){health[b]+=guyvely[b]*70; activity[b]=splat;anim[b]=9; targetframe[b]=3; frame[b]=3; time[b]=100; targetanim[b]=9; playsound(3,-guyvely[b]*50+50); playsound(4,-guyvely[b]*50+50);}
-                    if(activity[b]==deadfaceup){health[b]+=guyvely[b]*70; activity[b]=landonback;anim[b]=14; targetframe[b]=1; frame[b]=1; time[b]=100; targetanim[b]=14; playsound(3,-guyvely[b]*50+50); playsound(4,-guyvely[b]*50+50);}
+                    if(activity[b]==deadfacedown){health[b]+=guyvely[b]*70; activity[b]=splat;anim[b]=9; targetframe[b]=3; frame[b]=3; time[b]=100; targetanim[b]=9; playSound(SND_BREAK_ID,-guyvely[b]*50+50); playSound(SND_BREAK2_ID,-guyvely[b]*50+50);}
+                    if(activity[b]==deadfaceup){health[b]+=guyvely[b]*70; activity[b]=landonback;anim[b]=14; targetframe[b]=1; frame[b]=1; time[b]=100; targetanim[b]=14; playSound(SND_BREAK_ID,-guyvely[b]*50+50); playSound(SND_BREAK2_ID,-guyvely[b]*50+50);}
                     guyvelx[b]=0;
                     guyvely[b]=0;
             }
@@ -9235,8 +9235,8 @@ void DoAIPlayerStuff(int whichguy) {
         frame[b] = 0;
         time[b] = 100;
         targetanim[b] = 9;
-        playsound(3, -guyvely[b] * 50 + 50);
-        playsound(4, -guyvely[b] * 50 + 50);
+        playSound(SND_BREAK_ID, -guyvely[b] * 50 + 50);
+        playSound(SND_BREAK2_ID, -guyvely[b] * 50 + 50);
         guyvelx[b] = 0;
         guyvely[b] = 0;
       }
@@ -9286,8 +9286,8 @@ void DoAIPlayerStuff(int whichguy) {
                     frame[b] = 3;
                     time[b] = 100;
                     targetanim[b] = 9;
-                    playsound(3, -guyvely[b] * 50 + 50);
-                    playsound(4, -guyvely[b] * 50 + 50);
+                    playSound(SND_BREAK_ID, -guyvely[b] * 50 + 50);
+                    playSound(SND_BREAK2_ID, -guyvely[b] * 50 + 50);
                   }
                   if (activity[b] == deadfaceup) {
                     health[b] += guyvely[b] * 70;
@@ -9297,8 +9297,8 @@ void DoAIPlayerStuff(int whichguy) {
                     frame[b] = 1;
                     time[b] = 100;
                     targetanim[b] = 14;
-                    playsound(3, -guyvely[b] * 50 + 50);
-                    playsound(4, -guyvely[b] * 50 + 50);
+                    playSound(SND_BREAK_ID, -guyvely[b] * 50 + 50);
+                    playSound(SND_BREAK2_ID, -guyvely[b] * 50 + 50);
                   }
                   guyvelx[b] = 0;
                   guyvely[b] = 0;
@@ -9336,8 +9336,8 @@ void DoAIPlayerStuff(int whichguy) {
               frame[whichguy] = 0;
               time[whichguy] = 100;
               targetanim[whichguy] = 9;
-              playsound(3, -guyvely[whichguy] * 50 + 50);
-              playsound(4, -guyvely[whichguy] * 50 + 50);
+              playSound(SND_BREAK_ID, -guyvely[whichguy] * 50 + 50);
+              playSound(SND_BREAK2_ID, -guyvely[whichguy] * 50 + 50);
             }
             if (activity[whichguy] == deadfacedown || activity[whichguy] == fallforwardsright || activity[whichguy] == fallforwardsleft || activity[whichguy] == hitwallright || activity[whichguy] == hitwallleft) {
               health[whichguy] -= 10;
@@ -9349,8 +9349,8 @@ void DoAIPlayerStuff(int whichguy) {
                 time[whichguy] = 100;
                 targetanim[whichguy] = 9;
               }
-              playsound(3, -guyvely[whichguy] * 50 + 50);
-              playsound(4, -guyvely[whichguy] * 50 + 50);
+              playSound(SND_BREAK_ID, -guyvely[whichguy] * 50 + 50);
+              playSound(SND_BREAK2_ID, -guyvely[whichguy] * 50 + 50);
             }
             if (activity[whichguy] == deadfaceup || activity[whichguy] == fallbackwardsright || activity[whichguy] == fallbackwardsleft || activity[whichguy] == landonback) {
               activity[whichguy] = landonback;
@@ -9363,8 +9363,8 @@ void DoAIPlayerStuff(int whichguy) {
               frame[whichguy] = 0;
               time[whichguy] = 100;
               targetanim[whichguy] = 14;
-              playsound(3, -guyvely[whichguy] * 50 + 50);
-              playsound(4, -guyvely[whichguy] * 50 + 50);
+              playSound(SND_BREAK_ID, -guyvely[whichguy] * 50 + 50);
+              playSound(SND_BREAK2_ID, -guyvely[whichguy] * 50 + 50);
             }
             if (activity[whichguy] == ducking && nosound == 0 && invisible[whichguy] == 0) {
               playSound(SND_LAND_ID, -guyvely[whichguy] * 100 + 100);
@@ -10171,7 +10171,7 @@ void DoPlayerStuff(int whichguy) {
   if (activity[whichguy] == climbrope) {
     guyy[whichguy] += multiplier / 20 * size[whichguy];
   }
-  // if (activity[whichguy]==painoneleft&&anim[whichguy]==13&&targetframe[whichguy]==0){activity[whichguy]=landonback; guyx[whichguy]-=7*size[whichguy]; targetanim[whichguy]=14; anim[whichguy]=14; targetframe[whichguy]=0; frame[whichguy]=0; time[whichguy]=100; if(Map[guymapx[whichguy]][guymapy[whichguy]]!=0&&Map[guymapx[whichguy]][guymapy[whichguy]]!=3&&activity[whichguy]!=climbrope&&activity[whichguy]!=onrope&&activity[whichguy]!=downrope){playsound(3,-guyvely[whichguy]*50+50); playsound(4,-guyvely[whichguy]*50+50);}}
+  // if (activity[whichguy]==painoneleft&&anim[whichguy]==13&&targetframe[whichguy]==0){activity[whichguy]=landonback; guyx[whichguy]-=7*size[whichguy]; targetanim[whichguy]=14; anim[whichguy]=14; targetframe[whichguy]=0; frame[whichguy]=0; time[whichguy]=100; if(Map[guymapx[whichguy]][guymapy[whichguy]]!=0&&Map[guymapx[whichguy]][guymapy[whichguy]]!=3&&activity[whichguy]!=climbrope&&activity[whichguy]!=onrope&&activity[whichguy]!=downrope){playSound(SND_BREAK_ID,-guyvely[whichguy]*50+50); playSound(SND_BREAK2_ID,-guyvely[whichguy]*50+50);}}
   /*if (activity[whichguy]==swordthrownleft&&anim[whichguy]==21&&frame[whichguy]>=10&&Map[guymapx[whichguy]+2][guymapy[whichguy]]==0){activity[whichguy]=landonback; dead[whichguy]=1; time[whichguy]=0; guyx[whichguy]+=12; anim[whichguy]=14; targetanim[whichguy]=14; frame[whichguy]=1; targetframe[whichguy]=1;time[whichguy]=100; rotation[whichguy]*=-1; targetrotation[whichguy]*=-1; guyvelx[whichguy]=.06; guyvely[whichguy]=-.3;}
   if (activity[whichguy]==swordthrownleft&&anim[whichguy]==21&&frame[whichguy]>=10&&Map[guymapx[whichguy]+2][guymapy[whichguy]]!=0&&Map[guymapx[whichguy]+1][guymapy[whichguy]]==0){activity[whichguy]=landonback; dead[whichguy]=1; time[whichguy]=0; guyx[whichguy]+=12; anim[whichguy]=14; targetanim[whichguy]=14; frame[whichguy]=1; targetframe[whichguy]=1;time[whichguy]=100; rotation[whichguy]*=-1; targetrotation[whichguy]*=-1; guyvelx[whichguy]=.06; guyvely[whichguy]=-.3;}
   if (activity[whichguy]==swordthrownright&&anim[whichguy]==21&&frame[whichguy]>=10&&Map[guymapx[whichguy]-2][guymapy[whichguy]]==0){activity[whichguy]=landonback; dead[whichguy]=1; time[whichguy]=0; guyx[whichguy]-=12; anim[whichguy]=14; targetanim[whichguy]=14; frame[whichguy]=1; targetframe[whichguy]=1;time[whichguy]=100; rotation[whichguy]*=-1; targetrotation[whichguy]*=-1; guyvelx[whichguy]=-.06; guyvely[whichguy]=-.3;}
@@ -10371,8 +10371,8 @@ void DoPlayerStuff(int whichguy) {
                     guyy[b]=(guymapy[b]-39)*-20+.5;
                     nosound=0;
                     fallin[b]=0;
-                    if(activity[b]==deadfacedown){health[b]+=guyvely[b]*70; activity[b]=splat;anim[b]=9; targetframe[b]=3; frame[b]=3; time[b]=100; targetanim[b]=9; playsound(3,-guyvely[b]*50+50); playsound(4,-guyvely[b]*50+50);}
-                    if(activity[b]==deadfaceup){health[b]+=guyvely[b]*70; activity[b]=landonback;anim[b]=14; targetframe[b]=1; frame[b]=1; time[b]=100; targetanim[b]=14; playsound(3,-guyvely[b]*50+50); playsound(4,-guyvely[b]*50+50);}
+                    if(activity[b]==deadfacedown){health[b]+=guyvely[b]*70; activity[b]=splat;anim[b]=9; targetframe[b]=3; frame[b]=3; time[b]=100; targetanim[b]=9; playSound(SND_BREAK_ID,-guyvely[b]*50+50); playSound(SND_BREAK2_ID,-guyvely[b]*50+50);}
+                    if(activity[b]==deadfaceup){health[b]+=guyvely[b]*70; activity[b]=landonback;anim[b]=14; targetframe[b]=1; frame[b]=1; time[b]=100; targetanim[b]=14; playSound(SND_BREAK_ID,-guyvely[b]*50+50); playSound(SND_BREAK2_ID,-guyvely[b]*50+50);}
                     guyvelx[b]=0;
                     guyvely[b]=0;
             }
