@@ -859,7 +859,7 @@ void MakeLineLightning(int howmany, float endoffset, float x1, float y1, float z
   float arc;
   float distance;
   arc = 0;
-  distance = fast_sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1) + (z2 - z1) * (z2 - z1));
+  distance = std::sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1) + (z2 - z1) * (z2 - z1));
   if (x2 < x1) {
     arc = x2;
     x2 = x1;
@@ -2405,7 +2405,7 @@ int DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
     if (numplayers > 1) {
       for (a = 0; a < numplayers; a++) {
         for (b = 0; b < numplayers - 1; b++) {
-          dist = fast_sqrt(absolute(guyx[a] - guyx[b]) * absolute(guyx[a] - guyx[b]) + absolute(guyy[a] - guyy[b]) * absolute(guyy[a] - guyy[b]));
+          dist = std::sqrt(absolute(guyx[a] - guyx[b]) * absolute(guyx[a] - guyx[b]) + absolute(guyy[a] - guyy[b]) * absolute(guyy[a] - guyy[b]));
           ydist = absolute(guyy[a] - guyy[b]);
           if (dist > longestdist) {
             longestdist = dist;
@@ -11186,14 +11186,14 @@ void DoAI(int whichguy) {
 
   if (!computertarget[whichguy]) {
     for (a = 0; a < numplayers; a++) {
-      distance = fast_sqrt((guyx[a] - guyx[whichguy]) * (guyx[a] - guyx[whichguy]) + (guyy[a] - guyy[whichguy]) + (guyy[a] - guyy[whichguy]));
+      distance = std::sqrt((guyx[a] - guyx[whichguy]) * (guyx[a] - guyx[whichguy]) + (guyy[a] - guyy[whichguy]) + (guyy[a] - guyy[whichguy]));
       if ((olddistance = 1234567 || distance < olddistance) && a != whichguy && health[a] > 0) {
         olddistance = distance;
         computertarget[whichguy] = a;
       }
     }
   }
-  distance = fast_sqrt((guyx[computertarget[whichguy]] - guyx[whichguy]) * (guyx[computertarget[whichguy]] - guyx[whichguy]) + (guyy[computertarget[whichguy]] - guyy[whichguy]) + (guyy[computertarget[whichguy]] - guyy[whichguy]));
+  distance = std::sqrt((guyx[computertarget[whichguy]] - guyx[whichguy]) * (guyx[computertarget[whichguy]] - guyx[whichguy]) + (guyy[computertarget[whichguy]] - guyy[whichguy]) + (guyy[computertarget[whichguy]] - guyy[whichguy]));
   computertargetxlocation[whichguy] = guymapx[computertarget[whichguy]];
   computertargetylocation[whichguy] = guymapy[computertarget[whichguy]];
 
