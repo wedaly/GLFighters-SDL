@@ -971,7 +971,6 @@ int InitGL(GLvoid) // All Setup For OpenGL Goes Here
   // glmSetMode(GLM_APPLICATION_HEAP_MODE);
   glEnable(GL_NORMALIZE);
   fogtoggle = 1;
-  qd.randSeed = TickCount();
   // infoshowing
   showinfo = 3;
   blendtype = 0;
@@ -1064,8 +1063,6 @@ int InitGL(GLvoid) // All Setup For OpenGL Goes Here
   sprite[0].type = deletestars;
   unusedsprite = 1;
   glDisable(GL_CLIP_PLANE0);
-  GetFNum("\pMonaco", &fNum); // build font
-  gFontList = BuildFontGL(gOpenGLContext, fNum, normal, 9);
   glMatrixMode(GL_MODELVIEW);
   int x, y, kl;
   for (x = 0; x < 3; x++) {
