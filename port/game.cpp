@@ -14651,25 +14651,25 @@ void runGameLoop() {
     if (isKeyDown(KEY_QUIT_ID)) {
       gQuit = true;
     }
-    if (IsKeyDown(theKeyMap, 34)) {
+    if (isKeyDown(KEY_CAMERA_DOWN_ID)) {
       cameray -= 0.3 * multiplier;
       if (freezetime == 1) {
         cameray -= multiplier / 3;
       }
     }
-    if (IsKeyDown(theKeyMap, 40)) {
+    if (isKeyDown(KEY_CAMERA_UP_ID)) {
       cameray += 0.3 * multiplier;
       if (freezetime == 1) {
         cameray += multiplier / 3;
       }
     }
-    if (IsKeyDown(theKeyMap, 38)) {
+    if (isKeyDown(KEY_CAMERA_RIGHT_ID)) {
       camerax += 0.3 * multiplier;
       if (freezetime == 1) {
         camerax += multiplier / 3;
       }
     }
-    if (IsKeyDown(theKeyMap, 37)) {
+    if (isKeyDown(KEY_CAMERA_LEFT_ID)) {
       camerax -= 0.3 * multiplier;
       if (freezetime == 1) {
         camerax -= multiplier / 3;

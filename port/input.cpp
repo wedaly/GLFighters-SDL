@@ -174,8 +174,8 @@ int translateSDLEventToKeyID(SDL_KeyboardEvent &e) {
   case '+':
     return KEY_TOGGLE_DEC_JUMP_HEIGHT_ID;
 
-	case SDLK_ESCAPE:
-		return KEY_QUIT_ID;
+  case SDLK_ESCAPE:
+    return KEY_QUIT_ID;
   }
 
   return -1;
