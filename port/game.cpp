@@ -1270,7 +1270,7 @@ int InitGL(GLvoid) // All Setup For OpenGL Goes Here
   WallBounds(cube);
   // glEnable(GL_CULL_FACE);
   // LoadGame((unsigned char *)":Animations:Shoot Right w/ right hand", 12);
-  return TRUE; // Initialization Went OK
+  return true; // Initialization Went OK
 }
 
 void DrawSabreGlow(int whichguy);
