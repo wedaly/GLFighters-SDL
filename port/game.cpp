@@ -4847,21 +4847,6 @@ void HandleKeyDown(char theChar) {
 }
 
 /********************> DoEvent() <*****/
-void DoEvent(EventRecord *event) {
-
-  char theChar;
-
-  switch (event->what) {
-  case mouseDown:
-    // HandleMouseDown( eventPtr );
-    break;
-  case keyDown:
-  case autoKey:
-    theChar = event->message & charCodeMask; // Get the letter of the key pressed from the event message
-    HandleKeyDown(theChar);                  // Only some key presses are handled here because it is slower and less responsive
-    break;
-  }
-}
 
 void MakeSprite(float x, float y, float z, float brightness, float type, float spin, float size, float spin2, float velx, float vely, float velz) {
   int a;
@@ -14491,9 +14476,6 @@ void DoKeys(int whichguy) {
   }
 }
 
-void EventLoop(void) {
-}
-
 /********************** WIDALY PORT **********************/
 // Everything below this line has been ported and should work.
 // Everything above this line has not yet been ported.
@@ -14508,6 +14490,7 @@ void runGameLoop() {
 
   // Keep doing the event loop while not gQuit
   while (!gQuit) {
+    Point3D point2;
     Uint32 startTicks = SDL_GetTicks(); // milliseconds
 
     while (SDL_PollEvent(&e)) {
@@ -14521,233 +14504,193 @@ void runGameLoop() {
         if (keyID >= 0) {
           setKeyState(keyID, bool(e.key.state == SDL_PRESSED));
           if (e.key.state == SDL_PRESSED) {
-            handleKeypress(keyID);
+            HandleKeyDown(keyID);
           }
         }
         break;
       }
     }
 
-    // --- PORT ---
+    // Swap buffers (double buffering)
+    if (!nodraw) {
+      glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+      if (DrawGLScene()) {
+        SDL_GL_SwapWindow(window);
+      } else {
+        gQuit = true;
+      }
+      oldmult = multiplier;
 
-    while (gQuit == false) {
-      Point3D point2;
-      // Get the next event in the event que (could use WaitNextEvent(), but you have to wait, so
-      // we'll use GetNextEvent() which is faster)
-      if (GetNextEvent(everyEvent, &event))
-        DoEvent(&event);
-      // Swap buffers (double buffering)
-      if (!nodraw) {
-        start = TimerGetTime();
+      gamespeed = 1;
+      if (slowdown) {
+        gamespeed = .05;
+      } // slowmotion toggle
+      if (freezetime) {
+        gamespeed = 0;
+      } // freeze time toggle
 
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        if (DrawGLScene())
-          aglSwapBuffers(gOpenGLContext);
-        else
-          gQuit = true;
-        oldmult = multiplier;
+      multiplier = oldmult * gamespeed;
 
-        gamespeed = 1;
-        if (slowdown) {
-          gamespeed = .05;
-        } // slowmotion toggle
-        if (freezetime) {
-          gamespeed = 0;
-        } // freeze time toggle
+      for (x = 0; x < kMaxLightning; x++) {
+        Lightning[x].brightness -= multiplier / 100;
+        if (Lightning[x].brightness <= 0) {
+          Lightning[x].brightness = 0;
+        }
+      }
 
+      for (x = 0; x < numplayers; x++) {
         multiplier = oldmult * gamespeed;
-
-        for (x = 0; x < kMaxLightning; x++) {
-          Lightning[x].brightness -= multiplier / 100;
-          if (Lightning[x].brightness <= 0) {
-            Lightning[x].brightness = 0;
+        multiplier *= speedmult[x];
+        multiplier /= 10;
+        for (a = 0; a < 10; a++) {
+          if (freezetime == 0 && computercontrolled[x] == 0) {
+            DoPlayerStuff(x);
+          }
+          if (freezetime == 0 && computercontrolled[x] != 0) {
+            DoAIPlayerStuff(x);
           }
         }
-
-        for (x = 0; x < numplayers; x++) {
-          multiplier = oldmult * gamespeed;
-          multiplier *= speedmult[x];
-          multiplier /= 10;
-          for (a = 0; a < 10; a++) {
-            if (freezetime == 0 && computercontrolled[x] == 0) {
-              DoPlayerStuff(x);
+        if (x != 1 || mapeditor == 0) {
+          if (dead[x] == 0 || activity[x] != deadfacedown || activity[x] != deadfaceup || health[x] >= 0) {
+            if (computercontrolled[x] == 0) {
+              DoKeys(x);
             }
-            if (freezetime == 0 && computercontrolled[x] != 0) {
-              DoAIPlayerStuff(x);
+            if (computercontrolled[x]) {
+              DoAI(x);
+              DoAIKeys(x);
             }
-          }
-          if (x != 1 || mapeditor == 0) {
-            if (dead[x] == 0 || activity[x] != deadfacedown || activity[x] != deadfaceup || health[x] >= 0) {
-              if (computercontrolled[x] == 0) {
-                DoKeys(x);
-              }
-              if (computercontrolled[x]) {
-                DoAI(x);
-                DoAIKeys(x);
-              }
-            }
-          }
-        }
-
-        multiplier = oldmult * gamespeed;
-        multiplier /= 5;
-
-        for (a = 0; a < 5; a++) {
-          if (freezetime == 0) {
-            HandleSprites();
-          }
-        }
-
-        for (a = 0; a < numplayers; a++) {
-          while (jetsmokedelay[a] <= 0 && usingjetpack[a] == 1) {
-            playsound(11, absolute(guyvelx[a]) * 20 + absolute(guyvely[a]) * 20 + 14);
-            point = FindJetPackPos(a);
-            MakeSprite(point.x, point.y, point.z, RangedRandom(50, 100) + 50, smokesprite, RangedRandom(0, 360), RangedRandom(0, 4) + 6, 0, RangedRandom(0, 30) / 10 + (guyvelx[a] * 80), (RangedRandom(10, 20) - 20) / 4 + (guyvely[a] * 100), 0);
-            jetsmokedelay[a] += 10;
-          }
-        }
-
-        multiplier = oldmult * gamespeed;
-
-        // HandleSmokeSprites();
-
-        for (x = 0; x < numplayers; x++) {
-          if (activity[x] == jetimpaledright || activity[x] == jetimpaledleft && attach[x] != -1) {
-            guyx[x] = guyx[attach[x]];
-            guyy[x] = guyy[attach[x]];
-            guyvelx[x] = guyvelx[attach[x]];
-            guyvely[x] = guyvely[attach[x]];
-          }
-        }
-
-        multiplier = oldmult;
-
-        end = TimerGetTime();
-        timetaken = end - start;
-        framespersecond = 600000000 / timetaken;
-        multiplier5 = multiplier4;
-        multiplier4 = multiplier3;
-        multiplier3 = multiplier2;
-        multiplier2 = 300 / framespersecond;
-        multiplier = (multiplier2 + multiplier3 + multiplier4 + multiplier5) / 4;
-
-        // Get the keyMap
-        // Handle some keyboard input here
-        // These keys are special keys (arrow keys and such) and control variables which need to
-        // be more responsive as opposed to accurate as to how many times they are presed
-        GetKeys((unsigned long *)theKeyMap);
-
-        /*//Numeric keypad
-        if ( IsKeyDown( theKeyMap, 91 ) )
-                hippos[2][frame][anim]+=1;
-        if ( IsKeyDown (theKeyMap, 87 ) )
-                hippos[2][frame][anim]-=1;
-        if ( IsKeyDown( theKeyMap, 88 ) )
-                hippos[1][frame][anim]+=1;
-        if ( IsKeyDown( theKeyMap, 86 ) )
-                hippos[1][frame][anim]-=1;
-        if ( IsKeyDown( theKeyMap, 89 ) )
-                hippos[0][frame][anim]+=1;
-        if ( IsKeyDown( theKeyMap, 92 ) )
-                hippos[0][frame][anim]-=1;
-        if ( IsKeyDown( theKeyMap, 49 ) ){
-                NextFrame();
-                }
-        */
-
-        //**********CAMERA KEYS************//
-        if (IsKeyDown(theKeyMap, MAC_PAGE_DOWN_KEY)) {
-          z -= 0.3 * multiplier;
-          if (freezetime == 1) {
-            z -= 1;
-          }
-        }
-        if (IsKeyDown(theKeyMap, MAC_PAGE_UP_KEY)) {
-          z += 0.3 * multiplier;
-          if (freezetime == 1) {
-            z += 1;
-          }
-        }
-        if (IsKeyDown(theKeyMap, MAC_ARROW_UP_KEY)) {
-          xrot -= 1.0 * multiplier / 4;
-          if (freezetime == 1) {
-            xrot -= 5;
-          }
-        }
-        if (IsKeyDown(theKeyMap, MAC_ARROW_DOWN_KEY)) {
-          xrot += 1.0 * multiplier / 4;
-          if (freezetime == 1) {
-            xrot += 5;
-          }
-        }
-        if (IsKeyDown(theKeyMap, MAC_ARROW_RIGHT_KEY)) {
-          yrot += 1.0 * multiplier / 4;
-          if (freezetime == 1) {
-            yrot += 5;
-          }
-        }
-        if (IsKeyDown(theKeyMap, MAC_ARROW_LEFT_KEY)) {
-          yrot -= 1.0 * multiplier / 4;
-          if (freezetime == 1) {
-            yrot -= 5;
-          }
-        }
-        if (IsKeyDown(theKeyMap, MAC_ESCAPE_KEY)) {
-          gQuit = true;
-        }
-        if (IsKeyDown(theKeyMap, 34)) {
-          cameray -= 0.3 * multiplier;
-          if (freezetime == 1) {
-            cameray -= multiplier / 3;
-          }
-        }
-        if (IsKeyDown(theKeyMap, 40)) {
-          cameray += 0.3 * multiplier;
-          if (freezetime == 1) {
-            cameray += multiplier / 3;
-          }
-        }
-        if (IsKeyDown(theKeyMap, 38)) {
-          camerax += 0.3 * multiplier;
-          if (freezetime == 1) {
-            camerax += multiplier / 3;
-          }
-        }
-        if (IsKeyDown(theKeyMap, 37)) {
-          camerax -= 0.3 * multiplier;
-          if (freezetime == 1) {
-            camerax -= multiplier / 3;
-          }
-        }
-        for (a = 0; a <= 20; a++) {
-          if (xrot >= 360) {
-            xrot -= 360;
-          }
-          if (xrot < 0) {
-            xrot += 360;
-          }
-        }
-
-        for (a = 0; a <= 20; a++) {
-          if (yrot >= 360) {
-            yrot -= 360;
-          }
-          if (yrot < 0) {
-            yrot += 360;
           }
         }
       }
-    }
 
-    // --------
-    updateGameState();
-    drawGameFrame();
-    SDL_GL_SwapWindow(window);
+      multiplier = oldmult * gamespeed;
+      multiplier /= 5;
+
+      for (a = 0; a < 5; a++) {
+        if (freezetime == 0) {
+          HandleSprites();
+        }
+      }
+
+      for (a = 0; a < numplayers; a++) {
+        while (jetsmokedelay[a] <= 0 && usingjetpack[a] == 1) {
+          playsound(11, absolute(guyvelx[a]) * 20 + absolute(guyvely[a]) * 20 + 14);
+          point = FindJetPackPos(a);
+          MakeSprite(point.x, point.y, point.z, RangedRandom(50, 100) + 50, smokesprite, RangedRandom(0, 360), RangedRandom(0, 4) + 6, 0, RangedRandom(0, 30) / 10 + (guyvelx[a] * 80), (RangedRandom(10, 20) - 20) / 4 + (guyvely[a] * 100), 0);
+          jetsmokedelay[a] += 10;
+        }
+      }
+
+      multiplier = oldmult * gamespeed;
+
+      // HandleSmokeSprites();
+
+      for (x = 0; x < numplayers; x++) {
+        if (activity[x] == jetimpaledright || activity[x] == jetimpaledleft && attach[x] != -1) {
+          guyx[x] = guyx[attach[x]];
+          guyy[x] = guyy[attach[x]];
+          guyvelx[x] = guyvelx[attach[x]];
+          guyvely[x] = guyvely[attach[x]];
+        }
+      }
+
+      multiplier = oldmult;
+    }
 
     Uint32 endTicks = SDL_GetTicks(); // milliseconds
     Uint32 elapsedTicks = endTicks - startTicks;
     if (elapsedTicks < TARGET_TICKS_PER_FRAME) {
       SDL_Delay(TARGET_TICKS_PER_FRAME - elapsedTicks);
+    }
+    timetaken = endTicks - startTicks;
+
+    framespersecond = 600000000 / timetaken;
+    multiplier5 = multiplier4;
+    multiplier4 = multiplier3;
+    multiplier3 = multiplier2;
+    multiplier2 = 300 / framespersecond;
+    multiplier = (multiplier2 + multiplier3 + multiplier4 + multiplier5) / 4;
+
+    //**********CAMERA KEYS************//
+    if (isKeyDown(KEY_CAMERA_ZOOM_OUT_ID)) {
+      z -= 0.3 * multiplier;
+      if (freezetime == 1) {
+        z -= 1;
+      }
+    }
+    if (isKeyDown(KEY_CAMERA_ZOOM_IN_ID)) {
+      z += 0.3 * multiplier;
+      if (freezetime == 1) {
+        z += 1;
+      }
+    }
+    if (isKeyDown(KEY_CAMERA_ROTATE_UP_ID)) {
+      xrot -= 1.0 * multiplier / 4;
+      if (freezetime == 1) {
+        xrot -= 5;
+      }
+    }
+    if (isKeyDown(KEY_CAMERA_ROTATE_DOWN_ID)) {
+      xrot += 1.0 * multiplier / 4;
+      if (freezetime == 1) {
+        xrot += 5;
+      }
+    }
+    if (isKeyDown(KEY_CAMERA_ROTATE_RIGHT_ID)) {
+      yrot += 1.0 * multiplier / 4;
+      if (freezetime == 1) {
+        yrot += 5;
+      }
+    }
+    if (isKeyDown(KEY_CAMERA_ROTATE_LEFT_ID)) {
+      yrot -= 1.0 * multiplier / 4;
+      if (freezetime == 1) {
+        yrot -= 5;
+      }
+    }
+    if (isKeyDown(KEY_QUIT_ID)) {
+      gQuit = true;
+    }
+    if (IsKeyDown(theKeyMap, 34)) {
+      cameray -= 0.3 * multiplier;
+      if (freezetime == 1) {
+        cameray -= multiplier / 3;
+      }
+    }
+    if (IsKeyDown(theKeyMap, 40)) {
+      cameray += 0.3 * multiplier;
+      if (freezetime == 1) {
+        cameray += multiplier / 3;
+      }
+    }
+    if (IsKeyDown(theKeyMap, 38)) {
+      camerax += 0.3 * multiplier;
+      if (freezetime == 1) {
+        camerax += multiplier / 3;
+      }
+    }
+    if (IsKeyDown(theKeyMap, 37)) {
+      camerax -= 0.3 * multiplier;
+      if (freezetime == 1) {
+        camerax -= multiplier / 3;
+      }
+    }
+    for (a = 0; a <= 20; a++) {
+      if (xrot >= 360) {
+        xrot -= 360;
+      }
+      if (xrot < 0) {
+        xrot += 360;
+      }
+    }
+
+    for (a = 0; a <= 20; a++) {
+      if (yrot >= 360) {
+        yrot -= 360;
+      }
+      if (yrot < 0) {
+        yrot += 360;
+      }
     }
   }
 }
