@@ -6,42 +6,6 @@
 
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
-const Uint32 TARGET_TICKS_PER_FRAME = 16; // About 60fps
-
-void runEventLoop(SDL_Window *window) {
-  SDL_Event e;
-  while (true) {
-    Uint32 startTicks = SDL_GetTicks(); // milliseconds
-
-    while (SDL_PollEvent(&e)) {
-      switch (e.type) {
-      case SDL_QUIT:
-        return;
-
-      case SDL_KEYDOWN:
-      case SDL_KEYUP:
-        int keyID = translateSDLEventToKeyID(e.key);
-        if (keyID >= 0) {
-          setKeyState(keyID, bool(e.key.state == SDL_PRESSED));
-          if (e.key.state == SDL_PRESSED) {
-            handleKeypress(keyID);
-          }
-        }
-        break;
-      }
-    }
-
-    updateGameState();
-    drawGameFrame();
-    SDL_GL_SwapWindow(window);
-
-    Uint32 endTicks = SDL_GetTicks(); // milliseconds
-    Uint32 elapsedTicks = endTicks - startTicks;
-    if (elapsedTicks < TARGET_TICKS_PER_FRAME) {
-      SDL_Delay(TARGET_TICKS_PER_FRAME - elapsedTicks);
-    }
-  }
-}
 
 int main(int argc, char *args[]) {
   if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0) {
@@ -74,7 +38,7 @@ int main(int argc, char *args[]) {
     return 1;
   }
 
-  runEventLoop(window);
+  runGameLoop(window);
 
   disposeGame();
   SDL_DestroyWindow(window);

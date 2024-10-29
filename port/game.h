@@ -1,7 +1,7 @@
 #pragma once
 
-bool initGame(int screenwidth, int screenheight);
+#include <SDL2/SDL.h>
+
+bool initGame(int screenWidthConfig, int screenHeightConfig);
 void disposeGame();
-void handleKeypress(int keyID);
-void drawGameFrame();
-void updateGameState();
+void runGameEventLoop(SDL_Window *window);
