@@ -5583,9 +5583,9 @@ void SwitchFrame(int whichguy) {
           lighton[1] = 1;
           lightbrightness[1] = 255;
         }
-        g = RangedRandom(22, 24) + 1;
+        g = RangedRandom(SND_LIGHTNINGSYS7_ID, SND_LIGHTNINGHIGHS7_ID) + 1;
         if (b != -1) {
-          playsound(g, 100);
+          playSound(g, 100);
         }
         if (b == -1) {
           if (lightningfxdelay[whichguy] < 5) {
@@ -5599,8 +5599,8 @@ void SwitchFrame(int whichguy) {
       }
     }
     if (freezetime == 0 && itemnum[whichguy] == 5) {
-      g = RangedRandom(18, 20) + 1;
-      playsound(g, 200);
+      g = RangedRandom(SND_MGUNSHOT1SYS7_ID, SND_MGUNSHOT3SYS7_ID) + 1;
+      playSound(g, 200);
       if (smokingbody[whichguy][kRightGun] < 40) {
         smokingbody[whichguy][kRightGun] += 20;
       }
@@ -5643,11 +5643,11 @@ void SwitchFrame(int whichguy) {
       }
     }
     if (freezetime == 0 && itemnum[whichguy] == 4) {
-      g = RangedRandom(14, 16) + 1;
+      g = RangedRandom(SND_GUNSHOT1_ID, SND_GUNSHOT3_ID) + 1;
       if (smokingbody[whichguy][kRightGun] < 40) {
         smokingbody[whichguy][kRightGun] += 20;
       }
-      playsound(g, 200);
+      playSound(g, 200);
       MakeSprite(point.x - 2, point.y, point.z, 255, tracersprite, 0, 10, 0, -100, randomjohn, 0);
       for (x = 0; x < 9; x++) {
         a = (point.x - x + 595) / 10;
