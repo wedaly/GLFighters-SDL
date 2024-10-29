@@ -267,7 +267,7 @@ SndCommand sndCommand;
 SndChannelPtr psndChannel[41];
 Handle hSound[50];
 GLuint unusedchannel;
-Boolean gQuit = false;
+bool gQuit = false;
 
 int kRightShootKey[17];
 int kLeftShootKey[17];
@@ -14482,7 +14482,7 @@ void DoKeys(int whichguy) {
 // Everything above this line has not yet been ported.
 const Uint32 TARGET_TICKS_PER_FRAME = 16; // About 60fps
 
-void runGameLoop() {
+void runGameLoop(SDL_Window *window) {
   SDL_Event e;
   int x, y, a, b, c, d;
   int guywillbe;
