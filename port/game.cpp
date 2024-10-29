@@ -4680,7 +4680,6 @@ void SwitchFrame(int whichguy) {
   guymapy[whichguy] = guyy[whichguy] / -20 - .5 + 40;
   c = ((guyx[whichguy] + 595) / 10) + .2;
   d = ((guyx[whichguy] + 595) / 10) + .9;
-  GetKeys((unsigned long *)theKeyMap);
   randomjohn = (RangedRandom(1000, -1000) - 1000) / 100;
   time[whichguy] -= 100;
   frame[whichguy] = targetframe[whichguy];
@@ -8628,7 +8627,6 @@ void DoAIPlayerStuff(int whichguy) {
     time[whichguy] -= 100;
   }
   sabrespin[whichguy] += multiplier;
-  GetKeys((unsigned long *)theKeyMap);
   if (activity[whichguy] != climbrope && activity[whichguy] != onrope && activity[whichguy] != downrope) {
     if (activity[whichguy] == idle1) {
       targetanim[whichguy] = 0;
@@ -9801,7 +9799,6 @@ void DoPlayerStuff(int whichguy) {
     time[whichguy] -= 100;
   }
   sabrespin[whichguy] += multiplier;
-  GetKeys((unsigned long *)theKeyMap);
   if (activity[whichguy] != climbrope && activity[whichguy] != onrope && activity[whichguy] != downrope) {
     if (activity[whichguy] == idle1) {
       targetanim[whichguy] = 0;
@@ -11493,7 +11490,6 @@ void DoAIKeys(int whichguy) {
   int a, b, c, d, e, f, g, h, x, y;
   int guywillbe;
 
-  GetKeys((unsigned long *)theKeyMap);
   //*************BLOCK KEY**************//
   if (CheckAIKey(whichguy, kBlockKey[whichguy]) && delaytime[whichguy] <= 0) {
     if (activity[whichguy] == idle1 || activity[whichguy] == idle2 || activity[whichguy] == swordidleright || activity[whichguy] == swordidleleft || activity[whichguy] == grenidleright || activity[whichguy] == grenidleleft || activity[whichguy] == painoneleft || activity[whichguy] == paintwoleft || activity[whichguy] == painoneright || activity[whichguy] == paintworight) {
@@ -12830,7 +12826,6 @@ void DoKeys(int whichguy) {
   int a, b, c, d, e, f, g, h, x, y;
   int guywillbe;
 
-  GetKeys((unsigned long *)theKeyMap);
   //*************BLOCK KEY**************//
   if (isKeyDown(kBlockKey[whichguy]) && delaytime[whichguy] <= 0) {
     if (activity[whichguy] == idle1 || activity[whichguy] == idle2 || activity[whichguy] == swordidleright || activity[whichguy] == swordidleleft || activity[whichguy] == grenidleright || activity[whichguy] == grenidleleft || activity[whichguy] == painoneleft || activity[whichguy] == paintwoleft || activity[whichguy] == painoneright || activity[whichguy] == paintworight) {
