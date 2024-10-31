@@ -1099,54 +1099,6 @@ int InitGL(GLvoid) // All Setup For OpenGL Goes Here
   glFogf(GL_FOG_START, 500.0f); // Fog Start Depth
   glFogf(GL_FOG_END, 1000.0f);
 
-  LoadAnimation("./data/animations/Idle", 0);
-  LoadAnimation("./data/animations/Idle2", 1);
-  LoadAnimation("./data/animations/Run", 2);
-  LoadAnimation("./data/animations/Duck", 3);
-  LoadAnimation("./data/animations/Falling", 4);
-  LoadAnimation("./data/animations/RopeClimb", 5);
-  LoadAnimation("./data/animations/JumpStraight", 6);
-  LoadAnimation("./data/animations/Flip", 7);
-  LoadAnimation("./data/animations/Roll", 8);
-  LoadAnimation("./data/animations/Splat", 9);
-  LoadAnimation("./data/animations/Shoot Left w/ right hand", 10);
-  LoadAnimation("./data/animations/Wallhit", 11);
-  LoadAnimation("./data/animations/Gah", 12);
-  LoadAnimation("./data/animations/FallBackwards", 13);
-  LoadAnimation("./data/animations/LandBackwards", 14);
-  LoadAnimation("./data/animations/Die", 15);
-  LoadAnimation("./data/animations/NeckBreaker", 16);
-  LoadAnimation("./data/animations/NeckBreakee", 17);
-  LoadAnimation("./data/animations/Stabber", 18);
-  LoadAnimation("./data/animations/Stabbee", 19);
-  LoadAnimation("./data/animations/Thrower", 20);
-  LoadAnimation("./data/animations/Throwee", 21);
-  LoadAnimation("./data/animations/Pain1", 22);
-  LoadAnimation("./data/animations/Pain2", 23);
-  LoadAnimation("./data/animations/GetUpFromBack", 24);
-  LoadAnimation("./data/animations/GetUpFromFront", 25);
-  LoadAnimation("./data/animations/SwordIdle", 26);
-  LoadAnimation("./data/animations/SwordRightThrust", 27);
-  LoadAnimation("./data/animations/SwordRightThrustBlocked", 28);
-  LoadAnimation("./data/animations/SwordRightParry", 29);
-  LoadAnimation("./data/animations/Shoot In Air", 30);
-  LoadAnimation("./data/animations/Shoot Left w/ right hand M16", 31);
-  LoadAnimation("./data/animations/Gah M16", 32);
-  LoadAnimation("./data/animations/JetUp", 33);
-  LoadAnimation("./data/animations/JetFront", 34);
-  LoadAnimation("./data/animations/JetIdle", 35);
-  LoadAnimation("./data/animations/JetStabber", 36);
-  LoadAnimation("./data/animations/JetStabbee", 37);
-  LoadAnimation("./data/animations/DuckStabber", 38);
-  LoadAnimation("./data/animations/DuckStabbee", 39);
-  LoadAnimation("./data/animations/SpinAttack", 40);
-  LoadAnimation("./data/animations/FallForwards", 41);
-  LoadAnimation("./data/animations/Pain3", 42);
-  LoadAnimation("./data/animations/Grenidle", 43);
-  LoadAnimation("./data/animations/Grenlaunch", 44);
-
-  LoadNamedMap("./data/maps/NormalMap");
-
   // set keys
   kBlockKey[0] = KEY_P1_BLOCK_ID;
   kAttackKey[0] = KEY_P1_ATTACK_ID;
@@ -13780,6 +13732,64 @@ void runGameLoop(SDL_Window *window) {
   }
 }
 
+bool loadAnimations() {
+  const int numAnimations = 45;
+  char *animationPaths[] = {
+    "./data/animations/Idle",
+    "./data/animations/Idle2",
+    "./data/animations/Run",
+    "./data/animations/Duck",
+    "./data/animations/Falling",
+    "./data/animations/RopeClimb",
+    "./data/animations/JumpStraight",
+    "./data/animations/Flip",
+    "./data/animations/Roll",
+    "./data/animations/Splat",
+    "./data/animations/Shoot Left w/ right hand",
+    "./data/animations/Wallhit",
+    "./data/animations/Gah",
+    "./data/animations/FallBackwards",
+    "./data/animations/LandBackwards",
+    "./data/animations/Die",
+    "./data/animations/NeckBreaker",
+    "./data/animations/NeckBreakee",
+    "./data/animations/Stabber",
+    "./data/animations/Stabbee",
+    "./data/animations/Thrower",
+    "./data/animations/Throwee",
+    "./data/animations/Pain1",
+    "./data/animations/Pain2",
+    "./data/animations/GetUpFromBack",
+    "./data/animations/GetUpFromFront",
+    "./data/animations/SwordIdle",
+    "./data/animations/SwordRightThrust",
+    "./data/animations/SwordRightThrustBlocked",
+    "./data/animations/SwordRightParry",
+    "./data/animations/Shoot In Air",
+    "./data/animations/Shoot Left w/ right hand M16",
+    "./data/animations/Gah M16",
+    "./data/animations/JetUp",
+    "./data/animations/JetFront",
+    "./data/animations/JetIdle",
+    "./data/animations/JetStabber",
+    "./data/animations/JetStabbee",
+    "./data/animations/DuckStabber",
+    "./data/animations/DuckStabbee",
+    "./data/animations/SpinAttack",
+    "./data/animations/FallForwards",
+    "./data/animations/Pain3",
+    "./data/animations/Grenidle",
+    "./data/animations/Grenlaunch",
+  }
+
+  for (int i = 0; i < numAnimations; i++) {
+    if (!LoadAnimation(animationPaths[i], i)) {
+      return false;
+    }
+  }
+  return true;
+}
+
 bool initGame(int screenwidth, int screenheight) {
   glEnable(GL_TEXTURE_2D);
 
@@ -13796,6 +13806,21 @@ bool initGame(int screenwidth, int screenheight) {
   if (!loadSounds()) {
     printf("Failed loading sounds\n");
     return false;
+  }
+
+  if (!loadAnimations()) {
+    printf("Failed loading animations\n");
+    return false;
+  }
+
+  if (!LoadNamedMap("./data/maps/NormalMap")) {
+    printf("Failed loading map\n");
+    return false;
+  }
+
+  if !(InitGL()) {
+    printf("Failed in InitGL\n");
+    return false
   }
 
   return true;
