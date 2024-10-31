@@ -491,84 +491,6 @@ void LoadNamedMap(char *path) {
   }
 }
 
-void LoadAnimation(char *path, int animnum) {
-  long lSize;
-  long lLongSize = sizeof(long);
-  int localframenum;
-  int x, y, kl;
-  sFile = OpenSavedGame(Name);
-  FSRead(sFile, &lLongSize, &localframenum);
-
-  if (sFile) {
-    for (x = 0; x < 3; x++) {
-      for (y = 0; y < 20; y++) {
-        leftlowarm[x][y][animnum] = 0;
-        lefthigharm[x][y][animnum] = 0;
-        rightlowarm[x][y][animnum] = 0;
-        righthigharm[x][y][animnum] = 0;
-        torsorotation[x][y][animnum] = 0;
-        hippos[x][y][animnum] = 0;
-        hiprot[x][y][animnum] = 0;
-        torsorot[x][y][animnum] = 0;
-        leftlowleg[x][y][animnum] = 0;
-        lefthighleg[x][y][animnum] = 0;
-        rightlowleg[x][y][animnum] = 0;
-        righthighleg[x][y][animnum] = 0;
-        hippos[2][y][animnum] = 60;
-        lefthand[x][y][animnum] = 0;
-        leftfoot[x][y][animnum] = 0;
-        righthand[x][y][animnum] = 0;
-        rightfoot[x][y][animnum] = 0;
-        head[x][y][animnum] = 0;
-      }
-    }
-  }
-  for (x = 0; x < 3; x++) {
-    for (y = 0; y < localframenum; y++) {
-      lSize = sizeof(leftlowarm[x][y][animnum]);
-      FSRead(sFile, &lLongSize, &leftlowarm[x][y][animnum]);
-      lSize = sizeof(lefthigharm[x][y][animnum]);
-      FSRead(sFile, &lLongSize, &lefthigharm[x][y][animnum]);
-      lSize = sizeof(rightlowarm[x][y][animnum]);
-      FSRead(sFile, &lLongSize, &rightlowarm[x][y][animnum]);
-      lSize = sizeof(righthigharm[x][y][animnum]);
-      FSRead(sFile, &lLongSize, &righthigharm[x][y][animnum]);
-      lSize = sizeof(lefthand[x][y][animnum]);
-      FSRead(sFile, &lLongSize, &lefthand[x][y][animnum]);
-      lSize = sizeof(leftfoot[x][y][animnum]);
-      FSRead(sFile, &lLongSize, &leftfoot[x][y][animnum]);
-      lSize = sizeof(righthand[x][y][animnum]);
-      FSRead(sFile, &lLongSize, &righthand[x][y][animnum]);
-      lSize = sizeof(rightfoot[x][y][animnum]);
-      FSRead(sFile, &lLongSize, &rightfoot[x][y][animnum]);
-      lSize = sizeof(head[x][y][animnum]);
-      FSRead(sFile, &lLongSize, &head[x][y][animnum]);
-      lSize = sizeof(torsorotation[x][y][animnum]);
-      FSRead(sFile, &lLongSize, &torsorotation[x][y][animnum]);
-      lSize = sizeof(hippos[x][y][animnum]);
-      FSRead(sFile, &lLongSize, &hippos[x][y][animnum]);
-      lSize = sizeof(hiprot[x][y][animnum]);
-      FSRead(sFile, &lLongSize, &hiprot[x][y][animnum]);
-      lSize = sizeof(torsorot[x][y][animnum]);
-      FSRead(sFile, &lLongSize, &torsorot[x][y][animnum]);
-      lSize = sizeof(leftlowleg[x][y][animnum]);
-      FSRead(sFile, &lLongSize, &leftlowleg[x][y][animnum]);
-      lSize = sizeof(lefthighleg[x][y][animnum]);
-      FSRead(sFile, &lLongSize, &lefthighleg[x][y][animnum]);
-      lSize = sizeof(rightlowleg[x][y][animnum]);
-      FSRead(sFile, &lLongSize, &rightlowleg[x][y][animnum]);
-      lSize = sizeof(righthighleg[x][y][animnum]);
-      FSRead(sFile, &lLongSize, &righthighleg[x][y][animnum]);
-      lSize = sizeof(speed[y][animnum]);
-      FSRead(sFile, &lLongSize, &speed[y][animnum]);
-    }
-  }
-  FSClose(sFile);
-  if (localframenum == 20) {
-    righthighleg[0][0][0] = 100;
-  }
-}
-
 void LoadMap() {
   long lSize;
   long lLongSize = sizeof(long);
@@ -13729,6 +13651,84 @@ void runGameLoop(SDL_Window *window) {
         yrot += 360;
       }
     }
+  }
+}
+
+void LoadAnimation(char *path, int animnum) {
+  long lSize;
+  long lLongSize = sizeof(long);
+  int localframenum;
+  int x, y, kl;
+  sFile = OpenSavedGame(Name);
+  FSRead(sFile, &lLongSize, &localframenum);
+
+  if (sFile) {
+    for (x = 0; x < 3; x++) {
+      for (y = 0; y < 20; y++) {
+        leftlowarm[x][y][animnum] = 0;
+        lefthigharm[x][y][animnum] = 0;
+        rightlowarm[x][y][animnum] = 0;
+        righthigharm[x][y][animnum] = 0;
+        torsorotation[x][y][animnum] = 0;
+        hippos[x][y][animnum] = 0;
+        hiprot[x][y][animnum] = 0;
+        torsorot[x][y][animnum] = 0;
+        leftlowleg[x][y][animnum] = 0;
+        lefthighleg[x][y][animnum] = 0;
+        rightlowleg[x][y][animnum] = 0;
+        righthighleg[x][y][animnum] = 0;
+        hippos[2][y][animnum] = 60;
+        lefthand[x][y][animnum] = 0;
+        leftfoot[x][y][animnum] = 0;
+        righthand[x][y][animnum] = 0;
+        rightfoot[x][y][animnum] = 0;
+        head[x][y][animnum] = 0;
+      }
+    }
+  }
+  for (x = 0; x < 3; x++) {
+    for (y = 0; y < localframenum; y++) {
+      lSize = sizeof(leftlowarm[x][y][animnum]);
+      FSRead(sFile, &lLongSize, &leftlowarm[x][y][animnum]);
+      lSize = sizeof(lefthigharm[x][y][animnum]);
+      FSRead(sFile, &lLongSize, &lefthigharm[x][y][animnum]);
+      lSize = sizeof(rightlowarm[x][y][animnum]);
+      FSRead(sFile, &lLongSize, &rightlowarm[x][y][animnum]);
+      lSize = sizeof(righthigharm[x][y][animnum]);
+      FSRead(sFile, &lLongSize, &righthigharm[x][y][animnum]);
+      lSize = sizeof(lefthand[x][y][animnum]);
+      FSRead(sFile, &lLongSize, &lefthand[x][y][animnum]);
+      lSize = sizeof(leftfoot[x][y][animnum]);
+      FSRead(sFile, &lLongSize, &leftfoot[x][y][animnum]);
+      lSize = sizeof(righthand[x][y][animnum]);
+      FSRead(sFile, &lLongSize, &righthand[x][y][animnum]);
+      lSize = sizeof(rightfoot[x][y][animnum]);
+      FSRead(sFile, &lLongSize, &rightfoot[x][y][animnum]);
+      lSize = sizeof(head[x][y][animnum]);
+      FSRead(sFile, &lLongSize, &head[x][y][animnum]);
+      lSize = sizeof(torsorotation[x][y][animnum]);
+      FSRead(sFile, &lLongSize, &torsorotation[x][y][animnum]);
+      lSize = sizeof(hippos[x][y][animnum]);
+      FSRead(sFile, &lLongSize, &hippos[x][y][animnum]);
+      lSize = sizeof(hiprot[x][y][animnum]);
+      FSRead(sFile, &lLongSize, &hiprot[x][y][animnum]);
+      lSize = sizeof(torsorot[x][y][animnum]);
+      FSRead(sFile, &lLongSize, &torsorot[x][y][animnum]);
+      lSize = sizeof(leftlowleg[x][y][animnum]);
+      FSRead(sFile, &lLongSize, &leftlowleg[x][y][animnum]);
+      lSize = sizeof(lefthighleg[x][y][animnum]);
+      FSRead(sFile, &lLongSize, &lefthighleg[x][y][animnum]);
+      lSize = sizeof(rightlowleg[x][y][animnum]);
+      FSRead(sFile, &lLongSize, &rightlowleg[x][y][animnum]);
+      lSize = sizeof(righthighleg[x][y][animnum]);
+      FSRead(sFile, &lLongSize, &righthighleg[x][y][animnum]);
+      lSize = sizeof(speed[y][animnum]);
+      FSRead(sFile, &lLongSize, &speed[y][animnum]);
+    }
+  }
+  FSClose(sFile);
+  if (localframenum == 20) {
+    righthighleg[0][0][0] = 100;
   }
 }
 
