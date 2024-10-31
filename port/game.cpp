@@ -13578,15 +13578,21 @@ void runGameEventLoop(SDL_Window *window) {
   }
 }
 
+bool readIntFromFile(int *i, FILE *f) {
+  size_t n = fread(i, sizeof(int), 1, f);
+  *i = SDL_SwapBE32(*i);
+  return n == 1;
+}
+
 bool readLongFromFile(long *l, FILE *f) {
   size_t n = fread(l, sizeof(long), 1, f);
-  SDL_SwapBE64(*l);
+  *l = SDL_SwapBE64(*l);
   return n == 1;
 }
 
 bool LoadAnimation(char *path, int animnum) {
   int n;
-  long localframenum;
+  int localframenum = 0;
   int x, y, kl;
 
   FILE *f = fopen(path, "r");
@@ -13594,10 +13600,15 @@ bool LoadAnimation(char *path, int animnum) {
     return false;
   }
 
-  if (!readLongFromFile(&localframenum, f)) {
+  if (!readIntFromFile(&localframenum, f)) {
     fclose(f);
     return false;
   }
+
+	if (localframenum > 100) {
+		fclose(f);
+		return false;
+	}
 
   for (x = 0; x < 3; x++) {
     for (y = 0; y < 20; y++) {
