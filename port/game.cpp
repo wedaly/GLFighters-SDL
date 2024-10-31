@@ -13764,7 +13764,7 @@ bool loadAnimations() {
       "./data/animations/SwordRightThrustBlocked",
       "./data/animations/SwordRightParry",
       "./data/animations/Shoot In Air",
-      "./data/animations/Shoot Left w/ right hand M16",
+      "./data/animations/Shoot Left w_ right hand M16",
       "./data/animations/Gah M16",
       "./data/animations/JetUp",
       "./data/animations/JetFront",
