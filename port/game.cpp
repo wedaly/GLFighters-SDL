@@ -456,7 +456,6 @@ float absolute(float num) {
 }
 
 void LoadNamedMap(Str255 Name) {
-  Boolean bLoaded = false;
   long lSize;
   long lLongSize = sizeof(long);
 
@@ -493,7 +492,6 @@ void LoadNamedMap(Str255 Name) {
 }
 
 void LoadAnimation(char *path, int animnum) {
-  Boolean bLoaded = false;
   long lSize;
   long lLongSize = sizeof(long);
   int localframenum;
@@ -572,7 +570,6 @@ void LoadAnimation(char *path, int animnum) {
 }
 
 void LoadMap() {
-  Boolean bLoaded = false;
   long lSize;
   long lLongSize = sizeof(long);
 
