@@ -1903,7 +1903,7 @@ void glEnvironmentCube(int front, int left, int back, int right, int up, int dow
   yrot = realyrot;
 }
 
-int DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
+void DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
 {
   int x, y, a, b, c, d, e, f;
   float g;
@@ -13397,11 +13397,8 @@ void runGameEventLoop(SDL_Window *window) {
     // Swap buffers (double buffering)
     if (!nodraw) {
       glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-      if (DrawGLScene()) {
-        SDL_GL_SwapWindow(window);
-      } else {
-        gQuit = true;
-      }
+      DrawGLScene();
+      SDL_GL_SwapWindow(window);
       oldmult = multiplier;
 
       gamespeed = 1;
