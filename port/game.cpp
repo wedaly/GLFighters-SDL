@@ -492,8 +492,7 @@ void LoadNamedMap(Str255 Name) {
   }
 }
 
-void LoadGame(Str255 Name, int animnum);
-void LoadGame(Str255 Name, int animnum) {
+void LoadAnimation(char *path, int animnum) {
   Boolean bLoaded = false;
   long lSize;
   long lLongSize = sizeof(long);
@@ -1103,51 +1102,51 @@ int InitGL(GLvoid) // All Setup For OpenGL Goes Here
   glFogf(GL_FOG_START, 500.0f); // Fog Start Depth
   glFogf(GL_FOG_END, 1000.0f);
 
-  LoadGame((unsigned char *)":Animations:Idle", 0);
-  LoadGame((unsigned char *)":Animations:Idle2", 1);
-  LoadGame((unsigned char *)":Animations:Run", 2);
-  LoadGame((unsigned char *)":Animations:Duck", 3);
-  LoadGame((unsigned char *)":Animations:Falling", 4);
-  LoadGame((unsigned char *)":Animations:RopeClimb", 5);
-  LoadGame((unsigned char *)":Animations:JumpStraight", 6);
-  LoadGame((unsigned char *)":Animations:Flip", 7);
-  LoadGame((unsigned char *)":Animations:Roll", 8);
-  LoadGame((unsigned char *)":Animations:Splat", 9);
-  LoadGame((unsigned char *)":Animations:Shoot Left w/ right hand", 10);
-  LoadGame((unsigned char *)":Animations:Wallhit", 11);
-  LoadGame((unsigned char *)":Animations:Gah", 12);
-  LoadGame((unsigned char *)":Animations:FallBackwards", 13);
-  LoadGame((unsigned char *)":Animations:LandBackwards", 14);
-  LoadGame((unsigned char *)":Animations:Die", 15);
-  LoadGame((unsigned char *)":Animations:NeckBreaker", 16);
-  LoadGame((unsigned char *)":Animations:NeckBreakee", 17);
-  LoadGame((unsigned char *)":Animations:Stabber", 18);
-  LoadGame((unsigned char *)":Animations:Stabbee", 19);
-  LoadGame((unsigned char *)":Animations:Thrower", 20);
-  LoadGame((unsigned char *)":Animations:Throwee", 21);
-  LoadGame((unsigned char *)":Animations:Pain1", 22);
-  LoadGame((unsigned char *)":Animations:Pain2", 23);
-  LoadGame((unsigned char *)":Animations:GetUpFromBack", 24);
-  LoadGame((unsigned char *)":Animations:GetUpFromFront", 25);
-  LoadGame((unsigned char *)":Animations:SwordIdle", 26);
-  LoadGame((unsigned char *)":Animations:SwordRightThrust", 27);
-  LoadGame((unsigned char *)":Animations:SwordRightThrustBlocked", 28);
-  LoadGame((unsigned char *)":Animations:SwordRightParry", 29);
-  LoadGame((unsigned char *)":Animations:Shoot In Air", 30);
-  LoadGame((unsigned char *)":Animations:Shoot Left w/ right hand M16", 31);
-  LoadGame((unsigned char *)":Animations:Gah M16", 32);
-  LoadGame((unsigned char *)":Animations:JetUp", 33);
-  LoadGame((unsigned char *)":Animations:JetFront", 34);
-  LoadGame((unsigned char *)":Animations:JetIdle", 35);
-  LoadGame((unsigned char *)":Animations:JetStabber", 36);
-  LoadGame((unsigned char *)":Animations:JetStabbee", 37);
-  LoadGame((unsigned char *)":Animations:DuckStabber", 38);
-  LoadGame((unsigned char *)":Animations:DuckStabbee", 39);
-  LoadGame((unsigned char *)":Animations:SpinAttack", 40);
-  LoadGame((unsigned char *)":Animations:FallForwards", 41);
-  LoadGame((unsigned char *)":Animations:Pain3", 42);
-  LoadGame((unsigned char *)":Animations:Grenidle", 43);
-  LoadGame((unsigned char *)":Animations:Grenlaunch", 44);
+  LoadAnimation("./data/animations/Idle", 0);
+  LoadAnimation("./data/animations/Idle2", 1);
+  LoadAnimation("./data/animations/Run", 2);
+  LoadAnimation("./data/animations/Duck", 3);
+  LoadAnimation("./data/animations/Falling", 4);
+  LoadAnimation("./data/animations/RopeClimb", 5);
+  LoadAnimation("./data/animations/JumpStraight", 6);
+  LoadAnimation("./data/animations/Flip", 7);
+  LoadAnimation("./data/animations/Roll", 8);
+  LoadAnimation("./data/animations/Splat", 9);
+  LoadAnimation("./data/animations/Shoot Left w/ right hand", 10);
+  LoadAnimation("./data/animations/Wallhit", 11);
+  LoadAnimation("./data/animations/Gah", 12);
+  LoadAnimation("./data/animations/FallBackwards", 13);
+  LoadAnimation("./data/animations/LandBackwards", 14);
+  LoadAnimation("./data/animations/Die", 15);
+  LoadAnimation("./data/animations/NeckBreaker", 16);
+  LoadAnimation("./data/animations/NeckBreakee", 17);
+  LoadAnimation("./data/animations/Stabber", 18);
+  LoadAnimation("./data/animations/Stabbee", 19);
+  LoadAnimation("./data/animations/Thrower", 20);
+  LoadAnimation("./data/animations/Throwee", 21);
+  LoadAnimation("./data/animations/Pain1", 22);
+  LoadAnimation("./data/animations/Pain2", 23);
+  LoadAnimation("./data/animations/GetUpFromBack", 24);
+  LoadAnimation("./data/animations/GetUpFromFront", 25);
+  LoadAnimation("./data/animations/SwordIdle", 26);
+  LoadAnimation("./data/animations/SwordRightThrust", 27);
+  LoadAnimation("./data/animations/SwordRightThrustBlocked", 28);
+  LoadAnimation("./data/animations/SwordRightParry", 29);
+  LoadAnimation("./data/animations/Shoot In Air", 30);
+  LoadAnimation("./data/animations/Shoot Left w/ right hand M16", 31);
+  LoadAnimation("./data/animations/Gah M16", 32);
+  LoadAnimation("./data/animations/JetUp", 33);
+  LoadAnimation("./data/animations/JetFront", 34);
+  LoadAnimation("./data/animations/JetIdle", 35);
+  LoadAnimation("./data/animations/JetStabber", 36);
+  LoadAnimation("./data/animations/JetStabbee", 37);
+  LoadAnimation("./data/animations/DuckStabber", 38);
+  LoadAnimation("./data/animations/DuckStabbee", 39);
+  LoadAnimation("./data/animations/SpinAttack", 40);
+  LoadAnimation("./data/animations/FallForwards", 41);
+  LoadAnimation("./data/animations/Pain3", 42);
+  LoadAnimation("./data/animations/Grenidle", 43);
+  LoadAnimation("./data/animations/Grenlaunch", 44);
 
   LoadNamedMap((unsigned char *)":Maps:NormalMap");
   // set keys
@@ -1181,8 +1180,6 @@ int InitGL(GLvoid) // All Setup For OpenGL Goes Here
   itemnum[1] = 1;
   restartRound();
   WallBounds(cube);
-  // glEnable(GL_CULL_FACE);
-  // LoadGame((unsigned char *)":Animations:Shoot Right w/ right hand", 12);
   return true; // Initialization Went OK
 }
 
