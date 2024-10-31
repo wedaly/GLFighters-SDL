@@ -10271,7 +10271,7 @@ void ShootGrenade(int whichguy) {
   }
 }
 
-int CheckPaths(int whichguy, int num) {
+void CheckPaths(int whichguy, int num) {
   int a, c, haschecked;
   float e, f;
   if (compxsteptest[whichguy][num] == computertargetxlocation[whichguy] && compysteptest[whichguy][num] == computertargetylocation[whichguy] && num < pathfindsteps) {
@@ -10288,7 +10288,6 @@ int CheckPaths(int whichguy, int num) {
   }
   if (Map[computertargetxlocation[whichguy]][computertargetylocation[whichguy]] == 0) {
     pathfound[whichguy] = 0;
-    return 0;
   }
   if ((Map[compxsteptest[whichguy][num] + 1][compysteptest[whichguy][num]] == 1 || Map[compxsteptest[whichguy][num] + 1][compysteptest[whichguy][num]] == 2 || Map[compxsteptest[whichguy][num] + 1][compysteptest[whichguy][num]] == 3) && Walls[compxsteptest[whichguy][num]][compysteptest[whichguy][num]] == 0) {
     compxsteptest[whichguy][num + 1] = compxsteptest[whichguy][num] + 1;
