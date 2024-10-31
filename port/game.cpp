@@ -491,34 +491,6 @@ bool LoadNamedMap(char *path) {
   }
 }
 
-void LoadMap() {
-  long lSize;
-  long lLongSize = sizeof(long);
-
-  int x, y, kl;
-  sFile = OpenMap();
-
-  if (sFile) {
-    for (x = 0; x < 100; x++) {
-      for (y = 0; y < 100; y++) {
-        Map[x][y] = 0;
-      }
-    }
-    for (x = 0; x < 100; x++) {
-      for (y = 0; y < 100; y++) {
-        lSize = sizeof(Map[x][y]);
-        FSRead(sFile, &lLongSize, &Map[x][y]);
-        FSRead(sFile, &lLongSize, &Walls[x][y]);
-      }
-    }
-    for (x = 0; x < 16; x++) {
-      FSRead(sFile, &lLongSize, &startplacex[x]);
-      FSRead(sFile, &lLongSize, &startplacey[x]);
-    }
-    FSClose(sFile);
-  }
-}
-
 void MovePlayerData(int first, int second) {
   int x;
   for (x = 0; x < maxsprites; x++) {
@@ -3796,12 +3768,6 @@ void HandleKeyDown(char theChar) {
         LowerLegNum[x] = 37;
       }
     }
-    break;
-  case '.':
-    nodraw = 1;
-    LoadMap();
-    WallBounds(cube);
-    nodraw = 0;
     break;
   case '?':
     for (x = 0; x < 100; x++) {
