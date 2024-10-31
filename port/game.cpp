@@ -240,7 +240,6 @@ GLfloat boomx;
 GLfloat shockx;
 GLfloat shockx2;
 GLfloat fogColor[4] = {0.5f, 0.5f, 0.5f, 1.0f}; // Fog Color
-short sFile = 0;
 float guyx[17];
 float guyy[17];
 float oldguyx[17];
@@ -13579,21 +13578,15 @@ void runGameEventLoop(SDL_Window *window) {
   }
 }
 
-bool readIntFromFile(int *i, FILE *f) {
-  size_t n = fread(i, sizeof(int), 1, f);
-  SDL_SwapBE16(*i);
-  return n == 1;
-}
-
 bool readLongFromFile(long *l, FILE *f) {
   size_t n = fread(l, sizeof(long), 1, f);
-  SDL_SwapBE32(*l);
+  SDL_SwapBE64(*l);
   return n == 1;
 }
 
 bool LoadAnimation(char *path, int animnum) {
   int n;
-  int localframenum;
+  long localframenum;
   int x, y, kl;
 
   FILE *f = fopen(path, "r");
@@ -13601,35 +13594,34 @@ bool LoadAnimation(char *path, int animnum) {
     return false;
   }
 
-  if (!readIntFromFile(&localframenum, f)) {
+  if (!readLongFromFile(&localframenum, f)) {
     fclose(f);
     return false;
   }
 
-  if (sFile) {
-    for (x = 0; x < 3; x++) {
-      for (y = 0; y < 20; y++) {
-        leftlowarm[x][y][animnum] = 0;
-        lefthigharm[x][y][animnum] = 0;
-        rightlowarm[x][y][animnum] = 0;
-        righthigharm[x][y][animnum] = 0;
-        torsorotation[x][y][animnum] = 0;
-        hippos[x][y][animnum] = 0;
-        hiprot[x][y][animnum] = 0;
-        torsorot[x][y][animnum] = 0;
-        leftlowleg[x][y][animnum] = 0;
-        lefthighleg[x][y][animnum] = 0;
-        rightlowleg[x][y][animnum] = 0;
-        righthighleg[x][y][animnum] = 0;
-        hippos[2][y][animnum] = 60;
-        lefthand[x][y][animnum] = 0;
-        leftfoot[x][y][animnum] = 0;
-        righthand[x][y][animnum] = 0;
-        rightfoot[x][y][animnum] = 0;
-        head[x][y][animnum] = 0;
-      }
+  for (x = 0; x < 3; x++) {
+    for (y = 0; y < 20; y++) {
+      leftlowarm[x][y][animnum] = 0;
+      lefthigharm[x][y][animnum] = 0;
+      rightlowarm[x][y][animnum] = 0;
+      righthigharm[x][y][animnum] = 0;
+      torsorotation[x][y][animnum] = 0;
+      hippos[x][y][animnum] = 0;
+      hiprot[x][y][animnum] = 0;
+      torsorot[x][y][animnum] = 0;
+      leftlowleg[x][y][animnum] = 0;
+      lefthighleg[x][y][animnum] = 0;
+      rightlowleg[x][y][animnum] = 0;
+      righthighleg[x][y][animnum] = 0;
+      hippos[2][y][animnum] = 60;
+      lefthand[x][y][animnum] = 0;
+      leftfoot[x][y][animnum] = 0;
+      righthand[x][y][animnum] = 0;
+      rightfoot[x][y][animnum] = 0;
+      head[x][y][animnum] = 0;
     }
   }
+
   for (x = 0; x < 3; x++) {
     for (y = 0; y < localframenum; y++) {
       if (!readLongFromFile(&leftlowarm[x][y][animnum], f)) {
