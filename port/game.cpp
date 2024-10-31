@@ -147,26 +147,26 @@ float smokingbody[17][16];
 float smokingbodydelay[17][16];
 float rotation[17];
 float targetrotation[17];
-long leftlowarm[3][20][50];
-long lefthigharm[3][20][50];
-long lefthand[3][20][50];
-long rightlowarm[3][20][50];
-long righthigharm[3][20][50];
-long righthand[3][20][50];
-long torsorotation[3][20][50];
-long hippos[3][20][50];
-long hiprot[3][20][50];
-long torsorot[3][20][50];
-long leftfoot[3][20][50];
-long leftlowleg[3][20][50];
-long lefthighleg[3][20][50];
-long rightfoot[3][20][50];
-long rightlowleg[3][20][50];
-long righthighleg[3][20][50];
-long head[3][20][50];
-long speed[20][50];
-GLuint Map[100][100];
-GLuint Walls[100][100];
+int leftlowarm[3][20][50];
+int lefthigharm[3][20][50];
+int lefthand[3][20][50];
+int rightlowarm[3][20][50];
+int righthigharm[3][20][50];
+int righthand[3][20][50];
+int torsorotation[3][20][50];
+int hippos[3][20][50];
+int hiprot[3][20][50];
+int torsorot[3][20][50];
+int leftfoot[3][20][50];
+int leftlowleg[3][20][50];
+int lefthighleg[3][20][50];
+int rightfoot[3][20][50];
+int rightlowleg[3][20][50];
+int righthighleg[3][20][50];
+int head[3][20][50];
+int speed[20][50];
+int Map[100][100];
+int Walls[100][100];
 int selected;
 float time[17];
 long framenum[17];
@@ -13584,12 +13584,6 @@ bool readIntFromFile(int *i, FILE *f) {
   return n == 1;
 }
 
-bool readLongFromFile(long *l, FILE *f) {
-  size_t n = fread(l, sizeof(long), 1, f);
-  *l = SDL_SwapBE64(*l);
-  return n == 1;
-}
-
 bool LoadAnimation(char *path, int animnum) {
   int n;
   int localframenum = 0;
@@ -13635,92 +13629,92 @@ bool LoadAnimation(char *path, int animnum) {
 
   for (x = 0; x < 3; x++) {
     for (y = 0; y < localframenum; y++) {
-      if (!readLongFromFile(&leftlowarm[x][y][animnum], f)) {
+      if (!readIntFromFile(&leftlowarm[x][y][animnum], f)) {
         fclose(f);
         return false;
       }
 
-      if (!readLongFromFile(&lefthigharm[x][y][animnum], f)) {
+      if (!readIntFromFile(&lefthigharm[x][y][animnum], f)) {
         fclose(f);
         return false;
       }
 
-      if (!readLongFromFile(&rightlowarm[x][y][animnum], f)) {
+      if (!readIntFromFile(&rightlowarm[x][y][animnum], f)) {
         fclose(f);
         return false;
       }
 
-      if (!readLongFromFile(&righthigharm[x][y][animnum], f)) {
+      if (!readIntFromFile(&righthigharm[x][y][animnum], f)) {
         fclose(f);
         return false;
       }
 
-      if (!readLongFromFile(&lefthand[x][y][animnum], f)) {
+      if (!readIntFromFile(&lefthand[x][y][animnum], f)) {
         fclose(f);
         return false;
       }
 
-      if (!readLongFromFile(&leftfoot[x][y][animnum], f)) {
+      if (!readIntFromFile(&leftfoot[x][y][animnum], f)) {
         fclose(f);
         return false;
       }
 
-      if (!readLongFromFile(&righthand[x][y][animnum], f)) {
+      if (!readIntFromFile(&righthand[x][y][animnum], f)) {
         fclose(f);
         return false;
       }
 
-      if (!readLongFromFile(&rightfoot[x][y][animnum], f)) {
+      if (!readIntFromFile(&rightfoot[x][y][animnum], f)) {
         fclose(f);
         return false;
       }
 
-      if (!readLongFromFile(&head[x][y][animnum], f)) {
+      if (!readIntFromFile(&head[x][y][animnum], f)) {
         fclose(f);
         return false;
       }
 
-      if (!readLongFromFile(&torsorotation[x][y][animnum], f)) {
+      if (!readIntFromFile(&torsorotation[x][y][animnum], f)) {
         fclose(f);
         return false;
       }
 
-      if (!readLongFromFile(&hippos[x][y][animnum], f)) {
+      if (!readIntFromFile(&hippos[x][y][animnum], f)) {
         fclose(f);
         return false;
       }
 
-      if (!readLongFromFile(&hiprot[x][y][animnum], f)) {
+      if (!readIntFromFile(&hiprot[x][y][animnum], f)) {
         fclose(f);
         return false;
       }
 
-      if (!readLongFromFile(&torsorot[x][y][animnum], f)) {
+      if (!readIntFromFile(&torsorot[x][y][animnum], f)) {
         fclose(f);
         return false;
       }
 
-      if (!readLongFromFile(&leftlowleg[x][y][animnum], f)) {
+      if (!readIntFromFile(&leftlowleg[x][y][animnum], f)) {
         fclose(f);
         return false;
       }
 
-      if (!readLongFromFile(&lefthighleg[x][y][animnum], f)) {
+      if (!readIntFromFile(&lefthighleg[x][y][animnum], f)) {
         fclose(f);
         return false;
       }
 
-      if (!readLongFromFile(&rightlowleg[x][y][animnum], f)) {
+      if (!readIntFromFile(&rightlowleg[x][y][animnum], f)) {
         fclose(f);
         return false;
       }
 
-      if (!readLongFromFile(&righthighleg[x][y][animnum], f)) {
+      if (!readIntFromFile(&righthighleg[x][y][animnum], f)) {
         fclose(f);
         return false;
       }
 
-      if (!readLongFromFile(&speed[y][animnum], f)) {
+      if (!readIntFromFile(&speed[y][animnum], f)) {
         fclose(f);
         return false;
       }
@@ -13810,12 +13804,12 @@ bool LoadNamedMap(char *path) {
   }
   for (x = 0; x < 100; x++) {
     for (y = 0; y < 100; y++) {
-      if (!readIntFromFile((int *)&Map[x][y], f)) {
+      if (!readIntFromFile(&Map[x][y], f)) {
         fclose(f);
         return false;
       }
 
-      if (!readIntFromFile((int *)&Walls[x][y], f)) {
+      if (!readIntFromFile(&Walls[x][y], f)) {
         fclose(f);
         return false;
       }
