@@ -165,8 +165,8 @@ long rightlowleg[3][20][50];
 long righthighleg[3][20][50];
 long head[3][20][50];
 long speed[20][50];
-long Map[100][100];
-long Walls[100][100];
+GLuint Map[100][100];
+GLuint Walls[100][100];
 int selected;
 float time[17];
 long framenum[17];
@@ -246,8 +246,8 @@ float oldguyx[17];
 float oldguyy[17];
 int guymapx[17];
 int guymapy[17];
-long startplacex[17];
-long startplacey[17];
+int startplacex[17];
+int startplacey[17];
 int playerstartnum;
 float guyvely[17];
 float guyvelx[17];
@@ -13810,23 +13810,23 @@ bool LoadNamedMap(char *path) {
   }
   for (x = 0; x < 100; x++) {
     for (y = 0; y < 100; y++) {
-      if (!readLongFromFile(&Map[x][y], f)) {
+      if (!readIntFromFile((int *)&Map[x][y], f)) {
         fclose(f);
         return false;
       }
 
-      if (!readLongFromFile(&Walls[x][y], f)) {
+      if (!readIntFromFile((int *)&Walls[x][y], f)) {
         fclose(f);
         return false;
       }
     }
   }
   for (x = 0; x < 16; x++) {
-    if (!readLongFromFile(&startplacex[x], f)) {
+    if (!readIntFromFile(&startplacex[x], f)) {
       fclose(f);
       return false;
     }
-    if (!readLongFromFile(&startplacey[x], f)) {
+    if (!readIntFromFile(&startplacey[x], f)) {
       fclose(f);
       return false;
     }
