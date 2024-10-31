@@ -455,42 +455,6 @@ float absolute(float num) {
   return num;
 }
 
-bool LoadNamedMap(char *path) {
-  long lSize;
-  long lLongSize = sizeof(long);
-
-  int x, y, kl;
-  sSavedGameVolume = 0;
-  sprintf(szSavedGameName, "%s", Name);
-  SetVol(nil, sSavedGameVolume);
-
-  CtoPstr(szSavedGameName);
-
-  FSOpen((Pstr)szSavedGameName, sSavedGameVolume, &sFile);
-
-  PtoCstr((Pstr)szSavedGameName);
-
-  if (sFile) {
-    for (x = 0; x < 100; x++) {
-      for (y = 0; y < 100; y++) {
-        Map[x][y] = 0;
-      }
-    }
-    for (x = 0; x < 100; x++) {
-      for (y = 0; y < 100; y++) {
-        lSize = sizeof(Map[x][y]);
-        FSRead(sFile, &lLongSize, &Map[x][y]);
-        FSRead(sFile, &lLongSize, &Walls[x][y]);
-      }
-    }
-    for (x = 0; x < 16; x++) {
-      FSRead(sFile, &lLongSize, &startplacex[x]);
-      FSRead(sFile, &lLongSize, &startplacey[x]);
-    }
-    FSClose(sFile);
-  }
-}
-
 void MovePlayerData(int first, int second) {
   int x;
   for (x = 0; x < maxsprites; x++) {
@@ -13829,6 +13793,47 @@ bool loadAnimations() {
       return false;
     }
   }
+  return true;
+}
+
+bool LoadNamedMap(char *path) {
+  int x, y, kl;
+
+  FILE *f = fopen(path, "r");
+  if (!f) {
+    return false;
+  }
+
+  for (x = 0; x < 100; x++) {
+    for (y = 0; y < 100; y++) {
+      Map[x][y] = 0;
+    }
+  }
+  for (x = 0; x < 100; x++) {
+    for (y = 0; y < 100; y++) {
+      if (!readLongFromFile(&Map[x][y], f)) {
+        fclose(f);
+        return false;
+      }
+
+      if (!readLongFromFile(&Walls[x][y], f)) {
+        fclose(f);
+        return false;
+      }
+    }
+  }
+  for (x = 0; x < 16; x++) {
+    if (!readLongFromFile(&startplacex[x], f)) {
+      fclose(f);
+      return false;
+    }
+    if (!readLongFromFile(&startplacey[x], f)) {
+      fclose(f);
+      return false;
+    }
+  }
+
+  fclose(f);
   return true;
 }
 
