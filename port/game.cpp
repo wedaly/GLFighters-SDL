@@ -455,7 +455,7 @@ float absolute(float num) {
   return num;
 }
 
-void LoadNamedMap(Str255 Name) {
+void LoadNamedMap(char *path) {
   long lSize;
   long lLongSize = sizeof(long);
 
@@ -1145,7 +1145,8 @@ int InitGL(GLvoid) // All Setup For OpenGL Goes Here
   LoadAnimation("./data/animations/Grenidle", 43);
   LoadAnimation("./data/animations/Grenlaunch", 44);
 
-  LoadNamedMap((unsigned char *)":Maps:NormalMap");
+  LoadNamedMap("./data/maps/NormalMap");
+
   // set keys
   kBlockKey[0] = KEY_P1_BLOCK_ID;
   kAttackKey[0] = KEY_P1_ATTACK_ID;
