@@ -13785,6 +13785,7 @@ bool loadAnimations() {
 
   for (int i = 0; i < numAnimations; i++) {
     if (!LoadAnimation(animationPaths[i], i)) {
+      printf("Failed to load animation %s\n", animationPaths[i]);
       return false;
     }
   }
