@@ -165,8 +165,8 @@ long rightlowleg[3][20][50];
 long righthighleg[3][20][50];
 long head[3][20][50];
 long speed[20][50];
-GLuint Map[100][100];
-GLuint Walls[100][100];
+long Map[100][100];
+long Walls[100][100];
 int selected;
 float time[17];
 long framenum[17];
@@ -247,8 +247,8 @@ float oldguyx[17];
 float oldguyy[17];
 int guymapx[17];
 int guymapy[17];
-int startplacex[17];
-int startplacey[17];
+long startplacex[17];
+long startplacey[17];
 int playerstartnum;
 float guyvely[17];
 float guyvelx[17];
@@ -13364,7 +13364,7 @@ void DoKeys(int whichguy) {
   }
 }
 
-void runGameLoop(SDL_Window *window) {
+void runGameEventLoop(SDL_Window *window) {
   const Uint32 TARGET_TICKS_PER_FRAME = 16; // About 60fps
   SDL_Event e;
   int x, y, a, b, c, d;

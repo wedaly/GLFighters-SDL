@@ -38,7 +38,7 @@ int main(int argc, char *args[]) {
     return 1;
   }
 
-  runGameLoop(window);
+  runGameEventLoop(window);
 
   disposeGame();
   SDL_DestroyWindow(window);
