@@ -3885,7 +3885,6 @@ void SwitchFrame(int whichguy);
 void SwitchFrame(int whichguy) {
   int x, y, a, b, c, d, e, f, g;
   float randomjohn;
-  unsigned char theKeyMap[16];
   Point3D point2;
   guymapx[whichguy] = (guyx[whichguy] + 595) / 10;
   guymapy[whichguy] = guyy[whichguy] / -20 - .5 + 40;
@@ -7715,7 +7714,6 @@ Point3D FindLeftGunPoint(int whichguy) {
 
 void DoPlayerStuff(int whichguy);
 void DoAIPlayerStuff(int whichguy) {
-  unsigned char theKeyMap[16];
   lightningfxdelay[whichguy] -= multiplier;
   int x, y, a, b, c, d, e, f, g, verydead = 0;
   int slowspeed = 500;
@@ -8877,7 +8875,6 @@ void DoAIPlayerStuff(int whichguy) {
 
 void DoPlayerStuff(int whichguy);
 void DoPlayerStuff(int whichguy) {
-  unsigned char theKeyMap[16];
   lightningfxdelay[whichguy] -= multiplier;
   int x, y, a, b, c, d, e, f, g, verydead = 0;
   int slowspeed = 500;
@@ -10697,7 +10694,6 @@ int CheckAIKey(int whichguy, int which) {
 }
 
 void DoAIKeys(int whichguy) {
-  unsigned char theKeyMap[16];
   int a, b, c, d, e, f, g, h, x, y;
   int guywillbe;
 
@@ -12033,7 +12029,6 @@ void DoAIKeys(int whichguy) {
 }
 
 void DoKeys(int whichguy) {
-  unsigned char theKeyMap[16];
   int a, b, c, d, e, f, g, h, x, y;
   int guywillbe;
 
