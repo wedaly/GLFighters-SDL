@@ -13826,8 +13826,6 @@ bool initGame(int screenwidthArg, int screenheightArg) {
   screenwidth = screenwidthArg;
   screenheight = screenheightArg;
 
-  glEnable(GL_TEXTURE_2D);
-
   if (!loadTextures()) {
     printf("Failed loading textures\n");
     return false;

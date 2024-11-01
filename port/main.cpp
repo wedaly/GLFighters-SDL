@@ -4,8 +4,8 @@
 #include <SDL2/SDL.h>
 #include <cstdio>
 
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
+const int SCREEN_WIDTH = 1600;
+const int SCREEN_HEIGHT = 1200;
 
 int main(int argc, char *args[]) {
   if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0) {
