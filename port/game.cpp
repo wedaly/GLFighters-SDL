@@ -13368,7 +13368,7 @@ void runGameEventLoop(SDL_Window *window) {
   // Keep doing the event loop while not gQuit
   while (!gQuit) {
     Point3D point2;
-    Uint32 startTicks = SDL_GetTicks(); // milliseconds
+    Uint64 startTicks = SDL_GetTicks64(); // milliseconds
 
     while (SDL_PollEvent(&e)) {
       switch (e.type) {
@@ -13472,14 +13472,13 @@ void runGameEventLoop(SDL_Window *window) {
       multiplier = oldmult;
     }
 
-    Uint32 endTicks = SDL_GetTicks(); // milliseconds
-    Uint32 elapsedTicks = endTicks - startTicks;
+    Uint64 endTicks = SDL_GetTicks64(); // milliseconds
+    Uint64 elapsedTicks = endTicks - startTicks;
     if (elapsedTicks < TARGET_TICKS_PER_FRAME) {
       SDL_Delay(TARGET_TICKS_PER_FRAME - elapsedTicks);
     }
-    timetaken = endTicks - startTicks;
-
-    framespersecond = 600000000 / timetaken;
+    timetaken = SDL_GetTicks64() - startTicks;
+    framespersecond = 1000 / timetaken;
     multiplier5 = multiplier4;
     multiplier4 = multiplier3;
     multiplier3 = multiplier2;
