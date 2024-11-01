@@ -766,8 +766,6 @@ int InitGL(GLvoid) // All Setup For OpenGL Goes Here
     jetglownum[num] = 0;
     exists[num] = 1;
   }
-  glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP); // Set The Texture Generation Mode For S To Sphere Mapping (NEW)
-  glTexGeni(GL_T, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP); // Set The Texture Generation Mode For T To Sphere Mapping (NEW)
   // speedmult[0]=10;  //Megaspeed!
   jetpack[0] = 1;
   jetpack[1] = 1;
@@ -940,9 +938,6 @@ int InitGL(GLvoid) // All Setup For OpenGL Goes Here
   glLightfv(GL_LIGHT3, GL_POSITION, LightPosition2); // Position The Light
   glDisable(GL_LIGHT3);
   // glEnable(GL_AUTO_NORMAL);
-  glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP); // Set The Texture Generation Mode For S To Sphere Mapping (NEW)
-  glTexGeni(GL_T, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP); // Set The Texture Generation Mode For T To Sphere Mapping (NEW)
-  glTexGeni(GL_Q, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP); // Set The Texture Generation Mode For T To Sphere Mapping (NEW)
   glEnable(GL_LIGHTING);
 
   if (fogtoggle) {
