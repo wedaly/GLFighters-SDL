@@ -729,6 +729,23 @@ void ChangeLightning(int howmany, float endoffset, int which) {
   }
 }
 
+GLvoid ReSizeGLScene(GLsizei width, GLsizei height, float fov) {
+  if (height == 0) {
+    height = 1;
+  }
+
+  glViewport(0, 0, width, height);
+
+  glMatrixMode(GL_PROJECTION);
+  glLoadIdentity();
+
+  // Calculate The Aspect Ratio Of The Window
+  gluPerspective(fov, (GLfloat)width / (GLfloat)height, 0.1f, 1000000.0f);
+
+  glMatrixMode(GL_MODELVIEW);
+  glLoadIdentity();
+}
+
 int InitGL(GLvoid) // All Setup For OpenGL Goes Here
 {
   int num = 0;
@@ -3358,6 +3375,20 @@ void HandleKeyDown(char theChar) {
     break;
   case 'A':
     constantswordtrail = 1 - constantswordtrail;
+    break;
+  case 9:
+    if (firstperson == 1) {
+      firstperson = 2;
+    }
+    if (firstperson == 0) {
+      firstperson = 1;
+      ReSizeGLScene(screenwidth, screenheight, 90);
+    }
+    if (firstperson == 2) {
+      firstperson = 0;
+      ReSizeGLScene(screenwidth, screenheight, 45);
+      yrot = 0;
+    }
     break;
   case '-':
     if (changablejump == 1) {
@@ -13850,6 +13881,8 @@ bool initGame(int screenwidthArg, int screenheightArg) {
     printf("Failed loading map\n");
     return false;
   }
+
+  ReSizeGLScene(screenwidth, screenheight, 45);
 
   if (!InitGL()) {
     printf("Failed in InitGL\n");
