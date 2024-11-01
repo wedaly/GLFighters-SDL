@@ -3246,7 +3246,7 @@ void WallBounds(int toggle) {
   }
 }
 
-void HandleKeyDown(char theChar) {
+void HandleKeyDown(int keyID) {
   int x;
   int y;
   // The key presses handled here don't need register quite as quickly, so we'll let the
@@ -3256,28 +3256,28 @@ void HandleKeyDown(char theChar) {
   // as multiple hits (because of the frequency of calls to it) which is very annoying when
   // only trying to toggle variables.
   if (mapeditor) {
-    switch (theChar) {
-    case '8':
+    switch (keyID) {
+    case '8': // TODO
       if (selectedy > 0) {
         selectedy--;
       }
       break;
-    case '5':
+    case '5': // TODO
       if (selectedy < 99) {
         selectedy++;
       }
       break;
-    case '4':
+    case '4': // TODO
       if (selectedx > 0) {
         selectedx--;
       }
       break;
-    case '6':
+    case '6': // TODO
       if (selectedx < 99) {
         selectedx++;
       }
       break;
-    case '1':
+    case '1': // TODO
       if (Map[selectedx][selectedy] != 1) {
         Map[selectedx][selectedy] = 1;
         for (x = 0; x < 20; x++) {
@@ -3285,7 +3285,7 @@ void HandleKeyDown(char theChar) {
         }
       }
       break;
-    case '2':
+    case '2': // TODO
       if (Map[selectedx][selectedy] != 2) {
         Map[selectedx][selectedy] = 2;
         for (x = 0; x < 50; x++) {
@@ -3293,7 +3293,7 @@ void HandleKeyDown(char theChar) {
         }
       }
       break;
-    case '3':
+    case '3': // TODO
       if (Map[selectedx][selectedy] != 3) {
         Map[selectedx][selectedy] = 3;
         for (x = 0; x < 50; x++) {
@@ -3301,20 +3301,20 @@ void HandleKeyDown(char theChar) {
         }
       }
       break;
-    case '7':
+    case '7': // TODO
       playerstartnum++;
       if (playerstartnum >= 16) {
         playerstartnum = 0;
       }
       break;
-    case '9':
+    case '9': // TODO
       startplacex[playerstartnum] = selectedx;
       startplacey[playerstartnum] = selectedy;
       for (x = 0; x < 50; x++) {
         MakeSprite(selectedx * 10 - 590, RangedRandom((selectedy - 39) * -20 + 10, (selectedy - 39) * -20 + .5 + 30), 0, 200, spawnstars, RangedRandom(1, 360), 10, RangedRandom(2, 3), 0, -.1, 0);
       }
       break;
-    case '+':
+    case '+': // TODO
       if (Walls[selectedx][selectedy] != 1) {
         Walls[selectedx][selectedy] = 1;
         for (x = 0; x < 50; x++) {
@@ -3322,7 +3322,7 @@ void HandleKeyDown(char theChar) {
         }
       }
       break;
-    case '0':
+    case '0': // TODO
       if (Map[selectedx][selectedy] == 2 || Map[selectedx][selectedy] == 3 || Walls[selectedx][selectedy] != 0) {
         for (x = 0; x < 50; x++) {
           MakeSprite(selectedx * 10 - 590, RangedRandom((selectedy - 39) * -20 + 10, (selectedy - 39) * -20 + .5 + 30), 0, 200, deletestars, RangedRandom(1, 360), 10, RangedRandom(2, 3), 0, -.1, 0);
@@ -3340,8 +3340,8 @@ void HandleKeyDown(char theChar) {
   }
 
   if (mapeditor == 0) {
-    switch (theChar) {
-    case '1':
+    switch (keyID) {
+    case '1': // TODO
       /*if (invisible==0){invisible=2;}
       if (invisible==1){invisible=0;}
       if (invisible==2){invisible=1;}*/
@@ -3357,61 +3357,65 @@ void HandleKeyDown(char theChar) {
 
   // display=theChar;
 
-  switch (theChar) {
-  case 'S':
+  switch (keyID) {
+  case KEY_TOGGLE_SHOW_INFO_ID:
     showinfo++;
     if (showinfo >= 4) {
       showinfo = 0;
     }
     break;
-  case 'I':
+  case KEY_GIVE_9999_HEALTH_ID:
     health[0] = 10000;
     health[1] = 10000;
     break;
-  case 'o':
+  case KEY_TOGGLE_OFFENSIVE_AI_ID:
     AIOffensive = 1 - AIOffensive;
     break;
-  case 'O':
+  case KEY_TOGGLE_AUTO_RESPAWN_ID:
     autorespawn = 1 - autorespawn;
     break;
-  case 'A':
+  case KEY_TOGGLE_POLYGON_HAND_TRAILS_ID:
     constantswordtrail = 1 - constantswordtrail;
     break;
-  case 9:
-    if (firstperson == 1) {
-      firstperson = 2;
-    }
-    if (firstperson == 0) {
-      firstperson = 1;
-      ReSizeGLScene(screenwidth, screenheight, 90);
-    }
-    if (firstperson == 2) {
-      firstperson = 0;
-      ReSizeGLScene(screenwidth, screenheight, 45);
-      yrot = 0;
-    }
-    break;
-  case '-':
+    /*
+case 9: // TODO
+if (firstperson == 1) {
+firstperson = 2;
+}
+if (firstperson == 0) {
+firstperson = 1;
+ReSizeGLScene(screenwidth, screenheight, 90);
+}
+if (firstperson == 2) {
+firstperson = 0;
+ReSizeGLScene(screenwidth, screenheight, 45);
+yrot = 0;
+}
+break;
+    */
+  case KEY_TOGGLE_INC_JUMP_HEIGHT_ID:
     if (changablejump == 1) {
       jumpstrength++;
     }
     break;
-  case '*':
-    if (changablejump == 1) {
-      jumpstrength--;
-    }
-    break;
-  case '=':
+    /*
+case '*': // TODO
+if (changablejump == 1) {
+jumpstrength--;
+}
+break;
+    */
+  case KEY_TOGGLE_INC_GRAVITY_ID:
     if (changablejump == 1) {
       gravity -= .005;
     }
     break;
-  case '/':
+  case KEY_TOGGLE_DEC_GRAVITY_ID:
     if (changablejump == 1) {
       gravity += .005;
     }
     break;
-  case 'L':
+  case KEY_TOGGLE_LIGHTNING_ID:
     if (lighting == 1) {
       lighting = 2;
     }
@@ -3428,7 +3432,7 @@ void HandleKeyDown(char theChar) {
       glDisable(GL_LIGHT1);
     }
     break;
-  case 'c':
+  case KEY_TOGGLE_CHANGE_GRAVITY_AND_JUMP_HEIGHT_ID:
     if (changablejump == 1) {
       changablejump = 2;
     }
@@ -3439,16 +3443,16 @@ void HandleKeyDown(char theChar) {
       changablejump = 0;
     }
     break;
-  case 'C':
+  case KEY_TOGGLE_P1_AI_ID:
     computercontrolled[1] = 1 - computercontrolled[1];
     break;
-  case 'D':
+  case KEY_TOGGLE_P2_AI_ID:
     computercontrolled[0] = 1 - computercontrolled[0];
     break;
-  case 'z':
+  case KEY_RESPAWN_PLAYER_CHARACTERS_ID:
     restartRound();
     break;
-  case 'Z':
+  case KEY_TOGGLE_P1_WEAPON_ID:
     // for(x=0;x<numplayers;x++){
     itemnum[0]++;
     if (itemnum[0] == 4 && itemtype[0] == 0) {
@@ -3470,7 +3474,7 @@ void HandleKeyDown(char theChar) {
     }
     //}
     break;
-  case 'V':
+  case KEY_TOGGLE_P2_WEAPON_ID:
     // for(x=0;x<numplayers;x++){
     itemnum[1]++;
     if (itemnum[1] == 4 && itemtype[1] == 0) {
@@ -3498,7 +3502,7 @@ void HandleKeyDown(char theChar) {
           if (scalenormals==1){scalenormals=0;}
           if (scalenormals==2){scalenormals=1;}
           break;*/
-  case 'F':
+  case KEY_TOGGLE_FOG_ID:
     if (fogtoggle == 0) {
       fogtoggle = 2;
     }
@@ -3511,7 +3515,7 @@ void HandleKeyDown(char theChar) {
       glEnable(GL_FOG);
     }
     break;
-  case 'x':
+  case KEY_P1_CLOAK_ID:
     /*if (invisible==0){invisible=2;}
     if (invisible==1){invisible=0;}
     if (invisible==2){invisible=1;}*/
@@ -3522,7 +3526,7 @@ void HandleKeyDown(char theChar) {
       cloaktime[0] = 0;
     }
     break;
-  case 'u':
+  case KEY_TOGGLE_JETPACKS_ID:
     if (jetpack[0] == 0) {
       jetpack[0] = 2;
     }
@@ -3550,22 +3554,22 @@ void HandleKeyDown(char theChar) {
       jetpack[1] = 1;
     }
     break;
-  case 'U':
+  case KEY_TOGGLE_UNLIMITED_AMMO_ID:
     unlimitedammo = 1 - unlimitedammo;
     break;
-  case 'y':
+  case KEY_P1_TURN_OFF_JETPACK_ID:
     usingjetpack[0] = 0;
     if (activity[0] == jetidle || activity[0] == jetleft || activity[0] == jetup || activity[0] == jetright) {
       activity[0] = falling;
     }
     break;
-  case '3':
+  case KEY_P2_TURN_OFF_JETPACK_ID:
     usingjetpack[1] = 0;
     if (activity[1] == jetidle || activity[1] == jetleft || activity[1] == jetup || activity[1] == jetright) {
       activity[1] = falling;
     }
     break;
-  case 'X':
+  case KEY_TOGGLE_PARTICLE_HAND_TRAILS_ID:
     if (trail == 0) {
       trail = 2;
     }
@@ -3576,7 +3580,7 @@ void HandleKeyDown(char theChar) {
       trail = 1;
     }
     break;
-  case 'v':
+  case KEY_TOGGLE_FREE_CAMERA_ID:
     if (guytrack == 0) {
       guytrack = 2;
     }
@@ -3587,7 +3591,7 @@ void HandleKeyDown(char theChar) {
       guytrack = 1;
     }
     break;
-  case 'b':
+  case KEY_TOGGLE_SLOW_MOTION_ID:
     if (slowdown == 0) {
       slowdown = 2;
     }
@@ -3598,7 +3602,7 @@ void HandleKeyDown(char theChar) {
       slowdown = 1;
     }
     break;
-  case 'B':
+  case KEY_TOGGLE_FREEZE_TIME_ID:
     if (freezetime == 0) {
       freezetime = 2;
     }
@@ -3609,7 +3613,7 @@ void HandleKeyDown(char theChar) {
       freezetime = 1;
     }
     break;
-  case 'm':
+  case KEY_TOGGLE_WIREFRAME_ID:
     if (wireframe == 0) {
       wireframe = 2;
     }
@@ -3626,7 +3630,7 @@ void HandleKeyDown(char theChar) {
       glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     }
     break;
-  case 'M':
+  case 'M': // TODO
     if (mapeditor == 0) {
       mapeditor = 2;
     }
@@ -3637,7 +3641,7 @@ void HandleKeyDown(char theChar) {
       mapeditor = 1;
     }
     break;
-  case 'n':
+  case KEY_TOGGLE_BACKGROUND_ID:
     theme++;
     if (theme > 7) {
       theme = 0;
@@ -3716,7 +3720,7 @@ void HandleKeyDown(char theChar) {
       WallBounds(0);
     }
     break;
-  case 'N':
+  case KEY_TOGGLE_SKINS_ID:
     for (x = 0; x < numplayers; x++) {
       skin[x]++;
       if (skin[x] > 4) {
@@ -3759,7 +3763,7 @@ void HandleKeyDown(char theChar) {
       }
     }
     break;
-  case '?':
+  case '?': // TODO
     for (x = 0; x < 100; x++) {
       for (y = 0; y < 100; y++) {
         Map[x][y] = 0;
