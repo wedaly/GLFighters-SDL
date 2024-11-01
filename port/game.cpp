@@ -3167,8 +3167,8 @@ void restartRound() {
   guyvelx[0] = 0;
   guyvely[0] = 0;
   randomint = RangedRandom(0, 15) + 7;
-  guyx[0] = startplacex[randomint%17] * 10 - 590;
-  guyy[0] = (startplacey[randomint%17] - 39) * -20 + .5;
+  guyx[0] = startplacex[randomint % 17] * 10 - 590;
+  guyy[0] = (startplacey[randomint % 17] - 39) * -20 + .5;
   activity[0] = 1;
   dead[0] = 0;
   anim[0] = 1;
@@ -13397,6 +13397,7 @@ void runGameEventLoop(SDL_Window *window) {
     if (!nodraw) {
       glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
       DrawGLScene();
+      glFlush();
       SDL_GL_SwapWindow(window);
       oldmult = multiplier;
 
@@ -13595,10 +13596,10 @@ bool LoadAnimation(char *path, int animnum) {
     return false;
   }
 
-	if (localframenum > 100) {
-		fclose(f);
-		return false;
-	}
+  if (localframenum > 0 && localframenum > 100) {
+    fclose(f);
+    return false;
+  }
 
   for (x = 0; x < 3; x++) {
     for (y = 0; y < 20; y++) {
@@ -13826,7 +13827,11 @@ bool LoadNamedMap(char *path) {
   return true;
 }
 
-bool initGame(int screenwidth, int screenheight) {
+bool initGame(int screenwidthArg, int screenheightArg) {
+  // Store screen width and screen height as globals
+  screenwidth = screenwidthArg;
+  screenheight = screenheightArg;
+
   glEnable(GL_TEXTURE_2D);
 
   if (!loadTextures()) {
