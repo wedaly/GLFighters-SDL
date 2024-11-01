@@ -5,6 +5,7 @@
 #include "sound.h"
 #include "textures.h"
 #include <GL/gl.h>
+#include <GL/glu.h>
 #include <cstdio>
 
 bool light;
