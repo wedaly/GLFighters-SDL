@@ -3167,8 +3167,8 @@ void restartRound() {
   guyvelx[0] = 0;
   guyvely[0] = 0;
   randomint = RangedRandom(0, 15) + 7;
-  guyx[0] = startplacex[randomint] * 10 - 590;
-  guyy[0] = (startplacey[randomint] - 39) * -20 + .5;
+  guyx[0] = startplacex[randomint%17] * 10 - 590;
+  guyy[0] = (startplacey[randomint%17] - 39) * -20 + .5;
   activity[0] = 1;
   dead[0] = 0;
   anim[0] = 1;
