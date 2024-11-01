@@ -3784,7 +3784,7 @@ void MakeSprite(float x, float y, float z, float brightness, float type, float s
 GLfloat RangedRandom(GLfloat low, GLfloat high) {
   GLfloat range, randomNumber;
   range = absolute(high - low);
-  randomNumber = rand();
+  randomNumber = rand() % 65536;
   return ((randomNumber * range) / 65535) + low + .9;
 }
 
