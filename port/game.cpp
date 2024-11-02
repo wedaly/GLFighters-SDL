@@ -4720,7 +4720,7 @@ void SwitchFrame(int whichguy) {
       }
     }
     if (freezetime == 0 && itemnum[whichguy] == 4) {
-      g = RangedRandom(SND_GUNSHOT1_ID, SND_GUNSHOT3_ID) + 1;
+      g = rand() % 3 + SND_GUNSHOT1_ID; // to GUNSHOT3_ID
       // display=g;
       if (smokingbody[whichguy][kRightGun] < 40) {
         smokingbody[whichguy][kRightGun] += 20;
@@ -4828,7 +4828,7 @@ void SwitchFrame(int whichguy) {
           lighton[1] = 1;
           lightbrightness[1] = 255;
         }
-        g = RangedRandom(SND_LIGHTNINGSYS7_ID, SND_LIGHTNINGHIGHS7_ID) + 1;
+        g = rand() % 3 + SND_LIGHTNINGSYS7_ID; // to SND_LIGHTNINGHIGHSYS7_ID
         if (b != -1) {
           playSound(g, 100);
         }
@@ -4844,7 +4844,7 @@ void SwitchFrame(int whichguy) {
       }
     }
     if (freezetime == 0 && itemnum[whichguy] == 5) {
-      g = RangedRandom(SND_MGUNSHOT1SYS7_ID, SND_MGUNSHOT3SYS7_ID) + 1;
+      g = rand() % 3 + SND_MGUNSHOT1SYS7_ID; // to SND_MGUNSONG3SYS7_ID
       playSound(g, 200);
       if (smokingbody[whichguy][kRightGun] < 40) {
         smokingbody[whichguy][kRightGun] += 20;
@@ -4888,7 +4888,7 @@ void SwitchFrame(int whichguy) {
       }
     }
     if (freezetime == 0 && itemnum[whichguy] == 4) {
-      g = RangedRandom(SND_GUNSHOT1_ID, SND_GUNSHOT3_ID) + 1;
+      g = rand() % 3 + SND_GUNSHOT1_ID; // to SND_GUNSHOT3_ID
       if (smokingbody[whichguy][kRightGun] < 40) {
         smokingbody[whichguy][kRightGun] += 20;
       }
@@ -4991,7 +4991,7 @@ void SwitchFrame(int whichguy) {
           lighton[1] = 1;
           lightbrightness[1] = 255;
         }
-        g = RangedRandom(SND_LIGHTNINGSYS7_ID, SND_LIGHTNINGHIGHS7_ID) + 1;
+        g = rand() % 3 + SND_LIGHTNINGSYS7_ID; // to SND_LIGHTNINGHIGHS7_ID
         if (b != -1) {
           playSound(g, 100);
         }
@@ -5010,7 +5010,7 @@ void SwitchFrame(int whichguy) {
       if (smokingbody[whichguy][kRightGun] < 40) {
         smokingbody[whichguy][kRightGun] += 20;
       }
-      g = RangedRandom(SND_MGUNSHOT1SYS7_ID, SND_MGUNSHOT3SYS7_ID) + 1;
+      g = rand() % 3 + SND_MGUNSHOT1SYS7_ID; // to SND_MGUNSHOT3SYS7_ID
       playSound(g, 200);
       MakeSprite(point.x - 2, point.y, point.z, 255, tracersprite, 0, 10, 0, -100, randomjohn / 4, 0);
       sprite[unusedsprite].stage = 1;
@@ -5196,19 +5196,19 @@ void SwitchFrame(int whichguy) {
       activity[whichguy] == jetimpaleright || activity[whichguy] == jetimpaleleft ||
       activity[whichguy] == duckimpaleright || activity[whichguy] == duckimpaleleft) {
     if (frame[whichguy] == 2 && itemtype[whichguy] == 0) {
-      g = RangedRandom(SND_WHOOSH1SYS7_ID, SND_WHOOSH3SYS7_ID) + 1;
+      g = rand() % 3 + SND_WHOOSH1SYS7_ID; // to SND_WHOOSH3SYS7_ID
       playSound(g, 200);
     }
     if (frame[whichguy] == 2 && itemtype[whichguy] == 1) {
-      g = RangedRandom(SND_SABER3SYS7_ID, SND_SABER2SYS7_ID) + 1;
+      g = rand() % 3 + SND_SABER3SYS7_ID; // to SND_SABER2SYS7_ID (out of order).
       playSound(g, 200);
     }
     if (frame[whichguy] == 7 && itemtype[whichguy] == 0 && (activity[whichguy] == swordthrowright || activity[whichguy] == swordthrowleft)) {
-      g = RangedRandom(SND_WHOOSH1SYS7_ID, SND_WHOOSH3SYS7_ID) + 1;
+      g = rand() % 3 + SND_WHOOSH1SYS7_ID; // to SND_WHOOSH3SYS7_ID
       playSound(g, 200);
     }
     if (frame[whichguy] == 7 && itemtype[whichguy] == 1 && (activity[whichguy] == swordthrowright || activity[whichguy] == swordthrowleft)) {
-      g = RangedRandom(SND_SABER3SYS7_ID, SND_SABER2SYS7_ID) + 1;
+      g = rand() % 3 + SND_SABER3SYS7_ID; // to SND_SABER2SYS7_ID (out of order).
       playSound(g, 200);
     }
   }
