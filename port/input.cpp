@@ -5,176 +5,123 @@ static const int numKeysTracked = 57;
 static bool keyState[numKeysTracked] = {0};
 
 int translateSDLEventToKeyID(SDL_KeyboardEvent &e) {
-  switch (e.keysym.sym) {
-  case 'a':
+  SDL_Keycode keycode = e.keysym.sym;
+  Uint16 mod = e.keysym.mod;
+  bool shift = (mod & KMOD_LSHIFT) || (mod & KMOD_RSHIFT);
+
+  if (keycode == 'a' && !shift) {
     return KEY_P1_LEFT_ID;
-
-  case 'd':
+  } else if (keycode == 'd' && !shift) {
     return KEY_P1_RIGHT_ID;
-
-  case 's':
+  } else if (keycode == 's' && !shift) {
     return KEY_P1_DOWN_ID;
-
-  case 'w':
+  } else if (keycode == 'w' && !shift) {
     return KEY_P1_UP_ID;
-
-  case 'q':
+  } else if (keycode == 'q' && !shift) {
     return KEY_P1_SHOOT_LEFT_ID;
-
-  case 'e':
+  } else if (keycode == 'e' && !shift) {
     return KEY_P1_SHOOT_RIGHT_ID;
-
-  case 'r':
+  } else if (keycode == 'r' && !shift) {
     return KEY_P1_ATTACK_ID;
-
-  case 't':
+  } else if (keycode == 't' && !shift) {
     return KEY_P1_BLOCK_ID;
-
-  case 'y':
+  } else if (keycode == 'y' && !shift) {
     return KEY_P1_TURN_OFF_JETPACK_ID;
-
-  case 'x':
+  } else if (keycode == 'x' && !shift) {
     return KEY_P1_CLOAK_ID;
-
-  case SDLK_KP_4:
+  } else if (keycode == SDLK_KP_4) {
     return KEY_P2_LEFT_ID;
-
-  case SDLK_KP_6:
+  } else if (keycode == SDLK_KP_6) {
     return KEY_P2_RIGHT_ID;
-
-  case SDLK_KP_5:
+  } else if (keycode == SDLK_KP_5) {
     return KEY_P2_DOWN_ID;
-
-  case SDLK_KP_8:
+  } else if (keycode == SDLK_KP_8) {
     return KEY_P2_UP_ID;
-
-  case SDLK_KP_7:
+  } else if (keycode == SDLK_KP_7) {
     return KEY_P2_SHOOT_LEFT_ID;
-
-  case SDLK_KP_9:
+  } else if (keycode == SDLK_KP_9) {
     return KEY_P2_SHOOT_RIGHT_ID;
-
-  case SDLK_KP_0:
+  } else if (keycode == SDLK_KP_0) {
     return KEY_P2_ATTACK_ID;
-
-  case SDLK_KP_ENTER:
+  } else if (keycode == SDLK_KP_ENTER) {
     return KEY_P2_BLOCK_ID;
-
-  case SDLK_KP_3:
+  } else if (keycode == SDLK_KP_3) {
     return KEY_P2_TURN_OFF_JETPACK_ID;
-
-  case SDLK_KP_1:
+  } else if (keycode == SDLK_KP_1) {
     return KEY_P2_CLOAK_ID;
-
-  case 'i':
+  } else if (keycode == 'i' && !shift) {
     return KEY_CAMERA_UP_ID;
-
-  case 'k':
+  } else if (keycode == 'k' && !shift) {
     return KEY_CAMERA_DOWN_ID;
-
-  case 'j':
+  } else if (keycode == 'j' && !shift) {
     return KEY_CAMERA_LEFT_ID;
-
-  case 'l':
+  } else if (keycode == 'l' && !shift) {
     return KEY_CAMERA_RIGHT_ID;
-
-  case SDLK_PAGEUP:
+  } else if (keycode == SDLK_PAGEUP) {
     return KEY_CAMERA_ZOOM_IN_ID;
-
-  case SDLK_PAGEDOWN:
+  } else if (keycode == SDLK_PAGEDOWN) {
     return KEY_CAMERA_ZOOM_OUT_ID;
-
-  case SDLK_LEFT:
+  } else if (keycode == SDLK_LEFT) {
     return KEY_CAMERA_ROTATE_LEFT_ID;
-
-  case SDLK_RIGHT:
+  } else if (keycode == SDLK_RIGHT) {
     return KEY_CAMERA_ROTATE_RIGHT_ID;
-
-  case SDLK_UP:
+  } else if (keycode == SDLK_UP) {
     return KEY_CAMERA_ROTATE_UP_ID;
-
-  case SDLK_DOWN:
+  } else if (keycode == SDLK_DOWN) {
     return KEY_CAMERA_ROTATE_DOWN_ID;
-
-  case 'F':
+  } else if (keycode == 'f' && shift) {
     return KEY_TOGGLE_FOG_ID;
-
-  case 'm':
+  } else if (keycode == 'm' && !shift) {
     return KEY_TOGGLE_WIREFRAME_ID;
-
-  case 'n':
+  } else if (keycode == 'n' && !shift) {
     return KEY_TOGGLE_BACKGROUND_ID;
-
-  case 'N':
+  } else if (keycode == 'n' && shift) {
     return KEY_TOGGLE_SKINS_ID;
-
-  case 'b':
+  } else if (keycode == 'b' && !shift) {
     return KEY_TOGGLE_SLOW_MOTION_ID;
-
-  case 'B':
+  } else if (keycode == 'b' && shift) {
     return KEY_TOGGLE_FREEZE_TIME_ID;
-
-  case 'v':
+  } else if (keycode == 'v' && !shift) {
     return KEY_TOGGLE_FREE_CAMERA_ID;
-
-  case 'z':
+  } else if (keycode == 'z' && !shift) {
     return KEY_RESPAWN_PLAYER_CHARACTERS_ID;
-
-  case 'Z':
+  } else if (keycode == 'z' && shift) {
     return KEY_TOGGLE_P1_WEAPON_ID;
-
-  case 'V':
+  } else if (keycode == 'v' && shift) {
     return KEY_TOGGLE_P2_WEAPON_ID;
-
-  case 'X':
+  } else if (keycode == 'x' && shift) {
     return KEY_TOGGLE_PARTICLE_HAND_TRAILS_ID;
-
-  case 'A':
+  } else if (keycode == 'a' && shift) {
     return KEY_TOGGLE_POLYGON_HAND_TRAILS_ID;
-
-  case 'S':
+  } else if (keycode == 's' && shift) {
     return KEY_TOGGLE_SHOW_INFO_ID;
-
-  case 'L':
+  } else if (keycode == 'l' && shift) {
     return KEY_TOGGLE_LIGHTNING_ID;
-
-  case 'u':
+  } else if (keycode == 'u' && !shift) {
     return KEY_TOGGLE_JETPACKS_ID;
-
-  case 'U':
+  } else if (keycode == 'u' && shift) {
     return KEY_TOGGLE_UNLIMITED_AMMO_ID;
-
-  case 'I':
+  } else if (keycode == 'i' && shift) {
     return KEY_GIVE_9999_HEALTH_ID;
-
-  case 'C':
+  } else if (keycode == 'c' && shift) {
     return KEY_TOGGLE_P1_AI_ID;
-
-  case 'D':
+  } else if (keycode == 'd' && shift) {
     return KEY_TOGGLE_P2_AI_ID;
-
-  case 'o':
+  } else if (keycode == 'o' && !shift) {
     return KEY_TOGGLE_OFFENSIVE_AI_ID;
-
-  case 'O':
+  } else if (keycode == 'O' && shift) {
     return KEY_TOGGLE_AUTO_RESPAWN_ID;
-
-  case 'c':
+  } else if (keycode == 'c' && !shift) {
     return KEY_TOGGLE_CHANGE_GRAVITY_AND_JUMP_HEIGHT_ID;
-
-  case '=':
+  } else if (keycode == '=' && !shift) {
     return KEY_TOGGLE_INC_GRAVITY_ID;
-
-  case '/':
+  } else if (keycode == '/' && !shift) {
     return KEY_TOGGLE_DEC_GRAVITY_ID;
-
-  case '-':
+  } else if (keycode == '-' && !shift) {
     return KEY_TOGGLE_INC_JUMP_HEIGHT_ID;
-
-  case '+':
+  } else if (keycode == '=' && shift) { // + (plus)
     return KEY_TOGGLE_DEC_JUMP_HEIGHT_ID;
-
-  case SDLK_ESCAPE:
+  } else if (keycode == SDLK_ESCAPE) {
     return KEY_QUIT_ID;
   }
 
