@@ -123,11 +123,6 @@ int leftshootpressed[17];
 int dead[17];
 float gravity;
 float multiplier, multiplier2, multiplier3, multiplier4, multiplier5, end, start, timetaken, framespersecond;
-struct
-{
-  unsigned long mm_timer_start;
-  unsigned long mm_timer_elapsed;
-} timer;
 
 #define kMaxLightning 30
 int unusedlightning;
