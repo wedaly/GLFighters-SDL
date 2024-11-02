@@ -242,8 +242,8 @@ float oldguyx[17];
 float oldguyy[17];
 int guymapx[17];
 int guymapy[17];
-int startplacex[17];
-int startplacey[17];
+int startplacex[16];
+int startplacey[16];
 int playerstartnum;
 float guyvely[17];
 float guyvelx[17];
@@ -993,8 +993,6 @@ int InitGL(GLvoid) // All Setup For OpenGL Goes Here
   kDownKey[1] = KEY_P2_DOWN_ID;
   ammo[1] = 30;
   itemnum[1] = 1;
-  restartRound();
-  WallBounds(cube);
   return true; // Initialization Went OK
 }
 
@@ -3175,8 +3173,8 @@ void restartRound() {
   guyvelx[0] = 0;
   guyvely[0] = 0;
   randomint = RangedRandom(0, 15) + 7;
-  guyx[0] = startplacex[randomint % 17] * 10 - 590;
-  guyy[0] = (startplacey[randomint % 17] - 39) * -20 + .5;
+  guyx[0] = startplacex[randomint % 16] * 10 - 590;
+  guyy[0] = (startplacey[randomint % 16] - 39) * -20 + .5;
   activity[0] = 1;
   dead[0] = 0;
   anim[0] = 1;
@@ -3196,8 +3194,8 @@ void restartRound() {
   if (randomint2 >= randomint) {
     randomint2++;
   }
-  guyx[1] = startplacex[randomint2 % 17] * 10 - 590;
-  guyy[1] = (startplacey[randomint2 % 17] - 39) * -20 + .5;
+  guyx[1] = startplacex[randomint2 % 16] * 10 - 590;
+  guyy[1] = (startplacey[randomint2 % 16] - 39) * -20 + .5;
   activity[1] = 1;
   dead[1] = 0;
   anim[1] = 1;
@@ -13888,6 +13886,9 @@ bool initGame(int screenwidthArg, int screenheightArg) {
     printf("Failed loading map\n");
     return false;
   }
+
+  restartRound();
+  WallBounds(cube);
 
   return true;
 }
