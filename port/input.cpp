@@ -109,7 +109,7 @@ int translateSDLEventToKeyID(SDL_KeyboardEvent &e) {
     return KEY_TOGGLE_P2_AI_ID;
   } else if (keycode == 'o' && !shift) {
     return KEY_TOGGLE_OFFENSIVE_AI_ID;
-  } else if (keycode == 'O' && shift) {
+  } else if (keycode == 'o' && shift) {
     return KEY_TOGGLE_AUTO_RESPAWN_ID;
   } else if (keycode == 'c' && !shift) {
     return KEY_TOGGLE_CHANGE_GRAVITY_AND_JUMP_HEIGHT_ID;
