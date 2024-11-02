@@ -13534,25 +13534,25 @@ void runGameEventLoop(SDL_Window *window) {
         z += 1;
       }
     }
-    if (isKeyDown(KEY_CAMERA_ROTATE_UP_ID)) {
+    if (isKeyDown(KEY_CAMERA_ROTATE_DOWN_ID)) {
       xrot -= 1.0 * multiplier / 4;
       if (freezetime == 1) {
         xrot -= 5;
       }
     }
-    if (isKeyDown(KEY_CAMERA_ROTATE_DOWN_ID)) {
+    if (isKeyDown(KEY_CAMERA_ROTATE_UP_ID)) {
       xrot += 1.0 * multiplier / 4;
       if (freezetime == 1) {
         xrot += 5;
       }
     }
-    if (isKeyDown(KEY_CAMERA_ROTATE_RIGHT_ID)) {
+    if (isKeyDown(KEY_CAMERA_ROTATE_LEFT_ID)) {
       yrot += 1.0 * multiplier / 4;
       if (freezetime == 1) {
         yrot += 5;
       }
     }
-    if (isKeyDown(KEY_CAMERA_ROTATE_LEFT_ID)) {
+    if (isKeyDown(KEY_CAMERA_ROTATE_RIGHT_ID)) {
       yrot -= 1.0 * multiplier / 4;
       if (freezetime == 1) {
         yrot -= 5;
@@ -13561,25 +13561,25 @@ void runGameEventLoop(SDL_Window *window) {
     if (isKeyDown(KEY_QUIT_ID)) {
       gQuit = true;
     }
-    if (isKeyDown(KEY_CAMERA_DOWN_ID)) {
+    if (isKeyDown(KEY_CAMERA_UP_ID)) {
       cameray -= 0.3 * multiplier;
       if (freezetime == 1) {
         cameray -= multiplier / 3;
       }
     }
-    if (isKeyDown(KEY_CAMERA_UP_ID)) {
+    if (isKeyDown(KEY_CAMERA_DOWN_ID)) {
       cameray += 0.3 * multiplier;
       if (freezetime == 1) {
         cameray += multiplier / 3;
       }
     }
-    if (isKeyDown(KEY_CAMERA_RIGHT_ID)) {
+    if (isKeyDown(KEY_CAMERA_LEFT_ID)) {
       camerax += 0.3 * multiplier;
       if (freezetime == 1) {
         camerax += multiplier / 3;
       }
     }
-    if (isKeyDown(KEY_CAMERA_LEFT_ID)) {
+    if (isKeyDown(KEY_CAMERA_RIGHT_ID)) {
       camerax -= 0.3 * multiplier;
       if (freezetime == 1) {
         camerax -= multiplier / 3;
