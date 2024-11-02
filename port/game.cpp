@@ -3196,8 +3196,8 @@ void restartRound() {
   if (randomint2 >= randomint) {
     randomint2++;
   }
-  guyx[1] = startplacex[randomint2] * 10 - 590;
-  guyy[1] = (startplacey[randomint2] - 39) * -20 + .5;
+  guyx[1] = startplacex[randomint2 % 17] * 10 - 590;
+  guyy[1] = (startplacey[randomint2 % 17] - 39) * -20 + .5;
   activity[1] = 1;
   dead[1] = 0;
   anim[1] = 1;
