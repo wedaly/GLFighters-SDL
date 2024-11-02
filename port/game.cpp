@@ -3172,9 +3172,9 @@ void restartRound() {
   item[0].vely=.01;*/
   guyvelx[0] = 0;
   guyvely[0] = 0;
-  randomint = RangedRandom(0, 15) + 7;
-  guyx[0] = startplacex[randomint % 16] * 10 - 590;
-  guyy[0] = (startplacey[randomint % 16] - 39) * -20 + .5;
+  randomint = rand() % 13 + 3; // startplacex[1] falls to its death, so choose a range that excludes it AND is within [0, 16)
+  guyx[0] = startplacex[randomint] * 10 - 590;
+  guyy[0] = (startplacey[randomint] - 39) * -20 + .5;
   activity[0] = 1;
   dead[0] = 0;
   anim[0] = 1;
@@ -3190,12 +3190,13 @@ void restartRound() {
   }
   guyvelx[1] = 0;
   guyvely[1] = 0;
-  randomint2 = RangedRandom(0, 14) + 7;
-  if (randomint2 >= randomint) {
+  randomint2 = rand() % 14 + 2; // startplacex[1] falls to its death, so choose a range that excludes it AND is within [0, 15)
+                                // (leave one extra at the end in case we collide with the other player, can safely increment by one).
+  if (randomint2 == randomint) {
     randomint2++;
   }
-  guyx[1] = startplacex[randomint2 % 16] * 10 - 590;
-  guyy[1] = (startplacey[randomint2 % 16] - 39) * -20 + .5;
+  guyx[1] = startplacex[randomint2] * 10 - 590;
+  guyy[1] = (startplacey[randomint2] - 39) * -20 + .5;
   activity[1] = 1;
   dead[1] = 0;
   anim[1] = 1;
