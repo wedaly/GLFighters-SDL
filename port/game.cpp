@@ -13877,6 +13877,13 @@ bool initGame(int screenwidthArg, int screenheightArg) {
     return false;
   }
 
+  ReSizeGLScene(screenwidth, screenheight, 45);
+
+  if (!InitGL()) {
+    printf("Failed in InitGL\n");
+    return false;
+  }
+
   if (!loadAnimations()) {
     printf("Failed loading animations\n");
     return false;
@@ -13884,13 +13891,6 @@ bool initGame(int screenwidthArg, int screenheightArg) {
 
   if (!LoadNamedMap("./data/maps/NormalMap")) {
     printf("Failed loading map\n");
-    return false;
-  }
-
-  ReSizeGLScene(screenwidth, screenheight, 45);
-
-  if (!InitGL()) {
-    printf("Failed in InitGL\n");
     return false;
   }
 
