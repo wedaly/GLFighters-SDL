@@ -67,4 +67,6 @@ const int KEY_TOGGLE_DEC_GRAVITY_ID = 53;
 const int KEY_TOGGLE_INC_JUMP_HEIGHT_ID = 54;
 const int KEY_TOGGLE_DEC_JUMP_HEIGHT_ID = 55;
 
-const int KEY_QUIT_ID = 56;
+const int KEY_TOGGLE_FIRSTPERSON_ID = 56;
+
+const int KEY_QUIT_ID = 57;

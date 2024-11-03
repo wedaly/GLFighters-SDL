@@ -1,7 +1,7 @@
 #include "input.h"
 #include <SDL2/SDL.h>
 
-static const int numKeysTracked = 57;
+static const int numKeysTracked = 58;
 static bool keyState[numKeysTracked] = {0};
 
 int translateSDLEventToKeyID(SDL_KeyboardEvent &e) {
@@ -121,6 +121,8 @@ int translateSDLEventToKeyID(SDL_KeyboardEvent &e) {
     return KEY_TOGGLE_INC_JUMP_HEIGHT_ID;
   } else if (keycode == '=' && shift) { // + (plus)
     return KEY_TOGGLE_DEC_JUMP_HEIGHT_ID;
+  } else if (keycode == SDLK_TAB) {
+    return KEY_TOGGLE_FIRSTPERSON_ID;
   } else if (keycode == SDLK_ESCAPE) {
     return KEY_QUIT_ID;
   }

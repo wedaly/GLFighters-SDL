@@ -3371,22 +3371,20 @@ void HandleKeyDown(int keyID) {
   case KEY_TOGGLE_POLYGON_HAND_TRAILS_ID:
     constantswordtrail = 1 - constantswordtrail;
     break;
-    /*
-case 9: // TODO
-if (firstperson == 1) {
-firstperson = 2;
-}
-if (firstperson == 0) {
-firstperson = 1;
-ReSizeGLScene(screenwidth, screenheight, 90);
-}
-if (firstperson == 2) {
-firstperson = 0;
-ReSizeGLScene(screenwidth, screenheight, 45);
-yrot = 0;
-}
-break;
-    */
+  case KEY_TOGGLE_FIRSTPERSON_ID:
+    if (firstperson == 1) {
+      firstperson = 2;
+    }
+    if (firstperson == 0) {
+      firstperson = 1;
+      ReSizeGLScene(screenwidth, screenheight, 90);
+    }
+    if (firstperson == 2) {
+      firstperson = 0;
+      ReSizeGLScene(screenwidth, screenheight, 45);
+      yrot = 0;
+    }
+    break;
   case KEY_TOGGLE_INC_JUMP_HEIGHT_ID:
     if (changablejump == 1) {
       jumpstrength++;
