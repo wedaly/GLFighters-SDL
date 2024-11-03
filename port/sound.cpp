@@ -37,12 +37,48 @@ static char *soundClipPaths[] = {
     "./data/sounds/158.Saber2sys7.wav",
 };
 
-static Mix_Chunk *soundClips[numSoundClips] = {NULL};
+// Put weapon sounds on a separate channel.
+static const int soundClipChannel[] = {
+    0, // SND_ROLL_ID
+    0, // SND_STEP_ID
+    0, // SND_LAND_ID
+    0, // SND_BREAK_ID
+    0, // SND_BREAK2_ID
+    1, // SND_ZAP_ID
+    1, // SND_BOOM_ID
+    1, // SND_SNAP_ID
+    0, // SND_METALSLIDE_ID
+    0, // SND_METALSLIDE2_ID
+    1, // SND_MACHINEGUN_ID
+    0, // SND_JETPACK_ID
+    1, // SND_LIGHTSABRE_ID
+    0, // SND_BINK_ID
+    1, // SND_GUNSHOT1_ID
+    1, // SND_GUNSHOT2_ID
+    1, // SND_GUNSHOT3_ID
+    1, // SND_GRENLAUNCH2_ID
+    1, // SND_MGUNSHOT1SYS7_ID
+    1, // SND_MGUNSHOT2SYS7_ID
+    1, // SND_MGUNSHOT3SYS7_ID
+    1, // SND_BIGBOOM_ID
+    1, // SND_LIGHTNINGSYS7_ID
+    1, // SND_LIGHTNINGLOWSYS7_ID
+    1, // SND_LIGHTNINGHIGHS7_ID
+    1, // SND_WHOOSH1SYS7_ID
+    1, // SND_WHOOSH2SYS7_ID
+    1, // SND_WHOOSH3SYS7_ID
+    1, // SND_SABER3SYS7_ID
+    1, // SND_SABER1SYS7_ID
+    1, // SND_SABER2SYS7_ID
+};
+
+static Mix_Chunk *
+    soundClips[numSoundClips] = {NULL};
 
 bool loadSounds() {
   const int audio_rate = 48000; // match sample rate of the audio files.
   const int audio_format = MIX_DEFAULT_FORMAT;
-  const int audio_channels = 1;
+  const int audio_channels = 2;
   const int audio_chunksize = 4096;
 
   if (Mix_OpenAudio(audio_rate, audio_format, audio_channels, audio_chunksize) < 0) {
@@ -80,12 +116,13 @@ void playSound(int id, int volume) {
     return;
   }
 
+  int channel = soundClipChannel[id];
   int scaledVolume = (int)((float(volume) / 200.0f) * float(MIX_MAX_VOLUME));
-  if (Mix_Volume(0, scaledVolume) < 0) {
+  if (Mix_Volume(channel, scaledVolume) < 0) {
     printf("SDL_Mixer could not set volume to %d. SDL_Error: %s\n", volume, SDL_GetError());
   }
 
-  if (Mix_PlayChannel(0, soundClips[id], 0) < 0) {
+  if (Mix_PlayChannel(channel, soundClips[id], 0) < 0) {
     printf("SDL_Mixer could not play audio clip %d. SDL_Error: %s\n", id, SDL_GetError());
   }
 }
