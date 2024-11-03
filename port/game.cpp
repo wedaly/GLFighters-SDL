@@ -8,6 +8,7 @@
 #include <GL/glu.h>
 #include <cmath>
 #include <cstdio>
+#include <emscripten.h>
 
 bool light;
 bool lp;
@@ -13406,6 +13407,7 @@ void runGameEventLoop(SDL_Window *window) {
     while (SDL_PollEvent(&e)) {
       switch (e.type) {
       case SDL_QUIT:
+				emscripten_cancel_main_loop();
         return;
 
       case SDL_WINDOWEVENT:

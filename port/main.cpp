@@ -3,9 +3,16 @@
 #include <GL/gl.h>
 #include <SDL2/SDL.h>
 #include <cstdio>
+#include <emscripten.h>
 
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
+
+static SDL_Window *window;
+
+static void mainLoop() {
+  runGameEventLoop(window);
+}
 
 int main(int argc, char *args[]) {
   if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0) {
@@ -13,7 +20,7 @@ int main(int argc, char *args[]) {
     return 1;
   }
 
-  SDL_Window *window = SDL_CreateWindow("GLFighters", SDL_WINDOWPOS_UNDEFINED,
+  window = SDL_CreateWindow("GLFighters", SDL_WINDOWPOS_UNDEFINED,
                                         SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH,
                                         SCREEN_HEIGHT, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
   if (window == NULL) {
@@ -38,7 +45,7 @@ int main(int argc, char *args[]) {
     return 1;
   }
 
-  runGameEventLoop(window);
+	emscripten_set_main_loop(mainLoop, 0, 1);
 
   disposeGame();
   SDL_DestroyWindow(window);
