@@ -1,6 +1,6 @@
 #CC = g++
 CC = em++
-CFLAGS=-w -Wall -lSDL2 -lSDL2_image -lSDL2_mixer -lGL -lGLU --use-port=sdl2 --use-port=sdl2_image --use-port=sdl2_mixer -sLEGACY_GL_EMULATION --preload-file data/animations --preload-file data/images preload-file data/maps preload-file data/sounds
+CFLAGS=-w -Wall -lSDL2 -lSDL2_image -lSDL2_mixer -lGL -lGLU --use-port=sdl2 --use-port=sdl2_image --use-port=sdl2_mixer -sLEGACY_GL_EMULATION --preload-file data/animations --preload-file data/images --preload-file data/maps --preload-file data/sounds
 SRCS := $(wildcard *.cpp)
 OBJS := $(SRCS:.cpp=.o)
 TARGET := glfighters.html
