@@ -3251,27 +3251,27 @@ void HandleKeyDown(int keyID) {
   // only trying to toggle variables.
   if (mapeditor) {
     switch (keyID) {
-    case '8': // TODO
+    case KEY_MAP_SELECTION_UP_ID:
       if (selectedy > 0) {
         selectedy--;
       }
       break;
-    case '5': // TODO
+    case KEY_MAP_SELECTION_DOWN_ID:
       if (selectedy < 99) {
         selectedy++;
       }
       break;
-    case '4': // TODO
+    case KEY_MAP_SELECTION_LEFT_ID:
       if (selectedx > 0) {
         selectedx--;
       }
       break;
-    case '6': // TODO
+    case KEY_MAP_SELECTION_RIGHT_ID:
       if (selectedx < 99) {
         selectedx++;
       }
       break;
-    case '1': // TODO
+    case KEY_MAP_SET_TILE_PLATFORM_ID:
       if (Map[selectedx][selectedy] != 1) {
         Map[selectedx][selectedy] = 1;
         for (x = 0; x < 20; x++) {
@@ -3279,7 +3279,7 @@ void HandleKeyDown(int keyID) {
         }
       }
       break;
-    case '2': // TODO
+    case KEY_MAP_SET_TILE_PLATFORM_WITH_ROPE_ID:
       if (Map[selectedx][selectedy] != 2) {
         Map[selectedx][selectedy] = 2;
         for (x = 0; x < 50; x++) {
@@ -3287,7 +3287,7 @@ void HandleKeyDown(int keyID) {
         }
       }
       break;
-    case '3': // TODO
+    case KEY_MAP_SET_TILE_ROPE_ID:
       if (Map[selectedx][selectedy] != 3) {
         Map[selectedx][selectedy] = 3;
         for (x = 0; x < 50; x++) {
@@ -3295,20 +3295,20 @@ void HandleKeyDown(int keyID) {
         }
       }
       break;
-    case '7': // TODO
+    case KEY_MAP_CREATE_SPAWNPOINT_ID:
       playerstartnum++;
       if (playerstartnum >= 16) {
         playerstartnum = 0;
       }
       break;
-    case '9': // TODO
+    case KEY_MAP_CHANGE_SPAWNPOINT_NUMBER_ID:
       startplacex[playerstartnum] = selectedx;
       startplacey[playerstartnum] = selectedy;
       for (x = 0; x < 50; x++) {
         MakeSprite(selectedx * 10 - 590, RangedRandom((selectedy - 39) * -20 + 10, (selectedy - 39) * -20 + .5 + 30), 0, 200, spawnstars, RangedRandom(1, 360), 10, RangedRandom(2, 3), 0, -.1, 0);
       }
       break;
-    case '+': // TODO
+    case KEY_MAP_CREATE_WALL_ID:
       if (Walls[selectedx][selectedy] != 1) {
         Walls[selectedx][selectedy] = 1;
         for (x = 0; x < 50; x++) {
@@ -3316,7 +3316,7 @@ void HandleKeyDown(int keyID) {
         }
       }
       break;
-    case '0': // TODO
+    case KEY_MAP_ERASE_ID:
       if (Map[selectedx][selectedy] == 2 || Map[selectedx][selectedy] == 3 || Walls[selectedx][selectedy] != 0) {
         for (x = 0; x < 50; x++) {
           MakeSprite(selectedx * 10 - 590, RangedRandom((selectedy - 39) * -20 + 10, (selectedy - 39) * -20 + .5 + 30), 0, 200, deletestars, RangedRandom(1, 360), 10, RangedRandom(2, 3), 0, -.1, 0);
@@ -3330,7 +3330,7 @@ void HandleKeyDown(int keyID) {
       Map[selectedx][selectedy] = 0;
       Walls[selectedx][selectedy] = 0;
       break;
-    case '?': // TODO
+    case KEY_MAP_ERASE_EVERYTHING_ID:
       for (x = 0; x < 100; x++) {
         for (y = 0; y < 100; y++) {
           Map[x][y] = 0;
@@ -3630,7 +3630,7 @@ void HandleKeyDown(int keyID) {
       glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     }
     break;
-  case 'M': // TODO
+  case KEY_MAP_TOGGLE_EDITOR_ID:
     if (mapeditor == 0) {
       mapeditor = 2;
     }
