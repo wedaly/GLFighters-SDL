@@ -73,14 +73,19 @@ void freeSounds() {
   Mix_CloseAudio();
 }
 
-// TODO: implement volume
+// volume is in the range [0, 200]
 void playSound(int id, int volume) {
   if (id < 0 || id >= numSoundClips) {
     printf("Invalid sound ID %d\n", id);
     return;
   }
 
+  int scaledVolume = (int)((float(volume) / 200.0f) * float(MIX_MAX_VOLUME));
+  if (Mix_Volume(0, scaledVolume) < 0) {
+    printf("SDL_Mixer could not set volume to %d. SDL_Error: %s\n", volume, SDL_GetError());
+  }
+
   if (Mix_PlayChannel(0, soundClips[id], 0) < 0) {
-    printf("SDL could not play audio clip %d. SDL_Error: %s\n", id, SDL_GetError());
+    printf("SDL_Mixer could not play audio clip %d. SDL_Error: %s\n", id, SDL_GetError());
   }
 }
