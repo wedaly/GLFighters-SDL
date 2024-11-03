@@ -1,5 +1,6 @@
 #include "sound.h"
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_mixer.h>
 
 static const int numSoundClips = 31;
 static char *soundClipPaths[] = {
@@ -36,49 +37,40 @@ static char *soundClipPaths[] = {
     "./data/sounds/158.Saber2sys7.wav",
 };
 
-typedef struct {
-  SDL_AudioSpec wavSpec;
-  Uint32 wavLength;
-  Uint8 *wavBuffer;
-} soundClip;
-
-static SDL_AudioDeviceID deviceId;
-static soundClip soundClips[numSoundClips];
+static Mix_Chunk *soundClips[numSoundClips] = {NULL};
 
 bool loadSounds() {
+  const int audio_rate = 48000; // match sample rate of the audio files.
+  const int audio_format = MIX_DEFAULT_FORMAT;
+  const int audio_channels = 1;
+  const int audio_chunksize = 4096;
+
+  if (Mix_OpenAudio(audio_rate, audio_format, audio_channels, audio_chunksize) < 0) {
+    printf("SDL_Mixer could not open audio. SDL_Error: %s\n", SDL_GetError());
+    return false;
+  }
+
   for (int i = 0; i < numSoundClips; i++) {
     char *path = soundClipPaths[i];
-    soundClip *sc = &(soundClips[i]);
-    sc->wavBuffer = NULL;
-    sc->wavLength = 0;
-
-    if (SDL_LoadWAV(path, &sc->wavSpec, &sc->wavBuffer, &sc->wavLength) == NULL) {
-      printf("SDL could not load audio file from '%s'. SDL_Error: %s\n", path,
+    soundClips[i] = Mix_LoadWAV(path);
+    if (soundClips[i] == NULL) {
+      printf("SDL_Mixer could not load audio file from '%s'. SDL_Error: %s\n", path,
              SDL_GetError());
       return false;
     }
-  }
-
-  deviceId = SDL_OpenAudioDevice(NULL, 0, &soundClips[0].wavSpec, NULL, 0);
-  if (deviceId < 0) {
-    printf("SDL could not open audio device. SDL_Error: %s\n", SDL_GetError());
-    return false;
   }
 
   return true;
 }
 
 void freeSounds() {
-  if (deviceId > 0) {
-    SDL_CloseAudioDevice(deviceId);
-  }
-
   for (int i = 0; i < numSoundClips; i++) {
-    Uint8 *wavBuffer = soundClips[i].wavBuffer;
-    if (wavBuffer != NULL) {
-      SDL_FreeWAV(wavBuffer);
+    if (soundClips[i] != NULL) {
+      Mix_FreeChunk(soundClips[i]);
     }
   }
+
+  Mix_CloseAudio();
 }
 
 // TODO: implement volume
@@ -88,12 +80,7 @@ void playSound(int id, int volume) {
     return;
   }
 
-  SDL_ClearQueuedAudio(deviceId);
-
-  soundClip *sc = &soundClips[id];
-  if (SDL_QueueAudio(deviceId, sc->wavBuffer, sc->wavLength) < 0) {
-    printf("SDL could not queue audio. SDL_Error: %s\n", SDL_GetError());
+  if (Mix_PlayChannel(0, soundClips[id], 0) < 0) {
+    printf("SDL could not play audio clip %d. SDL_Error: %s\n", id, SDL_GetError());
   }
-
-  SDL_PauseAudioDevice(deviceId, 0); // 0 means unpause = start playing
 }
