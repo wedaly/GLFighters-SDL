@@ -3330,6 +3330,16 @@ void HandleKeyDown(int keyID) {
       Map[selectedx][selectedy] = 0;
       Walls[selectedx][selectedy] = 0;
       break;
+    case '?': // TODO
+      for (x = 0; x < 100; x++) {
+        for (y = 0; y < 100; y++) {
+          Map[x][y] = 0;
+        }
+      }
+      for (x = 20; x < 80; x++) {
+        Map[x][64] = 1;
+      }
+      break;
     }
   }
 
@@ -3751,16 +3761,6 @@ void HandleKeyDown(int keyID) {
         UpperArmNum[x] = 36;
         LowerLegNum[x] = 37;
       }
-    }
-    break;
-  case '?': // TODO
-    for (x = 0; x < 100; x++) {
-      for (y = 0; y < 100; y++) {
-        Map[x][y] = 0;
-      }
-    }
-    for (x = 20; x < 80; x++) {
-      Map[x][64] = 1;
     }
     break;
   }
