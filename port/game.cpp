@@ -13394,206 +13394,204 @@ void runGameEventLoop(SDL_Window *window) {
   gQuit = false;
 
   // Keep doing the event loop while not gQuit
-  while (!gQuit) {
-    Point3D point2;
-    Uint64 startTicks = SDL_GetTicks64(); // milliseconds
+  Point3D point2;
+  Uint64 startTicks = SDL_GetTicks64(); // milliseconds
 
-    while (SDL_PollEvent(&e)) {
-      switch (e.type) {
-      case SDL_QUIT:
-				emscripten_cancel_main_loop();
-        return;
+  while (SDL_PollEvent(&e)) {
+    switch (e.type) {
+    case SDL_QUIT:
+      emscripten_cancel_main_loop();
+      return;
 
-      case SDL_KEYDOWN:
-      case SDL_KEYUP:
-        int keyID = translateSDLEventToKeyID(e.key);
-        if (keyID >= 0) {
-          setKeyState(keyID, bool(e.key.state == SDL_PRESSED));
-          if (e.key.state == SDL_PRESSED) {
-            HandleKeyDown(keyID);
-          }
+    case SDL_KEYDOWN:
+    case SDL_KEYUP:
+      int keyID = translateSDLEventToKeyID(e.key);
+      if (keyID >= 0) {
+        setKeyState(keyID, bool(e.key.state == SDL_PRESSED));
+        if (e.key.state == SDL_PRESSED) {
+          HandleKeyDown(keyID);
         }
-        break;
+      }
+      break;
+    }
+  }
+
+  // Swap buffers (double buffering)
+  if (!nodraw) {
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    DrawGLScene();
+    glFlush();
+    SDL_GL_SwapWindow(window);
+    oldmult = multiplier;
+
+    gamespeed = 1;
+    if (slowdown) {
+      gamespeed = .05;
+    } // slowmotion toggle
+    if (freezetime) {
+      gamespeed = 0;
+    } // freeze time toggle
+
+    multiplier = oldmult * gamespeed;
+
+    for (x = 0; x < kMaxLightning; x++) {
+      Lightning[x].brightness -= multiplier / 100;
+      if (Lightning[x].brightness <= 0) {
+        Lightning[x].brightness = 0;
       }
     }
 
-    // Swap buffers (double buffering)
-    if (!nodraw) {
-      glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-      DrawGLScene();
-      glFlush();
-      SDL_GL_SwapWindow(window);
-      oldmult = multiplier;
-
-      gamespeed = 1;
-      if (slowdown) {
-        gamespeed = .05;
-      } // slowmotion toggle
-      if (freezetime) {
-        gamespeed = 0;
-      } // freeze time toggle
-
+    for (x = 0; x < numplayers; x++) {
       multiplier = oldmult * gamespeed;
-
-      for (x = 0; x < kMaxLightning; x++) {
-        Lightning[x].brightness -= multiplier / 100;
-        if (Lightning[x].brightness <= 0) {
-          Lightning[x].brightness = 0;
+      multiplier *= speedmult[x];
+      multiplier /= 10;
+      for (a = 0; a < 10; a++) {
+        if (freezetime == 0 && computercontrolled[x] == 0) {
+          DoPlayerStuff(x);
+        }
+        if (freezetime == 0 && computercontrolled[x] != 0) {
+          DoAIPlayerStuff(x);
         }
       }
-
-      for (x = 0; x < numplayers; x++) {
-        multiplier = oldmult * gamespeed;
-        multiplier *= speedmult[x];
-        multiplier /= 10;
-        for (a = 0; a < 10; a++) {
-          if (freezetime == 0 && computercontrolled[x] == 0) {
-            DoPlayerStuff(x);
+      if (x != 1 || mapeditor == 0) {
+        if (dead[x] == 0 || activity[x] != deadfacedown || activity[x] != deadfaceup || health[x] >= 0) {
+          if (computercontrolled[x] == 0) {
+            DoKeys(x);
           }
-          if (freezetime == 0 && computercontrolled[x] != 0) {
-            DoAIPlayerStuff(x);
-          }
-        }
-        if (x != 1 || mapeditor == 0) {
-          if (dead[x] == 0 || activity[x] != deadfacedown || activity[x] != deadfaceup || health[x] >= 0) {
-            if (computercontrolled[x] == 0) {
-              DoKeys(x);
-            }
-            if (computercontrolled[x]) {
-              DoAI(x);
-              DoAIKeys(x);
-            }
+          if (computercontrolled[x]) {
+            DoAI(x);
+            DoAIKeys(x);
           }
         }
       }
-
-      multiplier = oldmult * gamespeed;
-      multiplier /= 5;
-
-      for (a = 0; a < 5; a++) {
-        if (freezetime == 0) {
-          HandleSprites();
-        }
-      }
-
-      for (a = 0; a < numplayers; a++) {
-        while (jetsmokedelay[a] <= 0 && usingjetpack[a] == 1) {
-          playSound(SND_JETPACK_ID, absolute(guyvelx[a]) * 20 + absolute(guyvely[a]) * 20 + 14);
-          point = FindJetPackPos(a);
-          MakeSprite(point.x, point.y, point.z, RangedRandom(50, 100) + 50, smokesprite, RangedRandom(0, 360), RangedRandom(0, 4) + 6, 0, RangedRandom(0, 30) / 10 + (guyvelx[a] * 80), (RangedRandom(10, 20) - 20) / 4 + (guyvely[a] * 100), 0);
-          jetsmokedelay[a] += 10;
-        }
-      }
-
-      multiplier = oldmult * gamespeed;
-
-      // HandleSmokeSprites();
-
-      for (x = 0; x < numplayers; x++) {
-        if (activity[x] == jetimpaledright || activity[x] == jetimpaledleft && attach[x] != -1) {
-          guyx[x] = guyx[attach[x]];
-          guyy[x] = guyy[attach[x]];
-          guyvelx[x] = guyvelx[attach[x]];
-          guyvely[x] = guyvely[attach[x]];
-        }
-      }
-
-      multiplier = oldmult;
     }
 
-    Uint64 endTicks = SDL_GetTicks64(); // milliseconds
-    Uint64 elapsedTicks = endTicks - startTicks;
-    if (elapsedTicks < TARGET_TICKS_PER_FRAME) {
-      SDL_Delay(TARGET_TICKS_PER_FRAME - elapsedTicks);
-    }
-    timetaken = SDL_GetTicks64() - startTicks;
-    framespersecond = 1000 / timetaken;
-    multiplier5 = multiplier4;
-    multiplier4 = multiplier3;
-    multiplier3 = multiplier2;
-    multiplier2 = 300 / framespersecond;
-    multiplier = (multiplier2 + multiplier3 + multiplier4 + multiplier5) / 4;
+    multiplier = oldmult * gamespeed;
+    multiplier /= 5;
 
-    //**********CAMERA KEYS************//
-    if (isKeyDown(KEY_CAMERA_ZOOM_OUT_ID)) {
-      z -= 0.3 * multiplier;
-      if (freezetime == 1) {
-        z -= 1;
-      }
-    }
-    if (isKeyDown(KEY_CAMERA_ZOOM_IN_ID)) {
-      z += 0.3 * multiplier;
-      if (freezetime == 1) {
-        z += 1;
-      }
-    }
-    if (isKeyDown(KEY_CAMERA_ROTATE_DOWN_ID)) {
-      xrot -= 1.0 * multiplier / 4;
-      if (freezetime == 1) {
-        xrot -= 5;
-      }
-    }
-    if (isKeyDown(KEY_CAMERA_ROTATE_UP_ID)) {
-      xrot += 1.0 * multiplier / 4;
-      if (freezetime == 1) {
-        xrot += 5;
-      }
-    }
-    if (isKeyDown(KEY_CAMERA_ROTATE_LEFT_ID)) {
-      yrot += 1.0 * multiplier / 4;
-      if (freezetime == 1) {
-        yrot += 5;
-      }
-    }
-    if (isKeyDown(KEY_CAMERA_ROTATE_RIGHT_ID)) {
-      yrot -= 1.0 * multiplier / 4;
-      if (freezetime == 1) {
-        yrot -= 5;
-      }
-    }
-    if (isKeyDown(KEY_QUIT_ID)) {
-      gQuit = true;
-    }
-    if (isKeyDown(KEY_CAMERA_UP_ID)) {
-      cameray -= 0.3 * multiplier;
-      if (freezetime == 1) {
-        cameray -= multiplier / 3;
-      }
-    }
-    if (isKeyDown(KEY_CAMERA_DOWN_ID)) {
-      cameray += 0.3 * multiplier;
-      if (freezetime == 1) {
-        cameray += multiplier / 3;
-      }
-    }
-    if (isKeyDown(KEY_CAMERA_LEFT_ID)) {
-      camerax += 0.3 * multiplier;
-      if (freezetime == 1) {
-        camerax += multiplier / 3;
-      }
-    }
-    if (isKeyDown(KEY_CAMERA_RIGHT_ID)) {
-      camerax -= 0.3 * multiplier;
-      if (freezetime == 1) {
-        camerax -= multiplier / 3;
-      }
-    }
-    for (a = 0; a <= 20; a++) {
-      if (xrot >= 360) {
-        xrot -= 360;
-      }
-      if (xrot < 0) {
-        xrot += 360;
+    for (a = 0; a < 5; a++) {
+      if (freezetime == 0) {
+        HandleSprites();
       }
     }
 
-    for (a = 0; a <= 20; a++) {
-      if (yrot >= 360) {
-        yrot -= 360;
+    for (a = 0; a < numplayers; a++) {
+      while (jetsmokedelay[a] <= 0 && usingjetpack[a] == 1) {
+        playSound(SND_JETPACK_ID, absolute(guyvelx[a]) * 20 + absolute(guyvely[a]) * 20 + 14);
+        point = FindJetPackPos(a);
+        MakeSprite(point.x, point.y, point.z, RangedRandom(50, 100) + 50, smokesprite, RangedRandom(0, 360), RangedRandom(0, 4) + 6, 0, RangedRandom(0, 30) / 10 + (guyvelx[a] * 80), (RangedRandom(10, 20) - 20) / 4 + (guyvely[a] * 100), 0);
+        jetsmokedelay[a] += 10;
       }
-      if (yrot < 0) {
-        yrot += 360;
+    }
+
+    multiplier = oldmult * gamespeed;
+
+    // HandleSmokeSprites();
+
+    for (x = 0; x < numplayers; x++) {
+      if (activity[x] == jetimpaledright || activity[x] == jetimpaledleft && attach[x] != -1) {
+        guyx[x] = guyx[attach[x]];
+        guyy[x] = guyy[attach[x]];
+        guyvelx[x] = guyvelx[attach[x]];
+        guyvely[x] = guyvely[attach[x]];
       }
+    }
+
+    multiplier = oldmult;
+  }
+
+  Uint64 endTicks = SDL_GetTicks64(); // milliseconds
+  Uint64 elapsedTicks = endTicks - startTicks;
+  if (elapsedTicks < TARGET_TICKS_PER_FRAME) {
+    SDL_Delay(TARGET_TICKS_PER_FRAME - elapsedTicks);
+  }
+  timetaken = SDL_GetTicks64() - startTicks;
+  framespersecond = 1000 / timetaken;
+  multiplier5 = multiplier4;
+  multiplier4 = multiplier3;
+  multiplier3 = multiplier2;
+  multiplier2 = 300 / framespersecond;
+  multiplier = (multiplier2 + multiplier3 + multiplier4 + multiplier5) / 4;
+
+  //**********CAMERA KEYS************//
+  if (isKeyDown(KEY_CAMERA_ZOOM_OUT_ID)) {
+    z -= 0.3 * multiplier;
+    if (freezetime == 1) {
+      z -= 1;
+    }
+  }
+  if (isKeyDown(KEY_CAMERA_ZOOM_IN_ID)) {
+    z += 0.3 * multiplier;
+    if (freezetime == 1) {
+      z += 1;
+    }
+  }
+  if (isKeyDown(KEY_CAMERA_ROTATE_DOWN_ID)) {
+    xrot -= 1.0 * multiplier / 4;
+    if (freezetime == 1) {
+      xrot -= 5;
+    }
+  }
+  if (isKeyDown(KEY_CAMERA_ROTATE_UP_ID)) {
+    xrot += 1.0 * multiplier / 4;
+    if (freezetime == 1) {
+      xrot += 5;
+    }
+  }
+  if (isKeyDown(KEY_CAMERA_ROTATE_LEFT_ID)) {
+    yrot += 1.0 * multiplier / 4;
+    if (freezetime == 1) {
+      yrot += 5;
+    }
+  }
+  if (isKeyDown(KEY_CAMERA_ROTATE_RIGHT_ID)) {
+    yrot -= 1.0 * multiplier / 4;
+    if (freezetime == 1) {
+      yrot -= 5;
+    }
+  }
+  if (isKeyDown(KEY_QUIT_ID)) {
+    gQuit = true;
+  }
+  if (isKeyDown(KEY_CAMERA_UP_ID)) {
+    cameray -= 0.3 * multiplier;
+    if (freezetime == 1) {
+      cameray -= multiplier / 3;
+    }
+  }
+  if (isKeyDown(KEY_CAMERA_DOWN_ID)) {
+    cameray += 0.3 * multiplier;
+    if (freezetime == 1) {
+      cameray += multiplier / 3;
+    }
+  }
+  if (isKeyDown(KEY_CAMERA_LEFT_ID)) {
+    camerax += 0.3 * multiplier;
+    if (freezetime == 1) {
+      camerax += multiplier / 3;
+    }
+  }
+  if (isKeyDown(KEY_CAMERA_RIGHT_ID)) {
+    camerax -= 0.3 * multiplier;
+    if (freezetime == 1) {
+      camerax -= multiplier / 3;
+    }
+  }
+  for (a = 0; a <= 20; a++) {
+    if (xrot >= 360) {
+      xrot -= 360;
+    }
+    if (xrot < 0) {
+      xrot += 360;
+    }
+  }
+
+  for (a = 0; a <= 20; a++) {
+    if (yrot >= 360) {
+      yrot -= 360;
+    }
+    if (yrot < 0) {
+      yrot += 360;
     }
   }
 }
