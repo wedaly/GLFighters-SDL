@@ -3,7 +3,7 @@ CC = em++
 CFLAGS=-w -Wall -lSDL2 -lSDL2_image -lSDL2_mixer -lGL -lGLU --use-port=sdl2 --use-port=sdl2_image --use-port=sdl2_mixer -sLEGACY_GL_EMULATION
 SRCS := $(wildcard *.cpp)
 OBJS := $(SRCS:.cpp=.o)
-TARGET := glfighters
+TARGET := glfighters.html
 
 .PHONY: fmt clean
 
