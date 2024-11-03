@@ -3390,13 +3390,11 @@ void HandleKeyDown(int keyID) {
       jumpstrength++;
     }
     break;
-    /*
-case '*': // TODO
-if (changablejump == 1) {
-jumpstrength--;
-}
-break;
-    */
+  case KEY_TOGGLE_DEC_JUMP_HEIGHT_ID:
+    if (changablejump == 1) {
+      jumpstrength--;
+    }
+    break;
   case KEY_TOGGLE_INC_GRAVITY_ID:
     if (changablejump == 1) {
       gravity -= .005;
