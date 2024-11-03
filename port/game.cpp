@@ -7,6 +7,7 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <cstdio>
+#include <cmath>
 
 bool light;
 bool lp;
