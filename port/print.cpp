@@ -9,6 +9,7 @@ static const int numFontDisplayLists = 256;
 static int fontTextureID = 0;
 
 bool createFont(int textureID) {
+/*
   fontTextureID = textureID;
   bindTexture(fontTextureID);
 
@@ -36,18 +37,22 @@ bool createFont(int textureID) {
     glTranslated(16, 0, 0);
     glEndList();
   }
+*/
 
   return true;
 }
 
 void freeFont() {
+/*
   fontTextureID = 0;
   if (fontDisplayListsBase != 0) {
     glDeleteLists(fontDisplayListsBase, numFontDisplayLists);
   }
+*/
 }
 
 void printToScreen(int x, int y, char *s, bool italicize, float size, int screenwidth, int screenheight) {
+/*
   int offset = italicize ? 128 : 0;
   bindTexture(fontTextureID);
   glDisable(GL_DEPTH_TEST);
@@ -67,4 +72,5 @@ void printToScreen(int x, int y, char *s, bool italicize, float size, int screen
   glMatrixMode(GL_MODELVIEW);
   glPopMatrix();
   glEnable(GL_DEPTH_TEST);
+*/
 }
