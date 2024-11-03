@@ -13504,11 +13504,6 @@ void runGameEventLoop(SDL_Window *window) {
     multiplier = oldmult;
   }
 
-  Uint64 endTicks = SDL_GetTicks64(); // milliseconds
-  Uint64 elapsedTicks = endTicks - startTicks;
-  if (elapsedTicks < TARGET_TICKS_PER_FRAME) {
-    SDL_Delay(TARGET_TICKS_PER_FRAME - elapsedTicks);
-  }
   timetaken = SDL_GetTicks64() - startTicks;
   framespersecond = 1000 / timetaken;
   multiplier5 = multiplier4;
