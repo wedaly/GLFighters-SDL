@@ -81,7 +81,8 @@ void freeSounds() {
   }
 }
 
-void playSound(int id) {
+// TODO: implement volume
+void playSound(int id, int volume) {
   if (id < 0 || id >= numSoundClips) {
     printf("Invalid sound ID %d\n", id);
     return;

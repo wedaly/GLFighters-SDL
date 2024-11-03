@@ -2,7 +2,7 @@
 
 bool loadSounds();
 void freeSounds();
-void playSound(int id);
+void playSound(int id, int volume);
 
 const int SND_ROLL_ID = 0;
 const int SND_STEP_ID = 1;
