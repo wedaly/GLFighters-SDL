@@ -3345,7 +3345,7 @@ void HandleKeyDown(int keyID) {
 
   if (mapeditor == 0) {
     switch (keyID) {
-    case '1': // TODO
+    case KEY_P2_CLOAK_ID:
       /*if (invisible==0){invisible=2;}
       if (invisible==1){invisible=0;}
       if (invisible==2){invisible=1;}*/
