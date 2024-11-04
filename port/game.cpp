@@ -903,26 +903,26 @@ int InitGL(GLvoid) // All Setup For OpenGL Goes Here
 
   // glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
 
-  environment[0].right = 44;
-  environment[0].back = 45;
-  environment[0].left = 46;
-  environment[0].front = 47;
-  environment[0].down = 48;
-  environment[0].up = 49;
+  environment[0].right = TEX_ISLAND_RIGHT_ID;
+  environment[0].back = TEX_ISLAND_BACK_ID;
+  environment[0].left = TEX_ISLAND_LEFT_ID;
+  environment[0].front = TEX_ISLAND_FRONT_ID;
+  environment[0].down = TEX_ISLAND_DOWN_ID;
+  environment[0].up = TEX_ISLAND_UP_ID;
 
-  environment[1].right = 55;
-  environment[1].back = 56;
-  environment[1].left = 57;
-  environment[1].front = 58;
-  environment[1].down = 59;
-  environment[1].up = 60;
+  environment[1].right = TEX_LAVA_RIGHT_ID;
+  environment[1].back = TEX_LAVA_BACK_ID;
+  environment[1].left = TEX_LAVA_LEFT_ID;
+  environment[1].front = TEX_LAVA_FRONT_ID;
+  environment[1].down = TEX_LAVA_DOWN_ID;
+  environment[1].up = TEX_LAVA_UP_ID;
 
-  environment[2].right = 61;
-  environment[2].back = 62;
-  environment[2].left = 63;
-  environment[2].front = 64;
-  environment[2].down = 65;
-  environment[2].up = 66;
+  environment[2].right = TEX_SNOWY_RIGHT_ID;
+  environment[2].back = TEX_SNOWY_BACK_ID;
+  environment[2].left = TEX_SNOWY_LEFT_ID;
+  environment[2].front = TEX_SNOWY_FRONT_ID;
+  environment[2].down = TEX_SNOWY_DOWN_ID;
+  environment[2].up = TEX_SNOWY_UP_ID;
 
   glBlendFunc(GL_SRC_ALPHA, GL_ONE);
   glEnable(GL_TEXTURE_2D);              // Enable Texture Mapping
