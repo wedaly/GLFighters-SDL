@@ -4,6 +4,7 @@
 #include <SDL2/SDL.h>
 #include <cstdio>
 #include <emscripten.h>
+#include <gl4esinit.h>
 
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
@@ -39,6 +40,8 @@ int main(int argc, char *args[]) {
            SDL_GetError());
     return 1;
   }
+
+	initialize_gl4es();
 
   if (!initGame(SCREEN_WIDTH, SCREEN_HEIGHT)) {
     printf("Failed to initialize game\n");
