@@ -15596,10 +15596,22 @@ void Rope(void) {
   return;
 }
 
+const int numModels = 1;
+const GLuint vertexBufferObjIDs[numModels] = {0};
+const float* vertexData[numModels] = {
+	// Jetpack
+	{
+	},
+};
+
 bool loadModels() {
+	glGenBuffers(numModels, vertexBufferObjIDs);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vertexBufferObjIDs[0]);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, 8 * sizeof(float), vertexData[0], GL_STATIC_DRAW);
 }
 
 void freeModels() {
+	glDeleteBuffers(vertexBufferObjIDs);
 }
 
 void drawModel(int id) {
