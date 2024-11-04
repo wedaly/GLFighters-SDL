@@ -50,9 +50,9 @@ if state != STATE_DONE:
     print("ERROR: state={}".format(state))
 
 # output
-print("{")
+print("  {")
 i = 0
 while i < len(data):
-    print("{},{},{},{},{},{},{},{},".format(data[i], data[i+1], data[i+2], data[i+3], data[i+4], data[i+5], data[i+6], data[i+7]))
+    print("    {}, {}, {}, {}, {}, {}, {}, {},".format(data[i], data[i+1], data[i+2], data[i+3], data[i+4], data[i+5], data[i+6], data[i+7]))
     i += 8
-print("}")
+print("  }")
