@@ -1,6 +1,6 @@
 #CC = g++
 CC = em++
-CFLAGS=-w -Wall -sFULL_ES2 -lSDL2 -lSDL2_image -lSDL2_mixer --use-port=sdl2 --use-port=sdl2_image --use-preload-plugins --use-port=sdl2_mixer --preload-file data/animations --preload-file data/images --preload-file data/maps --preload-file data/sounds -I/home/will/repos/gl4es/include
+CFLAGS=-w -Wall -O3 -sFULL_ES2 -lSDL2 -lSDL2_image -lSDL2_mixer --use-port=sdl2 --use-port=sdl2_image --use-preload-plugins --use-port=sdl2_mixer --preload-file data/animations --preload-file data/images --preload-file data/maps --preload-file data/sounds -I/home/will/repos/gl4es/include --profiling
 SRCS := $(wildcard *.cpp)
 OBJS := $(SRCS:.cpp=.o)
 TARGET := glfighters.html
