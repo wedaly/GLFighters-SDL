@@ -4,8 +4,8 @@
 #include "print.h"
 #include "sound.h"
 #include "textures.h"
+#include "perspective.h"
 #include <GL/gl.h>
-#include <GL/glu.h>
 #include <cmath>
 #include <cstdio>
 #include <emscripten.h>
