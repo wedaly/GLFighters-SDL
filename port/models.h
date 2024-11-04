@@ -1,5 +1,11 @@
 #pragma once
 
+bool loadModels();
+void freeModels();
+void drawModel(int id);
+
+const int MODEL_JETPACK_ID = 0;
+
 void JetPack(void);
 void Wall(void);
 void LightningGun(void);

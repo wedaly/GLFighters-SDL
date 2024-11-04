@@ -15595,3 +15595,12 @@ void Rope(void) {
 
   return;
 }
+
+bool loadModels() {
+}
+
+void freeModels() {
+}
+
+void drawModel(int id) {
+}

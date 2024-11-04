@@ -1155,7 +1155,7 @@ void DrawBody(int whichguy) {
     glTranslatef(0, 0, -1.5);
     glRotatef(-90, 0, 1, 0);
     glScalef(3, 3, 3);
-    JetPack();
+		drawModel(MODEL_JETPACK_ID);
     glPopMatrix();
   }
   glPushMatrix();
@@ -13880,6 +13880,11 @@ bool initGame(int screenwidthArg, int screenheightArg) {
     return false;
   }
 
+	if (!loadModels()) {
+		printf("Failed loading models\n");
+		return false;
+	}
+
   if (!loadAnimations()) {
     printf("Failed loading animations\n");
     return false;
@@ -13898,6 +13903,7 @@ bool initGame(int screenwidthArg, int screenheightArg) {
 
 void disposeGame() {
   freeSounds();
+	freeModels();
   freeFont();
   freeTextures();
 }
