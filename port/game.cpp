@@ -822,17 +822,17 @@ int InitGL(GLvoid) // All Setup For OpenGL Goes Here
   wireframe = 0;
   selectedx = 50;
   selectedy = 50;
-  HelmetNum[0] = 6;
-  TorsoNum[0] = 4;
-  ShoesNum[0] = 9;
-  HelmetNum[0] = 6;
-  UpperArmNum[0] = 7;
-  LowerLegNum[0] = 8;
-  TorsoNum[1] = 13;
-  ShoesNum[1] = 14;
-  HelmetNum[1] = 15;
-  UpperArmNum[1] = 16;
-  LowerLegNum[1] = 17;
+  HelmetNum[0] = TEX_BLUE_HELMET_ID;
+  TorsoNum[0] = TEX_BLUE_TORSO_ID;
+  ShoesNum[0] = TEX_BLUE_SHOES_ID;
+  HelmetNum[0] = TEX_BLUE_HELMET_ID;
+  UpperArmNum[0] = TEX_BLUE_UPPERARM_ID;
+  LowerLegNum[0] = TEX_BLUE_LOWERLEG_ID;
+  TorsoNum[1] = TEX_RED_TORSO_ID;
+  ShoesNum[1] = TEX_RED_SHOES_ID;
+  HelmetNum[1] = TEX_RED_HELMET_ID;
+  UpperArmNum[1] = TEX_RED_UPPERARM_ID;
+  LowerLegNum[1] = TEX_RED_LOWERLEG_ID;
   skin[0] = 0;
   skin[1] = 1;
   sprite[0].x = 0;
@@ -3726,39 +3726,39 @@ void HandleKeyDown(int keyID) {
         skin[x] = 0;
       }
       if (skin[x] == 0) {
-        TorsoNum[x] = 4;
-        ShoesNum[x] = 9;
-        HelmetNum[x] = 6;
-        UpperArmNum[x] = 7;
-        LowerLegNum[x] = 8;
+        TorsoNum[x] = TEX_BLUE_TORSO_ID;
+        ShoesNum[x] = TEX_BLUE_SHOES_ID;
+        HelmetNum[x] = TEX_BLUE_HELMET_ID;
+        UpperArmNum[x] = TEX_BLUE_UPPERARM_ID;
+        LowerLegNum[x] = TEX_BLUE_LOWERLEG_ID;
       }
       if (skin[x] == 1) {
-        TorsoNum[x] = 13;
-        ShoesNum[x] = 14;
-        HelmetNum[x] = 15;
-        UpperArmNum[x] = 16;
-        LowerLegNum[x] = 17;
+        TorsoNum[x] = TEX_RED_TORSO_ID;
+        ShoesNum[x] = TEX_RED_SHOES_ID;
+        HelmetNum[x] = TEX_RED_HELMET_ID;
+        UpperArmNum[x] = TEX_RED_UPPERARM_ID;
+        LowerLegNum[x] = TEX_RED_LOWERLEG_ID;
       }
       if (skin[x] == 2) {
-        TorsoNum[x] = 18;
-        ShoesNum[x] = 19;
-        HelmetNum[x] = 20;
-        UpperArmNum[x] = 21;
-        LowerLegNum[x] = 22;
+        TorsoNum[x] = TEX_GREEN_TORSO_ID;
+        ShoesNum[x] = TEX_GREEN_SHOES_ID;
+        HelmetNum[x] = TEX_GREEN_HELMET_ID;
+        UpperArmNum[x] = TEX_GREEN_UPPERARM_ID;
+        LowerLegNum[x] = TEX_GREEN_LOWERLEG_ID;
       }
       if (skin[x] == 3) {
-        TorsoNum[x] = 23;
-        ShoesNum[x] = 24;
-        HelmetNum[x] = 25;
-        UpperArmNum[x] = 26;
-        LowerLegNum[x] = 27;
+        TorsoNum[x] = TEX_YELLOW_TORSO_ID;
+        ShoesNum[x] = TEX_YELLOW_SHOES_ID;
+        HelmetNum[x] = TEX_YELLOW_HELMET_ID;
+        UpperArmNum[x] = TEX_YELLOW_UPPERARM_ID;
+        LowerLegNum[x] = TEX_YELLOW_LOWERLEG_ID;
       }
       if (skin[x] == 4) {
-        TorsoNum[x] = 33;
-        ShoesNum[x] = 34;
-        HelmetNum[x] = 35;
-        UpperArmNum[x] = 36;
-        LowerLegNum[x] = 37;
+        TorsoNum[x] = TEX_BLACK_TORSO_ID;
+        ShoesNum[x] = TEX_BLACK_SHOES_ID;
+        HelmetNum[x] = TEX_BLACK_HELMET_ID;
+        UpperArmNum[x] = TEX_BLACK_UPPERARM_ID;
+        LowerLegNum[x] = TEX_BLACK_LOWERLEG_ID;
       }
     }
     break;
