@@ -41,7 +41,7 @@ int main(int argc, char *args[]) {
     return 1;
   }
 
-	initialize_gl4es();
+  initialize_gl4es();
 
   if (!initGame(SCREEN_WIDTH, SCREEN_HEIGHT)) {
     printf("Failed to initialize game\n");
