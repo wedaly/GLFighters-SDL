@@ -816,9 +816,9 @@ int InitGL(GLvoid) // All Setup For OpenGL Goes Here
 
   camerax = -100;
   cameray = -200;
-  themebasenum = 4;
-  themebacknum = 4;
-  themeropenum = 11;
+  themebasenum = TEX_MARBLE_ID;
+  themebacknum = TEX_MARBLE_ID;
+  themeropenum = TEX_ROPE_ID;
   wireframe = 0;
   selectedx = 50;
   selectedy = 50;
@@ -3646,9 +3646,9 @@ void HandleKeyDown(int keyID) {
       theme = 0;
     }
     if (theme == marbletheme) {
-      themebasenum = 4;
-      themebacknum = 4;
-      themeropenum = 11;
+      themebasenum = TEX_MARBLE_ID;
+      themebacknum = TEX_MARBLE_ID;
+      themeropenum = TEX_ROPE_ID;
       fogColor[0] = 0.5f;
       fogColor[1] = 0.5f;
       fogColor[2] = 0.5f;
@@ -3657,9 +3657,9 @@ void HandleKeyDown(int keyID) {
       WallBounds(1);
     }
     if (theme == trontheme) {
-      themebasenum = 12;
-      themebacknum = 12;
-      themeropenum = 2;
+      themebasenum = TEX_GRID_ID;
+      themebacknum = TEX_GRID_ID;
+      themeropenum = TEX_PENGUINFEET_ID;
       fogColor[0] = 0.0f;
       fogColor[1] = 0.0f;
       fogColor[2] = 0.0f;
@@ -3668,9 +3668,9 @@ void HandleKeyDown(int keyID) {
       WallBounds(1);
     }
     if (theme == woodtheme) {
-      themebasenum = 11;
-      themebacknum = 11;
-      themeropenum = 11;
+      themebasenum = TEX_ROPE_ID;
+      themebacknum = TEX_ROPE_ID;
+      themeropenum = TEX_ROPE_ID;
       fogColor[0] = 0.5f;
       fogColor[1] = 0.5f;
       fogColor[2] = 0.5f;
@@ -3679,9 +3679,9 @@ void HandleKeyDown(int keyID) {
       WallBounds(1);
     }
     if (theme == metaltheme) {
-      themebasenum = 29;
-      themebacknum = 32;
-      themeropenum = 29;
+      themebasenum = TEX_METAL_ID;
+      themebacknum = TEX_METALMESH_ID;
+      themeropenum = TEX_METAL_ID;
       fogColor[0] = 0.5f;
       fogColor[1] = 0.5f;
       fogColor[2] = 0.5f;
@@ -3690,9 +3690,9 @@ void HandleKeyDown(int keyID) {
       WallBounds(1);
     }
     if (theme == matrixtheme) {
-      themebacknum = 31;
-      themebasenum = 30;
-      themeropenum = 2;
+      themebacknum = TEX_MATRIXDARK_ID;
+      themebasenum = TEX_MATRIX_ID;
+      themeropenum = TEX_PENGUINFEET_ID;
       fogColor[0] = 0.0f;
       fogColor[1] = 0.0f;
       fogColor[2] = 0.0f;
@@ -3701,21 +3701,21 @@ void HandleKeyDown(int keyID) {
       WallBounds(1);
     }
     if (theme == islandtheme) {
-      themebasenum = 4;
-      themebacknum = 4;
-      themeropenum = 11;
+      themebasenum = TEX_MARBLE_ID;
+      themebacknum = TEX_MARBLE_ID;
+      themeropenum = TEX_ROPE_ID;
       WallBounds(0);
     }
     if (theme == lavatheme) {
-      themebasenum = 29;
-      themebacknum = 29;
-      themeropenum = 29;
+      themebasenum = TEX_METAL_ID;
+      themebacknum = TEX_METAL_ID;
+      themeropenum = TEX_METAL_ID;
       WallBounds(0);
     }
     if (theme == snowtheme) {
-      themebasenum = 29;
-      themebacknum = 32;
-      themeropenum = 29;
+      themebasenum = TEX_METAL_ID;
+      themebacknum = TEX_METALMESH_ID;
+      themeropenum = TEX_METAL_ID;
       WallBounds(0);
     }
     break;
