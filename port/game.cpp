@@ -2056,7 +2056,7 @@ void DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
     glRotatef(yrot + .1, 0.0f, 1.0f, 0.0f);
     glDisable(GL_LIGHTING);
     glColor4f(255.0, 255.0, 255.0, 1.0);
-    bindTexture(44);
+    bindTexture(TEX_ISLAND_BACK_ID);
     // glScalef(10,10,10);
     glDisable(GL_FOG);
     glEnvironmentCube(environment[0].front, environment[0].left, environment[0].back, environment[0].right, environment[0].up, environment[0].down, 5);
@@ -2073,7 +2073,7 @@ void DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
     glRotatef(yrot + .1, 0.0f, 1.0f, 0.0f);
     glDisable(GL_LIGHTING);
     glColor4f(255.0, 255.0, 255.0, 1.0);
-    bindTexture(44);
+    bindTexture(TEX_ISLAND_BACK_ID);
     // glScalef(10,10,10);
     glDisable(GL_FOG);
     glEnvironmentCube(environment[1].front, environment[1].left, environment[1].back, environment[1].right, environment[1].up, environment[1].down, 5);
@@ -2090,7 +2090,7 @@ void DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
     glRotatef(yrot + .1, 0.0f, 1.0f, 0.0f);
     glDisable(GL_LIGHTING);
     glColor4f(255.0, 255.0, 255.0, 1.0);
-    bindTexture(44);
+    bindTexture(TEX_ISLAND_BACK_ID);
     // glScalef(10,10,10);
     glDisable(GL_FOG);
     glEnvironmentCube(environment[2].front, environment[2].left, environment[2].back, environment[2].right, environment[2].up, environment[2].down, 5);
@@ -2219,7 +2219,7 @@ void DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
     glRotatef(yrot, 0.0f, 1.0f, 0.0f);
     glDisable(GL_LIGHTING);
     glColor4f(255.0, 255.0, 255.0, 1.0);
-    bindTexture(44);
+    bindTexture(TEX_ISLAND_BACK_ID);
     // glScalef(10,10,10);
     glDisable(GL_FOG);
     glEnvironmentCube(environment[0].front, environment[0].left, environment[0].back, environment[0].right, environment[0].up, environment[0].down, 5);
@@ -2236,7 +2236,7 @@ void DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
     glRotatef(yrot, 0.0f, 1.0f, 0.0f);
     glDisable(GL_LIGHTING);
     glColor4f(255.0, 255.0, 255.0, 1.0);
-    bindTexture(44);
+    bindTexture(TEX_ISLAND_BACK_ID);
     // glScalef(10,10,10);
     glDisable(GL_FOG);
     glEnvironmentCube(environment[1].front, environment[1].left, environment[1].back, environment[1].right, environment[1].up, environment[1].down, 5);
@@ -2253,7 +2253,7 @@ void DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
     glRotatef(yrot, 0.0f, 1.0f, 0.0f);
     glDisable(GL_LIGHTING);
     glColor4f(255.0, 255.0, 255.0, 1.0);
-    bindTexture(44);
+    bindTexture(TEX_ISLAND_BACK_ID);
     // glScalef(10,10,10);
     glDisable(GL_FOG);
     glEnvironmentCube(environment[2].front, environment[2].left, environment[2].back, environment[2].right, environment[2].up, environment[2].down, 5);
