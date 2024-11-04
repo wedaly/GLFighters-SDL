@@ -15603,7 +15603,8 @@ const int numModels = 1;
 GLuint vertexBufferObjIDs[numModels] = {0};
 
 // clang-format off
-const float *vertexData[numModels] = {
+// HUGE HACK: this doesn't support different num vertices per model
+const float vertexData[numModels][1344] = {
   // Jetpack
   {
     0.294642955, 0.653696477, -0.763544798, 0.481715113, 0.430058122, -0.458499968, 0.899999976, 0.099999994,
