@@ -1,5 +1,8 @@
 #include "models.h"
+#define GL_GLEXT_PROTOTYPES 1
 #include <GL/gl.h>
+#include <GL/glext.h>
+#include <cstdio>
 
 void JetPack(void);
 void JetPack(void) {
@@ -15597,7 +15600,7 @@ void Rope(void) {
 }
 
 const int numModels = 1;
-const GLuint vertexBufferObjIDs[numModels] = {0};
+GLuint vertexBufferObjIDs[numModels] = {0};
 
 // clang-format off
 const float *vertexData[numModels] = {
@@ -15782,8 +15785,21 @@ bool loadModels() {
 }
 
 void freeModels() {
-  glDeleteBuffers(vertexBufferObjIDs);
+  glDeleteBuffers(numModels, vertexBufferObjIDs);
 }
 
 void drawModel(int id) {
+	if (id < 0 || id >= numModels) {
+		printf("Invalid model id %d\n", id);
+		return;
+	}
+
+	int numVertices = sizeof(vertexData[id]) / sizeof(float);
+	glBindBuffer(GL_ARRAY_BUFFER_ARB, vertexBufferObjIDs[id]);
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glNormalPointer(GL_FLOAT, 8 * sizeof(float), (void*)(0));
+	glTexCoordPointer(3, GL_FLOAT, 8 * sizeof(float), (void*)(0+2));
+	glVertexPointer(3, GL_FLOAT, 8 * sizeof(float), (void*)(0+5));
+	glDrawArrays(GL_TRIANGLES, 0, numVertices);
+	glDisableClientState(GL_VERTEX_ARRAY);
 }
