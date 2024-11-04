@@ -1,10 +1,10 @@
 #include "game.h"
 #include "input.h"
 #include "models.h"
+#include "perspective.h"
 #include "print.h"
 #include "sound.h"
 #include "textures.h"
-#include "perspective.h"
 #include <GL/gl.h>
 #include <cmath>
 #include <cstdio>
@@ -2367,9 +2367,9 @@ void DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
   }
   glLightfv(GL_LIGHT2, GL_POSITION, LightPosition);
   glLightfv(GL_LIGHT2, GL_DIFFUSE, LightDiffuse);
-  // glLightf(GL_LIGHT2, GL_QUADRATIC_ATTENUATION, .01);
-  // glLightf(GL_LIGHT2, GL_LINEAR_ATTENUATION, .01);
-  // glLightf(GL_LIGHT2, GL_QUADRATIC_ATTENUATION, .01);
+  glLightf(GL_LIGHT2, GL_QUADRATIC_ATTENUATION, .01);
+  glLightf(GL_LIGHT2, GL_LINEAR_ATTENUATION, .01);
+  glLightf(GL_LIGHT2, GL_QUADRATIC_ATTENUATION, .01);
   /*glTranslatef(litx[0]+100,lity[0]+200,0);
   glColor4f(300.0, 300.0, 300.0, 1.0);
                   glDrawCube(1,1,1,1);*/
@@ -2399,9 +2399,9 @@ void DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
   }
   glLightfv(GL_LIGHT3, GL_POSITION, LightPosition);
   glLightfv(GL_LIGHT3, GL_DIFFUSE, LightDiffuse);
-  // glLightf(GL_LIGHT3, GL_QUADRATIC_ATTENUATION, .01);
-  // glLightf(GL_LIGHT3, GL_LINEAR_ATTENUATION, .01);
-  // glLightf(GL_LIGHT3, GL_QUADRATIC_ATTENUATION, .01);
+  glLightf(GL_LIGHT3, GL_QUADRATIC_ATTENUATION, .01);
+  glLightf(GL_LIGHT3, GL_LINEAR_ATTENUATION, .01);
+  glLightf(GL_LIGHT3, GL_QUADRATIC_ATTENUATION, .01);
   glPopMatrix();
 
   bindTexture(69);
