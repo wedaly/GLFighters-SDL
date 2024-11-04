@@ -13400,6 +13400,14 @@ void runGameEventLoop(SDL_Window *window) {
       case SDL_QUIT:
         return;
 
+      case SDL_WINDOWEVENT:
+        if (e.window.event == SDL_WINDOWEVENT_RESIZED) {
+          screenwidth = e.window.data1;
+          screenheight = e.window.data2;
+          ReSizeGLScene(screenwidth, screenheight, 45);
+        }
+        break;
+
       case SDL_KEYDOWN:
       case SDL_KEYUP:
         int keyID = translateSDLEventToKeyID(e.key);

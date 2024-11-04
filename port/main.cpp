@@ -4,8 +4,8 @@
 #include <SDL2/SDL.h>
 #include <cstdio>
 
-const int SCREEN_WIDTH = 1600;
-const int SCREEN_HEIGHT = 1200;
+const int SCREEN_WIDTH = 640;
+const int SCREEN_HEIGHT = 480;
 
 int main(int argc, char *args[]) {
   if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0) {
@@ -15,7 +15,7 @@ int main(int argc, char *args[]) {
 
   SDL_Window *window = SDL_CreateWindow("GLFighters", SDL_WINDOWPOS_UNDEFINED,
                                         SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH,
-                                        SCREEN_HEIGHT, SDL_WINDOW_OPENGL);
+                                        SCREEN_HEIGHT, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
   if (window == NULL) {
     printf("Window could not be created. SDL_Error: %s\n", SDL_GetError());
     return 1;
