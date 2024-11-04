@@ -15797,7 +15797,7 @@ void drawModel(int id) {
 	}
 
 	int numVertices = sizeof(vertexData[id]) / sizeof(float);
-	glBindBuffer(GL_ARRAY_BUFFER_ARB, vertexBufferObjIDs[id]);
+	glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObjIDs[id]);
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glNormalPointer(GL_FLOAT, 8 * sizeof(float), (void*)(0));
 	glTexCoordPointer(3, GL_FLOAT, 8 * sizeof(float), (void*)(0+2));
