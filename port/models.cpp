@@ -15798,10 +15798,14 @@ void drawModel(int id) {
 
 	int numVertices = sizeof(vertexData[id]) / sizeof(float);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObjIDs[id]);
+	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+	glEnableClientState(GL_NORMAL_ARRAY);
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glNormalPointer(GL_FLOAT, 8 * sizeof(float), (void*)(0));
 	glTexCoordPointer(3, GL_FLOAT, 8 * sizeof(float), (void*)(0+2));
 	glVertexPointer(3, GL_FLOAT, 8 * sizeof(float), (void*)(0+5));
 	glDrawArrays(GL_TRIANGLES, 0, numVertices);
 	glDisableClientState(GL_VERTEX_ARRAY);
+	glDisableClientState(GL_NORMAL_ARRAY);
+	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 }
