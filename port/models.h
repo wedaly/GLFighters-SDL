@@ -6,8 +6,8 @@ void drawModel(int id);
 
 const int MODEL_JETPACK_ID = 0;
 const int MODEL_WALL_ID = 1;
+const int MODEL_LIGHTNINGGUN_ID = 2;
 
-void LightningGun(void);
 void Machinegun(void);
 void Grenade(void);
 void Grenlauncher(void);

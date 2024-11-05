@@ -1285,7 +1285,7 @@ void DrawBody(int whichguy) {
     glRotatef(180, 0.0, 1.0, 0.0);
     glRotatef(-90, 1.0, 0.0, 0.0);
     glScalef(2, 2, 2);
-    LightningGun();
+    drawModel(MODEL_LIGHTNINGGUN_ID);
   }
   glGetFloatv(GL_MODELVIEW_MATRIX, M);
   righthandpoint.x = M[12];
