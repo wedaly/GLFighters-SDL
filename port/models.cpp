@@ -15805,22 +15805,23 @@ bool loadModels() {
 	}
 
 	float *vertexData = new float[numVertices*8];
-	for (int i = 0; i < numVertices; i++) {
+	float v = 0;
+	for (int i = 0; i < numVertices*8; i++) {
 		// 3 tex coordinates
 		// 2 normal coordinates
 		// 3 vertex coordinates
-		for (int j = 0; j < 8; j++) {
-			n = fread(&vertexData[i*8+j], sizeof(float), 1, f);
-			if (n != 1) {
-				printf("Could not read model data for %s\n", path);
-				fclose(f);
-				return false;
-			}
+		n = fread(&v, sizeof(float), 1, f);
+		if (n != 1) {
+			printf("Could not read model data for %s\n", path);
+			fclose(f);
+			return false;
 		}
+		v = SDL_SwapFloatBE(v);
+		vertexData[i] = v;
 	}
 
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vertexBufferObjIDs[0]);
-  glBufferData(GL_ELEMENT_ARRAY_BUFFER, numVertices * sizeof(float), vertexData, GL_STATIC_DRAW);
+  glBufferData(GL_ELEMENT_ARRAY_BUFFER, numVertices * 8 * sizeof(float), vertexData, GL_STATIC_DRAW);
 	delete vertexData;
 	return true;
 }
