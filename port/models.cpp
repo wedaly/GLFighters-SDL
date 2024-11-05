@@ -3,6 +3,7 @@
 #include <GL/gl.h>
 #include <GL/glext.h>
 #include <cstdio>
+#include <SDL2/SDL.h>
 
 void JetPack(void);
 void JetPack(void) {
@@ -15791,27 +15792,38 @@ bool loadModels() {
 
 	unsigned int numVertices = 0;
 	size_t n = fread(&numVertices, sizeof(unsigned int), 1, f);
-	if (n != 1 || numVertices > 1000) {
+	if (n != 1) {
+		printf("Could not read num vertices for model %s\n", path);
+		fclose(f);
+		return false;
+	}
+	numVertices = SDL_SwapBE32(numVertices);
+	if (numVertices > 1000) {
+		printf("Invalid num vertices for model %s\n", path);
 		fclose(f);
 		return false;
 	}
 
-	float *vertexData = new float[numVertices];
+	float *vertexData = new float[numVertices*8];
+	float v = 0;
 	for (int i = 0; i < numVertices; i++) {
 		// 3 tex coordinates
 		// 2 normal coordinates
 		// 3 vertex coordinates
 		for (int j = 0; j < 8; j++) {
-			n = fread(&vertexData[i*8+j], sizeof(float), 1, f);
+			n = fread(&v, sizeof(float), 1, f);
 			if (n != 1) {
+				printf("Could not read model data for %s\n", path);
 				fclose(f);
 				return false;
 			}
+			vertexData[i*8+j] = SDL_SwapBE32(v);
 		}
 	}
 
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vertexBufferObjIDs[0]);
   glBufferData(GL_ELEMENT_ARRAY_BUFFER, numVertices * sizeof(float), vertexData, GL_STATIC_DRAW);
+	delete vertexData;
 	return true;
 }
 
