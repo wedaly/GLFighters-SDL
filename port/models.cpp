@@ -6127,6 +6127,7 @@ void Rope(void) {
   return;
 }
 
+// TODO: update all these paths...
 const int numModels = 3;
 const char *modelPaths[numModels] = {
     "./data/models/JetPack",
