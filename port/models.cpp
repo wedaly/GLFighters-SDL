@@ -6135,7 +6135,13 @@ const char *modelPaths[numModels] = {
 };
 
 GLuint vertexBufferObjIDs[numModels] = {0};
-unsigned int numVerticesForModel[numModels] = {0};
+
+typedef struct {
+	unsigned int numVertices;
+	unsigned int numFloatsPerVertex;
+} modelMetadata;
+
+modelMetadata metadataForModel[numModels];
 
 bool loadModelData(const char *path, GLuint vbo, unsigned int *numVerticesReturned) {
   FILE *f = fopen(path, "r");
