@@ -6163,6 +6163,7 @@ bool loadModelData(const char *path, GLuint vbo, unsigned int *numVerticesReturn
     fclose(f);
     return false;
   }
+	// TODO: load model meta with floats per vertex
 
   unsigned int numValues = numVertices * 8;
   float *vertexData = new float[numValues];
@@ -6216,6 +6217,7 @@ void drawModel(int id) {
   glEnableClientState(GL_TEXTURE_COORD_ARRAY);
   glEnableClientState(GL_NORMAL_ARRAY);
   glEnableClientState(GL_VERTEX_ARRAY);
+	// TODO: skip tex if numFloatsPerVertex == 5
   glTexCoordPointer(3, GL_FLOAT, 8 * sizeof(float), (void *)(0));
   glNormalPointer(GL_FLOAT, 8 * sizeof(float), (void *)(3 * sizeof(float)));
   glVertexPointer(3, GL_FLOAT, 8 * sizeof(float), (void *)(5 * sizeof(float)));
