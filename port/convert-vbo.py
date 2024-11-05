@@ -26,6 +26,7 @@ def append3ToData(line):
     data.extend(m.groups(1))
 
 
+from pdb import set_trace; set_trace()
 with open("models.cpp", "r") as f:
     for line in f:
         if state == STATE_INIT:
