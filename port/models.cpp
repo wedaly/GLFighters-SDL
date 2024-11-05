@@ -15805,19 +15805,17 @@ bool loadModels() {
 	}
 
 	float *vertexData = new float[numVertices*8];
-	float v = 0;
 	for (int i = 0; i < numVertices; i++) {
 		// 3 tex coordinates
 		// 2 normal coordinates
 		// 3 vertex coordinates
 		for (int j = 0; j < 8; j++) {
-			n = fread(&v, sizeof(float), 1, f);
+			n = fread(&vertexData[i*8+j], sizeof(float), 1, f);
 			if (n != 1) {
 				printf("Could not read model data for %s\n", path);
 				fclose(f);
 				return false;
 			}
-			vertexData[i*8+j] = SDL_SwapBE32(v);
 		}
 	}
 
