@@ -15780,10 +15780,7 @@ const float vertexData[numModels][1344] = {
 };
 // clang-format on
 
-bool loadModels() {
-  glGenBuffers(numModels, vertexBufferObjIDs);
-
-	const char *path = "./data/models/JetPack";
+bool loadModelData(const char *path, GLuint vbo) {
 	FILE *f = fopen(path, "r");
 	if (f == NULL) {
 		printf("Could not open model file %s\n", path);
@@ -15804,9 +15801,10 @@ bool loadModels() {
 		return false;
 	}
 
-	float *vertexData = new float[numVertices*8];
+	unsigned int numValues = numVertices * 8;
+	float *vertexData = new float[numValues];
 	float v = 0;
-	for (int i = 0; i < numVertices*8; i++) {
+	for (int i = 0; i < numValues; i++) {
 		// 3 tex coordinates
 		// 2 normal coordinates
 		// 3 vertex coordinates
@@ -15814,15 +15812,27 @@ bool loadModels() {
 		if (n != 1) {
 			printf("Could not read model data for %s\n", path);
 			fclose(f);
+			delete vertexData;
 			return false;
 		}
-		v = SDL_SwapFloatBE(v);
-		vertexData[i] = v;
+		vertexData[i] = SDL_SwapFloatBE(v);
 	}
 
-  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vertexBufferObjIDs[0]);
-  glBufferData(GL_ELEMENT_ARRAY_BUFFER, numVertices * 8 * sizeof(float), vertexData, GL_STATIC_DRAW);
+  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vbo);
+  glBufferData(GL_ELEMENT_ARRAY_BUFFER, numValues * sizeof(float), vertexData, GL_STATIC_DRAW);
 	delete vertexData;
+
+	return true;
+}
+
+bool loadModels() {
+  glGenBuffers(numModels, vertexBufferObjIDs);
+
+	const char *path = "./data/models/JetPack";
+	if (!loadModelData(path, vertexBufferObjIDs[0])) {
+		return false;
+	}
+
 	return true;
 }
 
