@@ -15781,6 +15781,14 @@ const float vertexData[numModels][1344] = {
 
 bool loadModels() {
   glGenBuffers(numModels, vertexBufferObjIDs);
+
+	const char *path = "./data/models/JetPack";
+	FILE *f = fopen(path, "r");
+	if (f == NULL) {
+		printf("Could not open model file %s\n", path);
+		return false
+	}
+
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vertexBufferObjIDs[0]);
   glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(vertexData[0]), &(vertexData[0]), GL_STATIC_DRAW);
 	return true;

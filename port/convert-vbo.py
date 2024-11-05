@@ -50,8 +50,10 @@ with open("models.cpp", "r") as f:
 if state != STATE_DONE:
     print("ERROR: state={}".format(state))
 
-print("Writing len(data)={} values to {}".format(len(data), target))
-with open(target, "wb") as f:
-    f.write(struct.pack(">I", len(data))) # big endian unsigned int
+outpath = "data/models/" + target
+print("Writing len(data)={} values to {}".format(len(data), outpath))
+with open(outpath, "wb") as f:
+    numVertices = len(data) // 8
+    f.write(struct.pack(">I", numVertices)) # big endian unsigned int
     for v in data:
         f.write(struct.pack(">f", float(v))) # big endian IEEE floating point
