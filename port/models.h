@@ -18,16 +18,4 @@ const int MODEL_LASERRIFLE_ID = 10;
 
 void glDrawFloor(float xWidth, float yWidth, float zWidth, float movement);
 void glDrawCube(float xWidth, float yWidth, float zWidth, int tesselation);
-
-void Head2(void);
-void Head(void);
-void Hand(void);
-void Lowerarm(void);
-void Upperarm(void);
-void Upperleg(void);
-void Foot(void);
 void Floor(float movement);
-void Lowerleg(void);
-void Hip(void);
-void Torso(void);
-void Rope(void);
