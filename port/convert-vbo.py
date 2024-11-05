@@ -52,6 +52,6 @@ if state != STATE_DONE:
 
 print("Writing len(data)={} values to {}".format(len(data), target))
 with open(target, "wb") as f:
-    f.write(struct.pack(">I", len(data)))
+    f.write(struct.pack(">I", len(data))) # big endian unsigned int
     for v in data:
-        f.write(struct.pack(">f", float(v)))
+        f.write(struct.pack(">f", float(v))) # big endian IEEE floating point
