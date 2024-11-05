@@ -5,9 +5,8 @@ void freeModels();
 void drawModel(int id);
 
 const int MODEL_JETPACK_ID = 0;
+const int MODEL_WALL_ID = 1;
 
-void JetPack(void);
-void Wall(void);
 void LightningGun(void);
 void Machinegun(void);
 void Grenade(void);

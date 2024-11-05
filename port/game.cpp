@@ -2164,7 +2164,7 @@ void DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
             glEnable(GL_LIGHTING);
           }
           if (theme != matrixtheme) {
-            Wall();
+            drawModel(MODEL_WALL_ID);
           }
           bindTexture(themebasenum);
           glPopMatrix();
