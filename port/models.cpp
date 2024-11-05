@@ -15786,11 +15786,32 @@ bool loadModels() {
 	FILE *f = fopen(path, "r");
 	if (f == NULL) {
 		printf("Could not open model file %s\n", path);
-		return false
+		return false;
+	}
+
+	unsigned int numVertices = 0;
+	size_t n = fread(&numVertices, sizeof(unsigned int), 1, f);
+	if (n != 1 || numVertices > 1000) {
+		fclose(f);
+		return false;
+	}
+
+	float *vertexData = new float[numVertices];
+	for (int i = 0; i < numVertices; i++) {
+		// 3 tex coordinates
+		// 2 normal coordinates
+		// 3 vertex coordinates
+		for (int j = 0; j < 8; j++) {
+			n = fread(&vertexData[i*8+j], sizeof(float), 1, f);
+			if (n != 1) {
+				fclose(f);
+				return false;
+			}
+		}
 	}
 
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vertexBufferObjIDs[0]);
-  glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(vertexData[0]), &(vertexData[0]), GL_STATIC_DRAW);
+  glBufferData(GL_ELEMENT_ARRAY_BUFFER, numVertices * sizeof(float), vertexData, GL_STATIC_DRAW);
 	return true;
 }
 
