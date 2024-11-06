@@ -49,6 +49,10 @@ int main(int argc, char *args[]) {
   }
 
   emscripten_set_main_loop(mainLoop, 0, 1);
+  if (emscripten_set_main_loop_timing(EM_TIMING_RAF, 1) != 0) {
+    printf("Failed setting emscripten main loop timing\n");
+    return 1;
+  }
 
   disposeGame();
   SDL_DestroyWindow(window);
