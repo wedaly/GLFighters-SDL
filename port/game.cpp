@@ -2125,7 +2125,7 @@ void DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
             glEnable(GL_LIGHTING);
           }
           if (theme != matrixtheme && theme != shinytheme) {
-            Floor(0);
+            Floor();
           }
         }
         if (Map[y][x] == 2) {
@@ -2136,7 +2136,7 @@ void DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
             glEnable(GL_LIGHTING);
           }
           if (theme != matrixtheme && theme != shinytheme) {
-            Floor(0);
+            Floor();
           }
           glPushMatrix();
           glScalef(1.2, 1.355, 1.2);

@@ -21,7 +21,7 @@ void Lowerarm(void);
 void Upperarm(void);
 void Upperleg(void);
 void Foot(void);
-void Floor(float movement);
+void Floor(void);
 void Lowerleg(void);
 void Hip(void);
 void Torso(void);
