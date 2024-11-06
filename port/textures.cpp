@@ -113,28 +113,6 @@ static void swapRedAndBlue(SDL_Surface *surface) {
 }
 
 static bool loadTextureFromImage(char *path, GLuint textureID) {
-  // DEBUG
-  FILE *f = fopen(path, "r");
-  if (f == NULL) {
-    printf("f = NULL\n");
-    return false;
-  }
-
-  char buf[16];
-  size_t n = fread(buf, 1, 16, f);
-  if (n != 16) {
-    printf("Read wrong n = %d\n", n);
-    fclose(f);
-    return false;
-  }
-
-  printf("Read these bytes from %s:\n", path);
-  for (int i = 0; i < n; i++) {
-    printf("%02X\n", buf[i]);
-  }
-
-  fclose(f);
-
   // DEBUG: still not working so skip
   return true;
 
