@@ -13391,6 +13391,8 @@ void DoKeys(int whichguy) {
   }
 }
 
+static Uint64 lastFrameEndTicks = 0;
+
 void runGameEventLoop(SDL_Window *window) {
   const Uint32 TARGET_TICKS_PER_FRAME = 16; // About 60fps
   SDL_Event e;
@@ -13401,7 +13403,9 @@ void runGameEventLoop(SDL_Window *window) {
 
   // Keep doing the event loop while not gQuit
   Point3D point2;
-  Uint64 startTicks = SDL_GetTicks64(); // milliseconds
+	if (lastFrameEndTicks == 0) {
+	  lastFrameEndTicks = SDL_GetTicks64(); // milliseconds
+	}
 
   while (SDL_PollEvent(&e)) {
     switch (e.type) {
@@ -13504,7 +13508,9 @@ void runGameEventLoop(SDL_Window *window) {
     multiplier = oldmult;
   }
 
-  timetaken = SDL_GetTicks64() - startTicks;
+	Uint64 endTicks = SDL_GetTicks64();
+  timetaken = endTicks- lastFrameEndTicks;
+	lastFrameEndTicks = endTicks;
   framespersecond = 1000 / timetaken;
   multiplier5 = multiplier4;
   multiplier4 = multiplier3;
