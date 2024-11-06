@@ -82,8 +82,8 @@ bool loadModelFromFile(const char *path, int id) {
   }
 
   numVerticesForModel[id] = numVertices;
-  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vertexBufferObjIDs[id]);
-  glBufferData(GL_ELEMENT_ARRAY_BUFFER, numFloats * sizeof(float), vertexData, GL_STATIC_DRAW);
+  glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObjIDs[id]);
+  glBufferData(GL_ARRAY_BUFFER, numFloats * sizeof(float), vertexData, GL_STATIC_DRAW);
   delete vertexData;
 
   return true;
