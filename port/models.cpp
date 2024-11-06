@@ -1,7 +1,6 @@
 #include "models.h"
 #include <GL/gl.h>
 
-void JetPack(void);
 void JetPack(void) {
   glBegin(GL_TRIANGLES);
 
@@ -1560,7 +1559,6 @@ void LightningGun(void) {
   return;
 }
 
-void Machinegun(void);
 void Machinegun(void) {
   glBegin(GL_TRIANGLES);
 
@@ -2873,7 +2871,6 @@ void Machinegun(void) {
   return;
 }
 
-void Grenade(void);
 void Grenade(void) {
   glPushMatrix();
   glScalef(.7f, .7f, .7f);
@@ -3269,7 +3266,6 @@ void Grenade(void) {
   glPopMatrix();
 }
 
-void Grenlauncher(void);
 void Grenlauncher(void) {
   glBegin(GL_TRIANGLES);
 
@@ -3977,7 +3973,6 @@ void Grenlauncher(void) {
   return;
 }
 
-void LightSabre(void);
 void LightSabre(void) {
   glBegin(GL_TRIANGLES);
 
@@ -4268,7 +4263,6 @@ void LightSabre(void) {
   return;
 }
 
-void Chunk(void);
 void Chunk(void) {
   glBegin(GL_TRIANGLES);
 
@@ -4517,7 +4511,6 @@ void Chunk(void) {
   return;
 }
 
-void Sword(void);
 void Sword(void) {
   glBegin(GL_TRIANGLES);
 
@@ -5674,7 +5667,6 @@ void Sword(void) {
   return;
 }
 
-void Rifle(void);
 void Rifle(void) {
   glBegin(GL_TRIANGLES);
 
@@ -8723,7 +8715,6 @@ void Rifle(void) {
   return;
 }
 
-void LaserRifle(void);
 void LaserRifle(void) {
   glBegin(GL_TRIANGLES);
 
@@ -9304,7 +9295,6 @@ void LaserRifle(void) {
   return;
 }
 
-void One(void);
 void One(void) {
   glBegin(GL_TRIANGLES);
 
@@ -9474,7 +9464,6 @@ void One(void) {
   return;
 }
 
-void glDrawFloor(float xWidth, float yWidth, float zWidth, float movement);
 void glDrawFloor(float xWidth, float yWidth, float zWidth, float movement) {
   int tesselation = 1;
   int normallength = -1;
@@ -9541,7 +9530,7 @@ void glDrawFloor(float xWidth, float yWidth, float zWidth, float movement) {
   glVertex3f(-xWidth, yWidth, -zWidth);
   glEnd();
 }
-void glDrawCube(float xWidth, float yWidth, float zWidth, int tesselation);
+
 void glDrawCube(float xWidth, float yWidth, float zWidth, int tesselation) {
   int normallength = -1;
   glBegin(GL_QUADS);
@@ -9608,7 +9597,6 @@ void glDrawCube(float xWidth, float yWidth, float zWidth, int tesselation) {
   glEnd();
 }
 
-void Head2(void);
 void Head2(void) {
   glBegin(GL_TRIANGLES);
 
@@ -10941,7 +10929,6 @@ void Head2(void) {
   return;
 }
 
-void Head(void);
 void Head(void) {
   glBegin(GL_TRIANGLES);
 
@@ -11550,7 +11537,6 @@ void Head(void) {
   return;
 }
 
-void Hand(void);
 void Hand(void) {
   glBegin(GL_TRIANGLES);
 
@@ -11895,7 +11881,6 @@ void Hand(void) {
   return;
 }
 
-void Lowerarm(void);
 void Lowerarm(void) {
   glBegin(GL_TRIANGLES);
 
@@ -12154,7 +12139,6 @@ void Lowerarm(void) {
   return;
 }
 
-void Upperarm(void);
 void Upperarm(void) {
   glBegin(GL_TRIANGLES);
 
@@ -12557,7 +12541,6 @@ void Upperarm(void) {
   return;
 }
 
-void Upperleg(void);
 void Upperleg(void) {
   glBegin(GL_TRIANGLES);
 
@@ -12650,7 +12633,6 @@ void Upperleg(void) {
   return;
 }
 
-void Foot(void);
 void Foot(void) {
   glBegin(GL_TRIANGLES);
 
@@ -13273,7 +13255,6 @@ void Foot(void) {
   return;
 }
 
-void Floor();
 void Floor() {
   glPushMatrix();
   glScalef(1.00f, 1.05f, 1.00f);
@@ -13404,7 +13385,6 @@ void Floor() {
   return;
 }
 
-void Lowerleg(void);
 void Lowerleg(void) {
 
   glBegin(GL_TRIANGLES);
@@ -14288,7 +14268,6 @@ void Lowerleg(void) {
   return;
 }
 
-void Hip(void);
 void Hip(void) {
   glBegin(GL_TRIANGLES);
 
@@ -14668,7 +14647,6 @@ void Hip(void) {
   return;
 }
 
-void Torso(void);
 void Torso(void) {
 
   glBegin(GL_TRIANGLES);
@@ -15426,7 +15404,6 @@ void Torso(void) {
   return;
 }
 
-void Rope(void);
 void Rope(void) {
 
   glBegin(GL_TRIANGLES);
