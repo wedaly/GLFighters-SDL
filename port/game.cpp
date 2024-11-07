@@ -1795,13 +1795,11 @@ void glEnvironmentCube(int front, int left, int back, int right, int up, int dow
   glDisable(GL_BLEND);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-  // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
-  // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
   if ((yrot >= 90 && yrot <= 270) || (firstperson == 1)) {
     bindTexture(front);
   }
-  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
-  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
   // glBindTexture(GL_TEXTURE_2D, 44);
   glBegin(GL_QUADS);
   // Front Face
@@ -1818,8 +1816,8 @@ void glEnvironmentCube(int front, int left, int back, int right, int up, int dow
   if (yrot >= 270 || yrot <= 90 || firstperson == 3 || firstperson == 0) {
     bindTexture(back);
   }
-  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
-  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
   glBegin(GL_QUADS);
   // Back Face
   glNormal3f(0.0f, 0.0f, normallength);
@@ -1835,8 +1833,8 @@ void glEnvironmentCube(int front, int left, int back, int right, int up, int dow
   if ((xrot >= 180 && xrot <= 360) || (firstperson == 1 || firstperson == 2)) {
     bindTexture(up);
   }
-  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
-  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
   glBegin(GL_QUADS);
   // Top Face
   glNormal3f(0.0f, -normallength, 0.0f);
@@ -1852,8 +1850,8 @@ void glEnvironmentCube(int front, int left, int back, int right, int up, int dow
   if ((xrot <= 180 && xrot >= 0) || (firstperson == 1 || firstperson == 2)) {
     bindTexture(down);
   }
-  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
-  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
   glBegin(GL_QUADS);
   // Bottom Face
   glNormal3f(0.0f, normallength, 0.0f);
@@ -1869,8 +1867,8 @@ void glEnvironmentCube(int front, int left, int back, int right, int up, int dow
   if ((yrot >= 0 && yrot <= 180) || (firstperson == 1 || firstperson == 2)) {
     bindTexture(right);
   }
-  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
-  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
   glBegin(GL_QUADS);
   // Right face
   glNormal3f(-normallength, 0.0f, 0.0f);
@@ -1887,8 +1885,8 @@ void glEnvironmentCube(int front, int left, int back, int right, int up, int dow
   if ((yrot >= 180 && yrot <= 360) || (firstperson == 1 || firstperson == 2)) {
     bindTexture(left);
   }
-  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
-  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
   glBegin(GL_QUADS);
   glNormal3f(normallength, 0.0f, 0.0f);
   glTexCoord2f(beginningmargin, movement);
