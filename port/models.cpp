@@ -81,8 +81,6 @@ bool loadModelFromFile(const char *path, int id) {
     vertexData[i] = SDL_SwapFloatBE(vertexData[i]);
   }
 
-	printf("DEBUG: model %d has vbo id %d\n", id, vertexBufferObjIDs[id]);
-
   numVerticesForModel[id] = numVertices;
   glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObjIDs[id]);
   glBufferData(GL_ARRAY_BUFFER, numFloats * sizeof(float), vertexData, GL_STATIC_DRAW);
@@ -110,18 +108,11 @@ void freeModels() {
   glDeleteBuffers(numModels, vertexBufferObjIDs);
 }
 
-static bool logged[numModels] = {false};
-
 void drawModel(int id) {
   if (id < 0 || id >= numModels) {
     printf("Invalid model id %d\n", id);
     return;
   }
-
-	if (!logged[id]) {
-		printf("Binding model %d to vbo %d during render\n", id, vertexBufferObjIDs[id]);
-		logged[id] = true;
-	}
 
   glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObjIDs[id]);
   glEnableClientState(GL_TEXTURE_COORD_ARRAY);
