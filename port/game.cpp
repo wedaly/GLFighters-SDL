@@ -725,7 +725,7 @@ void ChangeLightning(int howmany, float endoffset, int which) {
   }
 }
 
-GLvoid ReSizeGLScene(GLsizei width, GLsizei height, float fov) {
+GLvoid ReSizeGLScene(GLsizei width, GLsizei height, float fov, float znear) {
   if (height == 0) {
     height = 1;
   }
@@ -734,10 +734,7 @@ GLvoid ReSizeGLScene(GLsizei width, GLsizei height, float fov) {
 
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
-
-  // Calculate The Aspect Ratio Of The Window
-  gluPerspective(fov, (GLfloat)width / (GLfloat)height, 0.1f, 1000000.0f);
-
+  gluPerspective(fov, (GLfloat)width / (GLfloat)height, znear, 2000.0f);
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
 }
@@ -3398,11 +3395,11 @@ void HandleKeyDown(int keyID) {
     }
     if (firstperson == 0) {
       firstperson = 1;
-      ReSizeGLScene(screenwidth, screenheight, 90);
+      ReSizeGLScene(screenwidth, screenheight, 90, 0.5f);
     }
     if (firstperson == 2) {
       firstperson = 0;
-      ReSizeGLScene(screenwidth, screenheight, 45);
+      ReSizeGLScene(screenwidth, screenheight, 45, 10.0f);
       yrot = 0;
     }
     break;
@@ -13416,7 +13413,7 @@ void runGameEventLoop(SDL_Window *window) {
         if (e.window.event == SDL_WINDOWEVENT_RESIZED) {
           screenwidth = e.window.data1;
           screenheight = e.window.data2;
-          ReSizeGLScene(screenwidth, screenheight, 45);
+          ReSizeGLScene(screenwidth, screenheight, 45, 10.0f);
         }
         break;
 
@@ -13885,7 +13882,7 @@ bool initGame(int screenwidthArg, int screenheightArg) {
     return false;
   }
 
-  ReSizeGLScene(screenwidth, screenheight, 45);
+  ReSizeGLScene(screenwidth, screenheight, 45, 10.0f);
 
   if (!InitGL()) {
     printf("Failed in InitGL\n");
