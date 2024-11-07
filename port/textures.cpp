@@ -113,9 +113,6 @@ static void swapRedAndBlue(SDL_Surface *surface) {
 }
 
 static bool loadTextureFromImage(char *path, GLuint textureID) {
-  // DEBUG: still not working so skip
-  return true;
-
   SDL_Surface *surface = IMG_Load(path);
   if (surface == NULL) {
     printf("Error loading SDL surface from '%s'. SDL_Error: %s\n", path,
@@ -147,13 +144,9 @@ bool loadTextures() {
 }
 
 void freeTextures() {
-  // DEBUG
-  return;
   glDeleteTextures(numTextures, textureIDs);
 }
 
 void bindTexture(int id) {
-  // DEBUG
-  return;
   glBindTexture(GL_TEXTURE_2D, textureIDs[id]);
 }
