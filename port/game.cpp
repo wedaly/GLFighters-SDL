@@ -1002,7 +1002,7 @@ void DrawSabreGlow(int whichguy) {
   glDisable(GL_CULL_FACE);
   glPushMatrix();
   glTranslatef(0.0, 5.0, 0.0);
-  glColor4f(255, 255, 255, brightness / 255);
+  glColor4f(1.0, 1.0, 1.0, brightness / 255);
   if (whichguy == 0) {
     glColor4f(1, .5, .5, brightness / 255);
   }
@@ -1557,38 +1557,38 @@ void HandleSpriteTypes(int x) {
     glTranslatef(0, 0, sprite[x].spin2);
     glRotatef(-sprite[x].spin, 0.0f, 1.0f, 0.0f);
     // glRotatef(sprite[x].spin,0.0f,-1.0f,0.0f);
-    glColor4f(0, 255, 255, sprite[x].brightness / 255);
+    glColor4f(0.0, 1.0, 1.0, sprite[x].brightness / 255);
     break;
   case deletestars:
     glRotatef(sprite[x].spin, 0.0f, 1.0f, 0.0f);
     glTranslatef(0, 0, sprite[x].spin2);
     glRotatef(-sprite[x].spin, 0.0f, 1.0f, 0.0f);
     // glRotatef(sprite[x].spin,0.0f,-1.0f,0.0f);
-    glColor4f(255, 150, 0, sprite[x].brightness / 255);
+    glColor4f(1.0, 1.0, 0, sprite[x].brightness / 255);
     break;
   case muzzleflashstars:
     glRotatef(sprite[x].spin, 0.0f, 0.0f, 1.0f);
     // glTranslatef(0,0,sprite[x].spin2);
     // glRotatef(-sprite[x].spin,0.0f,1.0f,0.0f);
     // glRotatef(sprite[x].spin,0.0f,-1.0f,0.0f);
-    glColor4f(255, 150, 0, sprite[x].brightness / 255);
+    glColor4f(1.0, 1.0, 0, sprite[x].brightness / 255);
     break;
   case lightningflashstars:
     glRotatef(sprite[x].spin, 0.0f, 0.0f, 1.0f);
     // glTranslatef(0,0,sprite[x].spin2);
     // glRotatef(-sprite[x].spin,0.0f,1.0f,0.0f);
     // glRotatef(sprite[x].spin,0.0f,-1.0f,0.0f);
-    glColor4f(50, 50, 255, sprite[x].brightness / 255);
+    glColor4f(1.0, 1.0, 1.0, sprite[x].brightness / 255);
     break;
   case bouncesprite:
     glRotatef(sprite[x].spin, 0.0f, 0.0f, 1.0f);
     // glRotatef(sprite[x].spin,0.0f,-1.0f,0.0f);
-    glColor4f(255, 150, 0, sprite[x].brightness / 255);
+    glColor4f(1.0, 1.0, 0.0, sprite[x].brightness / 255);
     break;
   case water:
     glRotatef(sprite[x].spin, 0.0f, 0.0f, 1.0f);
     // glRotatef(sprite[x].spin,0.0f,-1.0f,0.0f);
-    glColor4f(0, 0, 255, sprite[x].brightness / 255);
+    glColor4f(0.0, 0.0, 1.0, sprite[x].brightness / 255);
     break;
   case grenade:
     glRotatef(sprite[x].spin + 90, 0.0f, 0.0f, 1.0f);
@@ -1603,7 +1603,7 @@ void HandleSpriteTypes(int x) {
     glTranslatef(0, 0, sprite[x].spin2);
     glRotatef(-sprite[x].spin, 0.0f, 1.0f, 0.0f);
     // glRotatef(sprite[x].spin,0.0f,-1.0f,0.0f);
-    glColor4f(255, 150, 0, sprite[x].brightness / 255);
+    glColor4f(1.0, 1.0, 0.0, sprite[x].brightness / 255);
     sprite[x].size = sprite[x].brightness / 30;
     break;
   case bloodsparks:
@@ -1611,7 +1611,7 @@ void HandleSpriteTypes(int x) {
     glRotatef(sprite[x].spin, 0.0f, 0.0f, 1.0f);
     // glRotatef(-sprite[x].spin,0.0f,1.0f,0.0f);
     // glRotatef(sprite[x].spin,0.0f,-1.0f,0.0f);
-    glColor4f(255, 0, 0, sprite[x].brightness / 255);
+    glColor4f(1.0, 0.0, 0.0, sprite[x].brightness / 255);
     sprite[x].size = sprite[x].brightness / 30;
     break;
   case lasersparks:
@@ -1619,7 +1619,7 @@ void HandleSpriteTypes(int x) {
     glRotatef(sprite[x].spin, 0.0f, 0.0f, 1.0f);
     // glRotatef(-sprite[x].spin,0.0f,1.0f,0.0f);
     // glRotatef(sprite[x].spin,0.0f,-1.0f,0.0f);
-    glColor4f(255, 255, 0, sprite[x].brightness / 255);
+    glColor4f(1.0, 1.0, 0.0, sprite[x].brightness / 255);
     sprite[x].size = sprite[x].brightness / 24;
     break;
   case invisiblestars:
@@ -1629,7 +1629,7 @@ void HandleSpriteTypes(int x) {
     glTranslatef(0, 0, sprite[x].spin2);
     glRotatef(-sprite[x].spin, 0.0f, 1.0f, 0.0f);
     // glRotatef(sprite[x].spin,0.0f,-1.0f,0.0f);
-    glColor4f(0, 150, 0, sprite[x].brightness / 255);
+    glColor4f(0.0, 1.0, 0.0, sprite[x].brightness / 255);
     break;
   case invisiblestars2:
     sprite[x].x = guyx[1];
@@ -1638,20 +1638,20 @@ void HandleSpriteTypes(int x) {
     glTranslatef(0, 0, sprite[x].spin2);
     glRotatef(-sprite[x].spin, 0.0f, 1.0f, 0.0f);
     // glRotatef(sprite[x].spin,0.0f,-1.0f,0.0f);
-    glColor4f(0, 150, 0, sprite[x].brightness / 255);
+    glColor4f(0.0, 1.0, 0.0, sprite[x].brightness / 255);
     break;
   case lasersprite:
     // glRotatef(sprite[x].spin,0.0f,-1.0f,0.0f);
-    glColor4f(255, 255, 255, sprite[x].brightness / 255);
+    glColor4f(1.0, 1.0, 1.0, sprite[x].brightness / 255);
     break;
   case JetPackGlow:
     glRotatef(sprite[x].spin, 0.0f, 1.0f, 0.0f);
-    glColor4f(255, 150, 0, sprite[x].brightness / 255);
+    glColor4f(1.0, 1.0, 0.0, sprite[x].brightness / 255);
     break;
   case smokesprite:
     glRotatef(sprite[x].spin, 0.0f, 0.0f, 1.0f);
     // glRotatef(sprite[x].spin,0.0f,-1.0f,0.0f);
-    glColor4f(255, 255, 255, sprite[x].brightness / 255);
+    glColor4f(1.0, 1.0, 1.0, sprite[x].brightness / 255);
     if (sprite[x].type2 == 1) {
       sprite[x].size += multiplier * gamespeed / 120 * 2;
     }
@@ -1659,7 +1659,7 @@ void HandleSpriteTypes(int x) {
   case exploflame:
     glRotatef(sprite[x].spin, 0.0f, 0.0f, 1.0f);
     // glRotatef(sprite[x].spin,0.0f,-1.0f,0.0f);
-    glColor4f(255, 150, 0, sprite[x].brightness / 255);
+    glColor4f(1.0, 1.0, 0.0, sprite[x].brightness / 255);
     sprite[x].size += multiplier * gamespeed / 20;
     break;
   }
@@ -2042,7 +2042,7 @@ void DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
   }
   if (theme == matrixtheme) {
     // glDisable(GL_LIGHTING);
-    glColor4f(200.0, 200.0, 200.0, 1.0);
+    glColor4f(1.0, 1.0, 1.0, 1.0);
     glDrawBigCube(546, 546, 546, 10, slide + 1);
     // glEnable(GL_LIGHTING);
   }
@@ -2052,7 +2052,7 @@ void DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
     glRotatef(xrot + .1, 1.0f, 0.0f, 0.0f);
     glRotatef(yrot + .1, 0.0f, 1.0f, 0.0f);
     glDisable(GL_LIGHTING);
-    glColor4f(255.0, 255.0, 255.0, 1.0);
+    glColor4f(1.0, 1.0, 1.0, 1.0);
     bindTexture(TEX_ISLAND_BACK_ID);
     // glScalef(10,10,10);
     glDisable(GL_FOG);
@@ -2069,7 +2069,7 @@ void DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
     glRotatef(xrot + .1, 1.0f, 0.0f, 0.0f);
     glRotatef(yrot + .1, 0.0f, 1.0f, 0.0f);
     glDisable(GL_LIGHTING);
-    glColor4f(255.0, 255.0, 255.0, 1.0);
+    glColor4f(1.0, 1.0, 1.0, 1.0);
     bindTexture(TEX_ISLAND_BACK_ID);
     // glScalef(10,10,10);
     glDisable(GL_FOG);
@@ -2086,7 +2086,7 @@ void DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
     glRotatef(xrot + .1, 1.0f, 0.0f, 0.0f);
     glRotatef(yrot + .1, 0.0f, 1.0f, 0.0f);
     glDisable(GL_LIGHTING);
-    glColor4f(255.0, 255.0, 255.0, 1.0);
+    glColor4f(1.0, 1.0, 1.0, 1.0);
     bindTexture(TEX_ISLAND_BACK_ID);
     // glScalef(10,10,10);
     glDisable(GL_FOG);
@@ -2117,7 +2117,7 @@ void DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
         if (Map[y][x] == 1) {
           if (theme == matrixtheme || theme == shinytheme) {
             glDisable(GL_LIGHTING);
-            glColor4f(255.0, 255.0, 255.0, 1.0);
+            glColor4f(1.0, 1.0, 1.0, 1.0);
             glDrawFloor(5, .9, 5, slide);
             glEnable(GL_LIGHTING);
           }
@@ -2131,7 +2131,7 @@ void DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
         if (Map[y][x] == 2) {
           if (theme == matrixtheme || theme == shinytheme) {
             glDisable(GL_LIGHTING);
-            glColor4f(300.0, 300.0, 300.0, 1.0);
+            glColor4f(1.0, 1.0, 1.0, 1.0);
             glDrawFloor(5, .9, 5, slide);
             glEnable(GL_LIGHTING);
           }
@@ -2162,7 +2162,7 @@ void DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
           bindTexture(themebasenum);
           if (theme == matrixtheme) {
             glDisable(GL_LIGHTING);
-            glColor4f(255.0, 255.0, 255.0, 1.0);
+            glColor4f(1.0, 1.0, 1.0, 1.0);
             glDrawFloor(1, 10, 4.5, slide);
             glEnable(GL_LIGHTING);
           }
@@ -2211,7 +2211,7 @@ void DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
   }
   if (theme == matrixtheme) {
     // glDisable(GL_LIGHTING);
-    glColor4f(200.0, 200.0, 200.0, 1.0);
+    glColor4f(1.0, 1.0, 1.0, 1.0);
     glDrawBigCube(455, 451.5, 450, 10, slide);
     // glEnable(GL_LIGHTING);
   }
@@ -2221,7 +2221,7 @@ void DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
     glRotatef(xrot, 1.0f, 0.0f, 0.0f);
     glRotatef(yrot, 0.0f, 1.0f, 0.0f);
     glDisable(GL_LIGHTING);
-    glColor4f(255.0, 255.0, 255.0, 1.0);
+    glColor4f(1.0, 1.0, 1.0, 1.0);
     bindTexture(TEX_ISLAND_BACK_ID);
     // glScalef(10,10,10);
     glDisable(GL_FOG);
@@ -2238,7 +2238,7 @@ void DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
     glRotatef(xrot, 1.0f, 0.0f, 0.0f);
     glRotatef(yrot, 0.0f, 1.0f, 0.0f);
     glDisable(GL_LIGHTING);
-    glColor4f(255.0, 255.0, 255.0, 1.0);
+    glColor4f(1.0, 1.0, 1.0, 1.0);
     bindTexture(TEX_ISLAND_BACK_ID);
     // glScalef(10,10,10);
     glDisable(GL_FOG);
@@ -2255,7 +2255,7 @@ void DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
     glRotatef(xrot, 1.0f, 0.0f, 0.0f);
     glRotatef(yrot, 0.0f, 1.0f, 0.0f);
     glDisable(GL_LIGHTING);
-    glColor4f(255.0, 255.0, 255.0, 1.0);
+    glColor4f(1.0, 1.0, 1.0, 1.0);
     bindTexture(TEX_ISLAND_BACK_ID);
     // glScalef(10,10,10);
     glDisable(GL_FOG);
@@ -2285,7 +2285,7 @@ void DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
         if (fogtoggle) {
           glDisable(GL_FOG);
         }
-        glColor4f(300.0, 300.0, 300.0, 1.0);
+        glColor4f(1.0, 1.0, 1.0, 1.0);
         glDrawCube(6, 11, 6, 1);
         if (wireframe == 0) {
           glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
@@ -2313,7 +2313,7 @@ void DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
           if (fogtoggle) {
             glDisable(GL_FOG);
           }
-          glColor4f(300.0, 000.0, 300.0, 1.0);
+          glColor4f(1.0, 1.0, 1.0, 1.0);
           glDrawCube(6 - g / 2, 11 - g / 2, 6 - g / 2, 1);
           if (wireframe == 0) {
             glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
@@ -2521,7 +2521,7 @@ void DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
     if (sprite[x].type != nothing) {
       if (sprite[x].type == grenade || sprite[x].type == chunk) {
         glPushMatrix();
-        glColor4f(255, 255, 255, sprite[x].brightness / 255);
+        glColor4f(1.0, 1.0, 1.0, sprite[x].brightness / 255);
         glTranslatef(100.0f, 200.0f, 0.0f);
         glTranslatef(sprite[x].x, sprite[x].y, sprite[x].z);
         if (sprite[x].type != bouncesprite && sprite[x].type != water && sprite[x].type != grenade && sprite[x].type != chunk && sprite[x].type != exploflame && sprite[x].type != muzzleflashstars && sprite[x].type != lightningflashstars && sprite[x].type != smokesprite && sprite[x].type != invisiblestars2) {
@@ -2746,7 +2746,7 @@ void DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
   for (x = 0; x < maxsprites; x++) {
     if (sprite[x].type != nothing && sprite[x].type != grenade && sprite[x].type != chunk) {
       glPushMatrix();
-      glColor4f(255, 255, 255, sprite[x].brightness / 255);
+      glColor4f(1.0, 1.0, 1.0, sprite[x].brightness / 255);
       glTranslatef(100.0f, 200.0f, 0.0f);
       glTranslatef(sprite[x].x, sprite[x].y, sprite[x].z);
       if (sprite[x].type != bouncesprite && sprite[x].type != water && sprite[x].type != grenade && sprite[x].type != chunk && sprite[x].type != exploflame && sprite[x].type != muzzleflashstars && sprite[x].type != lightningflashstars && sprite[x].type != smokesprite && sprite[x].type != invisiblestars2) {
@@ -2967,7 +2967,7 @@ void DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
   }
   glDisable(GL_BLEND);
   glEnable(GL_BLEND);
-  glColor4f(255.0f, 255.0f, 255.0f, .5f);
+  glColor4f(1.0f, 1.0f, 1.0f, .5f);
   if (showinfo == 3) {
     glColor3f(1, 1, 1);
 
