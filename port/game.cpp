@@ -1,11 +1,11 @@
 #include "game.h"
 #include "input.h"
 #include "models.h"
+#include "perspective.h"
 #include "print.h"
 #include "sound.h"
 #include "textures.h"
 #include <GL/gl.h>
-#include <GL/glu.h>
 #include <cstdio>
 
 bool light;
