@@ -701,7 +701,7 @@ void MakeLineLightning(int howmany, float endoffset, float x1, float y1, float z
   Lightning[unusedlightning].zrotation -= 90;
 }
 
-void ChangeLightning(int howmany, float endoffset, int which) {
+void ChangeLightning(float endoffset) {
   int counter;
   float arc;
   arc = 0;
@@ -742,7 +742,6 @@ GLvoid ReSizeGLScene(GLsizei width, GLsizei height, float fov, float znear) {
 int InitGL(GLvoid) // All Setup For OpenGL Goes Here
 {
   int num = 0;
-  short fNum;
   glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
   glEnable(GL_LINE_SMOOTH);
   cube = 1;
@@ -1490,7 +1489,7 @@ void DrawGuy(int whichguy, int sabre) {
     }
   }
 
-  if (invisible[whichguy] & cloaktime[whichguy] >= 200) {
+  if (invisible[whichguy] && cloaktime[whichguy] >= 200) {
     glDisable(GL_CULL_FACE);
     glEnable(GL_BLEND);
     // glPolygonMode( GL_FRONT_AND_BACK, GL_LINE);
@@ -1547,7 +1546,7 @@ void DrawGuy(int whichguy, int sabre) {
 }
 
 void HandleSpriteTypes(int x) {
-  int spritetype, a, b, c, d;
+  int spritetype;
   spritetype = sprite[x].type;
   switch (spritetype) {
   case spawnstars:
@@ -1906,9 +1905,9 @@ void glEnvironmentCube(int front, int left, int back, int right, int up, int dow
 
 void DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
 {
-  int x, y, a, b, c, d, e, f;
+  int x, y, a, b;
   float g;
-  float ydist, dist, longestdist, longestydist, targetxrot;
+  float ydist, dist, longestdist, longestydist;
   float xpos, ypos;
   static char aChar[256] = "";
 
@@ -1962,9 +1961,6 @@ void DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
       }
       if (longestydist >= 100) {
         xrot = (longestydist - 100) / 5;
-        if (targetxrot > 65) {
-          targetxrot = 65;
-        }
         if (xrot > 65) {
           xrot = 65;
         }
@@ -2977,7 +2973,7 @@ void DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
     }
     sprintf(aChar, "Jump strength is at %dx.", (int)jumpstrength);
     printToScreen(2, 300, aChar, 0, .8, screenwidth, screenheight);
-    sprintf(aChar, "Gravity is at %d%.", (int)(gravity * 1000));
+    sprintf(aChar, "Gravity is at %d.", (int)(gravity * 1000));
     printToScreen(2, 280, aChar, 0, .8, screenwidth, screenheight);
 
     if (unlimitedammo) {
@@ -3815,7 +3811,7 @@ GLfloat RangedRandom(GLfloat low, GLfloat high) {
   return ((randomNumber * range) / 65535) + low + .9;
 }
 
-void UpdateSwordTrail(int whichguy, int which) {
+void UpdateSwordTrail(int whichguy) {
   Point3D point2;
   if (swordtrailtoggle[whichguy][0] == 1) {
     point = FindRightGunPoint(whichguy);
@@ -3843,10 +3839,10 @@ void MakeNewSwordTrail(int whichguy) {
   if (swordtrailtoggle[whichguy][0] == 1 || swordtrailtoggle[whichguy][1] == 1) {
     unusedswordtrail[whichguy]++;
     if (unusedswordtrail[whichguy] >= maxswordtrail - 1) {
-      UpdateSwordTrail(whichguy, unusedswordtrail[whichguy]);
+      UpdateSwordTrail(whichguy);
       unusedswordtrail[whichguy] = 0;
     }
-    UpdateSwordTrail(whichguy, unusedswordtrail[whichguy]);
+    UpdateSwordTrail(whichguy);
     if (swordtrailtoggle[whichguy][0] == 1) {
       SwordTrail[whichguy][0].brightness[unusedswordtrail[whichguy]][0] = .8;
       SwordTrail[whichguy][0].brightness[unusedswordtrail[whichguy]][1] = .7;
@@ -3882,7 +3878,7 @@ void MakeNewSwordTrail(int whichguy) {
   }
 }
 
-void DoStabFX(int whichguy, int b) {
+void DoStabFX(int b) {
   Point3D point2;
   int d;
   if (itemtype[attacker[b]] == 0) {
@@ -4324,7 +4320,7 @@ void SwitchFrame(int whichguy) {
       e = (guyx[b] + 595) / 10;
       f = guyy[b] / -20 - .5 + 40;
       health[b] -= 53;
-      DoStabFX(whichguy, b);
+      DoStabFX(b);
       if (itemtype[whichguy] == 0) {
         playSound(SND_METALSLIDE_ID, 80);
       }
@@ -4421,7 +4417,7 @@ void SwitchFrame(int whichguy) {
       e = (guyx[b] + 595) / 10;
       f = guyy[b] / -20 - .5 + 40;
       health[b] -= 53;
-      DoStabFX(whichguy, b);
+      DoStabFX(b);
       if (itemtype[whichguy] == 0) {
         playSound(SND_METALSLIDE_ID, 80);
       }
@@ -4519,7 +4515,7 @@ void SwitchFrame(int whichguy) {
       e = (guyx[b] + 595) / 10;
       f = guyy[b] / -20 - .5 + 40;
       health[b] -= 53;
-      DoStabFX(whichguy, b);
+      DoStabFX(b);
       if (itemtype[whichguy] == 0) {
         playSound(SND_METALSLIDE_ID, 80);
       }
@@ -4616,7 +4612,7 @@ void SwitchFrame(int whichguy) {
       e = (guyx[b] + 595) / 10;
       f = guyy[b] / -20 - .5 + 40;
       health[b] -= 53;
-      DoStabFX(whichguy, b);
+      DoStabFX(b);
       if (itemtype[whichguy] == 0) {
         playSound(SND_METALSLIDE_ID, 80);
       }
@@ -5085,7 +5081,7 @@ void SwitchFrame(int whichguy) {
       }
     }
     if (frame[whichguy] == 2) {
-      DoStabFX(0, whichguy);
+      DoStabFX(whichguy);
     }
   }
   if (activity[whichguy] == impaleleft || activity[whichguy] == impaleright) {
@@ -5107,7 +5103,7 @@ void SwitchFrame(int whichguy) {
       health[whichguy] -= 120;
     }
     if (frame[whichguy] == 2) {
-      DoStabFX(0, whichguy);
+      DoStabFX(whichguy);
     }
   }
   if (activity[whichguy] == duckimpaleleft || activity[whichguy] == duckimpaleright) {
@@ -5132,7 +5128,7 @@ void SwitchFrame(int whichguy) {
   }
   if (activity[whichguy] == jetimpaledleft || activity[whichguy] == jetimpaledright) {
     if (frame[whichguy] == 4) {
-      DoStabFX(0, whichguy);
+      DoStabFX(whichguy);
       health[whichguy] -= 120;
     }
   }
@@ -5163,7 +5159,7 @@ void SwitchFrame(int whichguy) {
       if(activity[whichguy]==swordthrownright){if(Map[guymapx[whichguy]+2][guymapy[whichguy]]!=0&&Map[guymapx[whichguy]+1][guymapy[whichguy]]!=0&&activity[whichguy]==swordthrownleft&&Map[guymapx[whichguy]-1][guymapy[whichguy]]!=0){playSound(SND_BREAK_ID,-guyvely[whichguy]*50+50); playSound(SND_BREAK2_ID,-guyvely[whichguy]*50+50);}}*/
     }
     if (frame[whichguy] == 3 || frame[whichguy] == 4) {
-      DoStabFX(0, whichguy);
+      DoStabFX(whichguy);
     }
   }
   if (activity[whichguy] == impaleleft || activity[whichguy] == impaleright) {
@@ -5218,8 +5214,6 @@ void SwitchFrame(int whichguy) {
 
 void NextFrame(int whichguy);
 void NextFrame(int whichguy) {
-  int x, y;
-
   if (time[whichguy] >= 100) {
     SwitchFrame(whichguy);
   }
@@ -5258,8 +5252,7 @@ void NextFrame(int whichguy) {
   }
 }
 
-void CheckWallHit(int a, int b, int c, int x);
-void CheckWallHit(int a, int b, int c, int x) {
+void CheckWallHit(int a, int b, int x) {
   int d, e, f;
   float g;
   e = a + (sprite[x].velx * multiplier / 1000);
@@ -5323,9 +5316,8 @@ void CheckWallHit(int a, int b, int c, int x) {
   }
 }
 
-void CheckBounceWallHit(int a, int b, int c, int x);
-void CheckBounceWallHit(int a, int b, int c, int x) {
-  int d, e, f;
+void CheckBounceWallHit(int a, int b, int x) {
+  int e, f;
   float g;
   if (sprite[x].type == water && sprite[x].velx > 0) {
     g = (sprite[x].x + 595) / 10;
@@ -6737,9 +6729,9 @@ void HandleSprites() {
             a = (sprite[x].x + 595) / 10;
             b = sprite[x].y / -20 + 40;
             c = (sprite[x].oldx + 595) / 10;
-            CheckBounceWallHit(a, b, c, x);
+            CheckBounceWallHit(a, b, x);
           }
-          CheckWallHit(a, b, c, x);
+          CheckWallHit(a, b, x);
           d = 1;
         }
         if (sprite[x].velx < 0 && d == 0) {
@@ -6750,9 +6742,9 @@ void HandleSprites() {
             a = (sprite[x].x + 595) / 10;
             b = sprite[x].y / -20 + 40;
             c = (sprite[x].oldx + 595) / 10;
-            CheckBounceWallHit(a, b, c, x);
+            CheckBounceWallHit(a, b, x);
           }
-          CheckWallHit(a, b, c, x);
+          CheckWallHit(a, b, x);
         }
       }
     }
@@ -7659,7 +7651,7 @@ Point3D FindLeftGunPoint(int whichguy) {
 void DoPlayerStuff(int whichguy);
 void DoAIPlayerStuff(int whichguy) {
   lightningfxdelay[whichguy] -= multiplier;
-  int x, y, a, b, c, d, e, f, g, verydead = 0;
+  int x, a, b, c, d, e, f, g, verydead = 0;
   int slowspeed = 500;
   if (unlimitedammo) {
     ammo[whichguy] = 1000;
@@ -7710,7 +7702,7 @@ void DoAIPlayerStuff(int whichguy) {
     swordtrailtoggle[whichguy][1] = 1;
   }
 
-  UpdateSwordTrail(whichguy, unusedswordtrail[whichguy]);
+  UpdateSwordTrail(whichguy);
   for (x = 0; x < 16; x++) {
     smokingbodydelay[whichguy][x] -= multiplier * RangedRandom(50, 100) / 100;
     if (smokingbody[whichguy][x] > 0) {
@@ -8820,7 +8812,7 @@ void DoAIPlayerStuff(int whichguy) {
 void DoPlayerStuff(int whichguy);
 void DoPlayerStuff(int whichguy) {
   lightningfxdelay[whichguy] -= multiplier;
-  int x, y, a, b, c, d, e, f, g, verydead = 0;
+  int x, a, b, c, d, e, f, g, verydead = 0;
   int slowspeed = 500;
   if (unlimitedammo) {
     ammo[whichguy] = 1000;
@@ -8881,7 +8873,7 @@ void DoPlayerStuff(int whichguy) {
     swordtrailtoggle[whichguy][1] = 1;
   }
 
-  UpdateSwordTrail(whichguy, unusedswordtrail[whichguy]);
+  UpdateSwordTrail(whichguy);
   for (x = 0; x < 16; x++) {
     smokingbodydelay[whichguy][x] -= multiplier * RangedRandom(50, 100) / 100;
     if (smokingbody[whichguy][x] > 0) {
@@ -9991,7 +9983,7 @@ void DoPlayerStuff(int whichguy) {
 
 void ShootGrenade();
 void ShootGrenade(int whichguy) {
-  int a, b, c, d, e, f, g, h, x;
+  int a, b, c, d, e, g, h, x;
   float soundvolume;
   soundvolume = holding[whichguy] * 10 + 50;
   if (soundvolume > 200) {
@@ -10217,8 +10209,7 @@ void ShootGrenade(int whichguy) {
 }
 
 void CheckPaths(int whichguy, int num) {
-  int a, c, haschecked;
-  float e, f;
+  int a, haschecked;
   if (compxsteptest[whichguy][num] == computertargetxlocation[whichguy] && compysteptest[whichguy][num] == computertargetylocation[whichguy] && num < pathfindsteps) {
     pathfound[whichguy] = 1;
     pathfindsteps = num;
@@ -10289,9 +10280,7 @@ void CheckPaths(int whichguy, int num) {
 }
 
 void DoPathFinding(int whichguy) {
-  int a = 0, b, c;
-  bool done = 0;
-  bool possible;
+  int a = 0;
   pathfindsteps = 1000;
   pathfound[whichguy] = 0;
   for (a = 0; a < 100; a++) {
@@ -10307,7 +10296,6 @@ void DoPathFinding(int whichguy) {
   compysteptest[whichguy][1] = guymapy[whichguy];
   compxsteptest[whichguy][2] = guymapx[whichguy];
   compysteptest[whichguy][2] = guymapy[whichguy];
-  done = 0;
   a = 0;
   CheckPaths(whichguy, 1);
   if (pathfound[whichguy] == 0) {
@@ -10321,7 +10309,7 @@ void DoPathFinding(int whichguy) {
 }
 
 void DoAI(int whichguy) {
-  int a = 0, b = 0, c = 0, clearshot, clearshot2;
+  int a = 0, b = 0, clearshot, clearshot2;
   float distance = 1234567;
   float olddistance = 1234567;
   float targetxstep;
@@ -10637,7 +10625,7 @@ int CheckAIKey(int whichguy, int which) {
 }
 
 void DoAIKeys(int whichguy) {
-  int a, b, c, d, e, f, g, h, x, y;
+  int a, b, c, d, e, f, g, h, x;
   int guywillbe;
 
   //*************BLOCK KEY**************//
@@ -11065,7 +11053,6 @@ void DoAIKeys(int whichguy) {
             guyvelx[b] = 0;
             guyvely[b] = 0;
             fallin[b] = 0;
-            fallin[b] == 1;
             activity[whichguy] = breakneckright;
             anim[whichguy] = 16;
             targetanim[whichguy] = 16;
@@ -11972,7 +11959,7 @@ void DoAIKeys(int whichguy) {
 }
 
 void DoKeys(int whichguy) {
-  int a, b, c, d, e, f, g, h, x, y;
+  int a, b, c, d, e, f, g, h, x;
   int guywillbe;
 
   //*************BLOCK KEY**************//
@@ -12401,7 +12388,6 @@ void DoKeys(int whichguy) {
             guyvelx[b] = 0;
             guyvely[b] = 0;
             fallin[b] = 0;
-            fallin[b] == 1;
             activity[whichguy] = breakneckright;
             anim[whichguy] = 16;
             targetanim[whichguy] = 16;
@@ -13310,14 +13296,12 @@ void DoKeys(int whichguy) {
 void runGameEventLoop(SDL_Window *window) {
   const Uint32 TARGET_TICKS_PER_FRAME = 16; // About 60fps
   SDL_Event e;
-  int x, y, a, b, c, d;
-  int guywillbe;
+  int x, a;
   float oldmult;
   gQuit = false;
 
   // Keep doing the event loop while not gQuit
   while (!gQuit) {
-    Point3D point2;
     Uint64 startTicks = SDL_GetTicks64(); // milliseconds
 
     while (SDL_PollEvent(&e)) {
@@ -13418,7 +13402,7 @@ void runGameEventLoop(SDL_Window *window) {
       // HandleSmokeSprites();
 
       for (x = 0; x < numplayers; x++) {
-        if (activity[x] == jetimpaledright || activity[x] == jetimpaledleft && attach[x] != -1) {
+        if (activity[x] == jetimpaledright || (activity[x] == jetimpaledleft && attach[x] != -1)) {
           guyx[x] = guyx[attach[x]];
           guyy[x] = guyy[attach[x]];
           guyvelx[x] = guyvelx[attach[x]];
@@ -13532,10 +13516,9 @@ bool readIntFromFile(int *i, FILE *f) {
   return n == 1;
 }
 
-bool LoadAnimation(char *path, int animnum) {
-  int n;
+bool LoadAnimation(const char *path, int animnum) {
   int localframenum = 0;
-  int x, y, kl;
+  int x, y;
 
   FILE *f = fopen(path, "r");
   if (!f) {
@@ -13680,7 +13663,7 @@ bool LoadAnimation(char *path, int animnum) {
 
 bool loadAnimations() {
   const int numAnimations = 45;
-  char *animationPaths[] = {
+  const char *animationPaths[] = {
       "./data/animations/Idle",
       "./data/animations/Idle2",
       "./data/animations/Run",
@@ -13737,8 +13720,8 @@ bool loadAnimations() {
   return true;
 }
 
-bool LoadNamedMap(char *path) {
-  int x, y, kl;
+bool LoadNamedMap(const char *path) {
+  int x, y;
 
   FILE *f = fopen(path, "r");
   if (!f) {

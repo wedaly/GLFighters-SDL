@@ -62,7 +62,7 @@ void freeFont() {
   glDeleteBuffers(numFontChars, fontVertexBufferObjIDs);
 }
 
-void printToScreen(int x, int y, char *s, bool italicize, float size, int screenwidth, int screenheight) {
+void printToScreen(int x, int y, const char *s, bool italicize, float size, int screenwidth, int screenheight) {
   int offset = italicize ? 128 : 0;
 
   bindTexture(fontTextureID);
