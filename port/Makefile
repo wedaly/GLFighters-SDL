@@ -1,5 +1,7 @@
 CC = g++
-CFLAGS=-w -Wall -lSDL2 -lSDL2_mixer -lGL
+CFLAGS=-w -Wall
+LDFLAGS=
+LDLIBS=-lSDL2 -lSDL2_mixer -lGL
 SRCS := $(wildcard *.cpp)
 OBJS := $(SRCS:.cpp=.o)
 TARGET := glfighters
@@ -9,7 +11,7 @@ TARGET := glfighters
 all: $(TARGET)
 
 $(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(TARGET)
+	$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) $(LDLIBS) -o $(TARGET)
 
 %.o: %.cpp
 	$(CC) $(CFLAGS) -c $< -o $@
