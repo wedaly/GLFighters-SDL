@@ -71,20 +71,20 @@ bool loadModelFromFile(const char *path, int id) {
   float *vertexData = new float[numFloats];
   size_t n = fread(vertexData, sizeof(float), numFloats, f);
   if (n != numFloats) {
-    printf("Not enough float data, expected %d but got %d\n", numFloats, n);
+    printf("Not enough float data, expected %d but got %ld\n", numFloats, n);
     fclose(f);
-    delete vertexData;
+    delete[] vertexData;
     return false;
   }
 
-  for (int i = 0; i < numFloats; i++) {
+  for (unsigned int i = 0; i < numFloats; i++) {
     vertexData[i] = SDL_SwapFloatBE(vertexData[i]);
   }
 
   numVerticesForModel[id] = numVertices;
   glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObjIDs[id]);
   glBufferData(GL_ARRAY_BUFFER, numFloats * sizeof(float), vertexData, GL_STATIC_DRAW);
-  delete vertexData;
+  delete[] vertexData;
 
   return true;
 }
@@ -128,8 +128,8 @@ void drawModel(int id) {
 }
 
 void glDrawFloor(float xWidth, float yWidth, float zWidth, float movement) {
-  int tesselation = 1;
-  int normallength = -1;
+  const int tesselation = 1;
+  const int normallength = -1;
   glBegin(GL_QUADS);
   // Front Face
   glNormal3f(0.0f, 0.0f, -normallength);
@@ -195,10 +195,8 @@ void glDrawFloor(float xWidth, float yWidth, float zWidth, float movement) {
 }
 
 void glDrawCube(float xWidth, float yWidth, float zWidth, int tesselation) {
-  int normallength = -1;
   glBegin(GL_QUADS);
   // Front Face
-  // glNormal3f( 0.0f, 0.0f, -normallength);
   glTexCoord2f(0.0f, 0.0f);
   glVertex3f(-xWidth, -yWidth, zWidth);
   glTexCoord2f(tesselation, 0.0f);
@@ -208,7 +206,6 @@ void glDrawCube(float xWidth, float yWidth, float zWidth, int tesselation) {
   glTexCoord2f(0.0f, tesselation);
   glVertex3f(-xWidth, yWidth, zWidth);
   // Back Face
-  // glNormal3f( 0.0f, 0.0f,normallength);
   glTexCoord2f(tesselation, 0.0f);
   glVertex3f(-xWidth, -yWidth, -zWidth);
   glTexCoord2f(tesselation, tesselation);
@@ -218,7 +215,6 @@ void glDrawCube(float xWidth, float yWidth, float zWidth, int tesselation) {
   glTexCoord2f(0.0f, 0.0f);
   glVertex3f(xWidth, -yWidth, -zWidth);
   // Top Face
-  // glNormal3f( 0.0f, -normallength, 0.0f);
   glTexCoord2f(0.0f, tesselation);
   glVertex3f(-xWidth, yWidth, -zWidth);
   glTexCoord2f(0.0f, 0.0f);
@@ -228,7 +224,6 @@ void glDrawCube(float xWidth, float yWidth, float zWidth, int tesselation) {
   glTexCoord2f(tesselation, tesselation);
   glVertex3f(xWidth, yWidth, -zWidth);
   // Bottom Face
-  // glNormal3f( 0.0f,normallength, 0.0f);
   glTexCoord2f(tesselation, tesselation);
   glVertex3f(-xWidth, -yWidth, -zWidth);
   glTexCoord2f(0.0f, tesselation);
@@ -238,7 +233,6 @@ void glDrawCube(float xWidth, float yWidth, float zWidth, int tesselation) {
   glTexCoord2f(tesselation, 0.0f);
   glVertex3f(-xWidth, -yWidth, zWidth);
   // Right face
-  // glNormal3f( -normallength, 0.0f, 0.0f);
   glTexCoord2f(tesselation, 0.0f);
   glVertex3f(xWidth, -yWidth, -zWidth);
   glTexCoord2f(tesselation, tesselation);
@@ -248,7 +242,6 @@ void glDrawCube(float xWidth, float yWidth, float zWidth, int tesselation) {
   glTexCoord2f(0.0f, 0.0f);
   glVertex3f(xWidth, -yWidth, zWidth);
   // Left Face
-  // glNormal3f(normallength, 0.0f, 0.0f);
   glTexCoord2f(0.0f, 0.0f);
   glVertex3f(-xWidth, -yWidth, -zWidth);
   glTexCoord2f(tesselation, 0.0f);
