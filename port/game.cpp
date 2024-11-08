@@ -1665,7 +1665,7 @@ void BoundCamera() {
 }
 
 void glDrawBigCube(float xWidth, float yWidth, float zWidth, int tesselation, float movement) {
-  int normallength = .3;
+  float normallength = 0.3f;
   if (theme == matrixtheme) {
     normallength = 1.0;
   }
