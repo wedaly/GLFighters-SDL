@@ -1,23 +1,23 @@
-CC = g++
-CFLAGS=-ansi -pedantic -Wall -Wextra -std=c++20
-LDFLAGS=
-LDLIBS=-lSDL2 -lSDL2_mixer -lGL
+CXX ?= g++
+CXXFLAGS ?= -ansi -pedantic -Wall -Wextra -std=c++20
+LDFLAGS ?=
+LDLIBS ?= -lSDL2 -lSDL2_mixer -lGL
 SRCS := $(wildcard *.cpp)
 OBJS := $(SRCS:.cpp=.o)
-TARGET := glfighters
+BIN ?= glfighters
 
 .PHONY: fmt clean
 
-all: $(TARGET)
+all: $(BIN)
 
-$(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) $(LDLIBS) -o $(TARGET)
+$(BIN): $(OBJS)
+	$(CXX) $(LDFLAGS) $(OBJS) $(LDLIBS) -o $(BIN)
 
 %.o: %.cpp
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 fmt:
 	find . -regex '.*\.\(cpp\|h\)' -exec clang-format -style="{ColumnLimit: 0}" -i {} \;
 
 clean:
-	rm -f $(OBJS) $(TARGET)
+	rm -f $(OBJS) $(BIN)
