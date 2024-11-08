@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS=-ansi -pedantic -Wall -Wextra
+CFLAGS=-ansi -pedantic -Wall -Wextra -std=c++20
 LDFLAGS=
 LDLIBS=-lSDL2 -lSDL2_mixer -lGL
 SRCS := $(wildcard *.cpp)
