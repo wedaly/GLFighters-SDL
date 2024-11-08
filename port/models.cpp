@@ -108,11 +108,15 @@ void freeModels() {
   glDeleteBuffers(numModels, vertexBufferObjIDs);
 }
 
-void drawModel(int id) {
+void drawModel(int id, bool wireframe) {
   if (id < 0 || id >= numModels) {
     printf("Invalid model id %d\n", id);
     return;
   }
+
+  // OpenGL ES requires GL_LINE_STRIP when using glPolygonMode GL_LINE.
+  // https://www.polymonster.co.uk/blog/gles-wireframe
+  GLenum mode = wireframe ? GL_LINE_STRIP : GL_TRIANGLES;
 
   glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObjIDs[id]);
   glEnableClientState(GL_TEXTURE_COORD_ARRAY);
@@ -121,7 +125,7 @@ void drawModel(int id) {
   glTexCoordPointer(3, GL_FLOAT, 8 * sizeof(float), (void *)(0));
   glNormalPointer(GL_FLOAT, 8 * sizeof(float), (void *)(2 * sizeof(float)));
   glVertexPointer(3, GL_FLOAT, 8 * sizeof(float), (void *)(5 * sizeof(float)));
-  glDrawArrays(GL_TRIANGLES, 0, numVerticesForModel[id]);
+  glDrawArrays(mode, 0, numVerticesForModel[id]);
   glDisableClientState(GL_VERTEX_ARRAY);
   glDisableClientState(GL_NORMAL_ARRAY);
   glDisableClientState(GL_TEXTURE_COORD_ARRAY);

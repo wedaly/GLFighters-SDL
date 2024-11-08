@@ -1140,21 +1140,21 @@ void DrawBody(int whichguy) {
   glRotatef(((hiprot[2][frame[whichguy]][anim[whichguy]] * (100 - gametime[whichguy])) + (hiprot[2][targetframe[whichguy]][targetanim[whichguy]] * (gametime[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   glTranslatef(((hipfloat[1][0] * (100 - gametime[whichguy])) + (hipfloat[1][1] * (gametime[whichguy]))) / 100, ((hipfloat[2][0] * (100 - gametime[whichguy])) + (hipfloat[2][1] * (gametime[whichguy]))) / 100, ((hipfloat[0][0] * (100 - gametime[whichguy])) + (hipfloat[0][1] * (gametime[whichguy]))) / 100);
   bindTexture(TorsoNum[whichguy]);
-  drawModel(MODEL_HIP_ID);
+  drawModel(MODEL_HIP_ID, wireframe);
   glPushMatrix();
   glTranslatef(0.0f, 0.5f, 0.0f);
   glRotatef(((torsorot[0][frame[whichguy]][anim[whichguy]] * (100 - gametime[whichguy])) + (torsorot[0][targetframe[whichguy]][targetanim[whichguy]] * (gametime[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
   glRotatef(((torsorot[1][frame[whichguy]][anim[whichguy]] * (100 - gametime[whichguy])) + (torsorot[1][targetframe[whichguy]][targetanim[whichguy]] * (gametime[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
   glRotatef(((torsorot[2][frame[whichguy]][anim[whichguy]] * (100 - gametime[whichguy])) + (torsorot[2][targetframe[whichguy]][targetanim[whichguy]] * (gametime[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   bindTexture(TorsoNum[whichguy]);
-  drawModel(MODEL_TORSO_ID);
+  drawModel(MODEL_TORSO_ID, wireframe);
   if (jetpack[whichguy] == 1) {
     glPushMatrix();
     bindTexture(TEX_JETPACK_ID);
     glTranslatef(0, 0, -1.5);
     glRotatef(-90, 0, 1, 0);
     glScalef(3, 3, 3);
-    drawModel(MODEL_JETPACK_ID);
+    drawModel(MODEL_JETPACK_ID, wireframe);
     glPopMatrix();
   }
   glPushMatrix();
@@ -1166,10 +1166,10 @@ void DrawBody(int whichguy) {
   if (whichguy != firstperson - 1 || firstperson == 0) {
     if (skin[whichguy] == 4) {
       glScalef(.8, .8, .8);
-      drawModel(MODEL_HEAD2_ID);
+      drawModel(MODEL_HEAD2_ID, wireframe);
     }
     if (skin[whichguy] != 4) {
-      drawModel(MODEL_HEAD_ID);
+      drawModel(MODEL_HEAD_ID, wireframe);
     }
   }
   glPopMatrix();
@@ -1181,19 +1181,19 @@ void DrawBody(int whichguy) {
   glRotatef(((lefthigharm[0][frame[whichguy]][anim[whichguy]] * (100 - gametime[whichguy])) + (lefthigharm[0][targetframe[whichguy]][targetanim[whichguy]] * (gametime[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
   glRotatef(((lefthigharm[1][frame[whichguy]][anim[whichguy]] * (100 - gametime[whichguy])) + (lefthigharm[1][targetframe[whichguy]][targetanim[whichguy]] * (gametime[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
   glRotatef(((lefthigharm[2][frame[whichguy]][anim[whichguy]] * (100 - gametime[whichguy])) + (lefthigharm[2][targetframe[whichguy]][targetanim[whichguy]] * (gametime[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
-  drawModel(MODEL_UPPERARM_ID);
+  drawModel(MODEL_UPPERARM_ID, wireframe);
   glTranslatef(0.0f, -2.5f, 0.0f);
   glRotatef(((leftlowarm[0][frame[whichguy]][anim[whichguy]] * (100 - gametime[whichguy])) + (leftlowarm[0][targetframe[whichguy]][targetanim[whichguy]] * (gametime[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
   glRotatef(((leftlowarm[1][frame[whichguy]][anim[whichguy]] * (100 - gametime[whichguy])) + (leftlowarm[1][targetframe[whichguy]][targetanim[whichguy]] * (gametime[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
   glRotatef(((leftlowarm[2][frame[whichguy]][anim[whichguy]] * (100 - gametime[whichguy])) + (leftlowarm[2][targetframe[whichguy]][targetanim[whichguy]] * (gametime[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   bindTexture(UpperArmNum[whichguy]);
-  drawModel(MODEL_LOWERARM_ID);
+  drawModel(MODEL_LOWERARM_ID, wireframe);
   glTranslatef(0.0f, -1.8f, 0.0f);
   glRotatef(((lefthand[0][frame[whichguy]][anim[whichguy]] * (100 - gametime[whichguy])) + (lefthand[0][targetframe[whichguy]][targetanim[whichguy]] * (gametime[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
   glRotatef(((lefthand[1][frame[whichguy]][anim[whichguy]] * (100 - gametime[whichguy])) + (lefthand[1][targetframe[whichguy]][targetanim[whichguy]] * (gametime[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
   glRotatef(((lefthand[2][frame[whichguy]][anim[whichguy]] * (100 - gametime[whichguy])) + (lefthand[2][targetframe[whichguy]][targetanim[whichguy]] * (gametime[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   bindTexture(UpperArmNum[whichguy]);
-  drawModel(MODEL_HAND_ID);
+  drawModel(MODEL_HAND_ID, wireframe);
   bindTexture(TEX_LASERRIFLE_ID);
   if (itemnum[whichguy] == 3) {
     glRotatef(90, 1.0, 0.0, 0.0);
@@ -1202,11 +1202,11 @@ void DrawBody(int whichguy) {
     bindTexture(TEX_LIGHTSABRE_ID);
     if (itemtype[whichguy] == 1) {
       glScalef(100, 100, 100);
-      drawModel(MODEL_LIGHTSABRE_ID);
+      drawModel(MODEL_LIGHTSABRE_ID, wireframe);
     }
     bindTexture(TEX_SWORD_ID);
     if (itemtype[whichguy] == 0) {
-      drawModel(MODEL_SWORD_ID);
+      drawModel(MODEL_SWORD_ID, wireframe);
     }
   }
   glGetFloatv(GL_MODELVIEW_MATRIX, M);
@@ -1221,31 +1221,31 @@ void DrawBody(int whichguy) {
   glRotatef(((righthigharm[0][frame[whichguy]][anim[whichguy]] * (100 - gametime[whichguy])) + (righthigharm[0][targetframe[whichguy]][targetanim[whichguy]] * (gametime[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
   glRotatef(((righthigharm[1][frame[whichguy]][anim[whichguy]] * (100 - gametime[whichguy])) + (righthigharm[1][targetframe[whichguy]][targetanim[whichguy]] * (gametime[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
   glRotatef(((righthigharm[2][frame[whichguy]][anim[whichguy]] * (100 - gametime[whichguy])) + (righthigharm[2][targetframe[whichguy]][targetanim[whichguy]] * (gametime[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
-  drawModel(MODEL_UPPERARM_ID);
+  drawModel(MODEL_UPPERARM_ID, wireframe);
   glTranslatef(0.0f, -2.5f, 0.0f);
   glRotatef(((rightlowarm[0][frame[whichguy]][anim[whichguy]] * (100 - gametime[whichguy])) + (rightlowarm[0][targetframe[whichguy]][targetanim[whichguy]] * (gametime[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
   glRotatef(((rightlowarm[1][frame[whichguy]][anim[whichguy]] * (100 - gametime[whichguy])) + (rightlowarm[1][targetframe[whichguy]][targetanim[whichguy]] * (gametime[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
   glRotatef(((rightlowarm[2][frame[whichguy]][anim[whichguy]] * (100 - gametime[whichguy])) + (rightlowarm[2][targetframe[whichguy]][targetanim[whichguy]] * (gametime[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   bindTexture(UpperArmNum[whichguy]);
-  drawModel(MODEL_LOWERARM_ID);
+  drawModel(MODEL_LOWERARM_ID, wireframe);
   glTranslatef(0.0f, -1.8f, 0.0f);
   glRotatef(((righthand[0][frame[whichguy]][anim[whichguy]] * (100 - gametime[whichguy])) + (righthand[0][targetframe[whichguy]][targetanim[whichguy]] * (gametime[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
   glRotatef(((righthand[1][frame[whichguy]][anim[whichguy]] * (100 - gametime[whichguy])) + (righthand[1][targetframe[whichguy]][targetanim[whichguy]] * (gametime[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
   glRotatef(((righthand[2][frame[whichguy]][anim[whichguy]] * (100 - gametime[whichguy])) + (righthand[2][targetframe[whichguy]][targetanim[whichguy]] * (gametime[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   bindTexture(UpperArmNum[whichguy]);
-  drawModel(MODEL_HAND_ID);
+  drawModel(MODEL_HAND_ID, wireframe);
   bindTexture(TEX_LASERRIFLE_ID);
   if (itemnum[whichguy] == 1) {
     glRotatef(90, 1.0, 0.0, 0.0);
     glTranslatef(-0.3f, 0.7f, 3.8f);
     glScalef(.8, .8, .8);
-    drawModel(MODEL_LASERRIFLE_ID);
+    drawModel(MODEL_LASERRIFLE_ID, wireframe);
   }
   if (itemnum[whichguy] == 5) {
     glRotatef(90, 1.0, 0.0, 0.0);
     glTranslatef(0.0f, -0.2f, 0.1f);
     bindTexture(TEX_RIFLE_ID);
-    drawModel(MODEL_RIFLE_ID);
+    drawModel(MODEL_RIFLE_ID, wireframe);
   }
   if (itemnum[whichguy] == 2 || itemnum[whichguy] == 3) {
     glRotatef(90, 1.0, 0.0, 0.0);
@@ -1255,11 +1255,11 @@ void DrawBody(int whichguy) {
     bindTexture(TEX_LIGHTSABRE_ID);
     if (itemtype[whichguy] == 1) {
       glScalef(100, 100, 100);
-      drawModel(MODEL_LIGHTSABRE_ID);
+      drawModel(MODEL_LIGHTSABRE_ID, wireframe);
     }
     bindTexture(TEX_SWORD_ID);
     if (itemtype[whichguy] == 0) {
-      drawModel(MODEL_SWORD_ID);
+      drawModel(MODEL_SWORD_ID, wireframe);
     }
   }
   if (itemnum[whichguy] == 4) {
@@ -1268,7 +1268,7 @@ void DrawBody(int whichguy) {
     glTranslatef(0.3f, 0.3f, -1.2f);
     glScalef(2, 2, 2);
     bindTexture(TEX_MACHINEGUN_ID);
-    drawModel(MODEL_MACHINEGUN_ID);
+    drawModel(MODEL_MACHINEGUN_ID, wireframe);
   }
   if (itemnum[whichguy] == 6) {
     glTranslatef(-0.2f, -2.2f, 0.0f);
@@ -1276,7 +1276,7 @@ void DrawBody(int whichguy) {
     glRotatef(180, 0.0, 1.0, 0.0);
     glRotatef(-90, 1.0, 0.0, 0.0);
     glScalef(2, 2, 2);
-    drawModel(MODEL_GRENLAUNCHER_ID);
+    drawModel(MODEL_GRENLAUNCHER_ID, wireframe);
   }
   if (itemnum[whichguy] == 7) {
     glTranslatef(-0.2f, -2.2f, 0.0f);
@@ -1284,7 +1284,7 @@ void DrawBody(int whichguy) {
     glRotatef(180, 0.0, 1.0, 0.0);
     glRotatef(-90, 1.0, 0.0, 0.0);
     glScalef(2, 2, 2);
-    drawModel(MODEL_LIGHTNINGGUN_ID);
+    drawModel(MODEL_LIGHTNINGGUN_ID, wireframe);
   }
   glGetFloatv(GL_MODELVIEW_MATRIX, M);
   righthandpoint.x = M[12];
@@ -1302,20 +1302,20 @@ void DrawBody(int whichguy) {
   glRotatef(((lefthighleg[1][frame[whichguy]][anim[whichguy]] * (100 - gametime[whichguy])) + (lefthighleg[1][targetframe[whichguy]][targetanim[whichguy]] * (gametime[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
   glRotatef(((lefthighleg[2][frame[whichguy]][anim[whichguy]] * (100 - gametime[whichguy])) + (lefthighleg[2][targetframe[whichguy]][targetanim[whichguy]] * (gametime[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   bindTexture(UpperArmNum[whichguy]);
-  drawModel(MODEL_UPPERARM_ID);
+  drawModel(MODEL_UPPERARM_ID, wireframe);
   glTranslatef(0.0f, -2.5f, 0.0f);
   glRotatef(((leftlowleg[0][frame[whichguy]][anim[whichguy]] * (100 - gametime[whichguy])) + (leftlowleg[0][targetframe[whichguy]][targetanim[whichguy]] * (gametime[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
   glRotatef(((leftlowleg[1][frame[whichguy]][anim[whichguy]] * (100 - gametime[whichguy])) + (leftlowleg[1][targetframe[whichguy]][targetanim[whichguy]] * (gametime[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
   glRotatef(((leftlowleg[2][frame[whichguy]][anim[whichguy]] * (100 - gametime[whichguy])) + (leftlowleg[2][targetframe[whichguy]][targetanim[whichguy]] * (gametime[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   bindTexture(LowerLegNum[whichguy]);
-  drawModel(MODEL_LOWERLEG_ID);
+  drawModel(MODEL_LOWERLEG_ID, wireframe);
   glTranslatef(0.0f, -2.5f, 0.0f);
   glRotatef(((leftfoot[0][frame[whichguy]][anim[whichguy]] * (100 - gametime[whichguy])) + (leftfoot[0][targetframe[whichguy]][targetanim[whichguy]] * (gametime[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
   glRotatef(((leftfoot[1][frame[whichguy]][anim[whichguy]] * (100 - gametime[whichguy])) + (leftfoot[1][targetframe[whichguy]][targetanim[whichguy]] * (gametime[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
   glRotatef(((leftfoot[2][frame[whichguy]][anim[whichguy]] * (100 - gametime[whichguy])) + (leftfoot[2][targetframe[whichguy]][targetanim[whichguy]] * (gametime[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   bindTexture(ShoesNum[whichguy]);
   glScalef(.8, .8, .8);
-  drawModel(MODEL_FOOT_ID);
+  drawModel(MODEL_FOOT_ID, wireframe);
   glPopMatrix();
   glPushMatrix();
   glTranslatef(-0.8f, 0.0f, 0.0f);
@@ -1323,20 +1323,20 @@ void DrawBody(int whichguy) {
   glRotatef(((righthighleg[1][frame[whichguy]][anim[whichguy]] * (100 - gametime[whichguy])) + (righthighleg[1][targetframe[whichguy]][targetanim[whichguy]] * (gametime[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
   glRotatef(((righthighleg[2][frame[whichguy]][anim[whichguy]] * (100 - gametime[whichguy])) + (righthighleg[2][targetframe[whichguy]][targetanim[whichguy]] * (gametime[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   bindTexture(UpperArmNum[whichguy]);
-  drawModel(MODEL_UPPERARM_ID);
+  drawModel(MODEL_UPPERARM_ID, wireframe);
   glTranslatef(0.0f, -2.5f, 0.0f);
   glRotatef(((rightlowleg[0][frame[whichguy]][anim[whichguy]] * (100 - gametime[whichguy])) + (rightlowleg[0][targetframe[whichguy]][targetanim[whichguy]] * (gametime[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
   glRotatef(((rightlowleg[1][frame[whichguy]][anim[whichguy]] * (100 - gametime[whichguy])) + (rightlowleg[1][targetframe[whichguy]][targetanim[whichguy]] * (gametime[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
   glRotatef(((rightlowleg[2][frame[whichguy]][anim[whichguy]] * (100 - gametime[whichguy])) + (rightlowleg[2][targetframe[whichguy]][targetanim[whichguy]] * (gametime[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   bindTexture(LowerLegNum[whichguy]);
-  drawModel(MODEL_LOWERLEG_ID);
+  drawModel(MODEL_LOWERLEG_ID, wireframe);
   glTranslatef(0.0f, -2.5f, 0.0f);
   glRotatef(((rightfoot[0][frame[whichguy]][anim[whichguy]] * (100 - gametime[whichguy])) + (rightfoot[0][targetframe[whichguy]][targetanim[whichguy]] * (gametime[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
   glRotatef(((rightfoot[1][frame[whichguy]][anim[whichguy]] * (100 - gametime[whichguy])) + (rightfoot[1][targetframe[whichguy]][targetanim[whichguy]] * (gametime[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
   glRotatef(((rightfoot[2][frame[whichguy]][anim[whichguy]] * (100 - gametime[whichguy])) + (rightfoot[2][targetframe[whichguy]][targetanim[whichguy]] * (gametime[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   bindTexture(ShoesNum[whichguy]);
   glScalef(.8, .8, .8);
-  drawModel(MODEL_FOOT_ID);
+  drawModel(MODEL_FOOT_ID, wireframe);
   glPopMatrix();
   glPopMatrix();
   glEnable(GL_CULL_FACE);
@@ -2124,7 +2124,7 @@ void DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
           if (theme != matrixtheme && theme != shinytheme) {
             glPushMatrix();
             glScalef(1.00f, 1.05f, 1.00f);
-            drawModel(MODEL_FLOOR_ID);
+            drawModel(MODEL_FLOOR_ID, wireframe);
             glPopMatrix();
           }
         }
@@ -2138,13 +2138,13 @@ void DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
           if (theme != matrixtheme && theme != shinytheme) {
             glPushMatrix();
             glScalef(1.00f, 1.05f, 1.00f);
-            drawModel(MODEL_FLOOR_ID);
+            drawModel(MODEL_FLOOR_ID, wireframe);
             glPopMatrix();
           }
           glPushMatrix();
           glScalef(1.2, 1.355, 1.2);
           bindTexture(themeropenum);
-          drawModel(MODEL_ROPE_ID);
+          drawModel(MODEL_ROPE_ID, wireframe);
           bindTexture(themebasenum);
           glPopMatrix();
         }
@@ -2152,7 +2152,7 @@ void DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
           glPushMatrix();
           glScalef(1.2, 1.355, 1.2);
           bindTexture(themeropenum);
-          drawModel(MODEL_ROPE_ID);
+          drawModel(MODEL_ROPE_ID, wireframe);
           bindTexture(themebasenum);
           glPopMatrix();
         }
@@ -2167,7 +2167,7 @@ void DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
             glEnable(GL_LIGHTING);
           }
           if (theme != matrixtheme) {
-            drawModel(MODEL_WALL_ID);
+            drawModel(MODEL_WALL_ID, wireframe);
           }
           bindTexture(themebasenum);
           glPopMatrix();
@@ -2570,7 +2570,7 @@ void DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
           bindTexture(TEX_GRENADE_ID);
           glPushMatrix();
           glScalef(.7f, .7f, .7f);
-          drawModel(MODEL_GRENADE_ID);
+          drawModel(MODEL_GRENADE_ID, wireframe);
           glPopMatrix();
 
           glDisable(GL_LIGHTING);
@@ -2589,7 +2589,7 @@ void DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
           glDepthMask(1);
 
           bindTexture(themebasenum);
-          drawModel(MODEL_CHUNK_ID);
+          drawModel(MODEL_CHUNK_ID, wireframe);
 
           glDisable(GL_LIGHTING);
           glEnable(GL_BLEND);
@@ -2793,7 +2793,7 @@ void DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
         bindTexture(TEX_GRENADE_ID);
         glPushMatrix();
         glScalef(.7f, .7f, .7f);
-        drawModel(MODEL_GRENADE_ID);
+        drawModel(MODEL_GRENADE_ID, wireframe);
         glPopMatrix();
 
         glDisable(GL_LIGHTING);
@@ -2812,7 +2812,7 @@ void DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
         glDepthMask(1);
 
         bindTexture(themebasenum);
-        drawModel(MODEL_CHUNK_ID);
+        drawModel(MODEL_CHUNK_ID, wireframe);
 
         glDisable(GL_LIGHTING);
         glEnable(GL_BLEND);
@@ -13403,9 +13403,9 @@ void runGameEventLoop(SDL_Window *window) {
 
   // Keep doing the event loop while not gQuit
   Point3D point2;
-	if (lastFrameEndTicks == 0) {
-	  lastFrameEndTicks = SDL_GetTicks64(); // milliseconds
-	}
+  if (lastFrameEndTicks == 0) {
+    lastFrameEndTicks = SDL_GetTicks64(); // milliseconds
+  }
 
   while (SDL_PollEvent(&e)) {
     switch (e.type) {
@@ -13508,9 +13508,9 @@ void runGameEventLoop(SDL_Window *window) {
     multiplier = oldmult;
   }
 
-	Uint64 endTicks = SDL_GetTicks64();
-  timetaken = endTicks- lastFrameEndTicks;
-	lastFrameEndTicks = endTicks;
+  Uint64 endTicks = SDL_GetTicks64();
+  timetaken = endTicks - lastFrameEndTicks;
+  lastFrameEndTicks = endTicks;
   framespersecond = 1000 / timetaken;
   multiplier5 = multiplier4;
   multiplier4 = multiplier3;
