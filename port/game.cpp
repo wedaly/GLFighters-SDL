@@ -90,7 +90,7 @@ float lity[6];
 float lightbrightness[6];
 int lighton[6];
 int freezetime;
-int oldtime[17];
+int oldtimeforguy[17];
 int invisible[17];
 int trail;
 int mapeditor;
@@ -165,7 +165,7 @@ int speed[20][50];
 int Map[100][100];
 int Walls[100][100];
 int selected;
-float time[17];
+float timeforguy[17];
 long framenum[17];
 int timedirection[17];
 int anim[51];
@@ -497,7 +497,7 @@ void MovePlayerData(int first, int second) {
   targetframe[first] = targetframe[second];
   activity[first] = activity[second];
   fallin[first] = fallin[second];
-  oldtime[first] = oldtime[second];
+  oldtimeforguy[first] = oldtimeforguy[second];
   invisible[first] = invisible[second];
   cloaktime[first] = cloaktime[second];
   HelmetNum[first] = HelmetNum[second];
@@ -511,7 +511,7 @@ void MovePlayerData(int first, int second) {
   dead[first] = dead[second];
   rotation[first] = rotation[second];
   targetrotation[first] = targetrotation[second];
-  time[first] = time[second];
+  timeforguy[first] = timeforguy[second];
   framenum[first] = framenum[second];
   anim[first] = anim[second];
   targetanim[first] = targetanim[second];
@@ -762,7 +762,7 @@ int InitGL(GLvoid) // All Setup For OpenGL Goes Here
     framenum[num] = 1;
     timedirection[num] = 1;
     activity[num] = 1;
-    time[num] = 0;
+    timeforguy[num] = 0;
     cloaktime[num] = 100;
     rotation[num] = 0;
     targetrotation[num] = 0;
@@ -1131,17 +1131,17 @@ void DrawBody(int whichguy) {
   hipfloat[2][1] = (float)(hippos[2][targetframe[whichguy]][targetanim[whichguy]]) / 10;
   hipfloat[0][1] = (float)(hippos[0][targetframe[whichguy]][targetanim[whichguy]]) / 10;
   glPushMatrix();
-  glRotatef(((hiprot[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (hiprot[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((hiprot[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (hiprot[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((hiprot[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (hiprot[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
-  glTranslatef(((hipfloat[1][0] * (100 - time[whichguy])) + (hipfloat[1][1] * (time[whichguy]))) / 100, ((hipfloat[2][0] * (100 - time[whichguy])) + (hipfloat[2][1] * (time[whichguy]))) / 100, ((hipfloat[0][0] * (100 - time[whichguy])) + (hipfloat[0][1] * (time[whichguy]))) / 100);
+  glRotatef(((hiprot[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (hiprot[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((hiprot[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (hiprot[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((hiprot[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (hiprot[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glTranslatef(((hipfloat[1][0] * (100 - timeforguy[whichguy])) + (hipfloat[1][1] * (timeforguy[whichguy]))) / 100, ((hipfloat[2][0] * (100 - timeforguy[whichguy])) + (hipfloat[2][1] * (timeforguy[whichguy]))) / 100, ((hipfloat[0][0] * (100 - timeforguy[whichguy])) + (hipfloat[0][1] * (timeforguy[whichguy]))) / 100);
   bindTexture(TorsoNum[whichguy]);
   drawModel(MODEL_HIP_ID);
   glPushMatrix();
   glTranslatef(0.0f, 0.5f, 0.0f);
-  glRotatef(((torsorot[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (torsorot[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((torsorot[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (torsorot[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((torsorot[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (torsorot[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glRotatef(((torsorot[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (torsorot[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((torsorot[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (torsorot[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((torsorot[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (torsorot[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   bindTexture(TorsoNum[whichguy]);
   drawModel(MODEL_TORSO_ID);
   if (jetpack[whichguy] == 1) {
@@ -1156,9 +1156,9 @@ void DrawBody(int whichguy) {
   glPushMatrix();
   bindTexture(HelmetNum[whichguy]);
   glTranslatef(0.0f, 3.5f, 0.0f);
-  glRotatef(((head[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (head[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((head[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (head[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((head[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (head[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glRotatef(((head[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (head[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((head[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (head[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((head[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (head[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   if (whichguy != firstperson - 1 || firstperson == 0) {
     if (skin[whichguy] == 4) {
       glScalef(.8, .8, .8);
@@ -1174,20 +1174,20 @@ void DrawBody(int whichguy) {
   bindTexture(UpperArmNum[whichguy]);
   glTranslatef(1.5f, 3.0f, 0.0f);
   glScalef(.8, .8, .8);
-  glRotatef(((lefthigharm[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (lefthigharm[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((lefthigharm[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (lefthigharm[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((lefthigharm[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (lefthigharm[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glRotatef(((lefthigharm[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (lefthigharm[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((lefthigharm[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (lefthigharm[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((lefthigharm[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (lefthigharm[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   drawModel(MODEL_UPPERARM_ID);
   glTranslatef(0.0f, -2.5f, 0.0f);
-  glRotatef(((leftlowarm[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (leftlowarm[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((leftlowarm[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (leftlowarm[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((leftlowarm[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (leftlowarm[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glRotatef(((leftlowarm[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (leftlowarm[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((leftlowarm[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (leftlowarm[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((leftlowarm[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (leftlowarm[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   bindTexture(UpperArmNum[whichguy]);
   drawModel(MODEL_LOWERARM_ID);
   glTranslatef(0.0f, -1.8f, 0.0f);
-  glRotatef(((lefthand[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (lefthand[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((lefthand[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (lefthand[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((lefthand[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (lefthand[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glRotatef(((lefthand[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (lefthand[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((lefthand[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (lefthand[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((lefthand[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (lefthand[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   bindTexture(UpperArmNum[whichguy]);
   drawModel(MODEL_HAND_ID);
   bindTexture(TEX_LASERRIFLE_ID);
@@ -1214,20 +1214,20 @@ void DrawBody(int whichguy) {
   bindTexture(UpperArmNum[whichguy]);
   glTranslatef(-1.5f, 3.0f, 0.0f);
   glScalef(-.8, .8, .8);
-  glRotatef(((righthigharm[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (righthigharm[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((righthigharm[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (righthigharm[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((righthigharm[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (righthigharm[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glRotatef(((righthigharm[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (righthigharm[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((righthigharm[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (righthigharm[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((righthigharm[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (righthigharm[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   drawModel(MODEL_UPPERARM_ID);
   glTranslatef(0.0f, -2.5f, 0.0f);
-  glRotatef(((rightlowarm[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (rightlowarm[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((rightlowarm[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (rightlowarm[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((rightlowarm[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (rightlowarm[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glRotatef(((rightlowarm[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (rightlowarm[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((rightlowarm[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (rightlowarm[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((rightlowarm[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (rightlowarm[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   bindTexture(UpperArmNum[whichguy]);
   drawModel(MODEL_LOWERARM_ID);
   glTranslatef(0.0f, -1.8f, 0.0f);
-  glRotatef(((righthand[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (righthand[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((righthand[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (righthand[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((righthand[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (righthand[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glRotatef(((righthand[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (righthand[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((righthand[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (righthand[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((righthand[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (righthand[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   bindTexture(UpperArmNum[whichguy]);
   drawModel(MODEL_HAND_ID);
   bindTexture(TEX_LASERRIFLE_ID);
@@ -1294,42 +1294,42 @@ void DrawBody(int whichguy) {
   glPopMatrix();
   glPushMatrix();
   glTranslatef(0.8f, 0.0f, 0.0f);
-  glRotatef(((lefthighleg[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (lefthighleg[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((lefthighleg[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (lefthighleg[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((lefthighleg[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (lefthighleg[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glRotatef(((lefthighleg[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (lefthighleg[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((lefthighleg[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (lefthighleg[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((lefthighleg[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (lefthighleg[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   bindTexture(UpperArmNum[whichguy]);
   drawModel(MODEL_UPPERARM_ID);
   glTranslatef(0.0f, -2.5f, 0.0f);
-  glRotatef(((leftlowleg[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (leftlowleg[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((leftlowleg[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (leftlowleg[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((leftlowleg[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (leftlowleg[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glRotatef(((leftlowleg[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (leftlowleg[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((leftlowleg[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (leftlowleg[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((leftlowleg[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (leftlowleg[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   bindTexture(LowerLegNum[whichguy]);
   drawModel(MODEL_LOWERLEG_ID);
   glTranslatef(0.0f, -2.5f, 0.0f);
-  glRotatef(((leftfoot[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (leftfoot[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((leftfoot[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (leftfoot[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((leftfoot[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (leftfoot[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glRotatef(((leftfoot[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (leftfoot[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((leftfoot[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (leftfoot[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((leftfoot[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (leftfoot[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   bindTexture(ShoesNum[whichguy]);
   glScalef(.8, .8, .8);
   drawModel(MODEL_FOOT_ID);
   glPopMatrix();
   glPushMatrix();
   glTranslatef(-0.8f, 0.0f, 0.0f);
-  glRotatef(((righthighleg[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (righthighleg[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((righthighleg[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (righthighleg[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((righthighleg[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (righthighleg[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glRotatef(((righthighleg[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (righthighleg[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((righthighleg[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (righthighleg[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((righthighleg[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (righthighleg[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   bindTexture(UpperArmNum[whichguy]);
   drawModel(MODEL_UPPERARM_ID);
   glTranslatef(0.0f, -2.5f, 0.0f);
-  glRotatef(((rightlowleg[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (rightlowleg[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((rightlowleg[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (rightlowleg[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((rightlowleg[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (rightlowleg[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glRotatef(((rightlowleg[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (rightlowleg[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((rightlowleg[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (rightlowleg[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((rightlowleg[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (rightlowleg[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   bindTexture(LowerLegNum[whichguy]);
   drawModel(MODEL_LOWERLEG_ID);
   glTranslatef(0.0f, -2.5f, 0.0f);
-  glRotatef(((rightfoot[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (rightfoot[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((rightfoot[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (rightfoot[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((rightfoot[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (rightfoot[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glRotatef(((rightfoot[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (rightfoot[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((rightfoot[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (rightfoot[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((rightfoot[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (rightfoot[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   bindTexture(ShoesNum[whichguy]);
   glScalef(.8, .8, .8);
   drawModel(MODEL_FOOT_ID);
@@ -1350,31 +1350,31 @@ void DrawSabreBody(int whichguy) {
   hipfloat[2][1] = (float)(hippos[2][targetframe[whichguy]][targetanim[whichguy]]) / 10;
   hipfloat[0][1] = (float)(hippos[0][targetframe[whichguy]][targetanim[whichguy]]) / 10;
   glPushMatrix();
-  glRotatef(((hiprot[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (hiprot[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((hiprot[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (hiprot[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((hiprot[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (hiprot[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
-  glTranslatef(((hipfloat[1][0] * (100 - time[whichguy])) + (hipfloat[1][1] * (time[whichguy]))) / 100, ((hipfloat[2][0] * (100 - time[whichguy])) + (hipfloat[2][1] * (time[whichguy]))) / 100, ((hipfloat[0][0] * (100 - time[whichguy])) + (hipfloat[0][1] * (time[whichguy]))) / 100);
+  glRotatef(((hiprot[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (hiprot[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((hiprot[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (hiprot[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((hiprot[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (hiprot[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glTranslatef(((hipfloat[1][0] * (100 - timeforguy[whichguy])) + (hipfloat[1][1] * (timeforguy[whichguy]))) / 100, ((hipfloat[2][0] * (100 - timeforguy[whichguy])) + (hipfloat[2][1] * (timeforguy[whichguy]))) / 100, ((hipfloat[0][0] * (100 - timeforguy[whichguy])) + (hipfloat[0][1] * (timeforguy[whichguy]))) / 100);
   bindTexture(TEX_BLUE_HELMET_ID);
   glPushMatrix();
   glTranslatef(0.0f, 0.5f, 0.0f);
-  glRotatef(((torsorot[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (torsorot[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((torsorot[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (torsorot[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((torsorot[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (torsorot[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glRotatef(((torsorot[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (torsorot[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((torsorot[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (torsorot[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((torsorot[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (torsorot[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   glPushMatrix();
   glTranslatef(1.5f, 3.0f, 0.0f);
   glScalef(.8, .8, .8);
-  glRotatef(((lefthigharm[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (lefthigharm[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((lefthigharm[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (lefthigharm[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((lefthigharm[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (lefthigharm[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glRotatef(((lefthigharm[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (lefthigharm[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((lefthigharm[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (lefthigharm[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((lefthigharm[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (lefthigharm[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   ;
   glTranslatef(0.0f, -2.5f, 0.0f);
-  glRotatef(((leftlowarm[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (leftlowarm[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((leftlowarm[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (leftlowarm[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((leftlowarm[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (leftlowarm[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glRotatef(((leftlowarm[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (leftlowarm[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((leftlowarm[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (leftlowarm[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((leftlowarm[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (leftlowarm[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   glTranslatef(0.0f, -1.8f, 0.0f);
-  glRotatef(((lefthand[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (lefthand[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((lefthand[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (lefthand[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((lefthand[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (lefthand[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glRotatef(((lefthand[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (lefthand[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((lefthand[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (lefthand[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((lefthand[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (lefthand[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   if (itemnum[whichguy] == 3) {
     glRotatef(90, 1.0, 0.0, 0.0);
     glTranslatef(-0.3f, -1.0f, 0.8f);
@@ -1386,17 +1386,17 @@ void DrawSabreBody(int whichguy) {
                         glPushMatrix();
                         glTranslatef(-1.5f, 3.0f, 0.0f);
                         glScalef(-.8, .8, .8);
-                        glRotatef(((righthigharm[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (righthigharm[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-                        glRotatef(((righthigharm[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (righthigharm[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-                        glRotatef(((righthigharm[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (righthigharm[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+                        glRotatef(((righthigharm[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (righthigharm[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+                        glRotatef(((righthigharm[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (righthigharm[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+                        glRotatef(((righthigharm[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (righthigharm[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
                         glTranslatef(0.0f, -2.5f, 0.0f);
-                        glRotatef(((rightlowarm[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (rightlowarm[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-                        glRotatef(((rightlowarm[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (rightlowarm[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-                        glRotatef(((rightlowarm[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (rightlowarm[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+                        glRotatef(((rightlowarm[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (rightlowarm[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+                        glRotatef(((rightlowarm[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (rightlowarm[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+                        glRotatef(((rightlowarm[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (rightlowarm[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
                         glTranslatef(0.0f, -1.8f, 0.0f);
-                        glRotatef(((righthand[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (righthand[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-                        glRotatef(((righthand[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (righthand[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-                        glRotatef(((righthand[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (righthand[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+                        glRotatef(((righthand[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (righthand[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+                        glRotatef(((righthand[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (righthand[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+                        glRotatef(((righthand[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (righthand[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
                         if (itemnum[whichguy] == 2 || itemnum[whichguy] == 3) {
                           glRotatef(90, 1.0, 0.0, 0.0);
                           glTranslatef(-0.3f, -1.0f, 0.8f);
@@ -1448,7 +1448,7 @@ void DrawGuys(int whichguy, int sabre) {
     targetrotation[whichguy] = 0;
     rotation[whichguy] = 0;
   }
-  glRotatef(((rotation[whichguy] * (100 - time[whichguy])) + (targetrotation[whichguy] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((rotation[whichguy] * (100 - timeforguy[whichguy])) + (targetrotation[whichguy] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
   DrawGuy(whichguy, sabre);
   glPopMatrix();
   /*
@@ -3177,7 +3177,7 @@ void restartRound() {
   frame[0] = 0;
   targetanim[0] = 1;
   targetframe[0] = 0;
-  time[0] = 0;
+  timeforguy[0] = 0;
   ammo[0] = 30;
   usingjetpack[0] = 0;
   health[0] = 100;
@@ -3199,7 +3199,7 @@ void restartRound() {
   frame[1] = 0;
   targetanim[1] = 1;
   targetframe[1] = 0;
-  time[1] = 0;
+  timeforguy[1] = 0;
   ammo[1] = 30;
   usingjetpack[1] = 0;
   for (x = 0; x < 50; x++) {
@@ -3906,7 +3906,7 @@ void SwitchFrame(int whichguy) {
   c = ((guyx[whichguy] + 595) / 10) + .2;
   d = ((guyx[whichguy] + 595) / 10) + .9;
   randomjohn = (RangedRandom(1000, -1000) - 1000) / 100;
-  time[whichguy] -= 100;
+  timeforguy[whichguy] -= 100;
   frame[whichguy] = targetframe[whichguy];
   rotation[whichguy] = targetrotation[whichguy];
   anim[whichguy] = targetanim[whichguy];
@@ -4015,112 +4015,112 @@ void SwitchFrame(int whichguy) {
   }
   if (activity[whichguy] == leftroll && frame[whichguy] == 5 && anim[whichguy] == 8) {
     frame[whichguy] = 6;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
   }
   if (activity[whichguy] == leftroll && targetframe[whichguy] == 0 && anim[whichguy] == 8 && isKeyDown(kLeftKey[whichguy]) == 0 && guyvely[whichguy] == 0 && guyvelx[whichguy] == 0) {
     activity[whichguy] = ducking;
     targetframe[whichguy] = 2;
-    time[whichguy] = 0;
+    timeforguy[whichguy] = 0;
   }
   if (activity[whichguy] == leftroll && targetframe[whichguy] == 0 && anim[whichguy] == 8 && isKeyDown(kLeftKey[whichguy]) == 1 && isKeyDown(kDownKey[whichguy]) == 0 && guyvely[whichguy] == 0 && guyvelx[whichguy] == 0) {
     activity[whichguy] = runleft;
     targetframe[whichguy] = 1;
-    time[whichguy] = 0;
+    timeforguy[whichguy] = 0;
   }
   if (activity[whichguy] == leftroll && targetframe[whichguy] == 0 && anim[whichguy] == 8 && guyvely[whichguy] != 0) {
     activity[whichguy] = falling;
     targetframe[whichguy] = 1;
-    time[whichguy] = 0;
+    timeforguy[whichguy] = 0;
     guyvelx[whichguy] = -.1;
   }
   if (activity[whichguy] == rightroll && frame[whichguy] == 5 && anim[whichguy] == 8) {
     frame[whichguy] = 6;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
   }
   if (activity[whichguy] == rightroll && targetframe[whichguy] == 0 && anim[whichguy] == 8 && isKeyDown(kRightKey[whichguy]) == 0 && guyvely[whichguy] == 0 && guyvelx[whichguy] == 0) {
     activity[whichguy] = ducking;
     targetframe[whichguy] = 2;
-    time[whichguy] = 0;
+    timeforguy[whichguy] = 0;
   }
   if (activity[whichguy] == rightroll && targetframe[whichguy] == 0 && anim[whichguy] == 8 && isKeyDown(kRightKey[whichguy]) == 1 && isKeyDown(kDownKey[whichguy]) == 0 && guyvely[whichguy] == 0 && guyvelx[whichguy] == 0) {
     activity[whichguy] = runright;
     targetframe[whichguy] = 1;
-    time[whichguy] = 0;
+    timeforguy[whichguy] = 0;
   }
   if (activity[whichguy] == rightroll && targetframe[whichguy] == 0 && anim[whichguy] == 8 && guyvely[whichguy] != 0) {
     activity[whichguy] = falling;
     targetframe[whichguy] = 1;
-    time[whichguy] = 0;
+    timeforguy[whichguy] = 0;
     guyvelx[whichguy] = .1;
   }
   if (activity[whichguy] == falling && frame[whichguy] == 4) {
     targetframe[whichguy] = 2;
   }
   if (activity[whichguy] == splat && targetframe[whichguy] == 0) {
-    time[whichguy] = 0;
+    timeforguy[whichguy] = 0;
     activity[whichguy] = deadfacedown;
   }
   if (activity[whichguy] == impaledright && anim[whichguy] == 19 && targetframe[whichguy] == 0 && frame[whichguy] > 3) {
     activity[whichguy] = deadfacedown;
-    time[whichguy] = 0;
+    timeforguy[whichguy] = 0;
     health[whichguy] -= 120;
   }
   if (activity[whichguy] == impaledleft && anim[whichguy] == 19 && targetframe[whichguy] == 0 && frame[whichguy] > 3) {
     activity[whichguy] = deadfacedown;
-    time[whichguy] = 0;
+    timeforguy[whichguy] = 0;
     health[whichguy] -= 120;
   }
   if (activity[whichguy] == duckimpaledright && anim[whichguy] == 39 && targetframe[whichguy] == 0 && frame[whichguy] > 3) {
     activity[whichguy] = deadfacedown;
-    time[whichguy] = 0;
+    timeforguy[whichguy] = 0;
     health[whichguy] -= 120;
   }
   if (activity[whichguy] == duckimpaledleft && anim[whichguy] == 39 && targetframe[whichguy] == 0 && frame[whichguy] > 3) {
     activity[whichguy] = deadfacedown;
-    time[whichguy] = 0;
+    timeforguy[whichguy] = 0;
     health[whichguy] -= 120;
   }
   if (activity[whichguy] == jetimpaledright && anim[whichguy] == 37 && targetframe[whichguy] == 0 && frame[whichguy] > 3) {
     activity[whichguy] = deadfaceup;
-    time[whichguy] = 0;
+    timeforguy[whichguy] = 0;
     health[whichguy] -= 120;
   }
   if (activity[whichguy] == jetimpaledleft && anim[whichguy] == 37 && targetframe[whichguy] == 0 && frame[whichguy] > 3) {
     activity[whichguy] = deadfaceup;
-    time[whichguy] = 0;
+    timeforguy[whichguy] = 0;
     health[whichguy] -= 120;
   }
   if (activity[whichguy] == brokeneckright && anim[whichguy] == 17 && targetframe[whichguy] == 0 && frame[whichguy] > 3) {
     activity[whichguy] = deadfacedown;
-    time[whichguy] = 0;
+    timeforguy[whichguy] = 0;
     health[whichguy] -= 120;
   }
   if (activity[whichguy] == brokeneckleft && anim[whichguy] == 17 && targetframe[whichguy] == 0 && frame[whichguy] > 3) {
     activity[whichguy] = deadfacedown;
-    time[whichguy] = 0;
+    timeforguy[whichguy] = 0;
     health[whichguy] -= 120;
   }
   if (activity[whichguy] == swordthrownleft && anim[whichguy] == 21 && targetframe[whichguy] == 0 && frame[whichguy] > 3) {
     activity[whichguy] = deadfaceup;
-    time[whichguy] = 0;
+    timeforguy[whichguy] = 0;
     health[whichguy] -= 120;
   }
   if (activity[whichguy] == swordthrownright && anim[whichguy] == 21 && targetframe[whichguy] == 0 && frame[whichguy] > 3) {
     activity[whichguy] = deadfaceup;
-    time[whichguy] = 0;
+    timeforguy[whichguy] = 0;
     health[whichguy] -= 120;
   }
   if (activity[whichguy] == landonback && targetframe[whichguy] == 0 && anim[whichguy] == 14) {
-    time[whichguy] = 0;
+    timeforguy[whichguy] = 0;
     activity[whichguy] = deadfaceup;
   }
 
   if (activity[whichguy] == getupfromback && targetframe[whichguy] == 0 && anim[whichguy] == 24 && frame[whichguy] > 0) {
-    time[whichguy] = 0;
+    timeforguy[whichguy] = 0;
     activity[whichguy] = idle1;
   }
   if (activity[whichguy] == getupfromfront && targetframe[whichguy] == 0 && anim[whichguy] == 25 && frame[whichguy] > 0) {
-    time[whichguy] = 0;
+    timeforguy[whichguy] = 0;
     activity[whichguy] = idle1;
   }
 
@@ -4134,13 +4134,13 @@ void SwitchFrame(int whichguy) {
     activity[whichguy] = idle1;
     targetanim[whichguy] = 1;
     targetframe[whichguy] = 0;
-    time[whichguy] = 0;
+    timeforguy[whichguy] = 0;
   }
   if (activity[whichguy] == paintworight && anim[whichguy] == 23 && targetframe[whichguy] == 0 && frame[whichguy] > 3) {
     activity[whichguy] = idle1;
     targetanim[whichguy] = 1;
     targetframe[whichguy] = 0;
-    time[whichguy] = 0;
+    timeforguy[whichguy] = 0;
   }
   if (activity[whichguy] == painthreeright && anim[whichguy] == 42 && frame[whichguy] == 5) {
     guyx[whichguy] += 4;
@@ -4149,7 +4149,7 @@ void SwitchFrame(int whichguy) {
     activity[whichguy] = idle1;
     targetanim[whichguy] = 1;
     targetframe[whichguy] = 0;
-    time[whichguy] = 0;
+    timeforguy[whichguy] = 0;
   }
 
   if (activity[whichguy] == painoneleft && anim[whichguy] == 22 && frame[whichguy] == 5) {
@@ -4162,13 +4162,13 @@ void SwitchFrame(int whichguy) {
     activity[whichguy] = idle1;
     targetanim[whichguy] = 1;
     targetframe[whichguy] = 0;
-    time[whichguy] = 0;
+    timeforguy[whichguy] = 0;
   }
   if (activity[whichguy] == paintwoleft && anim[whichguy] == 23 && targetframe[whichguy] == 0 && frame[whichguy] > 3) {
     activity[whichguy] = idle1;
     targetanim[whichguy] = 1;
     targetframe[whichguy] = 0;
-    time[whichguy] = 0;
+    timeforguy[whichguy] = 0;
   }
   if (activity[whichguy] == painthreeleft && anim[whichguy] == 42 && frame[whichguy] == 5) {
     guyx[whichguy] -= 3;
@@ -4177,7 +4177,7 @@ void SwitchFrame(int whichguy) {
     activity[whichguy] = idle1;
     targetanim[whichguy] = 1;
     targetframe[whichguy] = 0;
-    time[whichguy] = 0;
+    timeforguy[whichguy] = 0;
   }
 
   if (activity[whichguy] == breakneckleft && anim[whichguy] == 16 && targetframe[whichguy] == 0 && frame[whichguy] > 3) {
@@ -4243,7 +4243,7 @@ void SwitchFrame(int whichguy) {
     anim[whichguy] = 14;
     targetframe[whichguy] = 0;
     frame[whichguy] = 0;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     if (Map[guymapx[whichguy]][guymapy[whichguy]] != 0 && Map[guymapx[whichguy]][guymapy[whichguy]] != 3 && activity[whichguy] != climbrope && activity[whichguy] != onrope && activity[whichguy] != downrope) {
       playSound(SND_BREAK_ID, -guyvely[whichguy] * 50 + 50);
       playSound(SND_BREAK2_ID, -guyvely[whichguy] * 50 + 50);
@@ -4261,7 +4261,7 @@ void SwitchFrame(int whichguy) {
     anim[whichguy] = 14;
     targetframe[whichguy] = 0;
     frame[whichguy] = 0;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     if (Map[guymapx[whichguy]][guymapy[whichguy]] != 0 && Map[guymapx[whichguy]][guymapy[whichguy]] != 3 && activity[whichguy] != climbrope && activity[whichguy] != onrope && activity[whichguy] != downrope) {
       playSound(SND_BREAK_ID, -guyvely[whichguy] * 50 + 50);
       playSound(SND_BREAK2_ID, -guyvely[whichguy] * 50 + 50);
@@ -4355,7 +4355,7 @@ void SwitchFrame(int whichguy) {
             anim[b] = 15;
             targetanim[b] = 15;
           }
-          time[b] = 100;
+          timeforguy[b] = 100;
         }
       }
       if (health[b] <= 0) {
@@ -4375,7 +4375,7 @@ void SwitchFrame(int whichguy) {
           anim[b] = 15;
           targetanim[b] = 15;
         }
-        time[b] = 100;
+        timeforguy[b] = 100;
       }
     }
     if (b != -1 && activity[b] == swordleftparry) {
@@ -4392,7 +4392,7 @@ void SwitchFrame(int whichguy) {
       }
       frame[b] = frame[whichguy];
       targetframe[b] = targetframe[whichguy];
-      time[b] = time[whichguy] - 5;
+      timeforguy[b] = timeforguy[whichguy] - 5;
       anim[whichguy] = 28;
       targetanim[whichguy] = 28;
     }
@@ -4452,7 +4452,7 @@ void SwitchFrame(int whichguy) {
             anim[b] = 15;
             targetanim[b] = 15;
           }
-          time[b] = 100;
+          timeforguy[b] = 100;
         }
       }
       if (health[b] <= 0) {
@@ -4472,7 +4472,7 @@ void SwitchFrame(int whichguy) {
           anim[b] = 15;
           targetanim[b] = 15;
         }
-        time[b] = 100;
+        timeforguy[b] = 100;
       }
     }
     if (b != -1 && activity[b] == swordleftparry) {
@@ -4489,7 +4489,7 @@ void SwitchFrame(int whichguy) {
       }
       frame[b] = frame[whichguy];
       targetframe[b] = targetframe[whichguy];
-      time[b] = time[whichguy] - 5;
+      timeforguy[b] = timeforguy[whichguy] - 5;
       anim[whichguy] = 28;
       targetanim[whichguy] = 28;
       activity[whichguy] = swordrightthrust;
@@ -4550,7 +4550,7 @@ void SwitchFrame(int whichguy) {
             anim[b] = 15;
             targetanim[b] = 15;
           }
-          time[b] = 100;
+          timeforguy[b] = 100;
         }
       }
       if (health[b] <= 0) {
@@ -4570,7 +4570,7 @@ void SwitchFrame(int whichguy) {
           anim[b] = 15;
           targetanim[b] = 15;
         }
-        time[b] = 100;
+        timeforguy[b] = 100;
       }
     }
     if (b != -1 && activity[b] == swordrightparry) {
@@ -4587,7 +4587,7 @@ void SwitchFrame(int whichguy) {
       }
       frame[b] = frame[whichguy];
       targetframe[b] = targetframe[whichguy];
-      time[b] = time[whichguy] - 5;
+      timeforguy[b] = timeforguy[whichguy] - 5;
       anim[whichguy] = 28;
       targetanim[whichguy] = 28;
     }
@@ -4647,7 +4647,7 @@ void SwitchFrame(int whichguy) {
             anim[b] = 15;
             targetanim[b] = 15;
           }
-          time[b] = 100;
+          timeforguy[b] = 100;
         }
       }
       if (health[b] <= 0) {
@@ -4667,7 +4667,7 @@ void SwitchFrame(int whichguy) {
           anim[b] = 15;
           targetanim[b] = 15;
         }
-        time[b] = 100;
+        timeforguy[b] = 100;
       }
     }
     if (b != -1 && activity[b] == swordrightparry) {
@@ -4684,7 +4684,7 @@ void SwitchFrame(int whichguy) {
       }
       frame[b] = frame[whichguy];
       targetframe[b] = targetframe[whichguy];
-      time[b] = time[whichguy] - 5;
+      timeforguy[b] = timeforguy[whichguy] - 5;
       anim[whichguy] = 28;
       targetanim[whichguy] = 28;
       activity[whichguy] = swordleftthrust;
@@ -4789,7 +4789,7 @@ void SwitchFrame(int whichguy) {
               anim[b] = 15;
               targetanim[b] = 15;
             }
-            time[b] = 100;
+            timeforguy[b] = 100;
           }
           if (facing[b] == 1) {
             activity[b] = fallforwardsright;
@@ -4952,7 +4952,7 @@ void SwitchFrame(int whichguy) {
             anim[b] = 15;
             targetanim[b] = 15;
           }
-          time[b] = 100;
+          timeforguy[b] = 100;
           if (facing[b] == 0) {
             activity[b] = fallforwardsleft;
             anim[b] = 41;
@@ -5206,40 +5206,40 @@ void SwitchFrame(int whichguy) {
 }
 
 void NextFrame(int whichguy) {
-  if (time[whichguy] >= 100) {
+  if (timeforguy[whichguy] >= 100) {
     SwitchFrame(whichguy);
   }
-  if (time[whichguy] >= 100) {
+  if (timeforguy[whichguy] >= 100) {
     SwitchFrame(whichguy);
   }
-  if (time[whichguy] >= 100) {
+  if (timeforguy[whichguy] >= 100) {
     SwitchFrame(whichguy);
   }
-  if (time[whichguy] >= 100) {
+  if (timeforguy[whichguy] >= 100) {
     SwitchFrame(whichguy);
   }
-  if (time[whichguy] >= 100) {
+  if (timeforguy[whichguy] >= 100) {
     SwitchFrame(whichguy);
   }
-  if (time[whichguy] >= 100) {
+  if (timeforguy[whichguy] >= 100) {
     SwitchFrame(whichguy);
   }
-  if (time[whichguy] >= 100) {
+  if (timeforguy[whichguy] >= 100) {
     SwitchFrame(whichguy);
   }
-  if (time[whichguy] >= 100) {
+  if (timeforguy[whichguy] >= 100) {
     SwitchFrame(whichguy);
   }
-  if (time[whichguy] >= 100) {
+  if (timeforguy[whichguy] >= 100) {
     SwitchFrame(whichguy);
   }
-  if (time[whichguy] >= 100) {
+  if (timeforguy[whichguy] >= 100) {
     SwitchFrame(whichguy);
   }
-  if (time[whichguy] >= 100) {
+  if (timeforguy[whichguy] >= 100) {
     SwitchFrame(whichguy);
   }
-  if (time[whichguy] >= 100) {
+  if (timeforguy[whichguy] >= 100) {
     SwitchFrame(whichguy);
   }
 }
@@ -5511,7 +5511,7 @@ void Explode(int which) {
           anim[y] = 15;
           targetanim[y] = 15;
         }
-        time[y] = 100;
+        timeforguy[y] = 100;
         if (facing[y] == 1) {
           activity[y] = fallforwardsright;
           anim[y] = 41;
@@ -5537,7 +5537,7 @@ void Explode(int which) {
           anim[y] = 15;
           targetanim[y] = 15;
         }
-        time[y] = 100;
+        timeforguy[y] = 100;
         if (facing[y] == 0) {
           activity[y] = fallforwardsleft;
           anim[y] = 41;
@@ -5815,7 +5815,7 @@ void HandleSprites() {
                           anim[y] = 15;
                           targetanim[y] = 15;
                         }
-                        time[y] = 100;
+                        timeforguy[y] = 100;
                       }
                     }
                     if (sprite[x].type == chunk) {
@@ -5836,7 +5836,7 @@ void HandleSprites() {
                         anim[y] = 15;
                         targetanim[y] = 15;
                       }
-                      time[y] = 100;
+                      timeforguy[y] = 100;
                       if (facing[y] == 1) {
                         activity[y] = fallforwardsright;
                         anim[y] = 41;
@@ -5931,7 +5931,7 @@ void HandleSprites() {
                           anim[y] = 15;
                           targetanim[y] = 15;
                         }
-                        time[y] = 100;
+                        timeforguy[y] = 100;
                       }
                     }
                     if (sprite[x].type == chunk) {
@@ -5952,7 +5952,7 @@ void HandleSprites() {
                         anim[y] = 15;
                         targetanim[y] = 15;
                       }
-                      time[y] = 100;
+                      timeforguy[y] = 100;
                       if (facing[y] == 0) {
                         activity[y] = fallforwardsleft;
                         anim[y] = 41;
@@ -6048,7 +6048,7 @@ void HandleSprites() {
                         anim[y] = 15;
                         targetanim[y] = 15;
                       }
-                      time[y] = 100;
+                      timeforguy[y] = 100;
                     }
                   }
                   if (sprite[x].type == chunk) {
@@ -6069,7 +6069,7 @@ void HandleSprites() {
                       anim[y] = 15;
                       targetanim[y] = 15;
                     }
-                    time[y] = 100;
+                    timeforguy[y] = 100;
                     if (facing[y] == 0) {
                       activity[y] = fallforwardsleft;
                       anim[y] = 41;
@@ -6150,7 +6150,7 @@ void HandleSprites() {
                         anim[y] = 15;
                         targetanim[y] = 15;
                       }
-                      time[y] = 100;
+                      timeforguy[y] = 100;
                     }
                   }
                   if (sprite[x].type == chunk) {
@@ -6171,7 +6171,7 @@ void HandleSprites() {
                       anim[y] = 15;
                       targetanim[y] = 15;
                     }
-                    time[y] = 100;
+                    timeforguy[y] = 100;
                     if (facing[y] == 0) {
                       activity[y] = fallforwardsleft;
                       anim[y] = 41;
@@ -6297,7 +6297,7 @@ void HandleSprites() {
                             anim[y] = 15;
                             targetanim[y] = 15;
                           }
-                          time[y] = 100;
+                          timeforguy[y] = 100;
                         }
                       }
                       if (sprite[x].type == chunk) {
@@ -6318,7 +6318,7 @@ void HandleSprites() {
                           anim[y] = 15;
                           targetanim[y] = 15;
                         }
-                        time[y] = 100;
+                        timeforguy[y] = 100;
                         if (facing[y] == 1) {
                           activity[y] = fallforwardsright;
                           anim[y] = 41;
@@ -6414,7 +6414,7 @@ void HandleSprites() {
                             anim[y] = 15;
                             targetanim[y] = 15;
                           }
-                          time[y] = 100;
+                          timeforguy[y] = 100;
                         }
                       }
                       if (sprite[x].type == chunk) {
@@ -6435,7 +6435,7 @@ void HandleSprites() {
                           anim[y] = 15;
                           targetanim[y] = 15;
                         }
-                        time[y] = 100;
+                        timeforguy[y] = 100;
                         if (facing[y] == 0) {
                           activity[y] = fallforwardsleft;
                           anim[y] = 41;
@@ -6540,7 +6540,7 @@ void HandleSprites() {
                           anim[y] = 15;
                           targetanim[y] = 15;
                         }
-                        time[y] = 100;
+                        timeforguy[y] = 100;
                       }
                     }
                     if (sprite[x].type == chunk) {
@@ -6561,7 +6561,7 @@ void HandleSprites() {
                         anim[y] = 15;
                         targetanim[y] = 15;
                       }
-                      time[y] = 100;
+                      timeforguy[y] = 100;
                       if (facing[y] == 0) {
                         activity[y] = fallforwardsleft;
                         anim[y] = 41;
@@ -6643,7 +6643,7 @@ void HandleSprites() {
                           anim[y] = 15;
                           targetanim[y] = 15;
                         }
-                        time[y] = 100;
+                        timeforguy[y] = 100;
                       }
                     }
                     if (sprite[x].type == chunk) {
@@ -6664,7 +6664,7 @@ void HandleSprites() {
                         anim[y] = 15;
                         targetanim[y] = 15;
                       }
-                      time[y] = 100;
+                      timeforguy[y] = 100;
                       if (facing[y] == 0) {
                         activity[y] = fallforwardsleft;
                         anim[y] = 41;
@@ -6903,7 +6903,7 @@ Point3D FindRightGunPoint(int whichguy) {
     targetrotation[whichguy] = 0;
     rotation[whichguy] = 0;
   }
-  glRotatef(((rotation[whichguy] * (100 - time[whichguy])) + (targetrotation[whichguy] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((rotation[whichguy] * (100 - timeforguy[whichguy])) + (targetrotation[whichguy] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
   glTranslatef(0, .1, 0);
   glScalef(size[whichguy], size[whichguy], size[whichguy]);
   hipfloat[1][0] = (float)(hippos[1][frame[whichguy]][anim[whichguy]]) / 10;
@@ -6913,24 +6913,24 @@ Point3D FindRightGunPoint(int whichguy) {
   hipfloat[2][1] = (float)(hippos[2][targetframe[whichguy]][targetanim[whichguy]]) / 10;
   hipfloat[0][1] = (float)(hippos[0][targetframe[whichguy]][targetanim[whichguy]]) / 10;
   glPushMatrix();
-  glRotatef(((hiprot[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (hiprot[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((hiprot[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (hiprot[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((hiprot[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (hiprot[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
-  glTranslatef(((hipfloat[1][0] * (100 - time[whichguy])) + (hipfloat[1][1] * (time[whichguy]))) / 100, ((hipfloat[2][0] * (100 - time[whichguy])) + (hipfloat[2][1] * (time[whichguy]))) / 100, ((hipfloat[0][0] * (100 - time[whichguy])) + (hipfloat[0][1] * (time[whichguy]))) / 100);
+  glRotatef(((hiprot[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (hiprot[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((hiprot[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (hiprot[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((hiprot[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (hiprot[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glTranslatef(((hipfloat[1][0] * (100 - timeforguy[whichguy])) + (hipfloat[1][1] * (timeforguy[whichguy]))) / 100, ((hipfloat[2][0] * (100 - timeforguy[whichguy])) + (hipfloat[2][1] * (timeforguy[whichguy]))) / 100, ((hipfloat[0][0] * (100 - timeforguy[whichguy])) + (hipfloat[0][1] * (timeforguy[whichguy]))) / 100);
   bindTexture(TEX_BLUE_HELMET_ID);
   glPushMatrix();
   glTranslatef(0.0f, 0.5f, 0.0f);
-  glRotatef(((torsorot[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (torsorot[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((torsorot[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (torsorot[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((torsorot[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (torsorot[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glRotatef(((torsorot[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (torsorot[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((torsorot[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (torsorot[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((torsorot[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (torsorot[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   /*glPushMatrix();
           glTranslatef(1.5f,3.0f,0.0f);
           glScalef(.8,.8,.8);
-          glRotatef(((lefthigharm[0][frame[whichguy]][anim[whichguy]]*(100-time[whichguy]))+(lefthigharm[0][targetframe[whichguy]][targetanim[whichguy]]*(time[whichguy])))/100,1.0f,0.0f,0.0f); glRotatef(((lefthigharm[1][frame[whichguy]][anim[whichguy]]*(100-time[whichguy]))+(lefthigharm[1][targetframe[whichguy]][targetanim[whichguy]]*(time[whichguy])))/100,0.0f,1.0f,0.0f); glRotatef(((lefthigharm[2][frame[whichguy]][anim[whichguy]]*(100-time[whichguy]))+(lefthigharm[2][targetframe[whichguy]][targetanim[whichguy]]*(time[whichguy])))/100,0.0f,0.0f,1.0f);;
+          glRotatef(((lefthigharm[0][frame[whichguy]][anim[whichguy]]*(100-timeforguy[whichguy]))+(lefthigharm[0][targetframe[whichguy]][targetanim[whichguy]]*(timeforguy[whichguy])))/100,1.0f,0.0f,0.0f); glRotatef(((lefthigharm[1][frame[whichguy]][anim[whichguy]]*(100-timeforguy[whichguy]))+(lefthigharm[1][targetframe[whichguy]][targetanim[whichguy]]*(timeforguy[whichguy])))/100,0.0f,1.0f,0.0f); glRotatef(((lefthigharm[2][frame[whichguy]][anim[whichguy]]*(100-timeforguy[whichguy]))+(lefthigharm[2][targetframe[whichguy]][targetanim[whichguy]]*(timeforguy[whichguy])))/100,0.0f,0.0f,1.0f);;
           glTranslatef(0.0f,-2.5f,0.0f);
-          glRotatef(((leftlowarm[0][frame[whichguy]][anim[whichguy]]*(100-time[whichguy]))+(leftlowarm[0][targetframe[whichguy]][targetanim[whichguy]]*(time[whichguy])))/100,1.0f,0.0f,0.0f); glRotatef(((leftlowarm[1][frame[whichguy]][anim[whichguy]]*(100-time[whichguy]))+(leftlowarm[1][targetframe[whichguy]][targetanim[whichguy]]*(time[whichguy])))/100,0.0f,1.0f,0.0f); glRotatef(((leftlowarm[2][frame[whichguy]][anim[whichguy]]*(100-time[whichguy]))+(leftlowarm[2][targetframe[whichguy]][targetanim[whichguy]]*(time[whichguy])))/100,0.0f,0.0f,1.0f);
+          glRotatef(((leftlowarm[0][frame[whichguy]][anim[whichguy]]*(100-timeforguy[whichguy]))+(leftlowarm[0][targetframe[whichguy]][targetanim[whichguy]]*(timeforguy[whichguy])))/100,1.0f,0.0f,0.0f); glRotatef(((leftlowarm[1][frame[whichguy]][anim[whichguy]]*(100-timeforguy[whichguy]))+(leftlowarm[1][targetframe[whichguy]][targetanim[whichguy]]*(timeforguy[whichguy])))/100,0.0f,1.0f,0.0f); glRotatef(((leftlowarm[2][frame[whichguy]][anim[whichguy]]*(100-timeforguy[whichguy]))+(leftlowarm[2][targetframe[whichguy]][targetanim[whichguy]]*(timeforguy[whichguy])))/100,0.0f,0.0f,1.0f);
           glTranslatef(0.0f,-1.8f,0.0f);
-          glRotatef(((lefthand[0][frame[whichguy]][anim[whichguy]]*(100-time[whichguy]))+(lefthand[0][targetframe[whichguy]][targetanim[whichguy]]*(time[whichguy])))/100,1.0f,0.0f,0.0f); glRotatef(((lefthand[1][frame[whichguy]][anim[whichguy]]*(100-time[whichguy]))+(lefthand[1][targetframe[whichguy]][targetanim[whichguy]]*(time[whichguy])))/100,0.0f,1.0f,0.0f); glRotatef(((lefthand[2][frame[whichguy]][anim[whichguy]]*(100-time[whichguy]))+(lefthand[2][targetframe[whichguy]][targetanim[whichguy]]*(time[whichguy])))/100,0.0f,0.0f,1.0f);
+          glRotatef(((lefthand[0][frame[whichguy]][anim[whichguy]]*(100-timeforguy[whichguy]))+(lefthand[0][targetframe[whichguy]][targetanim[whichguy]]*(timeforguy[whichguy])))/100,1.0f,0.0f,0.0f); glRotatef(((lefthand[1][frame[whichguy]][anim[whichguy]]*(100-timeforguy[whichguy]))+(lefthand[1][targetframe[whichguy]][targetanim[whichguy]]*(timeforguy[whichguy])))/100,0.0f,1.0f,0.0f); glRotatef(((lefthand[2][frame[whichguy]][anim[whichguy]]*(100-timeforguy[whichguy]))+(lefthand[2][targetframe[whichguy]][targetanim[whichguy]]*(timeforguy[whichguy])))/100,0.0f,0.0f,1.0f);
           if(itemnum[whichguy]==3){
           glRotatef(90,1.0,0.0,0.0);
           glTranslatef(-0.3f,-1.0f,0.8f);
@@ -6941,17 +6941,17 @@ Point3D FindRightGunPoint(int whichguy) {
   glPushMatrix();
   glTranslatef(-1.5f, 3.0f, 0.0f);
   glScalef(-.8, .8, .8);
-  glRotatef(((righthigharm[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (righthigharm[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((righthigharm[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (righthigharm[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((righthigharm[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (righthigharm[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glRotatef(((righthigharm[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (righthigharm[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((righthigharm[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (righthigharm[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((righthigharm[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (righthigharm[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   glTranslatef(0.0f, -2.5f, 0.0f);
-  glRotatef(((rightlowarm[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (rightlowarm[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((rightlowarm[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (rightlowarm[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((rightlowarm[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (rightlowarm[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glRotatef(((rightlowarm[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (rightlowarm[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((rightlowarm[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (rightlowarm[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((rightlowarm[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (rightlowarm[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   glTranslatef(0.0f, -1.8f, 0.0f);
-  glRotatef(((righthand[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (righthand[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((righthand[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (righthand[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((righthand[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (righthand[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glRotatef(((righthand[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (righthand[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((righthand[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (righthand[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((righthand[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (righthand[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   if (itemnum[whichguy] == 1) {
     glRotatef(90, 1.0, 0.0, 0.0);
     glTranslatef(-0.3f, 0.7f, 3.8f);
@@ -7040,7 +7040,7 @@ Point3D FindEyePoint(int whichguy) {
     targetrotation[whichguy] = 0;
     rotation[whichguy] = 0;
   }
-  glRotatef(((rotation[whichguy] * (100 - time[whichguy])) + (targetrotation[whichguy] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((rotation[whichguy] * (100 - timeforguy[whichguy])) + (targetrotation[whichguy] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
   glTranslatef(0, .1, 0);
   glScalef(size[whichguy], size[whichguy], size[whichguy]);
   hipfloat[1][0] = (float)(hippos[1][frame[whichguy]][anim[whichguy]]) / 10;
@@ -7050,21 +7050,21 @@ Point3D FindEyePoint(int whichguy) {
   hipfloat[2][1] = (float)(hippos[2][targetframe[whichguy]][targetanim[whichguy]]) / 10;
   hipfloat[0][1] = (float)(hippos[0][targetframe[whichguy]][targetanim[whichguy]]) / 10;
   glPushMatrix();
-  glRotatef(((hiprot[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (hiprot[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((hiprot[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (hiprot[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((hiprot[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (hiprot[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
-  glTranslatef(((hipfloat[1][0] * (100 - time[whichguy])) + (hipfloat[1][1] * (time[whichguy]))) / 100, ((hipfloat[2][0] * (100 - time[whichguy])) + (hipfloat[2][1] * (time[whichguy]))) / 100, ((hipfloat[0][0] * (100 - time[whichguy])) + (hipfloat[0][1] * (time[whichguy]))) / 100);
+  glRotatef(((hiprot[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (hiprot[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((hiprot[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (hiprot[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((hiprot[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (hiprot[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glTranslatef(((hipfloat[1][0] * (100 - timeforguy[whichguy])) + (hipfloat[1][1] * (timeforguy[whichguy]))) / 100, ((hipfloat[2][0] * (100 - timeforguy[whichguy])) + (hipfloat[2][1] * (timeforguy[whichguy]))) / 100, ((hipfloat[0][0] * (100 - timeforguy[whichguy])) + (hipfloat[0][1] * (timeforguy[whichguy]))) / 100);
   bindTexture(TEX_BLUE_HELMET_ID);
   glPushMatrix();
   glTranslatef(0.0f, 0.5f, 0.0f);
-  glRotatef(((torsorot[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (torsorot[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((torsorot[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (torsorot[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((torsorot[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (torsorot[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glRotatef(((torsorot[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (torsorot[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((torsorot[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (torsorot[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((torsorot[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (torsorot[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   glPushMatrix();
   glTranslatef(0.0f, 3.5f, 0.0f);
-  glRotatef(((head[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (head[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((head[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (head[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((head[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (head[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glRotatef(((head[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (head[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((head[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (head[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((head[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (head[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   glGetFloatv(GL_MODELVIEW_MATRIX, M);
   glPopMatrix();
   glPopMatrix();
@@ -7113,7 +7113,7 @@ Point3D FindEyeRot(int whichguy) {
     targetrotation[whichguy] = 0;
     rotation[whichguy] = 0;
   }
-  glRotatef(((rotation[whichguy] * (100 - time[whichguy])) + (targetrotation[whichguy] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((rotation[whichguy] * (100 - timeforguy[whichguy])) + (targetrotation[whichguy] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
   glTranslatef(0, .1, 0);
   glScalef(size[whichguy], size[whichguy], size[whichguy]);
   hipfloat[1][0] = (float)(hippos[1][frame[whichguy]][anim[whichguy]]) / 10;
@@ -7123,21 +7123,21 @@ Point3D FindEyeRot(int whichguy) {
   hipfloat[2][1] = (float)(hippos[2][targetframe[whichguy]][targetanim[whichguy]]) / 10;
   hipfloat[0][1] = (float)(hippos[0][targetframe[whichguy]][targetanim[whichguy]]) / 10;
   glPushMatrix();
-  glRotatef(((hiprot[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (hiprot[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((hiprot[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (hiprot[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((hiprot[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (hiprot[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
-  glTranslatef(((hipfloat[1][0] * (100 - time[whichguy])) + (hipfloat[1][1] * (time[whichguy]))) / 100, ((hipfloat[2][0] * (100 - time[whichguy])) + (hipfloat[2][1] * (time[whichguy]))) / 100, ((hipfloat[0][0] * (100 - time[whichguy])) + (hipfloat[0][1] * (time[whichguy]))) / 100);
+  glRotatef(((hiprot[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (hiprot[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((hiprot[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (hiprot[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((hiprot[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (hiprot[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glTranslatef(((hipfloat[1][0] * (100 - timeforguy[whichguy])) + (hipfloat[1][1] * (timeforguy[whichguy]))) / 100, ((hipfloat[2][0] * (100 - timeforguy[whichguy])) + (hipfloat[2][1] * (timeforguy[whichguy]))) / 100, ((hipfloat[0][0] * (100 - timeforguy[whichguy])) + (hipfloat[0][1] * (timeforguy[whichguy]))) / 100);
   bindTexture(TEX_BLUE_HELMET_ID);
   glPushMatrix();
   glTranslatef(0.0f, 0.5f, 0.0f);
-  glRotatef(((torsorot[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (torsorot[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((torsorot[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (torsorot[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((torsorot[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (torsorot[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glRotatef(((torsorot[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (torsorot[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((torsorot[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (torsorot[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((torsorot[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (torsorot[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   glPushMatrix();
   glTranslatef(0.0f, 3.5f, 0.0f);
-  glRotatef(((head[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (head[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((head[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (head[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((head[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (head[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glRotatef(((head[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (head[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((head[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (head[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((head[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (head[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   glGetFloatv(GL_MODELVIEW_MATRIX, M);
   EyePoint.x = M[12];
   EyePoint.y = M[13];
@@ -7152,8 +7152,8 @@ Point3D FindEyeRot(int whichguy) {
   glPopMatrix();
   glPopMatrix();
 
-  // EyePoint.x=((rotation[whichguy]*(100-time[whichguy]))+(targetrotation[whichguy]*(time[whichguy])))/100+((hiprot[1][frame[whichguy]][anim[whichguy]]*(100-time[whichguy]))+(hiprot[1][targetframe[whichguy]][targetanim[whichguy]]*(time[whichguy]))/100)+((torsorot[1][frame[whichguy]][anim[whichguy]]*(100-time[whichguy]))+(torsorot[1][targetframe[whichguy]][targetanim[whichguy]]*(time[whichguy])))/100+((head[1][frame[whichguy]][anim[whichguy]]*(100-time[whichguy]))+(head[1][targetframe[whichguy]][targetanim[whichguy]]*(time[whichguy])))/100;
-  // EyePoint.y=((hiprot[0][frame[whichguy]][anim[whichguy]]*(100-time[whichguy]))+(hiprot[0][targetframe[whichguy]][targetanim[whichguy]]*(time[whichguy])))/100+((head[0][frame[whichguy]][anim[whichguy]]*(100-time[whichguy]))+(head[0][targetframe[whichguy]][targetanim[whichguy]]*(time[whichguy])))/100+((torsorot[0][frame[whichguy]][anim[whichguy]]*(100-time[whichguy]))+(torsorot[0][targetframe[whichguy]][targetanim[whichguy]]*(time[whichguy])))/100;
+  // EyePoint.x=((rotation[whichguy]*(100-timeforguy[whichguy]))+(targetrotation[whichguy]*(timeforguy[whichguy])))/100+((hiprot[1][frame[whichguy]][anim[whichguy]]*(100-timeforguy[whichguy]))+(hiprot[1][targetframe[whichguy]][targetanim[whichguy]]*(timeforguy[whichguy]))/100)+((torsorot[1][frame[whichguy]][anim[whichguy]]*(100-timeforguy[whichguy]))+(torsorot[1][targetframe[whichguy]][targetanim[whichguy]]*(timeforguy[whichguy])))/100+((head[1][frame[whichguy]][anim[whichguy]]*(100-timeforguy[whichguy]))+(head[1][targetframe[whichguy]][targetanim[whichguy]]*(timeforguy[whichguy])))/100;
+  // EyePoint.y=((hiprot[0][frame[whichguy]][anim[whichguy]]*(100-timeforguy[whichguy]))+(hiprot[0][targetframe[whichguy]][targetanim[whichguy]]*(timeforguy[whichguy])))/100+((head[0][frame[whichguy]][anim[whichguy]]*(100-timeforguy[whichguy]))+(head[0][targetframe[whichguy]][targetanim[whichguy]]*(timeforguy[whichguy])))/100+((torsorot[0][frame[whichguy]][anim[whichguy]]*(100-timeforguy[whichguy]))+(torsorot[0][targetframe[whichguy]][targetanim[whichguy]]*(timeforguy[whichguy])))/100;
 
   if (EyePoint2.z != EyePoint.z) {
     Angle.y = atan((EyePoint2.x - EyePoint.x) / (EyePoint2.z - EyePoint.z)) / 6.28 * 360 + 180;
@@ -7168,7 +7168,7 @@ Point3D FindEyeRot(int whichguy) {
       Angle.y = 270;
   }
   Angle.y *= -1;
-  Angle.x = ((hiprot[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (hiprot[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100 + ((torsorot[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (torsorot[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100 + ((head[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (head[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100;
+  Angle.x = ((hiprot[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (hiprot[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100 + ((torsorot[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (torsorot[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100 + ((head[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (head[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100;
   // EyePoint2=DoRotation(EyePoint2,0,-Angle.y,0);
   // EyePoint=DoRotation(EyePoint,0,-Angle.y,0);
 
@@ -7239,24 +7239,24 @@ Point3D FindRightGunPoint(int whichguy){
         }
 
 
-        newpoint=DoRotation(newpoint,((righthand[0][frame[whichguy]][anim[whichguy]]*(100-time[whichguy]))+(righthand[0][targetframe[whichguy]][targetanim[whichguy]]*(time[whichguy])))/100,((righthand[1][frame[whichguy]][anim[whichguy]]*(100-time[whichguy]))+(righthand[1][targetframe[whichguy]][targetanim[whichguy]]*(time[whichguy])))/100,((righthand[2][frame[whichguy]][anim[whichguy]]*(100-time[whichguy]))+(righthand[2][targetframe[whichguy]][targetanim[whichguy]]*(time[whichguy])))/100);
+        newpoint=DoRotation(newpoint,((righthand[0][frame[whichguy]][anim[whichguy]]*(100-timeforguy[whichguy]))+(righthand[0][targetframe[whichguy]][targetanim[whichguy]]*(timeforguy[whichguy])))/100,((righthand[1][frame[whichguy]][anim[whichguy]]*(100-timeforguy[whichguy]))+(righthand[1][targetframe[whichguy]][targetanim[whichguy]]*(timeforguy[whichguy])))/100,((righthand[2][frame[whichguy]][anim[whichguy]]*(100-timeforguy[whichguy]))+(righthand[2][targetframe[whichguy]][targetanim[whichguy]]*(timeforguy[whichguy])))/100);
         newpoint.y-=1.8;
-        newpoint=DoRotation(newpoint,((rightlowarm[0][frame[whichguy]][anim[whichguy]]*(100-time[whichguy]))+(rightlowarm[0][targetframe[whichguy]][targetanim[whichguy]]*(time[whichguy])))/100,((rightlowarm[1][frame[whichguy]][anim[whichguy]]*(100-time[whichguy]))+(rightlowarm[1][targetframe[whichguy]][targetanim[whichguy]]*(time[whichguy])))/100,((rightlowarm[2][frame[whichguy]][anim[whichguy]]*(100-time[whichguy]))+(rightlowarm[2][targetframe[whichguy]][targetanim[whichguy]]*(time[whichguy])))/100);
+        newpoint=DoRotation(newpoint,((rightlowarm[0][frame[whichguy]][anim[whichguy]]*(100-timeforguy[whichguy]))+(rightlowarm[0][targetframe[whichguy]][targetanim[whichguy]]*(timeforguy[whichguy])))/100,((rightlowarm[1][frame[whichguy]][anim[whichguy]]*(100-timeforguy[whichguy]))+(rightlowarm[1][targetframe[whichguy]][targetanim[whichguy]]*(timeforguy[whichguy])))/100,((rightlowarm[2][frame[whichguy]][anim[whichguy]]*(100-timeforguy[whichguy]))+(rightlowarm[2][targetframe[whichguy]][targetanim[whichguy]]*(timeforguy[whichguy])))/100);
         newpoint.y-=2.5;
-        newpoint=DoRotation(newpoint,((righthigharm[0][frame[whichguy]][anim[whichguy]]*(100-time[whichguy]))+(righthigharm[0][targetframe[whichguy]][targetanim[whichguy]]*(time[whichguy])))/100,((righthigharm[1][frame[whichguy]][anim[whichguy]]*(100-time[whichguy]))+(righthigharm[1][targetframe[whichguy]][targetanim[whichguy]]*(time[whichguy])))/100,((righthigharm[2][frame[whichguy]][anim[whichguy]]*(100-time[whichguy]))+(righthigharm[2][targetframe[whichguy]][targetanim[whichguy]]*(time[whichguy])))/100);
+        newpoint=DoRotation(newpoint,((righthigharm[0][frame[whichguy]][anim[whichguy]]*(100-timeforguy[whichguy]))+(righthigharm[0][targetframe[whichguy]][targetanim[whichguy]]*(timeforguy[whichguy])))/100,((righthigharm[1][frame[whichguy]][anim[whichguy]]*(100-timeforguy[whichguy]))+(righthigharm[1][targetframe[whichguy]][targetanim[whichguy]]*(timeforguy[whichguy])))/100,((righthigharm[2][frame[whichguy]][anim[whichguy]]*(100-timeforguy[whichguy]))+(righthigharm[2][targetframe[whichguy]][targetanim[whichguy]]*(timeforguy[whichguy])))/100);
         newpoint.x*=-.8;
         newpoint.y*=.8;
         newpoint.z*=.8;
         newpoint.y+=3;
         newpoint.x-=1.5;
-        newpoint=DoRotation(newpoint,((torsorot[0][frame[whichguy]][anim[whichguy]]*(100-time[whichguy]))+(torsorot[0][targetframe[whichguy]][targetanim[whichguy]]*(time[whichguy])))/100,((torsorot[1][frame[whichguy]][anim[whichguy]]*(100-time[whichguy]))+(torsorot[1][targetframe[whichguy]][targetanim[whichguy]]*(time[whichguy])))/100,((torsorot[2][frame[whichguy]][anim[whichguy]]*(100-time[whichguy]))+(torsorot[2][targetframe[whichguy]][targetanim[whichguy]]*(time[whichguy])))/100);
+        newpoint=DoRotation(newpoint,((torsorot[0][frame[whichguy]][anim[whichguy]]*(100-timeforguy[whichguy]))+(torsorot[0][targetframe[whichguy]][targetanim[whichguy]]*(timeforguy[whichguy])))/100,((torsorot[1][frame[whichguy]][anim[whichguy]]*(100-timeforguy[whichguy]))+(torsorot[1][targetframe[whichguy]][targetanim[whichguy]]*(timeforguy[whichguy])))/100,((torsorot[2][frame[whichguy]][anim[whichguy]]*(100-timeforguy[whichguy]))+(torsorot[2][targetframe[whichguy]][targetanim[whichguy]]*(timeforguy[whichguy])))/100);
         newpoint.y+=.5;
-        newpoint.x+=((hipfloat[1][0]*(100-time[whichguy]))+(hipfloat[1][1]*(time[whichguy])))/100;
-        newpoint.y+=((hipfloat[2][0]*(100-time[whichguy]))+(hipfloat[2][1]*(time[whichguy])))/100;
-        newpoint.z+=((hipfloat[0][0]*(100-time[whichguy]))+(hipfloat[0][1]*(time[whichguy])))/100;
+        newpoint.x+=((hipfloat[1][0]*(100-timeforguy[whichguy]))+(hipfloat[1][1]*(timeforguy[whichguy])))/100;
+        newpoint.y+=((hipfloat[2][0]*(100-timeforguy[whichguy]))+(hipfloat[2][1]*(timeforguy[whichguy])))/100;
+        newpoint.z+=((hipfloat[0][0]*(100-timeforguy[whichguy]))+(hipfloat[0][1]*(timeforguy[whichguy])))/100;
 
-        newpoint=DoRotation(newpoint,((hiprot[0][frame[whichguy]][anim[whichguy]]*(100-time[whichguy]))+(hiprot[0][targetframe[whichguy]][targetanim[whichguy]]*(time[whichguy])))/100,((hiprot[1][frame[whichguy]][anim[whichguy]]*(100-time[whichguy]))+(hiprot[1][targetframe[whichguy]][targetanim[whichguy]]*(time[whichguy])))/100,((hiprot[2][frame[whichguy]][anim[whichguy]]*(100-time[whichguy]))+(hiprot[2][targetframe[whichguy]][targetanim[whichguy]]*(time[whichguy])))/100);
-        newpoint=DoRotation(newpoint,0,((rotation[whichguy]*(100-time[whichguy]))+(targetrotation[whichguy]*(time[whichguy])))/100,0);
+        newpoint=DoRotation(newpoint,((hiprot[0][frame[whichguy]][anim[whichguy]]*(100-timeforguy[whichguy]))+(hiprot[0][targetframe[whichguy]][targetanim[whichguy]]*(timeforguy[whichguy])))/100,((hiprot[1][frame[whichguy]][anim[whichguy]]*(100-timeforguy[whichguy]))+(hiprot[1][targetframe[whichguy]][targetanim[whichguy]]*(timeforguy[whichguy])))/100,((hiprot[2][frame[whichguy]][anim[whichguy]]*(100-timeforguy[whichguy]))+(hiprot[2][targetframe[whichguy]][targetanim[whichguy]]*(timeforguy[whichguy])))/100);
+        newpoint=DoRotation(newpoint,0,((rotation[whichguy]*(100-timeforguy[whichguy]))+(targetrotation[whichguy]*(timeforguy[whichguy])))/100,0);
         newpoint.x*=size[whichguy];newpoint.y*=size[whichguy];newpoint.z*=size[whichguy];
         newpoint.x +=guyx[whichguy];
         newpoint.y +=guyy[whichguy];
@@ -7300,7 +7300,7 @@ Point3D FindJetPackPos(int whichguy) {
     targetrotation[whichguy] = 0;
     rotation[whichguy] = 0;
   }
-  glRotatef(((rotation[whichguy] * (100 - time[whichguy])) + (targetrotation[whichguy] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((rotation[whichguy] * (100 - timeforguy[whichguy])) + (targetrotation[whichguy] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
   glTranslatef(0, .1, 0);
   glScalef(size[whichguy], size[whichguy], size[whichguy]);
   hipfloat[1][0] = (float)(hippos[1][frame[whichguy]][anim[whichguy]]) / 10;
@@ -7310,16 +7310,16 @@ Point3D FindJetPackPos(int whichguy) {
   hipfloat[2][1] = (float)(hippos[2][targetframe[whichguy]][targetanim[whichguy]]) / 10;
   hipfloat[0][1] = (float)(hippos[0][targetframe[whichguy]][targetanim[whichguy]]) / 10;
   glPushMatrix();
-  glRotatef(((hiprot[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (hiprot[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((hiprot[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (hiprot[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((hiprot[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (hiprot[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
-  glTranslatef(((hipfloat[1][0] * (100 - time[whichguy])) + (hipfloat[1][1] * (time[whichguy]))) / 100, ((hipfloat[2][0] * (100 - time[whichguy])) + (hipfloat[2][1] * (time[whichguy]))) / 100, ((hipfloat[0][0] * (100 - time[whichguy])) + (hipfloat[0][1] * (time[whichguy]))) / 100);
+  glRotatef(((hiprot[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (hiprot[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((hiprot[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (hiprot[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((hiprot[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (hiprot[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glTranslatef(((hipfloat[1][0] * (100 - timeforguy[whichguy])) + (hipfloat[1][1] * (timeforguy[whichguy]))) / 100, ((hipfloat[2][0] * (100 - timeforguy[whichguy])) + (hipfloat[2][1] * (timeforguy[whichguy]))) / 100, ((hipfloat[0][0] * (100 - timeforguy[whichguy])) + (hipfloat[0][1] * (timeforguy[whichguy]))) / 100);
   bindTexture(TEX_BLUE_HELMET_ID);
   glPushMatrix();
   glTranslatef(0.0f, 0.5f, 0.0f);
-  glRotatef(((torsorot[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (torsorot[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((torsorot[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (torsorot[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((torsorot[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (torsorot[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glRotatef(((torsorot[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (torsorot[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((torsorot[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (torsorot[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((torsorot[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (torsorot[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   glTranslatef(0.0f, -1.0f, -2.0f);
   glGetFloatv(GL_MODELVIEW_MATRIX, M);
   glPopMatrix();
@@ -7366,7 +7366,7 @@ Point3D FindBodyPart(int whichguy, int whichpart) {
     targetrotation[whichguy] = 0;
     rotation[whichguy] = 0;
   }
-  glRotatef(((rotation[whichguy] * (100 - time[whichguy])) + (targetrotation[whichguy] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((rotation[whichguy] * (100 - timeforguy[whichguy])) + (targetrotation[whichguy] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
   glTranslatef(0, .1, 0);
   glScalef(size[whichguy], size[whichguy], size[whichguy]);
   hipfloat[1][0] = (float)(hippos[1][frame[whichguy]][anim[whichguy]]) / 10;
@@ -7376,17 +7376,17 @@ Point3D FindBodyPart(int whichguy, int whichpart) {
   hipfloat[2][1] = (float)(hippos[2][targetframe[whichguy]][targetanim[whichguy]]) / 10;
   hipfloat[0][1] = (float)(hippos[0][targetframe[whichguy]][targetanim[whichguy]]) / 10;
   glPushMatrix();
-  glRotatef(((hiprot[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (hiprot[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((hiprot[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (hiprot[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((hiprot[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (hiprot[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
-  glTranslatef(((hipfloat[1][0] * (100 - time[whichguy])) + (hipfloat[1][1] * (time[whichguy]))) / 100, ((hipfloat[2][0] * (100 - time[whichguy])) + (hipfloat[2][1] * (time[whichguy]))) / 100, ((hipfloat[0][0] * (100 - time[whichguy])) + (hipfloat[0][1] * (time[whichguy]))) / 100);
+  glRotatef(((hiprot[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (hiprot[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((hiprot[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (hiprot[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((hiprot[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (hiprot[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glTranslatef(((hipfloat[1][0] * (100 - timeforguy[whichguy])) + (hipfloat[1][1] * (timeforguy[whichguy]))) / 100, ((hipfloat[2][0] * (100 - timeforguy[whichguy])) + (hipfloat[2][1] * (timeforguy[whichguy]))) / 100, ((hipfloat[0][0] * (100 - timeforguy[whichguy])) + (hipfloat[0][1] * (timeforguy[whichguy]))) / 100);
   if (whichpart == kHip) {
     glGetFloatv(GL_MODELVIEW_MATRIX, M);
   }
   glTranslatef(0.0f, 0.5f, 0.0f);
-  glRotatef(((torsorot[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (torsorot[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((torsorot[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (torsorot[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((torsorot[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (torsorot[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glRotatef(((torsorot[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (torsorot[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((torsorot[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (torsorot[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((torsorot[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (torsorot[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   if (whichpart == kTorso) {
     glGetFloatv(GL_MODELVIEW_MATRIX, M);
   }
@@ -7399,16 +7399,16 @@ Point3D FindBodyPart(int whichguy, int whichpart) {
   glPushMatrix();
   glTranslatef(1.5f, 3.0f, 0.0f);
   glScalef(.8, .8, .8);
-  glRotatef(((lefthigharm[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (lefthigharm[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((lefthigharm[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (lefthigharm[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((lefthigharm[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (lefthigharm[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glRotatef(((lefthigharm[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (lefthigharm[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((lefthigharm[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (lefthigharm[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((lefthigharm[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (lefthigharm[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   if (whichpart == kLeftUpperArm) {
     glGetFloatv(GL_MODELVIEW_MATRIX, M);
   }
   glTranslatef(0.0f, -2.5f, 0.0f);
-  glRotatef(((leftlowarm[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (leftlowarm[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((leftlowarm[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (leftlowarm[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((leftlowarm[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (leftlowarm[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glRotatef(((leftlowarm[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (leftlowarm[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((leftlowarm[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (leftlowarm[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((leftlowarm[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (leftlowarm[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   if (whichpart == kLeftLowerArm) {
     glGetFloatv(GL_MODELVIEW_MATRIX, M);
   }
@@ -7422,23 +7422,23 @@ Point3D FindBodyPart(int whichguy, int whichpart) {
   glPushMatrix();
   glTranslatef(-1.5f, 3.0f, 0.0f);
   glScalef(-.8, .8, .8);
-  glRotatef(((righthigharm[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (righthigharm[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((righthigharm[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (righthigharm[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((righthigharm[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (righthigharm[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glRotatef(((righthigharm[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (righthigharm[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((righthigharm[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (righthigharm[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((righthigharm[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (righthigharm[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   if (whichpart == kRightUpperArm) {
     glGetFloatv(GL_MODELVIEW_MATRIX, M);
   }
   glTranslatef(0.0f, -2.5f, 0.0f);
-  glRotatef(((rightlowarm[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (rightlowarm[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((rightlowarm[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (rightlowarm[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((rightlowarm[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (rightlowarm[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glRotatef(((rightlowarm[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (rightlowarm[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((rightlowarm[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (rightlowarm[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((rightlowarm[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (rightlowarm[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   if (whichpart == kRightLowerArm) {
     glGetFloatv(GL_MODELVIEW_MATRIX, M);
   }
   glTranslatef(0.0f, -1.8f, 0.0f);
-  glRotatef(((righthand[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (righthand[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((righthand[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (righthand[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((righthand[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (righthand[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glRotatef(((righthand[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (righthand[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((righthand[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (righthand[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((righthand[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (righthand[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   glRotatef(90, 1.0, 0.0, 0.0);
   glTranslatef(-0.3f, -1.0f, 0.8f);
   if (whichpart == kRightHand) {
@@ -7452,46 +7452,46 @@ Point3D FindBodyPart(int whichguy, int whichpart) {
   glPopMatrix();
   glPushMatrix();
   glTranslatef(0.8f, 0.0f, 0.0f);
-  glRotatef(((lefthighleg[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (lefthighleg[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((lefthighleg[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (lefthighleg[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((lefthighleg[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (lefthighleg[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glRotatef(((lefthighleg[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (lefthighleg[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((lefthighleg[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (lefthighleg[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((lefthighleg[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (lefthighleg[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   if (whichpart == kLeftUpperLeg) {
     glGetFloatv(GL_MODELVIEW_MATRIX, M);
   }
   glTranslatef(0.0f, -2.5f, 0.0f);
-  glRotatef(((leftlowleg[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (leftlowleg[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((leftlowleg[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (leftlowleg[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((leftlowleg[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (leftlowleg[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glRotatef(((leftlowleg[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (leftlowleg[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((leftlowleg[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (leftlowleg[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((leftlowleg[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (leftlowleg[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   if (whichpart == kLeftLowerLeg) {
     glGetFloatv(GL_MODELVIEW_MATRIX, M);
   }
   glTranslatef(0.0f, -1.5f, 0.0f);
-  glRotatef(((leftfoot[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (leftfoot[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((leftfoot[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (leftfoot[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((leftfoot[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (leftfoot[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glRotatef(((leftfoot[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (leftfoot[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((leftfoot[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (leftfoot[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((leftfoot[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (leftfoot[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   if (whichpart == kLeftFoot) {
     glGetFloatv(GL_MODELVIEW_MATRIX, M);
   }
   glPopMatrix();
   glPushMatrix();
   glTranslatef(-0.8f, 0.0f, 0.0f);
-  glRotatef(((righthighleg[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (righthighleg[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((righthighleg[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (righthighleg[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((righthighleg[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (righthighleg[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glRotatef(((righthighleg[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (righthighleg[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((righthighleg[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (righthighleg[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((righthighleg[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (righthighleg[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   if (whichpart == kRightUpperLeg) {
     glGetFloatv(GL_MODELVIEW_MATRIX, M);
   }
   glTranslatef(0.0f, -2.5f, 0.0f);
-  glRotatef(((rightlowleg[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (rightlowleg[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((rightlowleg[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (rightlowleg[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((rightlowleg[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (rightlowleg[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glRotatef(((rightlowleg[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (rightlowleg[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((rightlowleg[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (rightlowleg[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((rightlowleg[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (rightlowleg[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   if (whichpart == kRightLowerLeg) {
     glGetFloatv(GL_MODELVIEW_MATRIX, M);
   }
   glTranslatef(0.0f, -1.5f, 0.0f);
-  glRotatef(((rightfoot[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (rightfoot[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((rightfoot[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (rightfoot[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((rightfoot[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (rightfoot[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glRotatef(((rightfoot[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (rightfoot[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((rightfoot[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (rightfoot[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((rightfoot[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (rightfoot[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   if (whichpart == kRightFoot) {
     glGetFloatv(GL_MODELVIEW_MATRIX, M);
   }
@@ -7542,7 +7542,7 @@ Point3D FindLeftGunPoint(int whichguy) {
     targetrotation[whichguy] = 0;
     rotation[whichguy] = 0;
   }
-  glRotatef(((rotation[whichguy] * (100 - time[whichguy])) + (targetrotation[whichguy] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((rotation[whichguy] * (100 - timeforguy[whichguy])) + (targetrotation[whichguy] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
   glTranslatef(0, .1, 0);
   glScalef(size[whichguy], size[whichguy], size[whichguy]);
   hipfloat[1][0] = (float)(hippos[1][frame[whichguy]][anim[whichguy]]) / 10;
@@ -7552,24 +7552,24 @@ Point3D FindLeftGunPoint(int whichguy) {
   hipfloat[2][1] = (float)(hippos[2][targetframe[whichguy]][targetanim[whichguy]]) / 10;
   hipfloat[0][1] = (float)(hippos[0][targetframe[whichguy]][targetanim[whichguy]]) / 10;
   glPushMatrix();
-  glRotatef(((hiprot[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (hiprot[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((hiprot[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (hiprot[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((hiprot[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (hiprot[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
-  glTranslatef(((hipfloat[1][0] * (100 - time[whichguy])) + (hipfloat[1][1] * (time[whichguy]))) / 100, ((hipfloat[2][0] * (100 - time[whichguy])) + (hipfloat[2][1] * (time[whichguy]))) / 100, ((hipfloat[0][0] * (100 - time[whichguy])) + (hipfloat[0][1] * (time[whichguy]))) / 100);
+  glRotatef(((hiprot[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (hiprot[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((hiprot[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (hiprot[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((hiprot[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (hiprot[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glTranslatef(((hipfloat[1][0] * (100 - timeforguy[whichguy])) + (hipfloat[1][1] * (timeforguy[whichguy]))) / 100, ((hipfloat[2][0] * (100 - timeforguy[whichguy])) + (hipfloat[2][1] * (timeforguy[whichguy]))) / 100, ((hipfloat[0][0] * (100 - timeforguy[whichguy])) + (hipfloat[0][1] * (timeforguy[whichguy]))) / 100);
   bindTexture(TEX_BLUE_HELMET_ID);
   glPushMatrix();
   glTranslatef(0.0f, 0.5f, 0.0f);
-  glRotatef(((torsorot[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (torsorot[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((torsorot[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (torsorot[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((torsorot[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (torsorot[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glRotatef(((torsorot[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (torsorot[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((torsorot[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (torsorot[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((torsorot[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (torsorot[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   /*glPushMatrix();
           glTranslatef(1.5f,3.0f,0.0f);
           glScalef(.8,.8,.8);
-          glRotatef(((lefthigharm[0][frame[whichguy]][anim[whichguy]]*(100-time[whichguy]))+(lefthigharm[0][targetframe[whichguy]][targetanim[whichguy]]*(time[whichguy])))/100,1.0f,0.0f,0.0f); glRotatef(((lefthigharm[1][frame[whichguy]][anim[whichguy]]*(100-time[whichguy]))+(lefthigharm[1][targetframe[whichguy]][targetanim[whichguy]]*(time[whichguy])))/100,0.0f,1.0f,0.0f); glRotatef(((lefthigharm[2][frame[whichguy]][anim[whichguy]]*(100-time[whichguy]))+(lefthigharm[2][targetframe[whichguy]][targetanim[whichguy]]*(time[whichguy])))/100,0.0f,0.0f,1.0f);;
+          glRotatef(((lefthigharm[0][frame[whichguy]][anim[whichguy]]*(100-timeforguy[whichguy]))+(lefthigharm[0][targetframe[whichguy]][targetanim[whichguy]]*(timeforguy[whichguy])))/100,1.0f,0.0f,0.0f); glRotatef(((lefthigharm[1][frame[whichguy]][anim[whichguy]]*(100-timeforguy[whichguy]))+(lefthigharm[1][targetframe[whichguy]][targetanim[whichguy]]*(timeforguy[whichguy])))/100,0.0f,1.0f,0.0f); glRotatef(((lefthigharm[2][frame[whichguy]][anim[whichguy]]*(100-timeforguy[whichguy]))+(lefthigharm[2][targetframe[whichguy]][targetanim[whichguy]]*(timeforguy[whichguy])))/100,0.0f,0.0f,1.0f);;
           glTranslatef(0.0f,-2.5f,0.0f);
-          glRotatef(((leftlowarm[0][frame[whichguy]][anim[whichguy]]*(100-time[whichguy]))+(leftlowarm[0][targetframe[whichguy]][targetanim[whichguy]]*(time[whichguy])))/100,1.0f,0.0f,0.0f); glRotatef(((leftlowarm[1][frame[whichguy]][anim[whichguy]]*(100-time[whichguy]))+(leftlowarm[1][targetframe[whichguy]][targetanim[whichguy]]*(time[whichguy])))/100,0.0f,1.0f,0.0f); glRotatef(((leftlowarm[2][frame[whichguy]][anim[whichguy]]*(100-time[whichguy]))+(leftlowarm[2][targetframe[whichguy]][targetanim[whichguy]]*(time[whichguy])))/100,0.0f,0.0f,1.0f);
+          glRotatef(((leftlowarm[0][frame[whichguy]][anim[whichguy]]*(100-timeforguy[whichguy]))+(leftlowarm[0][targetframe[whichguy]][targetanim[whichguy]]*(timeforguy[whichguy])))/100,1.0f,0.0f,0.0f); glRotatef(((leftlowarm[1][frame[whichguy]][anim[whichguy]]*(100-timeforguy[whichguy]))+(leftlowarm[1][targetframe[whichguy]][targetanim[whichguy]]*(timeforguy[whichguy])))/100,0.0f,1.0f,0.0f); glRotatef(((leftlowarm[2][frame[whichguy]][anim[whichguy]]*(100-timeforguy[whichguy]))+(leftlowarm[2][targetframe[whichguy]][targetanim[whichguy]]*(timeforguy[whichguy])))/100,0.0f,0.0f,1.0f);
           glTranslatef(0.0f,-1.8f,0.0f);
-          glRotatef(((lefthand[0][frame[whichguy]][anim[whichguy]]*(100-time[whichguy]))+(lefthand[0][targetframe[whichguy]][targetanim[whichguy]]*(time[whichguy])))/100,1.0f,0.0f,0.0f); glRotatef(((lefthand[1][frame[whichguy]][anim[whichguy]]*(100-time[whichguy]))+(lefthand[1][targetframe[whichguy]][targetanim[whichguy]]*(time[whichguy])))/100,0.0f,1.0f,0.0f); glRotatef(((lefthand[2][frame[whichguy]][anim[whichguy]]*(100-time[whichguy]))+(lefthand[2][targetframe[whichguy]][targetanim[whichguy]]*(time[whichguy])))/100,0.0f,0.0f,1.0f);
+          glRotatef(((lefthand[0][frame[whichguy]][anim[whichguy]]*(100-timeforguy[whichguy]))+(lefthand[0][targetframe[whichguy]][targetanim[whichguy]]*(timeforguy[whichguy])))/100,1.0f,0.0f,0.0f); glRotatef(((lefthand[1][frame[whichguy]][anim[whichguy]]*(100-timeforguy[whichguy]))+(lefthand[1][targetframe[whichguy]][targetanim[whichguy]]*(timeforguy[whichguy])))/100,0.0f,1.0f,0.0f); glRotatef(((lefthand[2][frame[whichguy]][anim[whichguy]]*(100-timeforguy[whichguy]))+(lefthand[2][targetframe[whichguy]][targetanim[whichguy]]*(timeforguy[whichguy])))/100,0.0f,0.0f,1.0f);
           if(itemnum[whichguy]==3){
           glRotatef(90,1.0,0.0,0.0);
           glTranslatef(-0.3f,-1.0f,0.8f);
@@ -7580,17 +7580,17 @@ Point3D FindLeftGunPoint(int whichguy) {
   glPushMatrix();
   glTranslatef(1.5f, 3.0f, 0.0f);
   glScalef(.8, .8, .8);
-  glRotatef(((lefthigharm[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (lefthigharm[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((lefthigharm[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (lefthigharm[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((lefthigharm[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (lefthigharm[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glRotatef(((lefthigharm[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (lefthigharm[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((lefthigharm[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (lefthigharm[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((lefthigharm[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (lefthigharm[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   glTranslatef(0.0f, -2.5f, 0.0f);
-  glRotatef(((leftlowarm[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (leftlowarm[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((leftlowarm[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (leftlowarm[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((leftlowarm[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (leftlowarm[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glRotatef(((leftlowarm[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (leftlowarm[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((leftlowarm[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (leftlowarm[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((leftlowarm[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (leftlowarm[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   glTranslatef(0.0f, -1.8f, 0.0f);
-  glRotatef(((lefthand[0][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (lefthand[0][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
-  glRotatef(((lefthand[1][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (lefthand[1][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
-  glRotatef(((lefthand[2][frame[whichguy]][anim[whichguy]] * (100 - time[whichguy])) + (lefthand[2][targetframe[whichguy]][targetanim[whichguy]] * (time[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
+  glRotatef(((lefthand[0][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (lefthand[0][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 1.0f, 0.0f, 0.0f);
+  glRotatef(((lefthand[1][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (lefthand[1][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 1.0f, 0.0f);
+  glRotatef(((lefthand[2][frame[whichguy]][anim[whichguy]] * (100 - timeforguy[whichguy])) + (lefthand[2][targetframe[whichguy]][targetanim[whichguy]] * (timeforguy[whichguy]))) / 100, 0.0f, 0.0f, 1.0f);
   /*if(itemnum[whichguy]==1){
   glRotatef(90,1.0,0.0,0.0);
   glTranslatef(-0.3f,0.7f,3.8f);
@@ -7740,26 +7740,26 @@ void DoAIPlayerStuff(int whichguy) {
     verydeadshow = verydead;
   }
   if (verydead == 0 && activity[whichguy] != onrope && activity[whichguy] != downrope) {
-    oldtime[whichguy] = time[whichguy];
+    oldtimeforguy[whichguy] = timeforguy[whichguy];
     if (anim[whichguy] == 7 || anim[whichguy] == 8) {
-      time[whichguy] += (((float)speed[frame[whichguy]][anim[whichguy]] / 1000)) * multiplier / 3;
+      timeforguy[whichguy] += (((float)speed[frame[whichguy]][anim[whichguy]] / 1000)) * multiplier / 3;
     }
     if (anim[whichguy] == 7) {
-      time[whichguy] += (((float)speed[frame[whichguy]][anim[whichguy]] / 1000)) * multiplier / 2;
+      timeforguy[whichguy] += (((float)speed[frame[whichguy]][anim[whichguy]] / 1000)) * multiplier / 2;
     }
-    if (time[whichguy] < 100 && timedirection[whichguy] == 1) {
-      time[whichguy] += (((float)speed[frame[whichguy]][anim[whichguy]] / 1000)) * multiplier / 3;
+    if (timeforguy[whichguy] < 100 && timedirection[whichguy] == 1) {
+      timeforguy[whichguy] += (((float)speed[frame[whichguy]][anim[whichguy]] / 1000)) * multiplier / 3;
     }
-    if (time[whichguy] < 100 && timedirection[whichguy] == -1) {
-      time[whichguy] += ((float)speed[targetframe[whichguy]][targetanim[whichguy]] / 1000);
+    if (timeforguy[whichguy] < 100 && timedirection[whichguy] == -1) {
+      timeforguy[whichguy] += ((float)speed[targetframe[whichguy]][targetanim[whichguy]] / 1000);
     }
     NextFrame(whichguy);
   }
-  while (time[whichguy] < 0) {
-    time[whichguy] += 100;
+  while (timeforguy[whichguy] < 0) {
+    timeforguy[whichguy] += 100;
   }
-  while (time[whichguy] > 100) {
-    time[whichguy] -= 100;
+  while (timeforguy[whichguy] > 100) {
+    timeforguy[whichguy] -= 100;
   }
   sabrespin[whichguy] += multiplier;
   if (activity[whichguy] != climbrope && activity[whichguy] != onrope && activity[whichguy] != downrope) {
@@ -7771,15 +7771,15 @@ void DoAIPlayerStuff(int whichguy) {
     }
     if (activity[whichguy] == runleft && CheckAIKey(whichguy, kLeftKey[whichguy]) == 0) {
       activity[whichguy] = RangedRandom(1, 2);
-      time[whichguy] = 0;
+      timeforguy[whichguy] = 0;
     }
     if (activity[whichguy] == runright && CheckAIKey(whichguy, kRightKey[whichguy]) == 0) {
       activity[whichguy] = RangedRandom(1, 2);
-      time[whichguy] = 0;
+      timeforguy[whichguy] = 0;
     }
     if (activity[whichguy] == ducking && CheckAIKey(whichguy, kDownKey[whichguy]) == 0) {
       activity[whichguy] = RangedRandom(1, 2);
-      time[whichguy] = 0;
+      timeforguy[whichguy] = 0;
     }
     if (activity[whichguy] == runleft) {
       targetanim[whichguy] = 2;
@@ -7942,7 +7942,7 @@ void DoAIPlayerStuff(int whichguy) {
     frame[whichguy] = 0;
     targetanim[whichguy] = 24;
     anim[whichguy] = 24;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
   }
   if (activity[whichguy] == deadfacedown && health[whichguy] > 0) {
     activity[whichguy] = getupfromfront;
@@ -7950,7 +7950,7 @@ void DoAIPlayerStuff(int whichguy) {
     frame[whichguy] = 0;
     targetanim[whichguy] = 25;
     anim[whichguy] = 25;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
   }
   if (activity[whichguy] == shootleft && CheckAIKey(whichguy, kRightShootKey[whichguy]) == 0 && targetframe[whichguy] == 0 && anim[whichguy] == 10) {
     activity[whichguy] = idle1;
@@ -7961,49 +7961,49 @@ void DoAIPlayerStuff(int whichguy) {
   if (activity[whichguy] == shootleft && CheckAIKey(whichguy, kRightShootKey[whichguy]) == 1 && targetframe[whichguy] == 0 && anim[whichguy] == 10 && itemnum[whichguy] == 4 && ammo[whichguy] > 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     activity[whichguy] = shootleft;
   }
   if (activity[whichguy] == shootright && CheckAIKey(whichguy, kLeftShootKey[whichguy]) == 1 && targetframe[whichguy] == 0 && anim[whichguy] == 12 && itemnum[whichguy] == 4 && ammo[whichguy] > 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     activity[whichguy] = shootright;
   }
   if (activity[whichguy] == shootleft && CheckAIKey(whichguy, kRightShootKey[whichguy]) == 1 && anim[whichguy] == 10 && itemnum[whichguy] == 7 && ammo[whichguy] > 0 && lightningdelay[whichguy] <= 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     activity[whichguy] = shootleft;
   }
   if (activity[whichguy] == shootright && CheckAIKey(whichguy, kLeftShootKey[whichguy]) == 1 && anim[whichguy] == 12 && itemnum[whichguy] == 7 && ammo[whichguy] > 0 && lightningdelay[whichguy] <= 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     activity[whichguy] = shootright;
   }
   if (activity[whichguy] == shootleft && CheckAIKey(whichguy, kRightShootKey[whichguy]) == 1 && targetframe[whichguy] > 3 && anim[whichguy] == 10 && itemnum[whichguy] == 5 && ammo[whichguy] > 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     activity[whichguy] = shootleft;
   }
   if (activity[whichguy] == shootright && CheckAIKey(whichguy, kLeftShootKey[whichguy]) == 1 && targetframe[whichguy] > 3 && anim[whichguy] == 12 && itemnum[whichguy] == 5 && ammo[whichguy] > 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     activity[whichguy] = shootright;
   }
   if (activity[whichguy] == shootleft && CheckAIKey(whichguy, kRightShootKey[whichguy]) == 1 && targetframe[whichguy] == 0 && anim[whichguy] == 10 && itemnum[whichguy] == 5 && ammo[whichguy] > 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     activity[whichguy] = shootleft;
   }
   if (activity[whichguy] == shootright && CheckAIKey(whichguy, kLeftShootKey[whichguy]) == 1 && targetframe[whichguy] == 0 && anim[whichguy] == 12 && itemnum[whichguy] == 5 && ammo[whichguy] > 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     activity[whichguy] = shootright;
   }
   if (activity[whichguy] == shootleft && ammo[whichguy] <= 0 && targetframe[whichguy] == 0 && anim[whichguy] == 10) {
@@ -8021,37 +8021,37 @@ void DoAIPlayerStuff(int whichguy) {
   if (activity[whichguy] == shootleft && CheckAIKey(whichguy, kRightShootKey[whichguy]) == 1 && targetframe[whichguy] == 0 && anim[whichguy] == 31 && itemnum[whichguy] == 4 && ammo[whichguy] > 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     activity[whichguy] = shootleft;
   }
   if (activity[whichguy] == shootright && CheckAIKey(whichguy, kLeftShootKey[whichguy]) == 1 && targetframe[whichguy] == 0 && anim[whichguy] == 32 && itemnum[whichguy] == 4 && ammo[whichguy] > 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     activity[whichguy] = shootright;
   }
   if (activity[whichguy] == shootleft && CheckAIKey(whichguy, kRightShootKey[whichguy]) == 1 && targetframe[whichguy] > 3 && anim[whichguy] == 31 && itemnum[whichguy] == 5 && ammo[whichguy] > 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     activity[whichguy] = shootleft;
   }
   if (activity[whichguy] == shootright && CheckAIKey(whichguy, kLeftShootKey[whichguy]) == 1 && targetframe[whichguy] > 3 && anim[whichguy] == 32 && itemnum[whichguy] == 5 && ammo[whichguy] > 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     activity[whichguy] = shootright;
   }
   if (activity[whichguy] == shootleft && CheckAIKey(whichguy, kRightShootKey[whichguy]) == 1 && targetframe[whichguy] == 0 && anim[whichguy] == 31 && itemnum[whichguy] == 5 && ammo[whichguy] > 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     activity[whichguy] = shootleft;
   }
   if (activity[whichguy] == shootright && CheckAIKey(whichguy, kLeftShootKey[whichguy]) == 1 && targetframe[whichguy] == 0 && anim[whichguy] == 32 && itemnum[whichguy] == 5 && ammo[whichguy] > 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     activity[whichguy] = shootright;
   }
   if (activity[whichguy] == shootleft && ammo[whichguy] <= 0 && targetframe[whichguy] == 0 && anim[whichguy] == 31) {
@@ -8077,49 +8077,49 @@ void DoAIPlayerStuff(int whichguy) {
   if (activity[whichguy] == shootleft && CheckAIKey(whichguy, kRightShootKey[whichguy]) == 1 && targetframe[whichguy] == 0 && anim[whichguy] == 30 && itemnum[whichguy] == 4 && ammo[whichguy] > 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     activity[whichguy] = shootleft;
   }
   if (activity[whichguy] == shootright && CheckAIKey(whichguy, kLeftShootKey[whichguy]) == 1 && targetframe[whichguy] == 0 && anim[whichguy] == 30 && itemnum[whichguy] == 4 && ammo[whichguy] > 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     activity[whichguy] = shootright;
   }
   if (activity[whichguy] == shootleft && CheckAIKey(whichguy, kRightShootKey[whichguy]) == 1 && targetframe[whichguy] > 3 && anim[whichguy] == 30 && itemnum[whichguy] == 5 && ammo[whichguy] > 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     activity[whichguy] = shootleft;
   }
   if (activity[whichguy] == shootright && CheckAIKey(whichguy, kLeftShootKey[whichguy]) == 1 && targetframe[whichguy] > 3 && anim[whichguy] == 30 && itemnum[whichguy] == 5 && ammo[whichguy] > 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     activity[whichguy] = shootright;
   }
   if (activity[whichguy] == shootleft && CheckAIKey(whichguy, kRightShootKey[whichguy]) == 1 && anim[whichguy] == 30 && itemnum[whichguy] == 7 && ammo[whichguy] > 0 && lightningdelay[whichguy] <= 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     activity[whichguy] = shootleft;
   }
   if (activity[whichguy] == shootright && CheckAIKey(whichguy, kLeftShootKey[whichguy]) == 1 && anim[whichguy] == 30 && itemnum[whichguy] == 7 && ammo[whichguy] > 0 && lightningdelay[whichguy] <= 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     activity[whichguy] = shootright;
   }
-  if (activity[whichguy] == shootleft && CheckAIKey(whichguy, kRightShootKey[whichguy]) == 1 && targetframe[whichguy] == 3 && anim[whichguy] == 30 && itemnum[whichguy] == 5 && ammo[whichguy] > 0 && time[whichguy] >= 70) {
+  if (activity[whichguy] == shootleft && CheckAIKey(whichguy, kRightShootKey[whichguy]) == 1 && targetframe[whichguy] == 3 && anim[whichguy] == 30 && itemnum[whichguy] == 5 && ammo[whichguy] > 0 && timeforguy[whichguy] >= 70) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     activity[whichguy] = shootleft;
   }
-  if (activity[whichguy] == shootright && CheckAIKey(whichguy, kLeftShootKey[whichguy]) == 1 && targetframe[whichguy] == 3 && anim[whichguy] == 30 && itemnum[whichguy] == 5 && ammo[whichguy] > 0 && time[whichguy] >= 70) {
+  if (activity[whichguy] == shootright && CheckAIKey(whichguy, kLeftShootKey[whichguy]) == 1 && targetframe[whichguy] == 3 && anim[whichguy] == 30 && itemnum[whichguy] == 5 && ammo[whichguy] > 0 && timeforguy[whichguy] >= 70) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     activity[whichguy] = shootright;
   }
   if (activity[whichguy] == shootleft && ammo[whichguy] <= 0 && targetframe[whichguy] == 0 && anim[whichguy] == 30) {
@@ -8145,20 +8145,20 @@ void DoAIPlayerStuff(int whichguy) {
   if (activity[whichguy] == climbrope) {
     guyy[whichguy] += multiplier / 20 * size[whichguy];
   }
-  // if (activity[whichguy]==painoneleft&&anim[whichguy]==13&&targetframe[whichguy]==0){activity[whichguy]=landonback; guyx[whichguy]-=7*size[whichguy]; targetanim[whichguy]=14; anim[whichguy]=14; targetframe[whichguy]=0; frame[whichguy]=0; time[whichguy]=100; if(Map[guymapx[whichguy]][guymapy[whichguy]]!=0&&Map[guymapx[whichguy]][guymapy[whichguy]]!=3&&activity[whichguy]!=climbrope&&activity[whichguy]!=onrope&&activity[whichguy]!=downrope){playSound(SND_BREAK_ID,-guyvely[whichguy]*50+50); playSound(SND_BREAK2_ID,-guyvely[whichguy]*50+50);}}
-  /*if (activity[whichguy]==swordthrownleft&&anim[whichguy]==21&&frame[whichguy]>=10&&Map[guymapx[whichguy]+2][guymapy[whichguy]]==0){activity[whichguy]=landonback; dead[whichguy]=1; time[whichguy]=0; guyx[whichguy]+=12; anim[whichguy]=14; targetanim[whichguy]=14; frame[whichguy]=1; targetframe[whichguy]=1;time[whichguy]=100; rotation[whichguy]*=-1; targetrotation[whichguy]*=-1; guyvelx[whichguy]=.06; guyvely[whichguy]=-.3;}
-  if (activity[whichguy]==swordthrownleft&&anim[whichguy]==21&&frame[whichguy]>=10&&Map[guymapx[whichguy]+2][guymapy[whichguy]]!=0&&Map[guymapx[whichguy]+1][guymapy[whichguy]]==0){activity[whichguy]=landonback; dead[whichguy]=1; time[whichguy]=0; guyx[whichguy]+=12; anim[whichguy]=14; targetanim[whichguy]=14; frame[whichguy]=1; targetframe[whichguy]=1;time[whichguy]=100; rotation[whichguy]*=-1; targetrotation[whichguy]*=-1; guyvelx[whichguy]=.06; guyvely[whichguy]=-.3;}
-  if (activity[whichguy]==swordthrownright&&anim[whichguy]==21&&frame[whichguy]>=10&&Map[guymapx[whichguy]-2][guymapy[whichguy]]==0){activity[whichguy]=landonback; dead[whichguy]=1; time[whichguy]=0; guyx[whichguy]-=12; anim[whichguy]=14; targetanim[whichguy]=14; frame[whichguy]=1; targetframe[whichguy]=1;time[whichguy]=100; rotation[whichguy]*=-1; targetrotation[whichguy]*=-1; guyvelx[whichguy]=-.06; guyvely[whichguy]=-.3;}
-  if (activity[whichguy]==swordthrownright&&anim[whichguy]==21&&frame[whichguy]>=10&&Map[guymapx[whichguy]-2][guymapy[whichguy]]!=0&&Map[guymapx[whichguy]-1][guymapy[whichguy]]==0){activity[whichguy]=landonback; dead[whichguy]=1; time[whichguy]=0; guyx[whichguy]-=12; anim[whichguy]=14; targetanim[whichguy]=14; frame[whichguy]=1; targetframe[whichguy]=1;time[whichguy]=100; rotation[whichguy]*=-1; targetrotation[whichguy]*=-1; guyvelx[whichguy]=-.06; guyvely[whichguy]=-.3;}*/
+  // if (activity[whichguy]==painoneleft&&anim[whichguy]==13&&targetframe[whichguy]==0){activity[whichguy]=landonback; guyx[whichguy]-=7*size[whichguy]; targetanim[whichguy]=14; anim[whichguy]=14; targetframe[whichguy]=0; frame[whichguy]=0; timeforguy[whichguy]=100; if(Map[guymapx[whichguy]][guymapy[whichguy]]!=0&&Map[guymapx[whichguy]][guymapy[whichguy]]!=3&&activity[whichguy]!=climbrope&&activity[whichguy]!=onrope&&activity[whichguy]!=downrope){playSound(SND_BREAK_ID,-guyvely[whichguy]*50+50); playSound(SND_BREAK2_ID,-guyvely[whichguy]*50+50);}}
+  /*if (activity[whichguy]==swordthrownleft&&anim[whichguy]==21&&frame[whichguy]>=10&&Map[guymapx[whichguy]+2][guymapy[whichguy]]==0){activity[whichguy]=landonback; dead[whichguy]=1; timeforguy[whichguy]=0; guyx[whichguy]+=12; anim[whichguy]=14; targetanim[whichguy]=14; frame[whichguy]=1; targetframe[whichguy]=1;timeforguy[whichguy]=100; rotation[whichguy]*=-1; targetrotation[whichguy]*=-1; guyvelx[whichguy]=.06; guyvely[whichguy]=-.3;}
+  if (activity[whichguy]==swordthrownleft&&anim[whichguy]==21&&frame[whichguy]>=10&&Map[guymapx[whichguy]+2][guymapy[whichguy]]!=0&&Map[guymapx[whichguy]+1][guymapy[whichguy]]==0){activity[whichguy]=landonback; dead[whichguy]=1; timeforguy[whichguy]=0; guyx[whichguy]+=12; anim[whichguy]=14; targetanim[whichguy]=14; frame[whichguy]=1; targetframe[whichguy]=1;timeforguy[whichguy]=100; rotation[whichguy]*=-1; targetrotation[whichguy]*=-1; guyvelx[whichguy]=.06; guyvely[whichguy]=-.3;}
+  if (activity[whichguy]==swordthrownright&&anim[whichguy]==21&&frame[whichguy]>=10&&Map[guymapx[whichguy]-2][guymapy[whichguy]]==0){activity[whichguy]=landonback; dead[whichguy]=1; timeforguy[whichguy]=0; guyx[whichguy]-=12; anim[whichguy]=14; targetanim[whichguy]=14; frame[whichguy]=1; targetframe[whichguy]=1;timeforguy[whichguy]=100; rotation[whichguy]*=-1; targetrotation[whichguy]*=-1; guyvelx[whichguy]=-.06; guyvely[whichguy]=-.3;}
+  if (activity[whichguy]==swordthrownright&&anim[whichguy]==21&&frame[whichguy]>=10&&Map[guymapx[whichguy]-2][guymapy[whichguy]]!=0&&Map[guymapx[whichguy]-1][guymapy[whichguy]]==0){activity[whichguy]=landonback; dead[whichguy]=1; timeforguy[whichguy]=0; guyx[whichguy]-=12; anim[whichguy]=14; targetanim[whichguy]=14; frame[whichguy]=1; targetframe[whichguy]=1;timeforguy[whichguy]=100; rotation[whichguy]*=-1; targetrotation[whichguy]*=-1; guyvelx[whichguy]=-.06; guyvely[whichguy]=-.3;}*/
   if (activity[whichguy] == swordthrownleft && anim[whichguy] == 21 && frame[whichguy] >= 10 /*&&Map[a][guymapy[whichguy]]!=1&&Map[a][guymapy[whichguy]]!=2*/) {
     activity[whichguy] = landonback;
-    time[whichguy] = 0;
+    timeforguy[whichguy] = 0;
     guyx[whichguy] += 12;
     anim[whichguy] = 14;
     targetanim[whichguy] = 14;
     frame[whichguy] = 1;
     targetframe[whichguy] = 1;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     rotation[whichguy] *= -1;
     targetrotation[whichguy] *= -1;
     guyvelx[whichguy] = .06;
@@ -8167,13 +8167,13 @@ void DoAIPlayerStuff(int whichguy) {
   }
   if (activity[whichguy] == swordthrownright && anim[whichguy] == 21 && frame[whichguy] >= 10 /*&&Map[b][guymapy[whichguy]]!=1&&Map[b][guymapy[whichguy]]!=2*/) {
     activity[whichguy] = landonback;
-    time[whichguy] = 0;
+    timeforguy[whichguy] = 0;
     guyx[whichguy] -= 12;
     anim[whichguy] = 14;
     targetanim[whichguy] = 14;
     frame[whichguy] = 1;
     targetframe[whichguy] = 1;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     rotation[whichguy] *= -1;
     targetrotation[whichguy] *= -1;
     guyvelx[whichguy] = -.06;
@@ -8209,7 +8209,7 @@ void DoAIPlayerStuff(int whichguy) {
   if (activity[whichguy] == leftflip && targetframe[whichguy] == 12 && anim[whichguy] == 7 && frame[whichguy] == 11) {
     frame[whichguy] = 12;
     targetframe[whichguy] = 12;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
   }
   if (activity[whichguy] == rightflip && targetframe[whichguy] < 4 && guyvely[whichguy] == 0) {
     guyvely[whichguy] = jumpstrength / 5;
@@ -8223,10 +8223,10 @@ void DoAIPlayerStuff(int whichguy) {
   if (activity[whichguy] == rightflip && targetframe[whichguy] == 12 && anim[whichguy] == 7 && frame[whichguy] == 11) {
     frame[whichguy] = 12;
     targetframe[whichguy] = 12;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
   }
   if (activity[whichguy] == hitwallright && targetframe[whichguy] == 0) {
-    time[whichguy] = 0;
+    timeforguy[whichguy] = 0;
     activity[whichguy] = deadfacedown;
     if (health[whichguy] > 0 && verydead == 0) {
       activity[whichguy] = getupfromfront;
@@ -8234,11 +8234,11 @@ void DoAIPlayerStuff(int whichguy) {
       frame[whichguy] = 0;
       targetanim[whichguy] = 25;
       anim[whichguy] = 25;
-      time[whichguy] = 100;
+      timeforguy[whichguy] = 100;
     }
   }
   if (activity[whichguy] == hitwallleft && targetframe[whichguy] == 0) {
-    time[whichguy] = 0;
+    timeforguy[whichguy] = 0;
     activity[whichguy] = deadfacedown;
     if (health[whichguy] > 0 && verydead == 0) {
       activity[whichguy] = getupfromfront;
@@ -8246,12 +8246,12 @@ void DoAIPlayerStuff(int whichguy) {
       frame[whichguy] = 0;
       targetanim[whichguy] = 25;
       anim[whichguy] = 25;
-      time[whichguy] = 100;
+      timeforguy[whichguy] = 100;
     }
   }
   if (activity[whichguy] == deadfacedown || activity[whichguy] == deadfaceup) {
     if (health[whichguy] > 0) {
-      time[whichguy] = 0;
+      timeforguy[whichguy] = 0;
       targetframe[whichguy] = 2;
       targetanim[whichguy] = 3;
       activity[whichguy] = ducking;
@@ -8337,7 +8337,7 @@ void DoAIPlayerStuff(int whichguy) {
             if(activity[b]==deadfaceup||activity[b]==deadfacedown){
             if(Map[guymapx[b]][guymapy[b]]==1||Map[guymapx[b]][guymapy[b]]==2){
                     usingjetpack[b]=0;
-                    time[b]=0;
+                    timeforguy[b]=0;
                     frame[b]=3;
                     targetframe[b]=2;
                     targetanim[b]=2;
@@ -8345,8 +8345,8 @@ void DoAIPlayerStuff(int whichguy) {
                     guyy[b]=(guymapy[b]-39)*-20+.5;
                     nosound=0;
                     fallin[b]=0;
-                    if(activity[b]==deadfacedown){health[b]+=guyvely[b]*70; activity[b]=splat;anim[b]=9; targetframe[b]=3; frame[b]=3; time[b]=100; targetanim[b]=9; playSound(SND_BREAK_ID,-guyvely[b]*50+50); playSound(SND_BREAK2_ID,-guyvely[b]*50+50);}
-                    if(activity[b]==deadfaceup){health[b]+=guyvely[b]*70; activity[b]=landonback;anim[b]=14; targetframe[b]=1; frame[b]=1; time[b]=100; targetanim[b]=14; playSound(SND_BREAK_ID,-guyvely[b]*50+50); playSound(SND_BREAK2_ID,-guyvely[b]*50+50);}
+                    if(activity[b]==deadfacedown){health[b]+=guyvely[b]*70; activity[b]=splat;anim[b]=9; targetframe[b]=3; frame[b]=3; timeforguy[b]=100; targetanim[b]=9; playSound(SND_BREAK_ID,-guyvely[b]*50+50); playSound(SND_BREAK2_ID,-guyvely[b]*50+50);}
+                    if(activity[b]==deadfaceup){health[b]+=guyvely[b]*70; activity[b]=landonback;anim[b]=14; targetframe[b]=1; frame[b]=1; timeforguy[b]=100; targetanim[b]=14; playSound(SND_BREAK_ID,-guyvely[b]*50+50); playSound(SND_BREAK2_ID,-guyvely[b]*50+50);}
                     guyvelx[b]=0;
                     guyvely[b]=0;
             }
@@ -8360,7 +8360,7 @@ void DoAIPlayerStuff(int whichguy) {
       guyy[b] = guyy[whichguy] - 10;
       if (Map[guymapx[b]][guymapy[b]] == 1 || Map[guymapx[b]][guymapy[b]] == 2) {
         usingjetpack[b] = 0;
-        time[b] = 0;
+        timeforguy[b] = 0;
         frame[b] = 3;
         targetframe[b] = 3;
         targetanim[b] = 3;
@@ -8379,7 +8379,7 @@ void DoAIPlayerStuff(int whichguy) {
         anim[b] = 9;
         targetframe[b] = 0;
         frame[b] = 0;
-        time[b] = 100;
+        timeforguy[b] = 100;
         targetanim[b] = 9;
         playSound(SND_BREAK_ID, -guyvely[b] * 50 + 50);
         playSound(SND_BREAK2_ID, -guyvely[b] * 50 + 50);
@@ -8416,7 +8416,7 @@ void DoAIPlayerStuff(int whichguy) {
                   guyvely[b] = guyvely[whichguy];
                   guyvely[whichguy] *= .5;
                   usingjetpack[b] = 0;
-                  time[b] = 0;
+                  timeforguy[b] = 0;
                   frame[b] = 3;
                   targetframe[b] = 2;
                   targetanim[b] = 2;
@@ -8430,7 +8430,7 @@ void DoAIPlayerStuff(int whichguy) {
                     anim[b] = 9;
                     targetframe[b] = 3;
                     frame[b] = 3;
-                    time[b] = 100;
+                    timeforguy[b] = 100;
                     targetanim[b] = 9;
                     playSound(SND_BREAK_ID, -guyvely[b] * 50 + 50);
                     playSound(SND_BREAK2_ID, -guyvely[b] * 50 + 50);
@@ -8441,7 +8441,7 @@ void DoAIPlayerStuff(int whichguy) {
                     anim[b] = 14;
                     targetframe[b] = 1;
                     frame[b] = 1;
-                    time[b] = 100;
+                    timeforguy[b] = 100;
                     targetanim[b] = 14;
                     playSound(SND_BREAK_ID, -guyvely[b] * 50 + 50);
                     playSound(SND_BREAK2_ID, -guyvely[b] * 50 + 50);
@@ -8452,7 +8452,7 @@ void DoAIPlayerStuff(int whichguy) {
               }
             }
             usingjetpack[whichguy] = 0;
-            time[whichguy] = 0;
+            timeforguy[whichguy] = 0;
             a = anim[whichguy];
             c = activity[whichguy];
             if (activity[whichguy] != fallforwardsright && activity[whichguy] != fallforwardsleft) {
@@ -8480,7 +8480,7 @@ void DoAIPlayerStuff(int whichguy) {
               anim[whichguy] = 9;
               targetframe[whichguy] = 0;
               frame[whichguy] = 0;
-              time[whichguy] = 100;
+              timeforguy[whichguy] = 100;
               targetanim[whichguy] = 9;
               playSound(SND_BREAK_ID, -guyvely[whichguy] * 50 + 50);
               playSound(SND_BREAK2_ID, -guyvely[whichguy] * 50 + 50);
@@ -8492,7 +8492,7 @@ void DoAIPlayerStuff(int whichguy) {
                 anim[whichguy] = 9;
                 targetframe[whichguy] = 2;
                 frame[whichguy] = 0;
-                time[whichguy] = 100;
+                timeforguy[whichguy] = 100;
                 targetanim[whichguy] = 9;
               }
               playSound(SND_BREAK_ID, -guyvely[whichguy] * 50 + 50);
@@ -8507,7 +8507,7 @@ void DoAIPlayerStuff(int whichguy) {
               anim[whichguy] = 14;
               targetframe[whichguy] = 1;
               frame[whichguy] = 0;
-              time[whichguy] = 100;
+              timeforguy[whichguy] = 100;
               targetanim[whichguy] = 14;
               playSound(SND_BREAK_ID, -guyvely[whichguy] * 50 + 50);
               playSound(SND_BREAK2_ID, -guyvely[whichguy] * 50 + 50);
@@ -8559,7 +8559,7 @@ void DoAIPlayerStuff(int whichguy) {
           targetanim[whichguy] = 11;
           activity[whichguy] = wallhit;
           targetframe[whichguy] = 0;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
         }
         if (guyvelx[whichguy] != 0) {
           activity[whichguy] = leftroll;
@@ -8568,7 +8568,7 @@ void DoAIPlayerStuff(int whichguy) {
           guyvelx[whichguy] = guyvelx[whichguy] * -.5;
           targetframe[whichguy] = 1;
           frame[whichguy] = 1;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
         }
         f = 1;
       }
@@ -8580,7 +8580,7 @@ void DoAIPlayerStuff(int whichguy) {
           targetanim[whichguy] = 11;
           activity[whichguy] = wallhit;
           targetframe[whichguy] = 0;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
         }
         if (guyvelx[whichguy] != 0) {
           activity[whichguy] = leftroll;
@@ -8589,7 +8589,7 @@ void DoAIPlayerStuff(int whichguy) {
           guyvelx[whichguy] = guyvelx[whichguy] * -.5;
           targetframe[whichguy] = 1;
           frame[whichguy] = 1;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
         }
         f = 1;
       }
@@ -8612,7 +8612,7 @@ void DoAIPlayerStuff(int whichguy) {
           targetanim[whichguy] = 11;
           activity[whichguy] = wallhit;
           targetframe[whichguy] = 0;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
         }
         if (guyvelx[whichguy] != 0) {
           activity[whichguy] = rightroll;
@@ -8621,7 +8621,7 @@ void DoAIPlayerStuff(int whichguy) {
           guyvelx[whichguy] = guyvelx[whichguy] * -.5;
           targetframe[whichguy] = 1;
           frame[whichguy] = 1;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
         }
         f = 1;
       }
@@ -8633,7 +8633,7 @@ void DoAIPlayerStuff(int whichguy) {
           targetanim[whichguy] = 11;
           activity[whichguy] = wallhit;
           targetframe[whichguy] = 0;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
         }
         if (guyvelx[whichguy] != 0) {
           activity[whichguy] = rightroll;
@@ -8642,7 +8642,7 @@ void DoAIPlayerStuff(int whichguy) {
           guyvelx[whichguy] = guyvelx[whichguy] * -.5;
           targetframe[whichguy] = 1;
           frame[whichguy] = 1;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
         }
         f = 1;
       }
@@ -8669,7 +8669,7 @@ void DoAIPlayerStuff(int whichguy) {
           anim[whichguy] = 13;
           targetanim[whichguy] = 13;
         }
-        time[whichguy] = 100;
+        timeforguy[whichguy] = 100;
         guyvelx[whichguy] = guyvelx[whichguy] * -.5;
         f = 1;
       }
@@ -8683,7 +8683,7 @@ void DoAIPlayerStuff(int whichguy) {
           anim[whichguy] = 13;
           targetanim[whichguy] = 13;
         }
-        time[whichguy] = 100;
+        timeforguy[whichguy] = 100;
         guyvelx[whichguy] = guyvelx[whichguy] * -.5;
         f = 1;
       }
@@ -8708,7 +8708,7 @@ void DoAIPlayerStuff(int whichguy) {
           anim[whichguy] = 13;
           targetanim[whichguy] = 13;
         }
-        time[whichguy] = 100;
+        timeforguy[whichguy] = 100;
         guyvelx[whichguy] = guyvelx[whichguy] * -.5;
         f = 1;
       }
@@ -8722,7 +8722,7 @@ void DoAIPlayerStuff(int whichguy) {
           anim[whichguy] = 13;
           targetanim[whichguy] = 13;
         }
-        time[whichguy] = 100;
+        timeforguy[whichguy] = 100;
         guyvelx[whichguy] = guyvelx[whichguy] * -.5;
         f = 1;
       }
@@ -8832,7 +8832,7 @@ void DoPlayerStuff(int whichguy) {
     anim[whichguy] = 9;
     targetframe[whichguy] = 0;
     frame[whichguy] = 0;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     targetanim[whichguy] = 9;
     playSound(SND_BREAK_ID, -guyvely[whichguy] * 50 + 50);
     playSound(SND_BREAK2_ID, -guyvely[whichguy] * 50 + 50);
@@ -8910,26 +8910,26 @@ void DoPlayerStuff(int whichguy) {
     verydeadshow = verydead;
   }
   if (verydead == 0 && activity[whichguy] != onrope && activity[whichguy] != downrope) {
-    oldtime[whichguy] = time[whichguy];
+    oldtimeforguy[whichguy] = timeforguy[whichguy];
     if (anim[whichguy] == 7 || anim[whichguy] == 8) {
-      time[whichguy] += (((float)speed[frame[whichguy]][anim[whichguy]] / 1000)) * multiplier / 3;
+      timeforguy[whichguy] += (((float)speed[frame[whichguy]][anim[whichguy]] / 1000)) * multiplier / 3;
     }
     if (anim[whichguy] == 7) {
-      time[whichguy] += (((float)speed[frame[whichguy]][anim[whichguy]] / 1000)) * multiplier / 2;
+      timeforguy[whichguy] += (((float)speed[frame[whichguy]][anim[whichguy]] / 1000)) * multiplier / 2;
     }
-    if (time[whichguy] < 100 && timedirection[whichguy] == 1) {
-      time[whichguy] += (((float)speed[frame[whichguy]][anim[whichguy]] / 1000)) * multiplier / 3;
+    if (timeforguy[whichguy] < 100 && timedirection[whichguy] == 1) {
+      timeforguy[whichguy] += (((float)speed[frame[whichguy]][anim[whichguy]] / 1000)) * multiplier / 3;
     }
-    if (time[whichguy] < 100 && timedirection[whichguy] == -1) {
-      time[whichguy] += ((float)speed[targetframe[whichguy]][targetanim[whichguy]] / 1000);
+    if (timeforguy[whichguy] < 100 && timedirection[whichguy] == -1) {
+      timeforguy[whichguy] += ((float)speed[targetframe[whichguy]][targetanim[whichguy]] / 1000);
     }
     NextFrame(whichguy);
   }
-  while (time[whichguy] < 0) {
-    time[whichguy] += 100;
+  while (timeforguy[whichguy] < 0) {
+    timeforguy[whichguy] += 100;
   }
-  while (time[whichguy] > 100) {
-    time[whichguy] -= 100;
+  while (timeforguy[whichguy] > 100) {
+    timeforguy[whichguy] -= 100;
   }
   sabrespin[whichguy] += multiplier;
   if (activity[whichguy] != climbrope && activity[whichguy] != onrope && activity[whichguy] != downrope) {
@@ -8941,15 +8941,15 @@ void DoPlayerStuff(int whichguy) {
     }
     if (activity[whichguy] == runleft && isKeyDown(kLeftKey[whichguy]) == 0) {
       activity[whichguy] = RangedRandom(1, 2);
-      time[whichguy] = 0;
+      timeforguy[whichguy] = 0;
     }
     if (activity[whichguy] == runright && isKeyDown(kRightKey[whichguy]) == 0) {
       activity[whichguy] = RangedRandom(1, 2);
-      time[whichguy] = 0;
+      timeforguy[whichguy] = 0;
     }
     if (activity[whichguy] == ducking && isKeyDown(kDownKey[whichguy]) == 0) {
       activity[whichguy] = RangedRandom(1, 2);
-      time[whichguy] = 0;
+      timeforguy[whichguy] = 0;
     }
     if (activity[whichguy] == runleft) {
       targetanim[whichguy] = 2;
@@ -9112,7 +9112,7 @@ void DoPlayerStuff(int whichguy) {
     frame[whichguy] = 0;
     targetanim[whichguy] = 24;
     anim[whichguy] = 24;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
   }
   if (activity[whichguy] == deadfacedown && health[whichguy] > 0) {
     activity[whichguy] = getupfromfront;
@@ -9120,7 +9120,7 @@ void DoPlayerStuff(int whichguy) {
     frame[whichguy] = 0;
     targetanim[whichguy] = 25;
     anim[whichguy] = 25;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
   }
   if (activity[whichguy] == shootleft && isKeyDown(kRightShootKey[whichguy]) == 0 && targetframe[whichguy] == 0 && anim[whichguy] == 10) {
     activity[whichguy] = idle1;
@@ -9131,49 +9131,49 @@ void DoPlayerStuff(int whichguy) {
   if (activity[whichguy] == shootleft && isKeyDown(kRightShootKey[whichguy]) == 1 && targetframe[whichguy] == 0 && anim[whichguy] == 10 && itemnum[whichguy] == 4 && ammo[whichguy] > 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     activity[whichguy] = shootleft;
   }
   if (activity[whichguy] == shootright && isKeyDown(kLeftShootKey[whichguy]) == 1 && targetframe[whichguy] == 0 && anim[whichguy] == 12 && itemnum[whichguy] == 4 && ammo[whichguy] > 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     activity[whichguy] = shootright;
   }
   if (activity[whichguy] == shootleft && isKeyDown(kRightShootKey[whichguy]) == 1 && anim[whichguy] == 10 && itemnum[whichguy] == 7 && ammo[whichguy] > 0 && lightningdelay[whichguy] <= 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     activity[whichguy] = shootleft;
   }
   if (activity[whichguy] == shootright && isKeyDown(kLeftShootKey[whichguy]) == 1 && anim[whichguy] == 12 && itemnum[whichguy] == 7 && ammo[whichguy] > 0 && lightningdelay[whichguy] <= 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     activity[whichguy] = shootright;
   }
   if (activity[whichguy] == shootleft && isKeyDown(kRightShootKey[whichguy]) == 1 && targetframe[whichguy] > 3 && anim[whichguy] == 10 && itemnum[whichguy] == 5 && ammo[whichguy] > 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     activity[whichguy] = shootleft;
   }
   if (activity[whichguy] == shootright && isKeyDown(kLeftShootKey[whichguy]) == 1 && targetframe[whichguy] > 3 && anim[whichguy] == 12 && itemnum[whichguy] == 5 && ammo[whichguy] > 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     activity[whichguy] = shootright;
   }
   if (activity[whichguy] == shootleft && isKeyDown(kRightShootKey[whichguy]) == 1 && targetframe[whichguy] == 0 && anim[whichguy] == 10 && itemnum[whichguy] == 5 && ammo[whichguy] > 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     activity[whichguy] = shootleft;
   }
   if (activity[whichguy] == shootright && isKeyDown(kLeftShootKey[whichguy]) == 1 && targetframe[whichguy] == 0 && anim[whichguy] == 12 && itemnum[whichguy] == 5 && ammo[whichguy] > 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     activity[whichguy] = shootright;
   }
   if (activity[whichguy] == shootleft && ammo[whichguy] <= 0 && targetframe[whichguy] == 0 && anim[whichguy] == 10) {
@@ -9191,37 +9191,37 @@ void DoPlayerStuff(int whichguy) {
   if (activity[whichguy] == shootleft && isKeyDown(kRightShootKey[whichguy]) == 1 && targetframe[whichguy] == 0 && anim[whichguy] == 31 && itemnum[whichguy] == 4 && ammo[whichguy] > 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     activity[whichguy] = shootleft;
   }
   if (activity[whichguy] == shootright && isKeyDown(kLeftShootKey[whichguy]) == 1 && targetframe[whichguy] == 0 && anim[whichguy] == 32 && itemnum[whichguy] == 4 && ammo[whichguy] > 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     activity[whichguy] = shootright;
   }
   if (activity[whichguy] == shootleft && isKeyDown(kRightShootKey[whichguy]) == 1 && targetframe[whichguy] > 3 && anim[whichguy] == 31 && itemnum[whichguy] == 5 && ammo[whichguy] > 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     activity[whichguy] = shootleft;
   }
   if (activity[whichguy] == shootright && isKeyDown(kLeftShootKey[whichguy]) == 1 && targetframe[whichguy] > 3 && anim[whichguy] == 32 && itemnum[whichguy] == 5 && ammo[whichguy] > 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     activity[whichguy] = shootright;
   }
   if (activity[whichguy] == shootleft && isKeyDown(kRightShootKey[whichguy]) == 1 && targetframe[whichguy] == 0 && anim[whichguy] == 31 && itemnum[whichguy] == 5 && ammo[whichguy] > 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     activity[whichguy] = shootleft;
   }
   if (activity[whichguy] == shootright && isKeyDown(kLeftShootKey[whichguy]) == 1 && targetframe[whichguy] == 0 && anim[whichguy] == 32 && itemnum[whichguy] == 5 && ammo[whichguy] > 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     activity[whichguy] = shootright;
   }
   if (activity[whichguy] == shootleft && ammo[whichguy] <= 0 && targetframe[whichguy] == 0 && anim[whichguy] == 31) {
@@ -9247,49 +9247,49 @@ void DoPlayerStuff(int whichguy) {
   if (activity[whichguy] == shootleft && isKeyDown(kRightShootKey[whichguy]) == 1 && targetframe[whichguy] == 0 && anim[whichguy] == 30 && itemnum[whichguy] == 4 && ammo[whichguy] > 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     activity[whichguy] = shootleft;
   }
   if (activity[whichguy] == shootright && isKeyDown(kLeftShootKey[whichguy]) == 1 && targetframe[whichguy] == 0 && anim[whichguy] == 30 && itemnum[whichguy] == 4 && ammo[whichguy] > 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     activity[whichguy] = shootright;
   }
   if (activity[whichguy] == shootleft && isKeyDown(kRightShootKey[whichguy]) == 1 && targetframe[whichguy] > 3 && anim[whichguy] == 30 && itemnum[whichguy] == 5 && ammo[whichguy] > 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     activity[whichguy] = shootleft;
   }
   if (activity[whichguy] == shootright && isKeyDown(kLeftShootKey[whichguy]) == 1 && targetframe[whichguy] > 3 && anim[whichguy] == 30 && itemnum[whichguy] == 5 && ammo[whichguy] > 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     activity[whichguy] = shootright;
   }
   if (activity[whichguy] == shootleft && isKeyDown(kRightShootKey[whichguy]) == 1 && anim[whichguy] == 30 && itemnum[whichguy] == 7 && ammo[whichguy] > 0 && lightningdelay[whichguy] <= 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     activity[whichguy] = shootleft;
   }
   if (activity[whichguy] == shootright && isKeyDown(kLeftShootKey[whichguy]) == 1 && anim[whichguy] == 30 && itemnum[whichguy] == 7 && ammo[whichguy] > 0 && lightningdelay[whichguy] <= 0) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     activity[whichguy] = shootright;
   }
-  if (activity[whichguy] == shootleft && isKeyDown(kRightShootKey[whichguy]) == 1 && targetframe[whichguy] == 3 && anim[whichguy] == 30 && itemnum[whichguy] == 5 && ammo[whichguy] > 0 && time[whichguy] >= 70) {
+  if (activity[whichguy] == shootleft && isKeyDown(kRightShootKey[whichguy]) == 1 && targetframe[whichguy] == 3 && anim[whichguy] == 30 && itemnum[whichguy] == 5 && ammo[whichguy] > 0 && timeforguy[whichguy] >= 70) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     activity[whichguy] = shootleft;
   }
-  if (activity[whichguy] == shootright && isKeyDown(kLeftShootKey[whichguy]) == 1 && targetframe[whichguy] == 3 && anim[whichguy] == 30 && itemnum[whichguy] == 5 && ammo[whichguy] > 0 && time[whichguy] >= 70) {
+  if (activity[whichguy] == shootright && isKeyDown(kLeftShootKey[whichguy]) == 1 && targetframe[whichguy] == 3 && anim[whichguy] == 30 && itemnum[whichguy] == 5 && ammo[whichguy] > 0 && timeforguy[whichguy] >= 70) {
     targetframe[whichguy] = 2;
     frame[whichguy] = 3;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     activity[whichguy] = shootright;
   }
   if (activity[whichguy] == shootleft && ammo[whichguy] <= 0 && targetframe[whichguy] == 0 && anim[whichguy] == 30) {
@@ -9315,20 +9315,20 @@ void DoPlayerStuff(int whichguy) {
   if (activity[whichguy] == climbrope) {
     guyy[whichguy] += multiplier / 20 * size[whichguy];
   }
-  // if (activity[whichguy]==painoneleft&&anim[whichguy]==13&&targetframe[whichguy]==0){activity[whichguy]=landonback; guyx[whichguy]-=7*size[whichguy]; targetanim[whichguy]=14; anim[whichguy]=14; targetframe[whichguy]=0; frame[whichguy]=0; time[whichguy]=100; if(Map[guymapx[whichguy]][guymapy[whichguy]]!=0&&Map[guymapx[whichguy]][guymapy[whichguy]]!=3&&activity[whichguy]!=climbrope&&activity[whichguy]!=onrope&&activity[whichguy]!=downrope){playSound(SND_BREAK_ID,-guyvely[whichguy]*50+50); playSound(SND_BREAK2_ID,-guyvely[whichguy]*50+50);}}
-  /*if (activity[whichguy]==swordthrownleft&&anim[whichguy]==21&&frame[whichguy]>=10&&Map[guymapx[whichguy]+2][guymapy[whichguy]]==0){activity[whichguy]=landonback; dead[whichguy]=1; time[whichguy]=0; guyx[whichguy]+=12; anim[whichguy]=14; targetanim[whichguy]=14; frame[whichguy]=1; targetframe[whichguy]=1;time[whichguy]=100; rotation[whichguy]*=-1; targetrotation[whichguy]*=-1; guyvelx[whichguy]=.06; guyvely[whichguy]=-.3;}
-  if (activity[whichguy]==swordthrownleft&&anim[whichguy]==21&&frame[whichguy]>=10&&Map[guymapx[whichguy]+2][guymapy[whichguy]]!=0&&Map[guymapx[whichguy]+1][guymapy[whichguy]]==0){activity[whichguy]=landonback; dead[whichguy]=1; time[whichguy]=0; guyx[whichguy]+=12; anim[whichguy]=14; targetanim[whichguy]=14; frame[whichguy]=1; targetframe[whichguy]=1;time[whichguy]=100; rotation[whichguy]*=-1; targetrotation[whichguy]*=-1; guyvelx[whichguy]=.06; guyvely[whichguy]=-.3;}
-  if (activity[whichguy]==swordthrownright&&anim[whichguy]==21&&frame[whichguy]>=10&&Map[guymapx[whichguy]-2][guymapy[whichguy]]==0){activity[whichguy]=landonback; dead[whichguy]=1; time[whichguy]=0; guyx[whichguy]-=12; anim[whichguy]=14; targetanim[whichguy]=14; frame[whichguy]=1; targetframe[whichguy]=1;time[whichguy]=100; rotation[whichguy]*=-1; targetrotation[whichguy]*=-1; guyvelx[whichguy]=-.06; guyvely[whichguy]=-.3;}
-  if (activity[whichguy]==swordthrownright&&anim[whichguy]==21&&frame[whichguy]>=10&&Map[guymapx[whichguy]-2][guymapy[whichguy]]!=0&&Map[guymapx[whichguy]-1][guymapy[whichguy]]==0){activity[whichguy]=landonback; dead[whichguy]=1; time[whichguy]=0; guyx[whichguy]-=12; anim[whichguy]=14; targetanim[whichguy]=14; frame[whichguy]=1; targetframe[whichguy]=1;time[whichguy]=100; rotation[whichguy]*=-1; targetrotation[whichguy]*=-1; guyvelx[whichguy]=-.06; guyvely[whichguy]=-.3;}*/
+  // if (activity[whichguy]==painoneleft&&anim[whichguy]==13&&targetframe[whichguy]==0){activity[whichguy]=landonback; guyx[whichguy]-=7*size[whichguy]; targetanim[whichguy]=14; anim[whichguy]=14; targetframe[whichguy]=0; frame[whichguy]=0; timeforguy[whichguy]=100; if(Map[guymapx[whichguy]][guymapy[whichguy]]!=0&&Map[guymapx[whichguy]][guymapy[whichguy]]!=3&&activity[whichguy]!=climbrope&&activity[whichguy]!=onrope&&activity[whichguy]!=downrope){playSound(SND_BREAK_ID,-guyvely[whichguy]*50+50); playSound(SND_BREAK2_ID,-guyvely[whichguy]*50+50);}}
+  /*if (activity[whichguy]==swordthrownleft&&anim[whichguy]==21&&frame[whichguy]>=10&&Map[guymapx[whichguy]+2][guymapy[whichguy]]==0){activity[whichguy]=landonback; dead[whichguy]=1; timeforguy[whichguy]=0; guyx[whichguy]+=12; anim[whichguy]=14; targetanim[whichguy]=14; frame[whichguy]=1; targetframe[whichguy]=1;timeforguy[whichguy]=100; rotation[whichguy]*=-1; targetrotation[whichguy]*=-1; guyvelx[whichguy]=.06; guyvely[whichguy]=-.3;}
+  if (activity[whichguy]==swordthrownleft&&anim[whichguy]==21&&frame[whichguy]>=10&&Map[guymapx[whichguy]+2][guymapy[whichguy]]!=0&&Map[guymapx[whichguy]+1][guymapy[whichguy]]==0){activity[whichguy]=landonback; dead[whichguy]=1; timeforguy[whichguy]=0; guyx[whichguy]+=12; anim[whichguy]=14; targetanim[whichguy]=14; frame[whichguy]=1; targetframe[whichguy]=1;timeforguy[whichguy]=100; rotation[whichguy]*=-1; targetrotation[whichguy]*=-1; guyvelx[whichguy]=.06; guyvely[whichguy]=-.3;}
+  if (activity[whichguy]==swordthrownright&&anim[whichguy]==21&&frame[whichguy]>=10&&Map[guymapx[whichguy]-2][guymapy[whichguy]]==0){activity[whichguy]=landonback; dead[whichguy]=1; timeforguy[whichguy]=0; guyx[whichguy]-=12; anim[whichguy]=14; targetanim[whichguy]=14; frame[whichguy]=1; targetframe[whichguy]=1;timeforguy[whichguy]=100; rotation[whichguy]*=-1; targetrotation[whichguy]*=-1; guyvelx[whichguy]=-.06; guyvely[whichguy]=-.3;}
+  if (activity[whichguy]==swordthrownright&&anim[whichguy]==21&&frame[whichguy]>=10&&Map[guymapx[whichguy]-2][guymapy[whichguy]]!=0&&Map[guymapx[whichguy]-1][guymapy[whichguy]]==0){activity[whichguy]=landonback; dead[whichguy]=1; timeforguy[whichguy]=0; guyx[whichguy]-=12; anim[whichguy]=14; targetanim[whichguy]=14; frame[whichguy]=1; targetframe[whichguy]=1;timeforguy[whichguy]=100; rotation[whichguy]*=-1; targetrotation[whichguy]*=-1; guyvelx[whichguy]=-.06; guyvely[whichguy]=-.3;}*/
   if (activity[whichguy] == swordthrownleft && anim[whichguy] == 21 && frame[whichguy] >= 10 /*&&Map[a][guymapy[whichguy]]!=1&&Map[a][guymapy[whichguy]]!=2*/) {
     activity[whichguy] = landonback;
-    time[whichguy] = 0;
+    timeforguy[whichguy] = 0;
     guyx[whichguy] += 12;
     anim[whichguy] = 14;
     targetanim[whichguy] = 14;
     frame[whichguy] = 1;
     targetframe[whichguy] = 1;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     rotation[whichguy] *= -1;
     targetrotation[whichguy] *= -1;
     guyvelx[whichguy] = .06;
@@ -9337,13 +9337,13 @@ void DoPlayerStuff(int whichguy) {
   }
   if (activity[whichguy] == swordthrownright && anim[whichguy] == 21 && frame[whichguy] >= 10 /*&&Map[b][guymapy[whichguy]]!=1&&Map[b][guymapy[whichguy]]!=2*/) {
     activity[whichguy] = landonback;
-    time[whichguy] = 0;
+    timeforguy[whichguy] = 0;
     guyx[whichguy] -= 12;
     anim[whichguy] = 14;
     targetanim[whichguy] = 14;
     frame[whichguy] = 1;
     targetframe[whichguy] = 1;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
     rotation[whichguy] *= -1;
     targetrotation[whichguy] *= -1;
     guyvelx[whichguy] = -.06;
@@ -9379,7 +9379,7 @@ void DoPlayerStuff(int whichguy) {
   if (activity[whichguy] == leftflip && targetframe[whichguy] == 12 && anim[whichguy] == 7 && frame[whichguy] == 11) {
     frame[whichguy] = 12;
     targetframe[whichguy] = 12;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
   }
   if (activity[whichguy] == rightflip && targetframe[whichguy] < 4 && guyvely[whichguy] == 0) {
     guyvely[whichguy] = jumpstrength / 5;
@@ -9393,10 +9393,10 @@ void DoPlayerStuff(int whichguy) {
   if (activity[whichguy] == rightflip && targetframe[whichguy] == 12 && anim[whichguy] == 7 && frame[whichguy] == 11) {
     frame[whichguy] = 12;
     targetframe[whichguy] = 12;
-    time[whichguy] = 100;
+    timeforguy[whichguy] = 100;
   }
   if (activity[whichguy] == hitwallright && targetframe[whichguy] == 0) {
-    time[whichguy] = 0;
+    timeforguy[whichguy] = 0;
     activity[whichguy] = deadfacedown;
     if (health[whichguy] > 0 && verydead == 0) {
       activity[whichguy] = getupfromfront;
@@ -9404,11 +9404,11 @@ void DoPlayerStuff(int whichguy) {
       frame[whichguy] = 0;
       targetanim[whichguy] = 25;
       anim[whichguy] = 25;
-      time[whichguy] = 100;
+      timeforguy[whichguy] = 100;
     }
   }
   if (activity[whichguy] == hitwallleft && targetframe[whichguy] == 0) {
-    time[whichguy] = 0;
+    timeforguy[whichguy] = 0;
     activity[whichguy] = deadfacedown;
     if (health[whichguy] > 0 && verydead == 0) {
       activity[whichguy] = getupfromfront;
@@ -9416,12 +9416,12 @@ void DoPlayerStuff(int whichguy) {
       frame[whichguy] = 0;
       targetanim[whichguy] = 25;
       anim[whichguy] = 25;
-      time[whichguy] = 100;
+      timeforguy[whichguy] = 100;
     }
   }
   if (activity[whichguy] == deadfacedown || activity[whichguy] == deadfaceup) {
     if (health[whichguy] > 0) {
-      time[whichguy] = 0;
+      timeforguy[whichguy] = 0;
       targetframe[whichguy] = 2;
       targetanim[whichguy] = 3;
       activity[whichguy] = ducking;
@@ -9507,7 +9507,7 @@ void DoPlayerStuff(int whichguy) {
             if(activity[b]==deadfaceup||activity[b]==deadfacedown){
             if(Map[guymapx[b]][guymapy[b]]==1||Map[guymapx[b]][guymapy[b]]==2){
                     usingjetpack[b]=0;
-                    time[b]=0;
+                    timeforguy[b]=0;
                     frame[b]=3;
                     targetframe[b]=2;
                     targetanim[b]=2;
@@ -9515,8 +9515,8 @@ void DoPlayerStuff(int whichguy) {
                     guyy[b]=(guymapy[b]-39)*-20+.5;
                     nosound=0;
                     fallin[b]=0;
-                    if(activity[b]==deadfacedown){health[b]+=guyvely[b]*70; activity[b]=splat;anim[b]=9; targetframe[b]=3; frame[b]=3; time[b]=100; targetanim[b]=9; playSound(SND_BREAK_ID,-guyvely[b]*50+50); playSound(SND_BREAK2_ID,-guyvely[b]*50+50);}
-                    if(activity[b]==deadfaceup){health[b]+=guyvely[b]*70; activity[b]=landonback;anim[b]=14; targetframe[b]=1; frame[b]=1; time[b]=100; targetanim[b]=14; playSound(SND_BREAK_ID,-guyvely[b]*50+50); playSound(SND_BREAK2_ID,-guyvely[b]*50+50);}
+                    if(activity[b]==deadfacedown){health[b]+=guyvely[b]*70; activity[b]=splat;anim[b]=9; targetframe[b]=3; frame[b]=3; timeforguy[b]=100; targetanim[b]=9; playSound(SND_BREAK_ID,-guyvely[b]*50+50); playSound(SND_BREAK2_ID,-guyvely[b]*50+50);}
+                    if(activity[b]==deadfaceup){health[b]+=guyvely[b]*70; activity[b]=landonback;anim[b]=14; targetframe[b]=1; frame[b]=1; timeforguy[b]=100; targetanim[b]=14; playSound(SND_BREAK_ID,-guyvely[b]*50+50); playSound(SND_BREAK2_ID,-guyvely[b]*50+50);}
                     guyvelx[b]=0;
                     guyvely[b]=0;
             }
@@ -9530,7 +9530,7 @@ void DoPlayerStuff(int whichguy) {
       guyy[b] = guyy[whichguy] - 10;
       if (Map[guymapx[b]][guymapy[b]] == 1 || Map[guymapx[b]][guymapy[b]] == 2) {
         usingjetpack[b] = 0;
-        time[b] = 0;
+        timeforguy[b] = 0;
         frame[b] = 3;
         targetframe[b] = 3;
         targetanim[b] = 3;
@@ -9549,7 +9549,7 @@ void DoPlayerStuff(int whichguy) {
         anim[b] = 9;
         targetframe[b] = 0;
         frame[b] = 0;
-        time[b] = 100;
+        timeforguy[b] = 100;
         targetanim[b] = 9;
         playSound(SND_BREAK_ID, -guyvely[b] * 50 + 50);
         playSound(SND_BREAK2_ID, -guyvely[b] * 50 + 50);
@@ -9586,7 +9586,7 @@ void DoPlayerStuff(int whichguy) {
                   guyvely[b] = guyvely[whichguy];
                   guyvely[whichguy] *= .5;
                   usingjetpack[b] = 0;
-                  time[b] = 0;
+                  timeforguy[b] = 0;
                   frame[b] = 3;
                   targetframe[b] = 2;
                   targetanim[b] = 2;
@@ -9600,7 +9600,7 @@ void DoPlayerStuff(int whichguy) {
                     anim[b] = 9;
                     targetframe[b] = 3;
                     frame[b] = 3;
-                    time[b] = 100;
+                    timeforguy[b] = 100;
                     targetanim[b] = 9;
                     playSound(SND_BREAK_ID, -guyvely[b] * 50 + 50);
                     playSound(SND_BREAK2_ID, -guyvely[b] * 50 + 50);
@@ -9611,7 +9611,7 @@ void DoPlayerStuff(int whichguy) {
                     anim[b] = 14;
                     targetframe[b] = 1;
                     frame[b] = 1;
-                    time[b] = 100;
+                    timeforguy[b] = 100;
                     targetanim[b] = 14;
                     playSound(SND_BREAK_ID, -guyvely[b] * 50 + 50);
                     playSound(SND_BREAK2_ID, -guyvely[b] * 50 + 50);
@@ -9622,7 +9622,7 @@ void DoPlayerStuff(int whichguy) {
               }
             }
             usingjetpack[whichguy] = 0;
-            time[whichguy] = 0;
+            timeforguy[whichguy] = 0;
             a = anim[whichguy];
             c = activity[whichguy];
             if (activity[whichguy] != fallforwardsright && activity[whichguy] != fallforwardsleft) {
@@ -9656,7 +9656,7 @@ void DoPlayerStuff(int whichguy) {
               anim[whichguy] = 9;
               targetframe[whichguy] = 0;
               frame[whichguy] = 0;
-              time[whichguy] = 100;
+              timeforguy[whichguy] = 100;
               targetanim[whichguy] = 9;
               playSound(SND_BREAK_ID, -guyvely[whichguy] * 50 + 50);
               playSound(SND_BREAK2_ID, -guyvely[whichguy] * 50 + 50);
@@ -9668,7 +9668,7 @@ void DoPlayerStuff(int whichguy) {
                 anim[whichguy] = 9;
                 targetframe[whichguy] = 2;
                 frame[whichguy] = 0;
-                time[whichguy] = 100;
+                timeforguy[whichguy] = 100;
                 targetanim[whichguy] = 9;
               }
               playSound(SND_BREAK_ID, -guyvely[whichguy] * 50 + 50);
@@ -9683,7 +9683,7 @@ void DoPlayerStuff(int whichguy) {
               anim[whichguy] = 14;
               targetframe[whichguy] = 1;
               frame[whichguy] = 0;
-              time[whichguy] = 100;
+              timeforguy[whichguy] = 100;
               targetanim[whichguy] = 14;
               playSound(SND_BREAK_ID, -guyvely[whichguy] * 50 + 50);
               playSound(SND_BREAK2_ID, -guyvely[whichguy] * 50 + 50);
@@ -9735,7 +9735,7 @@ void DoPlayerStuff(int whichguy) {
           targetanim[whichguy] = 11;
           activity[whichguy] = wallhit;
           targetframe[whichguy] = 0;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
         }
         if (guyvelx[whichguy] != 0) {
           activity[whichguy] = leftroll;
@@ -9744,7 +9744,7 @@ void DoPlayerStuff(int whichguy) {
           guyvelx[whichguy] = guyvelx[whichguy] * -.5;
           targetframe[whichguy] = 1;
           frame[whichguy] = 1;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
         }
         f = 1;
       }
@@ -9756,7 +9756,7 @@ void DoPlayerStuff(int whichguy) {
           targetanim[whichguy] = 11;
           activity[whichguy] = wallhit;
           targetframe[whichguy] = 0;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
         }
         if (guyvelx[whichguy] != 0) {
           activity[whichguy] = leftroll;
@@ -9765,7 +9765,7 @@ void DoPlayerStuff(int whichguy) {
           guyvelx[whichguy] = guyvelx[whichguy] * -.5;
           targetframe[whichguy] = 1;
           frame[whichguy] = 1;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
         }
         f = 1;
       }
@@ -9788,7 +9788,7 @@ void DoPlayerStuff(int whichguy) {
           targetanim[whichguy] = 11;
           activity[whichguy] = wallhit;
           targetframe[whichguy] = 0;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
         }
         if (guyvelx[whichguy] != 0) {
           activity[whichguy] = rightroll;
@@ -9797,7 +9797,7 @@ void DoPlayerStuff(int whichguy) {
           guyvelx[whichguy] = guyvelx[whichguy] * -.5;
           targetframe[whichguy] = 1;
           frame[whichguy] = 1;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
         }
         f = 1;
       }
@@ -9809,7 +9809,7 @@ void DoPlayerStuff(int whichguy) {
           targetanim[whichguy] = 11;
           activity[whichguy] = wallhit;
           targetframe[whichguy] = 0;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
         }
         if (guyvelx[whichguy] != 0) {
           activity[whichguy] = rightroll;
@@ -9818,7 +9818,7 @@ void DoPlayerStuff(int whichguy) {
           guyvelx[whichguy] = guyvelx[whichguy] * -.5;
           targetframe[whichguy] = 1;
           frame[whichguy] = 1;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
         }
         f = 1;
       }
@@ -9845,7 +9845,7 @@ void DoPlayerStuff(int whichguy) {
           anim[whichguy] = 13;
           targetanim[whichguy] = 13;
         }
-        time[whichguy] = 100;
+        timeforguy[whichguy] = 100;
         guyvelx[whichguy] = guyvelx[whichguy] * -.5;
         f = 1;
       }
@@ -9859,7 +9859,7 @@ void DoPlayerStuff(int whichguy) {
           anim[whichguy] = 13;
           targetanim[whichguy] = 13;
         }
-        time[whichguy] = 100;
+        timeforguy[whichguy] = 100;
         guyvelx[whichguy] = guyvelx[whichguy] * -.5;
         f = 1;
       }
@@ -9884,7 +9884,7 @@ void DoPlayerStuff(int whichguy) {
           anim[whichguy] = 13;
           targetanim[whichguy] = 13;
         }
-        time[whichguy] = 100;
+        timeforguy[whichguy] = 100;
         guyvelx[whichguy] = guyvelx[whichguy] * -.5;
         f = 1;
       }
@@ -9898,7 +9898,7 @@ void DoPlayerStuff(int whichguy) {
           anim[whichguy] = 13;
           targetanim[whichguy] = 13;
         }
-        time[whichguy] = 100;
+        timeforguy[whichguy] = 100;
         guyvelx[whichguy] = guyvelx[whichguy] * -.5;
         f = 1;
       }
@@ -10028,8 +10028,8 @@ void ShootGrenade(int whichguy) {
         targetframe[b] = 1;
         frame[whichguy] = 0;
         frame[b] = 0;
-        time[whichguy] = 0;
-        time[b] = 0;
+        timeforguy[whichguy] = 0;
+        timeforguy[b] = 0;
       }
     }
     if (b == -1 && ammo[whichguy] <= 0 && facing[whichguy] == 1) {
@@ -10038,7 +10038,7 @@ void ShootGrenade(int whichguy) {
       targetanim[whichguy] = 16;
       targetframe[whichguy] = 1;
       frame[whichguy] = 0;
-      time[whichguy] = 0;
+      timeforguy[whichguy] = 0;
       fake[whichguy] = 1;
     }
     if (b != -1 && facing[whichguy] == 0) {
@@ -10061,8 +10061,8 @@ void ShootGrenade(int whichguy) {
         targetframe[b] = 1;
         frame[whichguy] = 0;
         frame[b] = 0;
-        time[whichguy] = 0;
-        time[b] = 0;
+        timeforguy[whichguy] = 0;
+        timeforguy[b] = 0;
         usingjetpack[b] = 0;
       }
     }
@@ -10072,7 +10072,7 @@ void ShootGrenade(int whichguy) {
       targetanim[whichguy] = 16;
       targetframe[whichguy] = 1;
       frame[whichguy] = 0;
-      time[whichguy] = 0;
+      timeforguy[whichguy] = 0;
       fake[whichguy] = 1;
     }
     if (itemnum[whichguy] == 6 && ammo[whichguy] > 0 && usingjetpack[whichguy] == 0 && e == 1 && b == -1) {
@@ -10081,7 +10081,7 @@ void ShootGrenade(int whichguy) {
       targetanim[whichguy] = 44;
       frame[whichguy] = 0;
       targetframe[whichguy] = 0;
-      time[whichguy] = 0;
+      timeforguy[whichguy] = 0;
       if (smokingbody[whichguy][kRightGun] < 100) {
         smokingbody[whichguy][kRightGun] += 50;
       }
@@ -10134,7 +10134,7 @@ void ShootGrenade(int whichguy) {
     targetanim[whichguy] = 44;
     frame[whichguy] = 0;
     targetframe[whichguy] = 0;
-    time[whichguy] = 0;
+    timeforguy[whichguy] = 0;
     if (smokingbody[whichguy][kRightGun] < 100) {
       smokingbody[whichguy][kRightGun] += 50;
     }
@@ -10145,7 +10145,7 @@ void ShootGrenade(int whichguy) {
       frame[whichguy] = 2;
       targetanim[whichguy] = 30;
       anim[whichguy] = 30;
-      time[whichguy] = 0;
+      timeforguy[whichguy] = 0;
       targetrotation[whichguy] = 0;
       targetrotation[whichguy] = 90;
       rotation[whichguy] = 90;
@@ -10166,7 +10166,7 @@ void ShootGrenade(int whichguy) {
       frame[whichguy] = 2;
       targetanim[whichguy] = 30;
       anim[whichguy] = 30;
-      time[whichguy] = 0;
+      timeforguy[whichguy] = 0;
       targetrotation[whichguy] = 0;
       targetrotation[whichguy] = -90;
       rotation[whichguy] = -90;
@@ -10624,13 +10624,13 @@ void DoAIKeys(int whichguy) {
           activity[whichguy] = swordrightparry;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 29;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
         }
         if (facing[whichguy] != 1) {
           activity[whichguy] = swordleftparry;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 29;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
         }
         delaytime[whichguy] = 400;
         if (itemnum[whichguy] == 3) {
@@ -10661,7 +10661,7 @@ void DoAIKeys(int whichguy) {
             activity[whichguy] = swordrightthrust;
             targetframe[whichguy] = 0;
             targetanim[whichguy] = 27;
-            time[whichguy] = 100;
+            timeforguy[whichguy] = 100;
           }
         }
         if (facing[whichguy] == 0 && attackpressed[whichguy] == 0) {
@@ -10672,7 +10672,7 @@ void DoAIKeys(int whichguy) {
             activity[whichguy] = swordleftthrust;
             targetframe[whichguy] = 0;
             targetanim[whichguy] = 27;
-            time[whichguy] = 100;
+            timeforguy[whichguy] = 100;
           }
         }
       }
@@ -10690,7 +10690,7 @@ void DoAIKeys(int whichguy) {
           activity[whichguy] = swordrightspin;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 40;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
         }
       }
       if (activity[whichguy] == runleft) {
@@ -10701,7 +10701,7 @@ void DoAIKeys(int whichguy) {
           activity[whichguy] = swordleftspin;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 40;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
         }
       }
     }
@@ -10741,8 +10741,8 @@ void DoAIKeys(int whichguy) {
                 targetframe[b] = 1;
                 frame[whichguy] = 0;
                 frame[b] = 0;
-                time[whichguy] = 0;
-                time[b] = 0;
+                timeforguy[whichguy] = 0;
+                timeforguy[b] = 0;
               }
             }
           }
@@ -10753,7 +10753,7 @@ void DoAIKeys(int whichguy) {
               targetanim[whichguy] = 36;
               targetframe[whichguy] = 1;
               frame[whichguy] = 0;
-              time[whichguy] = 0;
+              timeforguy[whichguy] = 0;
               fake[whichguy] = 1;
             }
           }
@@ -10792,8 +10792,8 @@ void DoAIKeys(int whichguy) {
                 targetframe[b] = 1;
                 frame[whichguy] = 0;
                 frame[b] = 0;
-                time[whichguy] = 0;
-                time[b] = 0;
+                timeforguy[whichguy] = 0;
+                timeforguy[b] = 0;
               }
             }
           }
@@ -10804,7 +10804,7 @@ void DoAIKeys(int whichguy) {
               targetanim[whichguy] = 36;
               targetframe[whichguy] = 1;
               frame[whichguy] = 0;
-              time[whichguy] = 0;
+              timeforguy[whichguy] = 0;
               fake[whichguy] = 1;
             }
           }
@@ -10871,14 +10871,14 @@ void DoAIKeys(int whichguy) {
           activity[whichguy] = shootleft;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 10;
-          time[whichguy] = 70;
+          timeforguy[whichguy] = 70;
           targetrotation[whichguy] = 0;
         }
         if (Walls[a][c] == 0 && activity[whichguy] == falling) {
           activity[whichguy] = shootleft;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 30;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
           targetrotation[whichguy] = 0;
           targetrotation[whichguy] = 90;
         }
@@ -10886,7 +10886,7 @@ void DoAIKeys(int whichguy) {
           activity[whichguy] = shootleft;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 30;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
           targetrotation[whichguy] = 0;
           targetrotation[whichguy] = 90;
         }
@@ -10898,14 +10898,14 @@ void DoAIKeys(int whichguy) {
           activity[whichguy] = shootleft;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 10;
-          time[whichguy] = 70;
+          timeforguy[whichguy] = 70;
           targetrotation[whichguy] = 0;
         }
         if (Walls[a][c] == 0 && activity[whichguy] == falling) {
           activity[whichguy] = shootleft;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 30;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
           targetrotation[whichguy] = 0;
           targetrotation[whichguy] = 90;
         }
@@ -10913,7 +10913,7 @@ void DoAIKeys(int whichguy) {
           activity[whichguy] = shootleft;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 30;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
           targetrotation[whichguy] = 0;
           targetrotation[whichguy] = 90;
         }
@@ -10927,14 +10927,14 @@ void DoAIKeys(int whichguy) {
           activity[whichguy] = shootleft;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 10;
-          time[whichguy] = 70;
+          timeforguy[whichguy] = 70;
           targetrotation[whichguy] = 0;
         }
         if (Walls[a][c] == 0 && activity[whichguy] == falling) {
           activity[whichguy] = shootleft;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 30;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
           targetrotation[whichguy] = 0;
           targetrotation[whichguy] = 90;
         }
@@ -10942,7 +10942,7 @@ void DoAIKeys(int whichguy) {
           activity[whichguy] = shootleft;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 30;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
           targetrotation[whichguy] = 0;
           targetrotation[whichguy] = 90;
         }
@@ -10954,14 +10954,14 @@ void DoAIKeys(int whichguy) {
           activity[whichguy] = shootleft;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 31;
-          time[whichguy] = 70;
+          timeforguy[whichguy] = 70;
           targetrotation[whichguy] = 0;
         }
         if (Walls[a][c] == 0 && activity[whichguy] == falling) {
           activity[whichguy] = shootleft;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 30;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
           targetrotation[whichguy] = 0;
           targetrotation[whichguy] = 90;
         }
@@ -10969,7 +10969,7 @@ void DoAIKeys(int whichguy) {
           activity[whichguy] = shootleft;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 30;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
           targetrotation[whichguy] = 0;
           targetrotation[whichguy] = 90;
         }
@@ -11013,8 +11013,8 @@ void DoAIKeys(int whichguy) {
               targetframe[b] = 1;
               frame[whichguy] = 0;
               frame[b] = 0;
-              time[whichguy] = 0;
-              time[b] = 0;
+              timeforguy[whichguy] = 0;
+              timeforguy[b] = 0;
             }
           }
         }
@@ -11025,7 +11025,7 @@ void DoAIKeys(int whichguy) {
             targetanim[whichguy] = 36;
             targetframe[whichguy] = 1;
             frame[whichguy] = 0;
-            time[whichguy] = 0;
+            timeforguy[whichguy] = 0;
             fake[whichguy] = 1;
           }
         }
@@ -11052,9 +11052,9 @@ void DoAIKeys(int whichguy) {
             targetframe[b] = 1;
             frame[whichguy] = 0;
             frame[b] = 0;
-            time[whichguy] = 0;
-            time[b] = 0;
-            // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; time[whichguy]=70; targetrotation[whichguy]=0;
+            timeforguy[whichguy] = 0;
+            timeforguy[b] = 0;
+            // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; timeforguy[whichguy]=70; targetrotation[whichguy]=0;
           }
         }
         if (b != -1 && rightshootpressed[whichguy] == 0 && itemnum[whichguy] == 4) {
@@ -11078,10 +11078,10 @@ void DoAIKeys(int whichguy) {
             targetframe[b] = 1;
             frame[whichguy] = 0;
             frame[b] = 0;
-            time[whichguy] = 0;
-            time[b] = 0;
+            timeforguy[whichguy] = 0;
+            timeforguy[b] = 0;
           }
-          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; time[whichguy]=70; targetrotation[whichguy]=0;
+          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; timeforguy[whichguy]=70; targetrotation[whichguy]=0;
         }
         if ((b != -1 || ammo[whichguy] <= 0) && rightshootpressed[whichguy] == 0 && itemnum[whichguy] == 7) {
           if (a == d || Walls[a][c] == 0) {
@@ -11100,19 +11100,19 @@ void DoAIKeys(int whichguy) {
               usingjetpack[b] = 0;
               targetframe[b] = 1;
               frame[b] = 0;
-              time[b] = 0;
+              timeforguy[b] = 0;
             }
             activity[whichguy] = breakneckright;
             anim[whichguy] = 16;
             targetanim[whichguy] = 16;
             targetframe[whichguy] = 1;
             frame[whichguy] = 0;
-            time[whichguy] = 0;
+            timeforguy[whichguy] = 0;
             if (b == -1) {
               fake[whichguy] = 1;
             }
           }
-          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; time[whichguy]=70; targetrotation[whichguy]=0;
+          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; timeforguy[whichguy]=70; targetrotation[whichguy]=0;
         }
         if (b != -1 && rightshootpressed[whichguy] == 0 && itemnum[whichguy] == 5) {
           if (a == d || Walls[a][c] == 0) {
@@ -11135,10 +11135,10 @@ void DoAIKeys(int whichguy) {
             targetframe[b] = 1;
             frame[whichguy] = 0;
             frame[b] = 0;
-            time[whichguy] = 0;
-            time[b] = 0;
+            timeforguy[whichguy] = 0;
+            timeforguy[b] = 0;
           }
-          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; time[whichguy]=70; targetrotation[whichguy]=0;
+          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; timeforguy[whichguy]=70; targetrotation[whichguy]=0;
         }
         if (b != -1 && rightshootpressed[whichguy] == 0 && itemnum[whichguy] == 2 && activity[whichguy] != ducking) {
           if (a == d || Walls[a][c] == 0) {
@@ -11161,10 +11161,10 @@ void DoAIKeys(int whichguy) {
             targetframe[b] = 1;
             frame[whichguy] = 0;
             frame[b] = 0;
-            time[whichguy] = 0;
-            time[b] = 0;
+            timeforguy[whichguy] = 0;
+            timeforguy[b] = 0;
           }
-          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; time[whichguy]=70; targetrotation[whichguy]=0;
+          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; timeforguy[whichguy]=70; targetrotation[whichguy]=0;
         }
         if (b != -1 && rightshootpressed[whichguy] == 0 && itemnum[whichguy] == 3 && activity[whichguy] != ducking) {
           if (a == d || Walls[a][c] == 0) {
@@ -11187,8 +11187,8 @@ void DoAIKeys(int whichguy) {
             targetframe[b] = 1;
             frame[whichguy] = 0;
             frame[b] = 0;
-            time[whichguy] = 0;
-            time[b] = 0;
+            timeforguy[whichguy] = 0;
+            timeforguy[b] = 0;
             c = (guyx[whichguy] + 595) / 10;
             f = guyy[whichguy] / -20 - .5 + 40;
             if (Walls[c - 1][f] == 1 || Walls[c - 2][f] == 1) {
@@ -11200,7 +11200,7 @@ void DoAIKeys(int whichguy) {
               targetanim[b] = 19;
             }
           }
-          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; time[whichguy]=70; targetrotation[whichguy]=0;
+          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; timeforguy[whichguy]=70; targetrotation[whichguy]=0;
         }
         if (b == -1 && rightshootpressed[whichguy] == 0 && itemnum[whichguy] >= 2 && itemnum[whichguy] <= 3 && activity[whichguy] != ducking) {
           activity[whichguy] = impaleright;
@@ -11208,9 +11208,9 @@ void DoAIKeys(int whichguy) {
           targetanim[whichguy] = 18;
           targetframe[whichguy] = 1;
           frame[whichguy] = 0;
-          time[whichguy] = 0;
+          timeforguy[whichguy] = 0;
           fake[whichguy] = 1;
-          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; time[whichguy]=70; targetrotation[whichguy]=0;
+          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; timeforguy[whichguy]=70; targetrotation[whichguy]=0;
         }
         if (b != -1 && rightshootpressed[whichguy] == 0 && itemnum[whichguy] <= 3 && itemnum[whichguy] >= 2 && activity[whichguy] == ducking) {
           fake[whichguy] = 0;
@@ -11232,11 +11232,11 @@ void DoAIKeys(int whichguy) {
           targetframe[b] = 1;
           frame[whichguy] = 0;
           frame[b] = 0;
-          time[whichguy] = 0;
-          time[b] = 0;
+          timeforguy[whichguy] = 0;
+          timeforguy[b] = 0;
           c = (guyx[whichguy] + 595) / 10;
           f = guyy[whichguy] / -20 - .5 + 40;
-          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; time[whichguy]=70; targetrotation[whichguy]=0;
+          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; timeforguy[whichguy]=70; targetrotation[whichguy]=0;
         }
         if (b == -1 && rightshootpressed[whichguy] == 0 && itemnum[whichguy] >= 2 && itemnum[whichguy] <= 3 && activity[whichguy] == ducking) {
           activity[whichguy] = duckimpaleright;
@@ -11244,9 +11244,9 @@ void DoAIKeys(int whichguy) {
           targetanim[whichguy] = 38;
           targetframe[whichguy] = 1;
           frame[whichguy] = 0;
-          time[whichguy] = 0;
+          timeforguy[whichguy] = 0;
           fake[whichguy] = 1;
-          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; time[whichguy]=70; targetrotation[whichguy]=0;
+          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; timeforguy[whichguy]=70; targetrotation[whichguy]=0;
         }
         if (b == -1 && itemnum[whichguy] == 0 && rightshootpressed[whichguy] == 0) {
           activity[whichguy] = breakneckright;
@@ -11254,9 +11254,9 @@ void DoAIKeys(int whichguy) {
           targetanim[whichguy] = 16;
           targetframe[whichguy] = 1;
           frame[whichguy] = 0;
-          time[whichguy] = 0;
+          timeforguy[whichguy] = 0;
           fake[whichguy] = 1;
-          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; time[whichguy]=70; targetrotation[whichguy]=0;
+          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; timeforguy[whichguy]=70; targetrotation[whichguy]=0;
         }
         if (b == -1 && itemnum[whichguy] == 1 && ammo[whichguy] <= 0 && rightshootpressed[whichguy] == 0) {
           activity[whichguy] = breakneckright;
@@ -11264,9 +11264,9 @@ void DoAIKeys(int whichguy) {
           targetanim[whichguy] = 16;
           targetframe[whichguy] = 1;
           frame[whichguy] = 0;
-          time[whichguy] = 0;
+          timeforguy[whichguy] = 0;
           fake[whichguy] = 1;
-          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; time[whichguy]=70; targetrotation[whichguy]=0;
+          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; timeforguy[whichguy]=70; targetrotation[whichguy]=0;
         }
         if (b == -1 && itemnum[whichguy] >= 4 && itemnum[whichguy] <= 5 && ammo[whichguy] <= 0 && rightshootpressed[whichguy] == 0) {
           activity[whichguy] = breakneckright;
@@ -11274,9 +11274,9 @@ void DoAIKeys(int whichguy) {
           targetanim[whichguy] = 16;
           targetframe[whichguy] = 1;
           frame[whichguy] = 0;
-          time[whichguy] = 0;
+          timeforguy[whichguy] = 0;
           fake[whichguy] = 1;
-          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; time[whichguy]=70; targetrotation[whichguy]=0;
+          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; timeforguy[whichguy]=70; targetrotation[whichguy]=0;
         }
       }
     }
@@ -11320,21 +11320,21 @@ void DoAIKeys(int whichguy) {
           activity[whichguy] = shootright;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 12;
-          time[whichguy] = 70;
+          timeforguy[whichguy] = 70;
           targetrotation[whichguy] = 0;
         }
         if (Walls[a][c] == 0 && activity[whichguy] == falling) {
           activity[whichguy] = shootright;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 30;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
           targetrotation[whichguy] = -90;
         }
         if (Walls[a][c] == 0 && Walls[f][c] == 0 && activity[whichguy] == jetidle) {
           activity[whichguy] = shootright;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 30;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
           targetrotation[whichguy] = -90;
         }
       }
@@ -11345,21 +11345,21 @@ void DoAIKeys(int whichguy) {
           activity[whichguy] = shootright;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 12;
-          time[whichguy] = 70;
+          timeforguy[whichguy] = 70;
           targetrotation[whichguy] = 0;
         }
         if (Walls[a][c] == 0 && activity[whichguy] == falling) {
           activity[whichguy] = shootright;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 30;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
           targetrotation[whichguy] = -90;
         }
         if (Walls[a][c] == 0 && Walls[f][c] == 0 && activity[whichguy] == jetidle) {
           activity[whichguy] = shootright;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 30;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
           targetrotation[whichguy] = -90;
         }
       }
@@ -11372,21 +11372,21 @@ void DoAIKeys(int whichguy) {
           activity[whichguy] = shootright;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 12;
-          time[whichguy] = 70;
+          timeforguy[whichguy] = 70;
           targetrotation[whichguy] = 0;
         }
         if (Walls[a][c] == 0 && activity[whichguy] == falling) {
           activity[whichguy] = shootright;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 30;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
           targetrotation[whichguy] = -90;
         }
         if (Walls[a][c] == 0 && Walls[f][c] == 0 && activity[whichguy] == jetidle) {
           activity[whichguy] = shootright;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 30;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
           targetrotation[whichguy] = -90;
         }
       }
@@ -11397,21 +11397,21 @@ void DoAIKeys(int whichguy) {
           activity[whichguy] = shootright;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 32;
-          time[whichguy] = 70;
+          timeforguy[whichguy] = 70;
           targetrotation[whichguy] = 0;
         }
         if (Walls[a][c] == 0 && activity[whichguy] == falling) {
           activity[whichguy] = shootright;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 30;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
           targetrotation[whichguy] = -90;
         }
         if (Walls[a][c] == 0 && Walls[f][c] == 0 && activity[whichguy] == jetidle) {
           activity[whichguy] = shootright;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 30;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
           targetrotation[whichguy] = -90;
         }
       }
@@ -11454,8 +11454,8 @@ void DoAIKeys(int whichguy) {
               targetframe[b] = 1;
               frame[whichguy] = 0;
               frame[b] = 0;
-              time[whichguy] = 0;
-              time[b] = 0;
+              timeforguy[whichguy] = 0;
+              timeforguy[b] = 0;
             }
           }
         }
@@ -11466,7 +11466,7 @@ void DoAIKeys(int whichguy) {
             targetanim[whichguy] = 36;
             targetframe[whichguy] = 1;
             frame[whichguy] = 0;
-            time[whichguy] = 0;
+            timeforguy[whichguy] = 0;
             fake[whichguy] = 1;
           }
         }
@@ -11492,11 +11492,11 @@ void DoAIKeys(int whichguy) {
             targetframe[b] = 1;
             frame[whichguy] = 0;
             frame[b] = 0;
-            time[whichguy] = 0;
-            time[b] = 0;
+            timeforguy[whichguy] = 0;
+            timeforguy[b] = 0;
             usingjetpack[b] = 0;
           }
-          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; time[whichguy]=70; targetrotation[whichguy]=0;
+          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; timeforguy[whichguy]=70; targetrotation[whichguy]=0;
         }
         if (b != -1 && leftshootpressed[whichguy] == 0 && itemnum[whichguy] == 4) {
           if (a == d || Walls[d][e] == 0) {
@@ -11518,11 +11518,11 @@ void DoAIKeys(int whichguy) {
             targetframe[b] = 1;
             frame[whichguy] = 0;
             frame[b] = 0;
-            time[whichguy] = 0;
-            time[b] = 0;
+            timeforguy[whichguy] = 0;
+            timeforguy[b] = 0;
             usingjetpack[b] = 0;
           }
-          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; time[whichguy]=70; targetrotation[whichguy]=0;
+          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; timeforguy[whichguy]=70; targetrotation[whichguy]=0;
         }
         if ((b != -1 || ammo[whichguy] <= 0) && leftshootpressed[whichguy] == 0 && itemnum[whichguy] == 7) {
           if (a == d || Walls[d][e] == 0) {
@@ -11535,7 +11535,7 @@ void DoAIKeys(int whichguy) {
               guyvelx[b] = 0;
               guyvely[b] = 0;
               fallin[b] = 0;
-              time[b] = 0;
+              timeforguy[b] = 0;
               activity[b] = brokeneckleft;
               anim[b] = 17;
               targetanim[b] = 17;
@@ -11548,12 +11548,12 @@ void DoAIKeys(int whichguy) {
             targetanim[whichguy] = 16;
             targetframe[whichguy] = 1;
             frame[whichguy] = 0;
-            time[whichguy] = 0;
+            timeforguy[whichguy] = 0;
             if (b == -1) {
               fake[whichguy] = 1;
             }
           }
-          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; time[whichguy]=70; targetrotation[whichguy]=0;
+          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; timeforguy[whichguy]=70; targetrotation[whichguy]=0;
         }
         if (b != -1 && leftshootpressed[whichguy] == 0 && itemnum[whichguy] == 5) {
           if (a == d || Walls[d][e] == 0) {
@@ -11575,11 +11575,11 @@ void DoAIKeys(int whichguy) {
             targetframe[b] = 1;
             frame[whichguy] = 0;
             frame[b] = 0;
-            time[whichguy] = 0;
-            time[b] = 0;
+            timeforguy[whichguy] = 0;
+            timeforguy[b] = 0;
             usingjetpack[b] = 0;
           }
-          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; time[whichguy]=70; targetrotation[whichguy]=0;
+          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; timeforguy[whichguy]=70; targetrotation[whichguy]=0;
         }
         if (b != -1 && leftshootpressed[whichguy] == 0 && itemnum[whichguy] == 2 && activity[whichguy] != ducking) {
           if (a == d || Walls[d][e] == 0) {
@@ -11601,11 +11601,11 @@ void DoAIKeys(int whichguy) {
             targetframe[b] = 1;
             frame[whichguy] = 0;
             frame[b] = 0;
-            time[whichguy] = 0;
-            time[b] = 0;
+            timeforguy[whichguy] = 0;
+            timeforguy[b] = 0;
             usingjetpack[b] = 0;
           }
-          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; time[whichguy]=70; targetrotation[whichguy]=0;
+          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; timeforguy[whichguy]=70; targetrotation[whichguy]=0;
         }
         if (b == -1 && leftshootpressed[whichguy] == 0 && itemnum[whichguy] >= 2 && itemnum[whichguy] <= 3 && activity[whichguy] != ducking) {
           activity[whichguy] = impaleleft;
@@ -11613,9 +11613,9 @@ void DoAIKeys(int whichguy) {
           targetanim[whichguy] = 18;
           targetframe[whichguy] = 1;
           frame[whichguy] = 0;
-          time[whichguy] = 0;
+          timeforguy[whichguy] = 0;
           fake[whichguy] = 1;
-          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; time[whichguy]=70; targetrotation[whichguy]=0;
+          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; timeforguy[whichguy]=70; targetrotation[whichguy]=0;
         }
         if (b != -1 && leftshootpressed[whichguy] == 0 && itemnum[whichguy] == 3 && activity[whichguy] != ducking) {
           if (a == d || Walls[d][e] == 0) {
@@ -11636,8 +11636,8 @@ void DoAIKeys(int whichguy) {
             targetframe[b] = 1;
             frame[whichguy] = 0;
             frame[b] = 0;
-            time[whichguy] = 0;
-            time[b] = 0;
+            timeforguy[whichguy] = 0;
+            timeforguy[b] = 0;
             c = (guyx[whichguy] + 595) / 10;
             f = guyy[whichguy] / -20 - .5 + 40;
             if (Walls[c][f] == 1 || Walls[c + 1][f] == 1) {
@@ -11649,7 +11649,7 @@ void DoAIKeys(int whichguy) {
               targetanim[b] = 19;
             }
           }
-          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; time[whichguy]=70; targetrotation[whichguy]=0;
+          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; timeforguy[whichguy]=70; targetrotation[whichguy]=0;
         }
         if (b != -1 && leftshootpressed[whichguy] == 0 && itemnum[whichguy] <= 3 && itemnum[whichguy] >= 2 && activity[whichguy] == ducking) {
           guyx[b] = guyx[whichguy];
@@ -11670,11 +11670,11 @@ void DoAIKeys(int whichguy) {
           targetframe[b] = 1;
           frame[whichguy] = 0;
           frame[b] = 0;
-          time[whichguy] = 0;
-          time[b] = 0;
+          timeforguy[whichguy] = 0;
+          timeforguy[b] = 0;
           c = (guyx[whichguy] + 595) / 10;
           f = guyy[whichguy] / -20 - .5 + 40;
-          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; time[whichguy]=70; targetrotation[whichguy]=0;
+          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; timeforguy[whichguy]=70; targetrotation[whichguy]=0;
         }
         if (b == -1 && leftshootpressed[whichguy] == 0 && itemnum[whichguy] >= 2 && itemnum[whichguy] <= 3 && activity[whichguy] == ducking) {
           activity[whichguy] = duckimpaleleft;
@@ -11682,9 +11682,9 @@ void DoAIKeys(int whichguy) {
           targetanim[whichguy] = 38;
           targetframe[whichguy] = 1;
           frame[whichguy] = 0;
-          time[whichguy] = 0;
+          timeforguy[whichguy] = 0;
           fake[whichguy] = 1;
-          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; time[whichguy]=70; targetrotation[whichguy]=0;
+          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; timeforguy[whichguy]=70; targetrotation[whichguy]=0;
         }
         if (b == -1 && itemnum[whichguy] == 0 && leftshootpressed[whichguy] == 0) {
           activity[whichguy] = breakneckleft;
@@ -11692,9 +11692,9 @@ void DoAIKeys(int whichguy) {
           targetanim[whichguy] = 16;
           targetframe[whichguy] = 1;
           frame[whichguy] = 0;
-          time[whichguy] = 0;
+          timeforguy[whichguy] = 0;
           fake[whichguy] = 1;
-          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; time[whichguy]=70; targetrotation[whichguy]=0;
+          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; timeforguy[whichguy]=70; targetrotation[whichguy]=0;
         }
         if (b == -1 && itemnum[whichguy] == 1 && ammo[whichguy] <= 0 && leftshootpressed[whichguy] == 0) {
           activity[whichguy] = breakneckleft;
@@ -11702,9 +11702,9 @@ void DoAIKeys(int whichguy) {
           targetanim[whichguy] = 16;
           targetframe[whichguy] = 1;
           frame[whichguy] = 0;
-          time[whichguy] = 0;
+          timeforguy[whichguy] = 0;
           fake[whichguy] = 1;
-          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; time[whichguy]=70; targetrotation[whichguy]=0;
+          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; timeforguy[whichguy]=70; targetrotation[whichguy]=0;
         }
         if (b == -1 && itemnum[whichguy] >= 4 && itemnum[whichguy] <= 5 && ammo[whichguy] <= 0 && leftshootpressed[whichguy] == 0) {
           activity[whichguy] = breakneckleft;
@@ -11712,9 +11712,9 @@ void DoAIKeys(int whichguy) {
           targetanim[whichguy] = 16;
           targetframe[whichguy] = 1;
           frame[whichguy] = 0;
-          time[whichguy] = 0;
+          timeforguy[whichguy] = 0;
           fake[whichguy] = 1;
-          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; time[whichguy]=70; targetrotation[whichguy]=0;
+          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; timeforguy[whichguy]=70; targetrotation[whichguy]=0;
         }
       }
     }
@@ -11733,7 +11733,7 @@ void DoAIKeys(int whichguy) {
         frame[whichguy] = 0;
         anim[whichguy] = 2;
         targetanim[whichguy] = 2;
-        time[whichguy] = 100;
+        timeforguy[whichguy] = 100;
       }
     }
     if (activity[whichguy] == onrope) {
@@ -11745,13 +11745,13 @@ void DoAIKeys(int whichguy) {
     if (activity[whichguy] == ducking) {
       activity[whichguy] = leftroll;
       targetframe[whichguy] = 1;
-      time[whichguy] = 0;
+      timeforguy[whichguy] = 0;
     }
     if (activity[whichguy] == jetidle || activity[whichguy] == falling || activity[whichguy] == jetup) {
       if (jetpack[whichguy]) {
         activity[whichguy] = jetleft;
         targetframe[whichguy] = 0;
-        time[whichguy] = 0;
+        timeforguy[whichguy] = 0;
         targetanim[whichguy] = 34;
       }
     }
@@ -11766,7 +11766,7 @@ void DoAIKeys(int whichguy) {
         frame[whichguy] = 0;
         anim[whichguy] = 2;
         targetanim[whichguy] = 2;
-        time[whichguy] = 100;
+        timeforguy[whichguy] = 100;
       }
     }
     if (activity[whichguy] == onrope) {
@@ -11778,13 +11778,13 @@ void DoAIKeys(int whichguy) {
     if (activity[whichguy] == ducking) {
       activity[whichguy] = rightroll;
       targetframe[whichguy] = 1;
-      time[whichguy] = 0;
+      timeforguy[whichguy] = 0;
     }
     if (activity[whichguy] == jetidle || activity[whichguy] == falling || activity[whichguy] == jetup) {
       if (jetpack[whichguy]) {
         activity[whichguy] = jetright;
         targetframe[whichguy] = 0;
-        time[whichguy] = 0;
+        timeforguy[whichguy] = 0;
         targetanim[whichguy] = 34;
       }
     }
@@ -11798,7 +11798,7 @@ void DoAIKeys(int whichguy) {
         frame[whichguy] = 0;
         targetanim[whichguy] = 3;
         anim[whichguy] = 3;
-        time[whichguy] = 100;
+        timeforguy[whichguy] = 100;
       }
       if (Map[guymapx[whichguy]][guymapy[whichguy] + 1] == 2 || Map[guymapx[whichguy]][guymapy[whichguy] + 1] == 3) {
         frame[whichguy] = 0;
@@ -11808,7 +11808,7 @@ void DoAIKeys(int whichguy) {
         anim[whichguy] = 5;
         targetanim[whichguy] = 5;
         guyx[whichguy] = guymapx[whichguy] * 10 - 590;
-        time[whichguy] = 80;
+        timeforguy[whichguy] = 80;
       }
     }
     if (activity[whichguy] == ducking && frame[whichguy] == 2) {
@@ -11825,7 +11825,7 @@ void DoAIKeys(int whichguy) {
         anim[whichguy] = 5;
         targetframe[whichguy] = 2;
         guyx[whichguy] = guymapx[whichguy] * 10 - 590;
-        time[whichguy] = 0;
+        timeforguy[whichguy] = 0;
       }
     }
     if (activity[whichguy] == falling || activity[whichguy] == leftflip || activity[whichguy] == rightflip) {
@@ -11842,7 +11842,7 @@ void DoAIKeys(int whichguy) {
           anim[whichguy] = 5;
           targetframe[whichguy] = 2;
           guyx[whichguy] = guymapx[whichguy] * 10 - 590;
-          time[whichguy] = 0;
+          timeforguy[whichguy] = 0;
           rotation[whichguy] = 0;
         }
       }
@@ -11863,12 +11863,12 @@ void DoAIKeys(int whichguy) {
     if (activity[whichguy] == runleft) {
       activity[whichguy] = leftroll;
       targetframe[whichguy] = 0;
-      time[whichguy] = 0;
+      timeforguy[whichguy] = 0;
     }
     if (activity[whichguy] == runright) {
       activity[whichguy] = rightroll;
       targetframe[whichguy] = 0;
-      time[whichguy] = 0;
+      timeforguy[whichguy] = 0;
     }
   }
   //**********UP KEY************//
@@ -11884,7 +11884,7 @@ void DoAIKeys(int whichguy) {
         guyvely[whichguy] = 0;
         activity[whichguy] = climbrope;
         targetanim[whichguy] = 5;
-        time[whichguy] = 100;
+        timeforguy[whichguy] = 100;
         guyx[whichguy] = guymapx[whichguy] * 10 - 590;
       }
     }
@@ -11895,7 +11895,7 @@ void DoAIKeys(int whichguy) {
         anim[whichguy] = 6;
         targetanim[whichguy] = 6;
         targetframe[whichguy] = 2;
-        time[whichguy] = 0;
+        timeforguy[whichguy] = 0;
       }
     }
     if (activity[whichguy] == runleft && uppressed[whichguy] == 0) {
@@ -11904,7 +11904,7 @@ void DoAIKeys(int whichguy) {
       targetanim[whichguy] = 7;
       frame[whichguy] = 0;
       targetframe[whichguy] = 1;
-      time[whichguy] = 0;
+      timeforguy[whichguy] = 0;
     }
     if (activity[whichguy] == runright && uppressed[whichguy] == 0) {
       activity[whichguy] = rightflip;
@@ -11912,14 +11912,14 @@ void DoAIKeys(int whichguy) {
       targetanim[whichguy] = 7;
       frame[whichguy] = 0;
       targetframe[whichguy] = 1;
-      time[whichguy] = 0;
+      timeforguy[whichguy] = 0;
     }
     if (activity[whichguy] == falling && jetpack[whichguy] == 1) {
       if (jetpack[whichguy]) {
         activity[whichguy] = jetup;
         targetanim[whichguy] = 33;
         targetframe[whichguy] = 0;
-        time[whichguy] = 100;
+        timeforguy[whichguy] = 100;
       }
     }
     if (activity[whichguy] == jetidle && jetpack[whichguy] == 1) {
@@ -11927,7 +11927,7 @@ void DoAIKeys(int whichguy) {
         activity[whichguy] = jetup;
         targetanim[whichguy] = 33;
         targetframe[whichguy] = 0;
-        time[whichguy] = 100;
+        timeforguy[whichguy] = 100;
       }
     }
     uppressed[whichguy] = 1;
@@ -11958,13 +11958,13 @@ void DoKeys(int whichguy) {
           activity[whichguy] = swordrightparry;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 29;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
         }
         if (facing[whichguy] != 1) {
           activity[whichguy] = swordleftparry;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 29;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
         }
         delaytime[whichguy] = 400;
         if (itemnum[whichguy] == 3) {
@@ -11995,7 +11995,7 @@ void DoKeys(int whichguy) {
             activity[whichguy] = swordrightthrust;
             targetframe[whichguy] = 0;
             targetanim[whichguy] = 27;
-            time[whichguy] = 100;
+            timeforguy[whichguy] = 100;
           }
         }
         if (facing[whichguy] == 0 && attackpressed[whichguy] == 0) {
@@ -12006,7 +12006,7 @@ void DoKeys(int whichguy) {
             activity[whichguy] = swordleftthrust;
             targetframe[whichguy] = 0;
             targetanim[whichguy] = 27;
-            time[whichguy] = 100;
+            timeforguy[whichguy] = 100;
           }
         }
       }
@@ -12024,7 +12024,7 @@ void DoKeys(int whichguy) {
           activity[whichguy] = swordrightspin;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 40;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
         }
       }
       if (activity[whichguy] == runleft) {
@@ -12035,7 +12035,7 @@ void DoKeys(int whichguy) {
           activity[whichguy] = swordleftspin;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 40;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
         }
       }
     }
@@ -12076,8 +12076,8 @@ void DoKeys(int whichguy) {
                 targetframe[b] = 1;
                 frame[whichguy] = 0;
                 frame[b] = 0;
-                time[whichguy] = 0;
-                time[b] = 0;
+                timeforguy[whichguy] = 0;
+                timeforguy[b] = 0;
               }
             }
           }
@@ -12088,7 +12088,7 @@ void DoKeys(int whichguy) {
               targetanim[whichguy] = 36;
               targetframe[whichguy] = 1;
               frame[whichguy] = 0;
-              time[whichguy] = 0;
+              timeforguy[whichguy] = 0;
               fake[whichguy] = 1;
             }
           }
@@ -12127,8 +12127,8 @@ void DoKeys(int whichguy) {
                 targetframe[b] = 1;
                 frame[whichguy] = 0;
                 frame[b] = 0;
-                time[whichguy] = 0;
-                time[b] = 0;
+                timeforguy[whichguy] = 0;
+                timeforguy[b] = 0;
               }
             }
           }
@@ -12139,7 +12139,7 @@ void DoKeys(int whichguy) {
               targetanim[whichguy] = 36;
               targetframe[whichguy] = 1;
               frame[whichguy] = 0;
-              time[whichguy] = 0;
+              timeforguy[whichguy] = 0;
               fake[whichguy] = 1;
             }
           }
@@ -12206,14 +12206,14 @@ void DoKeys(int whichguy) {
           activity[whichguy] = shootleft;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 10;
-          time[whichguy] = 70;
+          timeforguy[whichguy] = 70;
           targetrotation[whichguy] = 0;
         }
         if (Walls[a][c] == 0 && activity[whichguy] == falling) {
           activity[whichguy] = shootleft;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 30;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
           targetrotation[whichguy] = 0;
           targetrotation[whichguy] = 90;
         }
@@ -12221,7 +12221,7 @@ void DoKeys(int whichguy) {
           activity[whichguy] = shootleft;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 30;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
           targetrotation[whichguy] = 0;
           targetrotation[whichguy] = 90;
         }
@@ -12233,14 +12233,14 @@ void DoKeys(int whichguy) {
           activity[whichguy] = shootleft;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 10;
-          time[whichguy] = 70;
+          timeforguy[whichguy] = 70;
           targetrotation[whichguy] = 0;
         }
         if (Walls[a][c] == 0 && activity[whichguy] == falling) {
           activity[whichguy] = shootleft;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 30;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
           targetrotation[whichguy] = 0;
           targetrotation[whichguy] = 90;
         }
@@ -12248,7 +12248,7 @@ void DoKeys(int whichguy) {
           activity[whichguy] = shootleft;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 30;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
           targetrotation[whichguy] = 0;
           targetrotation[whichguy] = 90;
         }
@@ -12262,14 +12262,14 @@ void DoKeys(int whichguy) {
           activity[whichguy] = shootleft;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 10;
-          time[whichguy] = 70;
+          timeforguy[whichguy] = 70;
           targetrotation[whichguy] = 0;
         }
         if (Walls[a][c] == 0 && activity[whichguy] == falling) {
           activity[whichguy] = shootleft;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 30;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
           targetrotation[whichguy] = 0;
           targetrotation[whichguy] = 90;
         }
@@ -12277,7 +12277,7 @@ void DoKeys(int whichguy) {
           activity[whichguy] = shootleft;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 30;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
           targetrotation[whichguy] = 0;
           targetrotation[whichguy] = 90;
         }
@@ -12289,14 +12289,14 @@ void DoKeys(int whichguy) {
           activity[whichguy] = shootleft;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 31;
-          time[whichguy] = 70;
+          timeforguy[whichguy] = 70;
           targetrotation[whichguy] = 0;
         }
         if (Walls[a][c] == 0 && activity[whichguy] == falling) {
           activity[whichguy] = shootleft;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 30;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
           targetrotation[whichguy] = 0;
           targetrotation[whichguy] = 90;
         }
@@ -12304,7 +12304,7 @@ void DoKeys(int whichguy) {
           activity[whichguy] = shootleft;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 30;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
           targetrotation[whichguy] = 0;
           targetrotation[whichguy] = 90;
         }
@@ -12348,8 +12348,8 @@ void DoKeys(int whichguy) {
               targetframe[b] = 1;
               frame[whichguy] = 0;
               frame[b] = 0;
-              time[whichguy] = 0;
-              time[b] = 0;
+              timeforguy[whichguy] = 0;
+              timeforguy[b] = 0;
             }
           }
         }
@@ -12360,7 +12360,7 @@ void DoKeys(int whichguy) {
             targetanim[whichguy] = 36;
             targetframe[whichguy] = 1;
             frame[whichguy] = 0;
-            time[whichguy] = 0;
+            timeforguy[whichguy] = 0;
             fake[whichguy] = 1;
           }
         }
@@ -12387,9 +12387,9 @@ void DoKeys(int whichguy) {
             targetframe[b] = 1;
             frame[whichguy] = 0;
             frame[b] = 0;
-            time[whichguy] = 0;
-            time[b] = 0;
-            // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; time[whichguy]=70; targetrotation[whichguy]=0;
+            timeforguy[whichguy] = 0;
+            timeforguy[b] = 0;
+            // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; timeforguy[whichguy]=70; targetrotation[whichguy]=0;
           }
         }
         if (b != -1 && rightshootpressed[whichguy] == 0 && itemnum[whichguy] == 4) {
@@ -12413,10 +12413,10 @@ void DoKeys(int whichguy) {
             targetframe[b] = 1;
             frame[whichguy] = 0;
             frame[b] = 0;
-            time[whichguy] = 0;
-            time[b] = 0;
+            timeforguy[whichguy] = 0;
+            timeforguy[b] = 0;
           }
-          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; time[whichguy]=70; targetrotation[whichguy]=0;
+          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; timeforguy[whichguy]=70; targetrotation[whichguy]=0;
         }
         if ((b != -1 || ammo[whichguy] <= 0) && rightshootpressed[whichguy] == 0 && itemnum[whichguy] == 7) {
           if (a == d || Walls[a][c] == 0) {
@@ -12435,19 +12435,19 @@ void DoKeys(int whichguy) {
               usingjetpack[b] = 0;
               targetframe[b] = 1;
               frame[b] = 0;
-              time[b] = 0;
+              timeforguy[b] = 0;
             }
             activity[whichguy] = breakneckright;
             anim[whichguy] = 16;
             targetanim[whichguy] = 16;
             targetframe[whichguy] = 1;
             frame[whichguy] = 0;
-            time[whichguy] = 0;
+            timeforguy[whichguy] = 0;
             if (b == -1) {
               fake[whichguy] = 1;
             }
           }
-          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; time[whichguy]=70; targetrotation[whichguy]=0;
+          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; timeforguy[whichguy]=70; targetrotation[whichguy]=0;
         }
         if (b != -1 && rightshootpressed[whichguy] == 0 && itemnum[whichguy] == 5) {
           if (a == d || Walls[a][c] == 0) {
@@ -12470,10 +12470,10 @@ void DoKeys(int whichguy) {
             targetframe[b] = 1;
             frame[whichguy] = 0;
             frame[b] = 0;
-            time[whichguy] = 0;
-            time[b] = 0;
+            timeforguy[whichguy] = 0;
+            timeforguy[b] = 0;
           }
-          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; time[whichguy]=70; targetrotation[whichguy]=0;
+          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; timeforguy[whichguy]=70; targetrotation[whichguy]=0;
         }
         if (b != -1 && rightshootpressed[whichguy] == 0 && itemnum[whichguy] == 2 && activity[whichguy] != ducking) {
           if (a == d || Walls[a][c] == 0) {
@@ -12496,10 +12496,10 @@ void DoKeys(int whichguy) {
             targetframe[b] = 1;
             frame[whichguy] = 0;
             frame[b] = 0;
-            time[whichguy] = 0;
-            time[b] = 0;
+            timeforguy[whichguy] = 0;
+            timeforguy[b] = 0;
           }
-          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; time[whichguy]=70; targetrotation[whichguy]=0;
+          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; timeforguy[whichguy]=70; targetrotation[whichguy]=0;
         }
         if (b != -1 && rightshootpressed[whichguy] == 0 && itemnum[whichguy] == 3 && activity[whichguy] != ducking) {
           if (a == d || Walls[a][c] == 0) {
@@ -12522,8 +12522,8 @@ void DoKeys(int whichguy) {
             targetframe[b] = 1;
             frame[whichguy] = 0;
             frame[b] = 0;
-            time[whichguy] = 0;
-            time[b] = 0;
+            timeforguy[whichguy] = 0;
+            timeforguy[b] = 0;
             c = (guyx[whichguy] + 595) / 10;
             f = guyy[whichguy] / -20 - .5 + 40;
             if (Walls[c - 1][f] == 1 || Walls[c - 2][f] == 1) {
@@ -12535,7 +12535,7 @@ void DoKeys(int whichguy) {
               targetanim[b] = 19;
             }
           }
-          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; time[whichguy]=70; targetrotation[whichguy]=0;
+          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; timeforguy[whichguy]=70; targetrotation[whichguy]=0;
         }
         if (b == -1 && rightshootpressed[whichguy] == 0 && itemnum[whichguy] >= 2 && itemnum[whichguy] <= 3 && activity[whichguy] != ducking) {
           activity[whichguy] = impaleright;
@@ -12543,9 +12543,9 @@ void DoKeys(int whichguy) {
           targetanim[whichguy] = 18;
           targetframe[whichguy] = 1;
           frame[whichguy] = 0;
-          time[whichguy] = 0;
+          timeforguy[whichguy] = 0;
           fake[whichguy] = 1;
-          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; time[whichguy]=70; targetrotation[whichguy]=0;
+          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; timeforguy[whichguy]=70; targetrotation[whichguy]=0;
         }
         if (b != -1 && rightshootpressed[whichguy] == 0 && itemnum[whichguy] <= 3 && itemnum[whichguy] >= 2 && activity[whichguy] == ducking) {
           fake[whichguy] = 0;
@@ -12567,11 +12567,11 @@ void DoKeys(int whichguy) {
           targetframe[b] = 1;
           frame[whichguy] = 0;
           frame[b] = 0;
-          time[whichguy] = 0;
-          time[b] = 0;
+          timeforguy[whichguy] = 0;
+          timeforguy[b] = 0;
           c = (guyx[whichguy] + 595) / 10;
           f = guyy[whichguy] / -20 - .5 + 40;
-          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; time[whichguy]=70; targetrotation[whichguy]=0;
+          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; timeforguy[whichguy]=70; targetrotation[whichguy]=0;
         }
         if (b == -1 && rightshootpressed[whichguy] == 0 && itemnum[whichguy] >= 2 && itemnum[whichguy] <= 3 && activity[whichguy] == ducking) {
           activity[whichguy] = duckimpaleright;
@@ -12579,9 +12579,9 @@ void DoKeys(int whichguy) {
           targetanim[whichguy] = 38;
           targetframe[whichguy] = 1;
           frame[whichguy] = 0;
-          time[whichguy] = 0;
+          timeforguy[whichguy] = 0;
           fake[whichguy] = 1;
-          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; time[whichguy]=70; targetrotation[whichguy]=0;
+          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; timeforguy[whichguy]=70; targetrotation[whichguy]=0;
         }
         if (b == -1 && itemnum[whichguy] == 0 && rightshootpressed[whichguy] == 0) {
           activity[whichguy] = breakneckright;
@@ -12589,9 +12589,9 @@ void DoKeys(int whichguy) {
           targetanim[whichguy] = 16;
           targetframe[whichguy] = 1;
           frame[whichguy] = 0;
-          time[whichguy] = 0;
+          timeforguy[whichguy] = 0;
           fake[whichguy] = 1;
-          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; time[whichguy]=70; targetrotation[whichguy]=0;
+          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; timeforguy[whichguy]=70; targetrotation[whichguy]=0;
         }
         if (b == -1 && itemnum[whichguy] == 1 && ammo[whichguy] <= 0 && rightshootpressed[whichguy] == 0) {
           activity[whichguy] = breakneckright;
@@ -12599,9 +12599,9 @@ void DoKeys(int whichguy) {
           targetanim[whichguy] = 16;
           targetframe[whichguy] = 1;
           frame[whichguy] = 0;
-          time[whichguy] = 0;
+          timeforguy[whichguy] = 0;
           fake[whichguy] = 1;
-          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; time[whichguy]=70; targetrotation[whichguy]=0;
+          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; timeforguy[whichguy]=70; targetrotation[whichguy]=0;
         }
         if (b == -1 && itemnum[whichguy] >= 4 && itemnum[whichguy] <= 5 && ammo[whichguy] <= 0 && rightshootpressed[whichguy] == 0) {
           activity[whichguy] = breakneckright;
@@ -12609,9 +12609,9 @@ void DoKeys(int whichguy) {
           targetanim[whichguy] = 16;
           targetframe[whichguy] = 1;
           frame[whichguy] = 0;
-          time[whichguy] = 0;
+          timeforguy[whichguy] = 0;
           fake[whichguy] = 1;
-          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; time[whichguy]=70; targetrotation[whichguy]=0;
+          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; timeforguy[whichguy]=70; targetrotation[whichguy]=0;
         }
       }
     }
@@ -12655,21 +12655,21 @@ void DoKeys(int whichguy) {
           activity[whichguy] = shootright;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 12;
-          time[whichguy] = 70;
+          timeforguy[whichguy] = 70;
           targetrotation[whichguy] = 0;
         }
         if (Walls[a][c] == 0 && activity[whichguy] == falling) {
           activity[whichguy] = shootright;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 30;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
           targetrotation[whichguy] = -90;
         }
         if (Walls[a][c] == 0 && Walls[f][c] == 0 && activity[whichguy] == jetidle) {
           activity[whichguy] = shootright;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 30;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
           targetrotation[whichguy] = -90;
         }
       }
@@ -12680,21 +12680,21 @@ void DoKeys(int whichguy) {
           activity[whichguy] = shootright;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 12;
-          time[whichguy] = 70;
+          timeforguy[whichguy] = 70;
           targetrotation[whichguy] = 0;
         }
         if (Walls[a][c] == 0 && activity[whichguy] == falling) {
           activity[whichguy] = shootright;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 30;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
           targetrotation[whichguy] = -90;
         }
         if (Walls[a][c] == 0 && Walls[f][c] == 0 && activity[whichguy] == jetidle) {
           activity[whichguy] = shootright;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 30;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
           targetrotation[whichguy] = -90;
         }
       }
@@ -12707,21 +12707,21 @@ void DoKeys(int whichguy) {
           activity[whichguy] = shootright;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 12;
-          time[whichguy] = 70;
+          timeforguy[whichguy] = 70;
           targetrotation[whichguy] = 0;
         }
         if (Walls[a][c] == 0 && activity[whichguy] == falling) {
           activity[whichguy] = shootright;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 30;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
           targetrotation[whichguy] = -90;
         }
         if (Walls[a][c] == 0 && Walls[f][c] == 0 && activity[whichguy] == jetidle) {
           activity[whichguy] = shootright;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 30;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
           targetrotation[whichguy] = -90;
         }
       }
@@ -12732,21 +12732,21 @@ void DoKeys(int whichguy) {
           activity[whichguy] = shootright;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 32;
-          time[whichguy] = 70;
+          timeforguy[whichguy] = 70;
           targetrotation[whichguy] = 0;
         }
         if (Walls[a][c] == 0 && activity[whichguy] == falling) {
           activity[whichguy] = shootright;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 30;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
           targetrotation[whichguy] = -90;
         }
         if (Walls[a][c] == 0 && Walls[f][c] == 0 && activity[whichguy] == jetidle) {
           activity[whichguy] = shootright;
           targetframe[whichguy] = 0;
           targetanim[whichguy] = 30;
-          time[whichguy] = 100;
+          timeforguy[whichguy] = 100;
           targetrotation[whichguy] = -90;
         }
       }
@@ -12789,8 +12789,8 @@ void DoKeys(int whichguy) {
               targetframe[b] = 1;
               frame[whichguy] = 0;
               frame[b] = 0;
-              time[whichguy] = 0;
-              time[b] = 0;
+              timeforguy[whichguy] = 0;
+              timeforguy[b] = 0;
             }
           }
         }
@@ -12801,7 +12801,7 @@ void DoKeys(int whichguy) {
             targetanim[whichguy] = 36;
             targetframe[whichguy] = 1;
             frame[whichguy] = 0;
-            time[whichguy] = 0;
+            timeforguy[whichguy] = 0;
             fake[whichguy] = 1;
           }
         }
@@ -12827,11 +12827,11 @@ void DoKeys(int whichguy) {
             targetframe[b] = 1;
             frame[whichguy] = 0;
             frame[b] = 0;
-            time[whichguy] = 0;
-            time[b] = 0;
+            timeforguy[whichguy] = 0;
+            timeforguy[b] = 0;
             usingjetpack[b] = 0;
           }
-          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; time[whichguy]=70; targetrotation[whichguy]=0;
+          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; timeforguy[whichguy]=70; targetrotation[whichguy]=0;
         }
         if (b != -1 && leftshootpressed[whichguy] == 0 && itemnum[whichguy] == 4) {
           if (a == d || Walls[d][e] == 0) {
@@ -12853,11 +12853,11 @@ void DoKeys(int whichguy) {
             targetframe[b] = 1;
             frame[whichguy] = 0;
             frame[b] = 0;
-            time[whichguy] = 0;
-            time[b] = 0;
+            timeforguy[whichguy] = 0;
+            timeforguy[b] = 0;
             usingjetpack[b] = 0;
           }
-          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; time[whichguy]=70; targetrotation[whichguy]=0;
+          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; timeforguy[whichguy]=70; targetrotation[whichguy]=0;
         }
         if ((b != -1 || ammo[whichguy] <= 0) && leftshootpressed[whichguy] == 0 && itemnum[whichguy] == 7) {
           if (a == d || Walls[d][e] == 0) {
@@ -12870,7 +12870,7 @@ void DoKeys(int whichguy) {
               guyvelx[b] = 0;
               guyvely[b] = 0;
               fallin[b] = 0;
-              time[b] = 0;
+              timeforguy[b] = 0;
               activity[b] = brokeneckleft;
               anim[b] = 17;
               targetanim[b] = 17;
@@ -12883,12 +12883,12 @@ void DoKeys(int whichguy) {
             targetanim[whichguy] = 16;
             targetframe[whichguy] = 1;
             frame[whichguy] = 0;
-            time[whichguy] = 0;
+            timeforguy[whichguy] = 0;
             if (b == -1) {
               fake[whichguy] = 1;
             }
           }
-          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; time[whichguy]=70; targetrotation[whichguy]=0;
+          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; timeforguy[whichguy]=70; targetrotation[whichguy]=0;
         }
         if (b != -1 && leftshootpressed[whichguy] == 0 && itemnum[whichguy] == 5) {
           if (a == d || Walls[d][e] == 0) {
@@ -12910,11 +12910,11 @@ void DoKeys(int whichguy) {
             targetframe[b] = 1;
             frame[whichguy] = 0;
             frame[b] = 0;
-            time[whichguy] = 0;
-            time[b] = 0;
+            timeforguy[whichguy] = 0;
+            timeforguy[b] = 0;
             usingjetpack[b] = 0;
           }
-          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; time[whichguy]=70; targetrotation[whichguy]=0;
+          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; timeforguy[whichguy]=70; targetrotation[whichguy]=0;
         }
         if (b != -1 && leftshootpressed[whichguy] == 0 && itemnum[whichguy] == 2 && activity[whichguy] != ducking) {
           if (a == d || Walls[d][e] == 0) {
@@ -12936,11 +12936,11 @@ void DoKeys(int whichguy) {
             targetframe[b] = 1;
             frame[whichguy] = 0;
             frame[b] = 0;
-            time[whichguy] = 0;
-            time[b] = 0;
+            timeforguy[whichguy] = 0;
+            timeforguy[b] = 0;
             usingjetpack[b] = 0;
           }
-          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; time[whichguy]=70; targetrotation[whichguy]=0;
+          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; timeforguy[whichguy]=70; targetrotation[whichguy]=0;
         }
         if (b == -1 && leftshootpressed[whichguy] == 0 && itemnum[whichguy] >= 2 && itemnum[whichguy] <= 3 && activity[whichguy] != ducking) {
           activity[whichguy] = impaleleft;
@@ -12948,9 +12948,9 @@ void DoKeys(int whichguy) {
           targetanim[whichguy] = 18;
           targetframe[whichguy] = 1;
           frame[whichguy] = 0;
-          time[whichguy] = 0;
+          timeforguy[whichguy] = 0;
           fake[whichguy] = 1;
-          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; time[whichguy]=70; targetrotation[whichguy]=0;
+          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; timeforguy[whichguy]=70; targetrotation[whichguy]=0;
         }
         if (b != -1 && leftshootpressed[whichguy] == 0 && itemnum[whichguy] == 3 && activity[whichguy] != ducking) {
           if (a == d || Walls[d][e] == 0) {
@@ -12971,8 +12971,8 @@ void DoKeys(int whichguy) {
             targetframe[b] = 1;
             frame[whichguy] = 0;
             frame[b] = 0;
-            time[whichguy] = 0;
-            time[b] = 0;
+            timeforguy[whichguy] = 0;
+            timeforguy[b] = 0;
             c = (guyx[whichguy] + 595) / 10;
             f = guyy[whichguy] / -20 - .5 + 40;
             if (Walls[c][f] == 1 || Walls[c + 1][f] == 1) {
@@ -12984,7 +12984,7 @@ void DoKeys(int whichguy) {
               targetanim[b] = 19;
             }
           }
-          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; time[whichguy]=70; targetrotation[whichguy]=0;
+          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; timeforguy[whichguy]=70; targetrotation[whichguy]=0;
         }
         if (b != -1 && leftshootpressed[whichguy] == 0 && itemnum[whichguy] <= 3 && itemnum[whichguy] >= 2 && activity[whichguy] == ducking) {
           guyx[b] = guyx[whichguy];
@@ -13005,11 +13005,11 @@ void DoKeys(int whichguy) {
           targetframe[b] = 1;
           frame[whichguy] = 0;
           frame[b] = 0;
-          time[whichguy] = 0;
-          time[b] = 0;
+          timeforguy[whichguy] = 0;
+          timeforguy[b] = 0;
           c = (guyx[whichguy] + 595) / 10;
           f = guyy[whichguy] / -20 - .5 + 40;
-          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; time[whichguy]=70; targetrotation[whichguy]=0;
+          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; timeforguy[whichguy]=70; targetrotation[whichguy]=0;
         }
         if (b == -1 && leftshootpressed[whichguy] == 0 && itemnum[whichguy] >= 2 && itemnum[whichguy] <= 3 && activity[whichguy] == ducking) {
           activity[whichguy] = duckimpaleleft;
@@ -13017,9 +13017,9 @@ void DoKeys(int whichguy) {
           targetanim[whichguy] = 38;
           targetframe[whichguy] = 1;
           frame[whichguy] = 0;
-          time[whichguy] = 0;
+          timeforguy[whichguy] = 0;
           fake[whichguy] = 1;
-          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; time[whichguy]=70; targetrotation[whichguy]=0;
+          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; timeforguy[whichguy]=70; targetrotation[whichguy]=0;
         }
         if (b == -1 && itemnum[whichguy] == 0 && leftshootpressed[whichguy] == 0) {
           activity[whichguy] = breakneckleft;
@@ -13027,9 +13027,9 @@ void DoKeys(int whichguy) {
           targetanim[whichguy] = 16;
           targetframe[whichguy] = 1;
           frame[whichguy] = 0;
-          time[whichguy] = 0;
+          timeforguy[whichguy] = 0;
           fake[whichguy] = 1;
-          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; time[whichguy]=70; targetrotation[whichguy]=0;
+          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; timeforguy[whichguy]=70; targetrotation[whichguy]=0;
         }
         if (b == -1 && itemnum[whichguy] == 1 && ammo[whichguy] <= 0 && leftshootpressed[whichguy] == 0) {
           activity[whichguy] = breakneckleft;
@@ -13037,9 +13037,9 @@ void DoKeys(int whichguy) {
           targetanim[whichguy] = 16;
           targetframe[whichguy] = 1;
           frame[whichguy] = 0;
-          time[whichguy] = 0;
+          timeforguy[whichguy] = 0;
           fake[whichguy] = 1;
-          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; time[whichguy]=70; targetrotation[whichguy]=0;
+          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; timeforguy[whichguy]=70; targetrotation[whichguy]=0;
         }
         if (b == -1 && itemnum[whichguy] >= 4 && itemnum[whichguy] <= 5 && ammo[whichguy] <= 0 && leftshootpressed[whichguy] == 0) {
           activity[whichguy] = breakneckleft;
@@ -13047,9 +13047,9 @@ void DoKeys(int whichguy) {
           targetanim[whichguy] = 16;
           targetframe[whichguy] = 1;
           frame[whichguy] = 0;
-          time[whichguy] = 0;
+          timeforguy[whichguy] = 0;
           fake[whichguy] = 1;
-          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; time[whichguy]=70; targetrotation[whichguy]=0;
+          // activity[whichguy]=shootright; targetframe[whichguy]=0; targetanim[whichguy]=12; timeforguy[whichguy]=70; targetrotation[whichguy]=0;
         }
       }
     }
@@ -13068,7 +13068,7 @@ void DoKeys(int whichguy) {
         frame[whichguy] = 0;
         anim[whichguy] = 2;
         targetanim[whichguy] = 2;
-        time[whichguy] = 100;
+        timeforguy[whichguy] = 100;
       }
     }
     if (activity[whichguy] == onrope) {
@@ -13080,13 +13080,13 @@ void DoKeys(int whichguy) {
     if (activity[whichguy] == ducking) {
       activity[whichguy] = leftroll;
       targetframe[whichguy] = 1;
-      time[whichguy] = 0;
+      timeforguy[whichguy] = 0;
     }
     if (activity[whichguy] == jetidle || activity[whichguy] == falling || activity[whichguy] == jetup) {
       if (jetpack[whichguy]) {
         activity[whichguy] = jetleft;
         targetframe[whichguy] = 0;
-        time[whichguy] = 0;
+        timeforguy[whichguy] = 0;
         targetanim[whichguy] = 34;
       }
     }
@@ -13101,7 +13101,7 @@ void DoKeys(int whichguy) {
         frame[whichguy] = 0;
         anim[whichguy] = 2;
         targetanim[whichguy] = 2;
-        time[whichguy] = 100;
+        timeforguy[whichguy] = 100;
       }
     }
     if (activity[whichguy] == onrope) {
@@ -13113,13 +13113,13 @@ void DoKeys(int whichguy) {
     if (activity[whichguy] == ducking) {
       activity[whichguy] = rightroll;
       targetframe[whichguy] = 1;
-      time[whichguy] = 0;
+      timeforguy[whichguy] = 0;
     }
     if (activity[whichguy] == jetidle || activity[whichguy] == falling || activity[whichguy] == jetup) {
       if (jetpack[whichguy]) {
         activity[whichguy] = jetright;
         targetframe[whichguy] = 0;
-        time[whichguy] = 0;
+        timeforguy[whichguy] = 0;
         targetanim[whichguy] = 34;
       }
     }
@@ -13133,7 +13133,7 @@ void DoKeys(int whichguy) {
         frame[whichguy] = 0;
         targetanim[whichguy] = 3;
         anim[whichguy] = 3;
-        time[whichguy] = 100;
+        timeforguy[whichguy] = 100;
       }
       if (Map[guymapx[whichguy]][guymapy[whichguy] + 1] == 2 || Map[guymapx[whichguy]][guymapy[whichguy] + 1] == 3) {
         frame[whichguy] = 0;
@@ -13143,7 +13143,7 @@ void DoKeys(int whichguy) {
         anim[whichguy] = 5;
         targetanim[whichguy] = 5;
         guyx[whichguy] = guymapx[whichguy] * 10 - 590;
-        time[whichguy] = 80;
+        timeforguy[whichguy] = 80;
       }
     }
     if (activity[whichguy] == ducking && frame[whichguy] == 2) {
@@ -13160,7 +13160,7 @@ void DoKeys(int whichguy) {
         anim[whichguy] = 5;
         targetframe[whichguy] = 2;
         guyx[whichguy] = guymapx[whichguy] * 10 - 590;
-        time[whichguy] = 0;
+        timeforguy[whichguy] = 0;
       }
     }
     if (activity[whichguy] == falling || activity[whichguy] == leftflip || activity[whichguy] == rightflip) {
@@ -13177,7 +13177,7 @@ void DoKeys(int whichguy) {
           anim[whichguy] = 5;
           targetframe[whichguy] = 2;
           guyx[whichguy] = guymapx[whichguy] * 10 - 590;
-          time[whichguy] = 0;
+          timeforguy[whichguy] = 0;
           rotation[whichguy] = 0;
         }
       }
@@ -13198,12 +13198,12 @@ void DoKeys(int whichguy) {
     if (activity[whichguy] == runleft) {
       activity[whichguy] = leftroll;
       targetframe[whichguy] = 0;
-      time[whichguy] = 0;
+      timeforguy[whichguy] = 0;
     }
     if (activity[whichguy] == runright) {
       activity[whichguy] = rightroll;
       targetframe[whichguy] = 0;
-      time[whichguy] = 0;
+      timeforguy[whichguy] = 0;
     }
   }
   //**********UP KEY************//
@@ -13219,7 +13219,7 @@ void DoKeys(int whichguy) {
         guyvely[whichguy] = 0;
         activity[whichguy] = climbrope;
         targetanim[whichguy] = 5;
-        time[whichguy] = 100;
+        timeforguy[whichguy] = 100;
         guyx[whichguy] = guymapx[whichguy] * 10 - 590;
       }
     }
@@ -13230,7 +13230,7 @@ void DoKeys(int whichguy) {
         anim[whichguy] = 6;
         targetanim[whichguy] = 6;
         targetframe[whichguy] = 2;
-        time[whichguy] = 0;
+        timeforguy[whichguy] = 0;
       }
     }
     if (activity[whichguy] == runleft && uppressed[whichguy] == 0) {
@@ -13239,7 +13239,7 @@ void DoKeys(int whichguy) {
       targetanim[whichguy] = 7;
       frame[whichguy] = 0;
       targetframe[whichguy] = 1;
-      time[whichguy] = 0;
+      timeforguy[whichguy] = 0;
     }
     if (activity[whichguy] == runright && uppressed[whichguy] == 0) {
       activity[whichguy] = rightflip;
@@ -13247,14 +13247,14 @@ void DoKeys(int whichguy) {
       targetanim[whichguy] = 7;
       frame[whichguy] = 0;
       targetframe[whichguy] = 1;
-      time[whichguy] = 0;
+      timeforguy[whichguy] = 0;
     }
     if (activity[whichguy] == falling && jetpack[whichguy] == 1) {
       if (jetpack[whichguy]) {
         activity[whichguy] = jetup;
         targetanim[whichguy] = 33;
         targetframe[whichguy] = 0;
-        time[whichguy] = 100;
+        timeforguy[whichguy] = 100;
       }
     }
     if (activity[whichguy] == jetidle && jetpack[whichguy] == 1) {
@@ -13262,7 +13262,7 @@ void DoKeys(int whichguy) {
         activity[whichguy] = jetup;
         targetanim[whichguy] = 33;
         targetframe[whichguy] = 0;
-        time[whichguy] = 100;
+        timeforguy[whichguy] = 100;
       }
     }
     uppressed[whichguy] = 1;
