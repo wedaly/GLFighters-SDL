@@ -4,4 +4,4 @@
 
 bool initGame(int screenWidthConfig, int screenHeightConfig);
 void disposeGame();
-void runGameEventLoop(SDL_Window *window);
+void runGameEventLoopOnce(SDL_Window *window, bool *quit);
