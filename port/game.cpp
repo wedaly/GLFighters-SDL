@@ -438,7 +438,7 @@ Point3D DoRotation(Point3D thePoint, float xang, float yang, float zang);
 Point3D FindJetPackPos(int whichguy);
 void Explode(int which);
 void DrawGuy(int whichguy, int sabre);
-void restartRound();
+void restartRound(bool firstRound);
 Point3D FindEyeRot(int whichguy);
 Point3D FindEyePoint(int whichguy);
 void WallBounds(int toggle);
@@ -3128,7 +3128,7 @@ void DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
   glEnable(GL_LIGHTING);
 }
 
-void restartRound() {
+void restartRound(bool firstRound) {
   int x;
   int y;
   for (x = 0; x < maxsprites; x++) {
@@ -3171,6 +3171,11 @@ void restartRound() {
   guyvelx[0] = 0;
   guyvely[0] = 0;
   randomint = rand() % 13 + 3; // startplacex[1] falls to its death, so choose a range that excludes it AND is within [0, 16)
+  if (firstRound) {
+    // For the first round, choose a start place where the characters are
+    // close together so it's easier to see where they are.
+    randomint = 3;
+  }
   guyx[0] = startplacex[randomint] * 10 - 590;
   guyy[0] = (startplacey[randomint] - 39) * -20 + .5;
   activity[0] = 1;
@@ -3192,6 +3197,9 @@ void restartRound() {
                                 // (leave one extra at the end in case we collide with the other player, can safely increment by one).
   if (randomint2 == randomint) {
     randomint2++;
+  }
+  if (firstRound) {
+    randomint2 = 5;
   }
   guyx[1] = startplacex[randomint2] * 10 - 590;
   guyy[1] = (startplacey[randomint2] - 39) * -20 + .5;
@@ -3445,7 +3453,7 @@ void HandleKeyDown(int keyID) {
     computercontrolled[0] = 1 - computercontrolled[0];
     break;
   case KEY_RESPAWN_PLAYER_CHARACTERS_ID:
-    restartRound();
+    restartRound(false);
     break;
   case KEY_TOGGLE_P1_WEAPON_ID:
     // for(x=0;x<numplayers;x++){
@@ -8734,7 +8742,7 @@ void DoAIPlayerStuff(int whichguy) {
   if (health[whichguy] <= 0 && oldhealth[whichguy] > 0) {
     deathcount[oldnum[whichguy]]++;
     if (autorespawn == 1) {
-      restartRound();
+      restartRound(false);
     }
   }
   if (health[whichguy] < oldhealth[whichguy]) {
@@ -13784,7 +13792,7 @@ bool initGame(int screenwidthArg, int screenheightArg) {
     return false;
   }
 
-  restartRound();
+  restartRound(true);
   WallBounds(cube);
 
   return true;
