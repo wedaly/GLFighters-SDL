@@ -45,7 +45,7 @@ cd ./port
 
 CXXFLAGS="-I./wasm/gl4es-v1.1.6/include" \
 LDLIBS="./wasm/gl4es-v1.1.6/lib/libGL.a" \
-LDFLAGS="--use-port=sdl2 --use-port=sdl2_mixer -sFULL_ES2 --preload-file=./data" \
+LDFLAGS="--use-port=sdl2 --use-port=sdl2_mixer -sFULL_ES2 --preload-file=./data --shell-file ./wasm/emscripten-shell.html" \
 BIN=glfighters.html \
 emmake make
 ```
