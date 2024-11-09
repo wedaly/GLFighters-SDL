@@ -3,7 +3,7 @@
 #include <SDL2/SDL.h>
 
 static const int numTextures = 72;
-static char *texturePaths[]{
+static const char *texturePaths[]{
     "./data/images/PenguinBody.bmp",
     "./data/images/PenguinFeet.bmp",
     "./data/images/Smoke.bmp",
@@ -84,16 +84,18 @@ static void flipSurfaceVertically(SDL_Surface *surface) {
   SDL_LockSurface(surface);
   int pitch = surface->pitch;
   char *pixels = (char *)(surface->pixels);
-  char tmp[pitch];
+  char *tmpRow = new char[pitch];
 
   for (int i = 0; i < surface->h / 2; i++) {
     char *row1 = pixels + i * pitch;
     char *row2 = pixels + (surface->h - i - 1) * pitch;
-    memcpy(tmp, row1, pitch);
+    memcpy(tmpRow, row1, pitch);
     memcpy(row1, row2, pitch);
-    memcpy(row2, tmp, pitch);
+    memcpy(row2, tmpRow, pitch);
   }
   SDL_UnlockSurface(surface);
+
+  delete[] tmpRow;
 }
 
 static void swapRedAndBlue(SDL_Surface *surface) {
@@ -103,15 +105,15 @@ static void swapRedAndBlue(SDL_Surface *surface) {
   int n = surface->w * surface->h * bpp;
 
   for (int i = 0; i < n; i += bpp) {
-    char tmp = pixels[i];
+    char tmpPixel = pixels[i];
     pixels[i] = pixels[i + 2];
-    pixels[i + 2] = tmp;
+    pixels[i + 2] = tmpPixel;
   }
 
   SDL_UnlockSurface(surface);
 }
 
-static bool loadTextureFromImage(char *path, GLuint textureID) {
+static bool loadTextureFromImage(const char *path, GLuint textureID) {
   SDL_Surface *surface = SDL_LoadBMP(path);
   if (surface == NULL) {
     printf("Error loading SDL surface from '%s'. SDL_Error: %s\n", path,
