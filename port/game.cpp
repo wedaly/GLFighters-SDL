@@ -750,7 +750,7 @@ int InitGL(GLvoid) // All Setup For OpenGL Goes Here
   glEnable(GL_NORMALIZE);
   fogtoggle = 1;
   // infoshowing
-  showinfo = 3;
+  showinfo = 0;
   blendtype = 0;
   blendtype2 = 0;
   computercontrolled[1] = 1;
@@ -2958,7 +2958,7 @@ void DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
   glDisable(GL_BLEND);
   glEnable(GL_BLEND);
   glColor4f(1.0f, 1.0f, 1.0f, .5f);
-  if (showinfo == 3) {
+  if (showinfo == 1) {
     glColor3f(1, 1, 1);
 
     if (changablejump) {
@@ -3361,10 +3361,7 @@ void HandleKeyDown(int keyID) {
 
   switch (keyID) {
   case KEY_TOGGLE_SHOW_INFO_ID:
-    showinfo++;
-    if (showinfo >= 4) {
-      showinfo = 0;
-    }
+    showinfo = (showinfo + 1) % 3;
     break;
   case KEY_GIVE_9999_HEALTH_ID:
     health[0] = 10000;
