@@ -24,35 +24,18 @@ Follow the instructions at [emscripten.org](https://emscripten.org/docs/getting_
 
 ## Building and running
 
-## Linux
-
-Build with make:
+Build both Linux and WASM using `make` from the root of the repository:
 ```
-cd ./port
 make
 ```
 
-Then run it:
+To run the Linux binary:
 ```
-./port/glfighters
-```
-
-## WASM
-
-Compile using emscripten:
-```
-cd ./port
-
-CXXFLAGS="-I./wasm/gl4es-v1.1.6/include" \
-LDLIBS="./wasm/gl4es-v1.1.6/lib/libGL.a" \
-LDFLAGS="--use-port=sdl2 --use-port=sdl2_mixer -sFULL_ES2 --preload-file=./data --shell-file ./wasm/emscripten-shell.html" \
-BIN=glfighters.html \
-emmake make
+$(cd ./port; ./glfighters)
 ```
 
-To run it, first start a webserver:
+To run in a browser:
 ```
-python -m http.server
+make server
 ```
-
-Then load this page in a browser: [http://localhost:8000/glfighters.html](http://localhost:8000/glfighters.html)
+Then use a browser to open the link printed to the console
