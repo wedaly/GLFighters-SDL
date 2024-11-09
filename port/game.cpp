@@ -973,7 +973,8 @@ int InitGL(GLvoid) // All Setup For OpenGL Goes Here
   kUpKey[0] = KEY_P1_UP_ID;
   kDownKey[0] = KEY_P1_DOWN_ID;
   ammo[0] = 30;
-  itemnum[0] = 1;
+  itemnum[0] = 2;
+  itemtype[0] = 1;
   kRightShootKey[2] = 60;
   kLeftShootKey[2] = 60;
   kLeftKey[2] = 60;
@@ -981,7 +982,7 @@ int InitGL(GLvoid) // All Setup For OpenGL Goes Here
   kUpKey[2] = 60;
   kDownKey[2] = 60;
   ammo[2] = 30;
-  itemnum[0] = 1;
+  itemnum[2] = 1;
   kBlockKey[1] = KEY_P2_BLOCK_ID;
   kAttackKey[1] = KEY_P2_ATTACK_ID;
   kRightShootKey[1] = KEY_P2_SHOOT_RIGHT_ID;
@@ -3175,6 +3176,9 @@ void restartRound(bool firstRound) {
     // For the first round, choose a start place where the characters are
     // close together so it's easier to see where they are.
     randomint = 3;
+  }
+  if (randomint == 3) {
+    facing[0] = 1; // face right
   }
   guyx[0] = startplacex[randomint] * 10 - 590;
   guyy[0] = (startplacey[randomint] - 39) * -20 + .5;
