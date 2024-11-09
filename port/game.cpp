@@ -961,6 +961,8 @@ int InitGL(GLvoid) // All Setup For OpenGL Goes Here
   glFogf(GL_FOG_START, 500.0f); // Fog Start Depth
   glFogf(GL_FOG_END, 1000.0f);
 
+  constantswordtrail = true;
+
   // set keys
   kBlockKey[0] = KEY_P1_BLOCK_ID;
   kAttackKey[0] = KEY_P1_ATTACK_ID;
