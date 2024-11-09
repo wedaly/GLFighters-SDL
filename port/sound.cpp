@@ -3,7 +3,7 @@
 #include <SDL2/SDL_mixer.h>
 
 static const int numSoundClips = 31;
-static char *soundClipPaths[] = {
+static const char *soundClipPaths[] = {
     "./data/sounds/128.Roll.wav",
     "./data/sounds/129.Step.wav",
     "./data/sounds/130.Land.wav",
@@ -87,7 +87,7 @@ bool loadSounds() {
   }
 
   for (int i = 0; i < numSoundClips; i++) {
-    char *path = soundClipPaths[i];
+    const char *path = soundClipPaths[i];
     soundClips[i] = Mix_LoadWAV(path);
     if (soundClips[i] == NULL) {
       printf("SDL_Mixer could not load audio file from '%s'. SDL_Error: %s\n", path,
