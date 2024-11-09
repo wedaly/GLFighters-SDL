@@ -992,7 +992,6 @@ int InitGL(GLvoid) // All Setup For OpenGL Goes Here
   return true; // Initialization Went OK
 }
 
-void DrawSabreGlow(int whichguy);
 void DrawSabreGlow(int whichguy) {
   float spin = -90, size = 16, brightness = 255;
   glBlendFunc(GL_SRC_ALPHA, GL_ONE);
@@ -1120,7 +1119,6 @@ void DrawSabreGlow(int whichguy) {
   glEnable(GL_CULL_FACE);
 }
 
-void DrawBody(int whichguy);
 void DrawBody(int whichguy) {
   float hipfloat[3][2];
   glTranslatef(0, .1, 0);
@@ -1339,7 +1337,6 @@ void DrawBody(int whichguy) {
   glEnable(GL_CULL_FACE);
 }
 
-void DrawSabreBody(int whichguy);
 void DrawSabreBody(int whichguy) {
   float hipfloat[3][2];
   glPushMatrix();
@@ -1416,7 +1413,6 @@ void DrawSabreBody(int whichguy) {
                         glPopMatrix();
 }
 
-void DrawGuys(int whichguy);
 void DrawGuys(int whichguy, int sabre) {
   glPushMatrix();
   bindTexture(TEX_MARBLE_ID);
@@ -1662,14 +1658,12 @@ void HandleSpriteTypes(int x) {
   }
 }
 
-void BoundCamera();
 void BoundCamera() {
   if (cameray + (sin((-xrot) / 360 * 6.28) * -(z - 6)) < -560) {
     cameray = -560 - (sin((-xrot) / 360 * 6.28) * -(z - 6));
   }
 }
 
-void glDrawBigCube(float xWidth, float yWidth, float zWidth, int tesselation, float movement);
 void glDrawBigCube(float xWidth, float yWidth, float zWidth, int tesselation, float movement) {
   int normallength = .3;
   if (theme == matrixtheme) {
@@ -1739,7 +1733,6 @@ void glDrawBigCube(float xWidth, float yWidth, float zWidth, int tesselation, fl
   glEnd();
 }
 
-void glEnvironmentCube(int front, int left, int back, int right, int up, int down, int size);
 void glEnvironmentCube(int front, int left, int back, int right, int up, int down, int size) {
   int normallength = 1;
   int a;
@@ -3903,7 +3896,6 @@ void DoStabFX(int b) {
   }
 }
 
-void SwitchFrame(int whichguy);
 void SwitchFrame(int whichguy) {
   int x, y, a, b, c, d, e, f, g;
   float randomjohn;
@@ -5212,7 +5204,6 @@ void SwitchFrame(int whichguy) {
   }
 }
 
-void NextFrame(int whichguy);
 void NextFrame(int whichguy) {
   if (time[whichguy] >= 100) {
     SwitchFrame(whichguy);
@@ -5576,7 +5567,6 @@ void Explode(int which) {
   //}
 }
 
-void HandleSprites();
 void HandleSprites() {
   int x, y, a, b, c, d, e, f, hit, wallintheway;
   for (x = 0; x < 2; x++) {
@@ -7648,7 +7638,6 @@ Point3D FindLeftGunPoint(int whichguy) {
   return GunPoint;
 }
 
-void DoPlayerStuff(int whichguy);
 void DoAIPlayerStuff(int whichguy) {
   lightningfxdelay[whichguy] -= multiplier;
   int x, a, b, c, d, e, f, g, verydead = 0;
@@ -8809,7 +8798,6 @@ void DoAIPlayerStuff(int whichguy) {
   }
 }
 
-void DoPlayerStuff(int whichguy);
 void DoPlayerStuff(int whichguy) {
   lightningfxdelay[whichguy] -= multiplier;
   int x, a, b, c, d, e, f, g, verydead = 0;
@@ -9981,7 +9969,6 @@ void DoPlayerStuff(int whichguy) {
   }
 }
 
-void ShootGrenade();
 void ShootGrenade(int whichguy) {
   int a, b, c, d, e, g, h, x;
   float soundvolume;
