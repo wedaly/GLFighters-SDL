@@ -236,7 +236,7 @@ GLfloat boomsize;
 GLfloat boomx;
 GLfloat shockx;
 GLfloat shockx2;
-GLfloat fogColor[4] = {0.5f, 0.5f, 0.5f, 1.0f}; // Fog Color
+GLfloat fogColor[4] = {0.0f, 0.0f, 0.0f, 1.0f}; // Fog Color
 float guyx[17];
 float guyy[17];
 float oldguyx[17];
@@ -812,9 +812,10 @@ int InitGL(GLvoid) // All Setup For OpenGL Goes Here
 
   camerax = -100;
   cameray = -200;
-  themebasenum = TEX_MARBLE_ID;
-  themebacknum = TEX_MARBLE_ID;
-  themeropenum = TEX_ROPE_ID;
+  theme = trontheme;
+  themebasenum = TEX_GRID_ID;
+  themebacknum = TEX_GRID_ID;
+  themeropenum = TEX_PENGUINFEET_ID;
   wireframe = 0;
   selectedx = 50;
   selectedy = 50;
