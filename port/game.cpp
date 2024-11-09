@@ -1665,13 +1665,13 @@ void BoundCamera() {
 }
 
 void glDrawBigCube(float xWidth, float yWidth, float zWidth, int tesselation, float movement) {
-  int normallength = .3;
+  float normallength = 0.3f;
   if (theme == matrixtheme) {
     normallength = 1.0;
   }
   glBegin(GL_QUADS);
   // Front Face
-  glNormal3f(0.0f, 0.0f, -normallength);
+  glNormal3f(0.0f, 0.0f, normallength);
   glTexCoord2f(0.0f, movement);
   glVertex3f(-xWidth, -yWidth, zWidth);
   glTexCoord2f(tesselation, movement);
@@ -1691,7 +1691,7 @@ void glDrawBigCube(float xWidth, float yWidth, float zWidth, int tesselation, fl
   glTexCoord2f(0.0f, movement);
   glVertex3f(xWidth, -yWidth, -zWidth);
   // Top Face
-  glNormal3f(0.0f, -normallength, 0.0f);
+  glNormal3f(0.0f, normallength, 0.0f);
   glTexCoord2f(0.0f, tesselation + movement);
   glVertex3f(-xWidth, yWidth, -zWidth);
   glTexCoord2f(0.0f, movement);
@@ -1721,7 +1721,7 @@ void glDrawBigCube(float xWidth, float yWidth, float zWidth, int tesselation, fl
   glTexCoord2f(0.0f, movement);
   glVertex3f(xWidth, -yWidth, zWidth);
   // Left Face
-  glNormal3f(normallength, 0.0f, 0.0f);
+  glNormal3f(-normallength, 0.0f, 0.0f);
   glTexCoord2f(0.0f, movement);
   glVertex3f(-xWidth, -yWidth, -zWidth);
   glTexCoord2f(tesselation, movement);
@@ -1734,7 +1734,7 @@ void glDrawBigCube(float xWidth, float yWidth, float zWidth, int tesselation, fl
 }
 
 void glEnvironmentCube(int front, int left, int back, int right, int up, int down, int size) {
-  int normallength = 1;
+  float normallength = 1.0f;
   int a;
   float movement = 0.0009;
   float tesselation = .9981;
