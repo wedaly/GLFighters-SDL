@@ -3124,6 +3124,22 @@ void DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
     glColor3f(1, 1, 1);
     sprintf(aChar, "Frames per second is about %d.", (int)framespersecond);
     printToScreen(2, 2, aChar, 0, 1, screenwidth, screenheight);
+  } else {
+    if (health[0] <= 0 && health[0] > -400) {
+      glColor3f(1, 0, 0);
+      sprintf(aChar, "YOU DIED");
+      printToScreen(2, 40, aChar, 0, .8, screenwidth, screenheight);
+      glColor3f(1, 1, 1);
+      sprintf(aChar, "Press z to restart");
+      printToScreen(2, 20, aChar, 0, .8, screenwidth, screenheight);
+    } else if (health[1] <= 0 && health[1] > -400) {
+      glColor3f(0, 0.7, 0);
+      sprintf(aChar, "YOU WIN");
+      printToScreen(2, 40, aChar, 0, .8, screenwidth, screenheight);
+      glColor3f(1, 1, 1);
+      sprintf(aChar, "Press z to restart");
+      printToScreen(2, 20, aChar, 0, .8, screenwidth, screenheight);
+    }
   }
   glDisable(GL_BLEND);
   glEnable(GL_LIGHTING);
