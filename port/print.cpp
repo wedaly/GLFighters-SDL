@@ -83,7 +83,7 @@ void printToScreen(int x, int y, char *s, bool italicize, float size, int screen
   glEnableClientState(GL_TEXTURE_COORD_ARRAY);
   glEnableClientState(GL_VERTEX_ARRAY);
 
-  for (int i = 0; i < strlen(s); i++) {
+  for (size_t i = 0; i < strlen(s); i++) {
     int vboID = s[i] - 32 + offset; // start from ASCII ' '
     if (vboID >= 0 && vboID < numFontChars) {
       glBindBuffer(GL_ARRAY_BUFFER, fontVertexBufferObjIDs[vboID]);
