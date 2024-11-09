@@ -2,7 +2,7 @@
 
 bool loadModels();
 void freeModels();
-void drawModel(int id);
+void drawModel(int id, bool wireframe);
 void glDrawFloor(float xWidth, float yWidth, float zWidth, float movement);
 void glDrawCube(float xWidth, float yWidth, float zWidth, int tesselation);
 
