@@ -1,7 +1,7 @@
 #include "input.h"
 #include <SDL2/SDL.h>
 
-static const int numKeysTracked = 62;
+static const int numKeysTracked = 61;
 static bool keyState[numKeysTracked] = {0};
 
 int translateSDLEventToKeyID(SDL_KeyboardEvent &e) {
@@ -98,7 +98,7 @@ int translateSDLEventToKeyID(SDL_KeyboardEvent &e) {
   } else if (keycode == 's' && shift) {
     return KEY_TOGGLE_SHOW_INFO_ID;
   } else if (keycode == 'l' && shift) {
-    return KEY_TOGGLE_LIGHTNING_ID;
+    return KEY_TOGGLE_LIGHTING_ID;
   } else if (keycode == 'u' && !shift) {
     return KEY_TOGGLE_JETPACKS_ID;
   } else if (keycode == 'u' && shift) {
@@ -131,8 +131,6 @@ int translateSDLEventToKeyID(SDL_KeyboardEvent &e) {
     return KEY_MAP_ERASE_EVERYTHING_ID;
   } else if (keycode == SDLK_KP_PLUS) {
     return KEY_MAP_CREATE_WALL_ID;
-  } else if (keycode == SDLK_ESCAPE) {
-    return KEY_QUIT_ID;
   }
 
   return -1;

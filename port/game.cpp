@@ -3443,7 +3443,7 @@ void HandleKeyDown(int keyID) {
       gravity += .005;
     }
     break;
-  case KEY_TOGGLE_LIGHTNING_ID:
+  case KEY_TOGGLE_LIGHTING_ID:
     if (lighting == 1) {
       lighting = 2;
     }

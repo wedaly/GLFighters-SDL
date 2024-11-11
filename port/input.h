@@ -51,7 +51,7 @@ const int KEY_TOGGLE_P2_WEAPON_ID = 39;
 const int KEY_TOGGLE_PARTICLE_HAND_TRAILS_ID = 40;
 const int KEY_TOGGLE_POLYGON_HAND_TRAILS_ID = 41;
 const int KEY_TOGGLE_SHOW_INFO_ID = 42;
-const int KEY_TOGGLE_LIGHTNING_ID = 43;
+const int KEY_TOGGLE_LIGHTING_ID = 43;
 const int KEY_TOGGLE_JETPACKS_ID = 44;
 const int KEY_TOGGLE_UNLIMITED_AMMO_ID = 45;
 const int KEY_GIVE_9999_HEALTH_ID = 46;
@@ -69,19 +69,17 @@ const int KEY_TOGGLE_DEC_JUMP_HEIGHT_ID = 55;
 
 const int KEY_TOGGLE_FIRSTPERSON_ID = 56;
 
-const int KEY_QUIT_ID = 57;
-
 // Map keys
-const int KEY_MAP_TOGGLE_EDITOR_ID = 58;
+const int KEY_MAP_TOGGLE_EDITOR_ID = 57;
 const int KEY_MAP_ERASE_ID = KEY_P2_ATTACK_ID;            // both keypad 0
 const int KEY_MAP_SET_TILE_PLATFORM_ID = KEY_P2_CLOAK_ID; // both keypad 1
-const int KEY_MAP_SET_TILE_PLATFORM_WITH_ROPE_ID = 59;
+const int KEY_MAP_SET_TILE_PLATFORM_WITH_ROPE_ID = 58;
 const int KEY_MAP_SET_TILE_ROPE_ID = KEY_P2_TURN_OFF_JETPACK_ID;       // both keypad 3
 const int KEY_MAP_SELECTION_UP_ID = KEY_P2_UP_ID;                      // both keypad 8
-const int KEY_MAP_SELECTION_DOWN_ID = KEY_P2_DOWN_ID;                  // both keypad 8
+const int KEY_MAP_SELECTION_DOWN_ID = KEY_P2_DOWN_ID;                  // both keypad 5
 const int KEY_MAP_SELECTION_LEFT_ID = KEY_P2_LEFT_ID;                  // both keypad 4
 const int KEY_MAP_SELECTION_RIGHT_ID = KEY_P2_RIGHT_ID;                // both keypad 6
 const int KEY_MAP_CREATE_SPAWNPOINT_ID = KEY_P2_SHOOT_LEFT_ID;         // both keypad 7
 const int KEY_MAP_CHANGE_SPAWNPOINT_NUMBER_ID = KEY_P2_SHOOT_RIGHT_ID; // both keypad 9
-const int KEY_MAP_ERASE_EVERYTHING_ID = 60;
-const int KEY_MAP_CREATE_WALL_ID = 61;
+const int KEY_MAP_ERASE_EVERYTHING_ID = 59;
+const int KEY_MAP_CREATE_WALL_ID = 60;
