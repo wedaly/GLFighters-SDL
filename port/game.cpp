@@ -3137,7 +3137,7 @@ void DrawGLScene(GLvoid) // Here's Where We Do All The Drawing
     } else {
       glColor3f(1, 1, 1);
       printToScreen(2, 80, "move   w/a/s/d", 0, 1.0, screenwidth, screenheight);
-      printToScreen(2, 60, "attack q/e", 0, 1.0, screenwidth, screenheight);
+      printToScreen(2, 60, "attack q/e/r", 0, 1.0, screenwidth, screenheight);
       printToScreen(2, 40, "weapon shift-z", 0, 1.0, screenwidth, screenheight);
       if (AIOffensive) {
         glColor3f(1.0, 0.0, 0.0);
