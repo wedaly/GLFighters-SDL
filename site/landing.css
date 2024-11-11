@@ -1,16 +1,14 @@
 :root {
   --fg-color: #d0cfcc;
-  --bg-color: #2e303e;
+  --bg-color: #15161c;
   --border-color: #606060;
   --quote-fg-color: #e6e6e6;
   --quote-border-color: #606060;
-  --link-color: #18bc9c;
-  --link-hover-color: #149a80;
-  --cta-bg: #149a80;
-  --cta-border: #128f76;
+  --link-color: #e600c0;
+  --link-hover-color: #ff00d5;
   --cta-text: #fff;
-  --cta-hover-bg: #18bc9c;
-  --cta-hover-border: #18bc9c;
+  --cta-bg: #97007e;
+  --cta-hover-bg: #bf00a0;
 }
 
 html {
