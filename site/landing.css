@@ -1,28 +1,16 @@
 :root {
-  --fg-color: #1a1a1a;
-  --bg-color: #fdfdfd;
-  --border-color: #e6e6e6;
-  --quote-fg-color: #606060;
-  --quote-border-color: #e6e6e6;
-  --link-color: #007a6c;
+  --fg-color: #d0cfcc;
+  --bg-color: #2e303e;
+  --border-color: #606060;
+  --quote-fg-color: #e6e6e6;
+  --quote-border-color: #606060;
+  --link-color: #18bc9c;
   --link-hover-color: #149a80;
   --cta-bg: #149a80;
   --cta-border: #128f76;
   --cta-text: #fff;
   --cta-hover-bg: #18bc9c;
   --cta-hover-border: #18bc9c;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --fg-color: #d0cfcc;
-    --bg-color: #2e303e;
-    --border-color: #606060;
-    --quote-fg-color: #e6e6e6;
-    --quote-border-color: #606060;
-    --link-color: #18bc9c;
-    --link-hover-color: #149a80;
-  }
 }
 
 html {
