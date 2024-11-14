@@ -43,13 +43,14 @@ make server
 
 ## Changes from the original
 
-There are a few changes from the original game to make it more accessible to modern gamers.
+There are a few changes from the original game to translate the experience to the web
+and make it more accessible to modern gamers:
 * The default map, player skins, and starting position are chosen so they stand out
   against the background and are easier to see.
 * The default weapon for player 1 is the lightsaber, because the animation/sounds are awesome
   and because it shows that GLFighters has multiple types of weapons.
 * There is help text printed showing the most important keys (movement, attack, and toggling the AI)
-  so casual players can get started.
+  so casual players can get started. There is also help text after a player dies explaining how to restart.
 * The ability to save and open map files is not yet implemented.
 
 The original used the numpad for player 2 controls and map editor commands, but none of my keyboards
@@ -58,6 +59,5 @@ have a numpad, so I haven't tested that these work correctly.
 ## Contributing
 
 Pull requests are welcome for bugfixes and porting to other platforms.
-
-Changes to the game itself will NOT be accepted, to preserve the character of the original game.
-Of course, you're welcome to make any changes you want on a fork.
+Modifications or extensions to the game itself will not be accepted, but you're
+welcome to make whatever changes you want on a fork.
