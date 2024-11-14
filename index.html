@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GLFighters is a port of a Classic Mac OS game to WebAssembly">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <title>GLFighters</title>
+  <style>
+:root {
+  --fg-color: #d0cfcc;
+  --bg-color: #15161c;
+  --border-color: #606060;
+  --quote-fg-color: #e6e6e6;
+  --quote-border-color: #97007e;
+  --link-color: #ff65e6;
+  --link-hover-color: #ff00d5;
+  --cta-text: #fff;
+  --cta-bg: #97007e;
+  --cta-hover-bg: #bf00a0;
+}
+
+html {
+  line-height: 1.5;
+  font-family: Georgia, serif;
+  font-size: 20px;
+  color: var(--fg-color);
+  background-color: var(--bg-color);
+}
+
+body {
+  margin: 0 auto;
+  max-width: 40em;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  word-wrap: break-word;
+  text-rendering: optimizeLegibility;
+  font-kerning: normal;
+}
+
+@media (max-width: 600px) {
+  body {
+    font-size: 0.9em;
+    padding: 1em;
+  }
+}
+
+p {
+  margin: 1em 0;
+}
+
+a {
+  color: var(--link-color);
+}
+
+a:visited {
+  color: var(--link-color);
+}
+
+a:hover {
+  color: var(--link-hover-color);
+}
+
+img {
+  max-width: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 1.4em;
+}
+
+h5, h6 {
+  font-size: 1em;
+  font-style: italic;
+}
+
+h6 {
+  font-weight: normal;
+}
+
+ol, ul {
+  padding-left: 1.7em;
+  margin-top: 1em;
+}
+
+li > ol, li > ul {
+  margin-top: 0;
+}
+
+blockquote {
+  margin: 1em 0 1em 1.7em;
+  padding-left: 1em;
+  border-left: 2px solid var(--quote-border-color);
+  color: var(--quote-fg-color);
+}
+
+code {
+  font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+  font-size: 85%;
+  margin: 0;
+}
+
+pre {
+  margin: 1em 0;
+  overflow: auto;
+  background-color: #161B22;
+  padding: 1em;
+}
+
+pre code {
+  padding: 0;
+  overflow: visible;
+}
+
+.sourceCode {
+ background-color: transparent;
+ overflow: visible;
+}
+
+hr {
+  background-color: var(--fg-color);
+  border: none;
+  height: 1px;
+  margin: 1em 0;
+}
+
+table {
+  margin: 1em 0;
+  border-collapse: collapse;
+  width: 100%;
+  overflow-x: auto;
+  display: block;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+table caption {
+  margin-bottom: 0.75em;
+}
+
+tbody {
+  margin-top: 0.5em;
+  border-top: 1px solid var(--fg-color);
+  border-bottom: 1px solid var(--fg-color);
+}
+
+th {
+  border-top: 1px solid var(--fg-color);
+  padding: 0.25em 0.5em 0.25em 0.5em;
+  text-align: left;
+}
+
+td {
+  padding: 0.125em 0.5em 0.25em 0.5em;
+  vertical-align: top;
+  border-bottom: 1px solid var(--border-color);
+}
+
+header {
+  margin-bottom: 4em;
+  text-align: center;
+}
+
+code{white-space: pre;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+
+header.hero {
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+header.hero a {
+  font-size: 1.5rem;
+  margin: 0rem 0 1rem 0;
+  border-radius: 5px;
+  background-color: var(--cta-bg);
+  color: var(--cta-text) !important;
+  display: inline-block;
+  padding: .1rem 1rem;
+  text-decoration: none;
+  transition: .4s;
+}
+
+header.hero a:hover {
+  background-color: var(--cta-hover-bg);
+  border-color: var(--cta-hover-border);
+}
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <h1>GLFighters</h1>
+    <p>Port of a Classic Mac OS game to the web!</p>
+    <p><a href="glfighters.html">Play!</a></p>
+    <img src="glfighters-screenshot.avif" alt="screenshot of glfighters" />
+  </header>
+
+  <main>
+    <h2>About</h2>
+    <p>GLFighters was David Rosen's submission to udevgames 2001, a competition for independent Mac game developers. It was originally written for Mac OS 9, the last of the Classic Mac OS era.</p>
+
+    <p>This is how David described it at the time:
+      <blockquote>
+        <p>This game is not quite done yet and I have stopped working on it, so I might as well release it for the udevgames competition in the hope that somebody might learning something from the cluttered unintelligible source code. It is a two-player game in which you control a couple of ninja robot guys who can run, jump, climb, fly and roll around on the maps. The goal is to shoot the other player with a gun, break his neck, stab him with a sword or kill him in any of several other ways...
+        <p>There is AI right now but at the moment it can't jump, doesn't understand the jetpack very well, has lightning-fast reflexes and is overall pretty stupid. There are several different weapons which are not balanced at all.
+      </blockquote>
+    </p>
+
+    <p>In my opinion, this perfectly exemplifies the Mac indie developer scene from that time: unpolished, joyful, ambitious. All the game logic was implemented in 9,995 lines of C++ stored in a single file ("Lesson24.cpp"). David somehow hacked it together in less than eight weeks.</p>
+
+    <p>In 2024, I ported the game to WebAssembly. It's pretty amazing that a 23-year-old game &mdash; written for a platform that no longer exists &mdash; can still be played today on any computer with a modern web browser!</p> 
+    <p>The source code is available <a href="https://github.com/wedaly/GLFighters-SDL">on GitHub</a> under the MIT license.</p>
+
+    <h2>Controls</h2>
+
+    <p>GLFighters has many hidden features, including slow-motion, low-gravity, wireframe rendering, +9999 health, and a map editor.</p>
+
+    <p><a href="controls.html">Click here for the full list of keyboard commands.</a></p>
+
+    <h2>Credits</h2>
+
+    <p>Thanks to David Rosen for writing and releasing GLFighters back in 2001!</p>
+
+    <p>The WebAssembly port used this awesome software:
+    <ul>
+      <li><a href="https://www.libsdl.org/">SDL</a> and <a href="https://github.com/libsdl-org/SDL_mixer">SDL_mixer</a></li>
+      <li><a href="https://emscripten.org/">emscripten</a></li>
+      <li><a href="http://ptitseb.github.io/gl4es/">gl4es</a></li>
+    </ul>
+    </p>
+
+  </main>
+</body>
+</html>

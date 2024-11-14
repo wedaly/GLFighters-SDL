@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <meta charset="utf-8">
+  <link rel="icon" type="image/png" href="favicon.png">
+  </meta>
+  <head>
+    <title>GLFighters Controls</title>
+    <style>
+    :root {
+      --fg-color: #d0cfcc;
+      --bg-color: #2e303e;
+      --card-bg-color: #15171e;
+      --link-color: #ff65e6;
+      --link-hover-color: #ff00d5;
+      --keys-fg-color: #fff;
+      --keys-bg-color: #333;
+    }
+
+    html {
+      color: var(--fg-color);
+      background-color: var(--bg-color);
+    }
+
+    header {
+      margin: 2em;
+    }
+
+    section {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    article {
+      display: inline-block;
+      vertical-align: top;
+      margin: 2em;
+      padding: 2em;
+      background-color: var(--card-bg-color);
+      flex: 20em;
+      border-radius: 10px;
+    }
+
+    article > h2 {
+      padding-top: 0;
+      margin-top: 0;
+    }
+
+    a {
+      color: var(--link-color);
+    }
+
+    a:visited {
+      color: var(--link-color);
+    }
+
+    a:hover {
+      color: var(--link-hover-color);
+    }
+
+    .command {
+      padding: 0.5em;
+    }
+
+    .keys {
+      color: var(--keys-fg-color);
+      background: var(--keys-bg-color);
+      border-radius: 4px;
+      box-shadow: 2px 2px 2px #aaa;
+      padding: 5px 10px;
+      display: inline-block;
+      margin: 0 8px 10px 5px;
+      font-weight: bold;
+    }
+
+    .description {
+      margin-left: 1em;
+    }
+    </style>
+  </head>
+  <body>
+    <header>
+    <h1>GLFighters Controls</h1>
+    </header>
+
+    <section>
+      <article>
+        <h2>Player 1</h2>
+        <div class="command"><span class="keys">w</span><span class="description">Jump / Fly</span></div>
+        <div class="command"><span class="keys">a</span><span class="description">Move Left</span></div>
+        <div class="command"><span class="keys">s</span><span class="description">Down / Duck</span></div>
+        <div class="command"><span class="keys">d</span><span class="description">Move Right</span></div>
+        <div class="command"><span class="keys">q</span><span class="description">Shoot Left</span></div>
+        <div class="command"><span class="keys">e</span><span class="description">Shoot Right</span></div>
+        <div class="command"><span class="keys">r</span><span class="description">Attack</span></div>
+        <div class="command"><span class="keys">t</span><span class="description">Block</span></div>
+        <div class="command"><span class="keys">y</span><span class="description">Turn Off Jetpack</span></div>
+        <div class="command"><span class="keys">x</span><span class="description">Cloak</span></div>
+        <div class="command"><span class="keys">shift-z</span><span class="description">Toggle Weapon</span></div>
+      </article>
+
+      <article>
+        <h2>AI Opponent</h2>
+        <div class="command"><span class="keys">o</span><span class="description">Toggle AI Offensive</span></div>
+        <div class="command"><span class="keys">shift-v</span><span class="description">Toggle Weapon</span></div>
+        <div class="command"><span class="keys">shift-v</span><span class="description">Toggle Weapon</span></div>
+        <div class="command"><span class="keys">shift-c</span><span class="description">Toggle Player 1 AI</span></div>
+        <div class="command"><span class="keys">shift-d</span><span class="description">Toggle Player 2 AI</span></div>
+      </article>
+
+      <article>
+        <h2>Camera</h2>
+        <div class="command"><span class="keys">v</span><span class="description">Toggle Free Camera</span></div>
+        <div class="command"><span class="keys">i</span><span class="description">Move Up</span></div>
+        <div class="command"><span class="keys">j</span><span class="description">Move Left</span></div>
+        <div class="command"><span class="keys">k</span><span class="description">Move Down</span></div>
+        <div class="command"><span class="keys">l</span><span class="description">Move Right</span></div>
+        <div class="command"><span class="keys">PgDn</span><span class="description">Zoom Out</span></div>
+        <div class="command"><span class="keys">PgUp</span><span class="description">Zoom In</span></div>
+        <div class="command"><span class="keys">&uarr;</span><span class="description">Rotate Up</span></div>
+        <div class="command"><span class="keys">&larr;</span><span class="description">Rotate Left</span></div>
+        <div class="command"><span class="keys">&darr;</span><span class="description">Rotate Down</span></div>
+        <div class="command"><span class="keys">&rarr;</span><span class="description">Rotate Right</span></div>
+      </article>
+
+      <article>
+        <h2>Game</h2>
+        <div class="command"><span class="keys">z</span><span class="description">Respawn</span></div>
+        <div class="command"><span class="keys">s</span><span class="description">Toggle Show Info</span></div>
+        <div class="command"><span class="keys">u</span><span class="description">Toggle JetPacks</span></div>
+        <div class="command"><span class="keys">shift-u</span><span class="description">Toggle Unlimited Ammo</span></div>
+        <div class="command"><span class="keys">shift-i</span><span class="description">Give 9999 Health</span></div>
+        <div class="command"><span class="keys">shift-o</span><span class="description">Toggle Auto Respawn</span></div>
+        <div class="command"><span class="keys">c</span><span class="description">Toggle Change Gravity and Jump Height</span></div>
+        <div class="command"><span class="keys">=</span><span class="description">Toggle Increase Gravity</span></div>
+        <div class="command"><span class="keys">/</span><span class="description">Toggle Decrease Gravity</span></div>
+        <div class="command"><span class="keys">-</span><span class="description">Toggle Increase Jump Height</span></div>
+        <div class="command"><span class="keys">+</span><span class="description">Toggle Decrease Jump Height</span></div>
+      </article>
+
+      <article>
+        <h2>Display</h2>
+        <div class="command"><span class="keys">n</span><span class="description">Toggle Background</span></div>
+        <div class="command"><span class="keys">shift-n</span><span class="description">Toggle Skins</span></div>
+        <div class="command"><span class="keys">shift-f</span><span class="description">Toggle Fog</span></div>
+        <div class="command"><span class="keys">m</span><span class="description">Toggle Wireframe</span></div>
+        <div class="command"><span class="keys">b</span><span class="description">Toggle Slow Motion</span></div>
+        <div class="command"><span class="keys">shift-b</span><span class="description">Toggle Freeze Time</span></div>
+        <div class="command"><span class="keys">shift-x</span><span class="description">Toggle Particle Hand Trails</span></div>
+        <div class="command"><span class="keys">shift-a</span><span class="description">Toggle Polygon Hand Trails</span></div>
+        <div class="command"><span class="keys">shift-l</span><span class="description">Toggle Lighting</span></div>
+        <div class="command"><span class="keys">TAB</span><span class="description">Toggle First Person View</span></div>
+      </article>
+
+      <article>
+        <h2>Player 2</h2>
+        <p>Use numpad keys:</p>
+        <div class="command"><span class="keys">8</span><span class="description">Player 2 Up</span></div>
+        <div class="command"><span class="keys">4</span><span class="description">Player 2 Left</span></div>
+        <div class="command"><span class="keys">5</span><span class="description">Player 2 Down</span></div>
+        <div class="command"><span class="keys">6</span><span class="description">Player 2 Right</span></div>
+        <div class="command"><span class="keys">7</span><span class="description">Player 2 Shoot Left</span></div>
+        <div class="command"><span class="keys">9</span><span class="description">Player 2 Shoot Right</span></div>
+        <div class="command"><span class="keys">0</span><span class="description">Player 2 Attack</span></div>
+        <div class="command"><span class="keys">Enter</span><span class="description">Player 2 Block</span></div>
+        <div class="command"><span class="keys">3</span><span class="description">Player 2 Turn Off JetPack</span></div>
+        <div class="command"><span class="keys">1</span><span class="description">Player 2 Cloak</span></div>
+      </article>
+
+      <article>
+        <h2>Map Editor</h2>
+        <div class="command"><span class="keys">shift-m</span><span class="description">Toggle Map Editor</span></div>
+        <div class="command">numpad <span class="keys">2</span><span class="description">Set Tile Platform With Rope</span></div>
+        <div class="command">numpad <span class="keys">3</span><span class="description">Set Tile Rope</span></div>
+        <div class="command">numpad <span class="keys">8</span><span class="description">Selection Up</span></div>
+        <div class="command">numpad <span class="keys">4</span><span class="description">Selection Left</span></div>
+        <div class="command">numpad <span class="keys">5</span><span class="description">Selection Down</span></div>
+        <div class="command">numpad <span class="keys">6</span><span class="description">Selection Right</span></div>
+        <div class="command">numpad <span class="keys">7</span><span class="description">Create Spawn Point</span></div>
+        <div class="command">numpad <span class="keys">9</span><span class="description">Change Spawn Point Number</span></div>
+        <div class="command"><span class="keys">?</span><span class="description">Erase Everything</span></div>
+        <div class="command">numpad <span class="keys">+</span><span class="description">Create Wall</span></div>
+      </article>
+    </section>
+  </body>
+</html>
