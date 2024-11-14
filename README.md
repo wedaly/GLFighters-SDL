@@ -2,6 +2,8 @@
 
 GLFighters was originally written by David Rosen for Classic Mac OS. This repo contains a port of the game to SDL, which can be built for both Linux and WebAssembly.
 
+You can play it online at [https://devnonsense.com/GLFighters-SDL/](https://devnonsense.com/GLFighters-SDL/). The site is built from this repository.
+
 ## Dependencies
 
 ### Linux
