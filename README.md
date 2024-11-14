@@ -4,7 +4,7 @@ GLFighters was originally written by David Rosen for Classic Mac OS. This repo c
 
 ## Dependencies
 
-## Linux
+### Linux
 
 For building on Linux, you will need:
 * GCC C++ compiler
@@ -16,7 +16,7 @@ On Fedora, you can install these with:
 dnf install gcc-c++ SDL2-devel SDL2_mixer-devel mesa-libGL-devel
 ```
 
-## WASM
+### WASM
 
 To build for WebAssembly (WASM), you need emscripten.
 
