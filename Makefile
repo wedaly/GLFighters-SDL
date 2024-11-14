@@ -1,7 +1,7 @@
 .PHONY: linux wasm server clean
 
 WASMOBJDIR := wasmobjs
-WASMVARS := CXXFLAGS="-I../vendor/gl4es-v1.1.6/include" \
+WASMVARS := CXXFLAGS="-sUSE_SDL=2 -sUSE_SDL_MIXER=2 -I../vendor/gl4es-v1.1.6/include" \
 	OBJDIR=$(WASMOBJDIR) \
 	LDLIBS="../vendor/gl4es-v1.1.6/lib/libGL.a" \
 	LDFLAGS="--use-port=sdl2 --use-port=sdl2_mixer -sFULL_ES2 --preload-file=./data --shell-file ../site/emscripten-shell.html" \

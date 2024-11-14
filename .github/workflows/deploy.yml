@@ -1,0 +1,41 @@
+name: Deploy
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup emscripten
+        run: |
+          EMSCRIPTEN_VERSION="3.1.70"
+          git clone --depth 1 https://github.com/emscripten-core/emsdk.git
+          cd emsdk
+          ./emsdk install "$EMSCRIPTEN_VERSION"
+          ./emsdk activate "$EMSCRIPTEN_VERSION"
+
+      - name: Build
+        run: |
+          source ./emsdk/emsdk_env.sh
+          make wasm
+
+      - name: Copy assets
+        run: |
+          mkdir -p ./public
+          cp ./site/* ./public
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/heads/main'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
