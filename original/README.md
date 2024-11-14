@@ -6,6 +6,8 @@ This folder contains the original GLFighters release, source code, and related d
 * **GLFightersSource.sit**: retrieved 2024-10-25 from [https://www.macintoshrepository.org/20005-glfighters](https://www.macintoshrepository.org/20005-glfighters)
 * **Screenshots**: images retrieved 2024-10-25 from [http://www.wolfire.com/glfighters](http://www.wolfire.com/glfighters)
 
+On Linux, you can use the `unar` tool to decompress the StuffIt archives (".sit"). Some files have Classic Mac OS line endings ("\r" instead of "\n"); you can change the line endings by piping the file through `tr '\r' '\n'`.
+
 # Writing about GLFighters
 
 * [*uDevGame 2001: Winner's Announcement*](https://web.archive.org/web/20011110185112/http://www.idevgames.com/html/contest/contests.php3). GLFighters came in 4th place.
